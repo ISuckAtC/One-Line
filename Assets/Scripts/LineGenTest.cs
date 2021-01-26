@@ -9,7 +9,12 @@ public class LineGenTest : MonoBehaviour
 
     GameObject current;
 
+    [Tooltip("Make the circle piece be drawn continously at the rate defined below")]
+    public bool Continuous;
+    [Tooltip("The rate at which to draw new circles when Continuous is checked")]
     public float drawRate;
+    [Tooltip("The limit of line pieces in a circle, set to avoid infinite loops due to inprecise cosigns")]
+    public int iterationLimit;
 
     bool drawing;
     // Update is called once per frame
@@ -17,15 +22,24 @@ public class LineGenTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            if (drawing)
+            if (Continuous)
             {
-                StopCoroutine(Drawing());
-                drawing = false;
+                if (drawing)
+                {
+                    StopCoroutine(Drawing());
+                    drawing = false;
+                }
+                else
+                {
+                    StartCoroutine(Drawing());
+                    drawing = true;
+                }
             }
             else
             {
-                StartCoroutine(Drawing());
-                drawing = true;
+                if (current != null) Destroy(current);
+                current = Instantiate(linePrefab, transform.position, Quaternion.identity);
+                current.GetComponent<Line>().ConstructFromPoints(a.position, b.position, c.position, LineType.Normal, 0.5f, iterationLimit);
             }
         }
     }
@@ -36,7 +50,7 @@ public class LineGenTest : MonoBehaviour
         {
             if (current != null) Destroy(current);
             current = Instantiate(linePrefab, transform.position, Quaternion.identity);
-            current.GetComponent<Line>().ConstructFromPoints(a.position, b.position, c.position, LineType.Normal, 0.5f);
+            current.GetComponent<Line>().ConstructFromPoints(a.position, b.position, c.position, LineType.Normal, 0.5f, iterationLimit);
             yield return new WaitForSeconds(drawRate);
         }
     }

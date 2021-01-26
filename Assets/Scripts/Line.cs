@@ -23,7 +23,7 @@ public class Line : MonoBehaviour
     public float MinLengthForNewPiece;
     public float MaxDistanceForValidConstruction;
 
-    public void ConstructFromPoints(Vector2 a, Vector2 b, Vector2 c, LineType lineType, float pieceLength)
+    public void ConstructFromPoints(Vector2 a, Vector2 b, Vector2 c, LineType lineType, float pieceLength, int iterationLimit)
     {
         Setup(lineType);
         lengthLimit = 500;
@@ -97,7 +97,7 @@ public class Line : MonoBehaviour
             float angle = Mathf.Acos(((Mathf.Pow(radius, 2) * 2) - Mathf.Pow(pieceLength, 2)) / (2 * radius * radius));
             Debug.Log(angle);
             Add(RotateAround(End, center, -angle), false);
-            if (++i > 70)
+            if (++i > iterationLimit)
             {
                 Debug.Log("repeat limit reached");
                 Debug.Log(Vector2.Distance(End, b));

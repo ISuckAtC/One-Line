@@ -66,9 +66,13 @@ public class GameControl : MonoBehaviour
     IEnumerator Dragging(GameObject ball)
     {
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-        float initG = rb.gravityScale;
-        rb.gravityScale = 0;
-        rb.velocity = Vector2.zero;
+        float initG = 0;
+        if (rb != null)
+        {
+            initG = rb.gravityScale;
+            rb.gravityScale = 0;
+            rb.velocity = Vector2.zero;
+        }
         while (Input.GetMouseButton(0))
         {
             Vector3 pos = ball.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -76,6 +80,6 @@ public class GameControl : MonoBehaviour
             ball.transform.position = pos;
             yield return new WaitForEndOfFrame();
         }
-        rb.gravityScale = initG;
+        if (rb != null) rb.gravityScale = initG;
     }
 }
