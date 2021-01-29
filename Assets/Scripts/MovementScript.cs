@@ -26,7 +26,7 @@ public class MovementScript : MonoBehaviour
     void Start()
     {
 
-        maskPlayer = ~(1 << 9);
+        maskPlayer = ~(1 << LayerMask.NameToLayer("Player"));
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
