@@ -40,46 +40,7 @@ public class MovementScript : MonoBehaviour
 
         RaycastHit2D hit2D;
 
-        Debug.DrawRay(transform.position + new Vector3(0, yGroundCheckOffset, 0), Vector2.down, Color.green, 2);
-
-        hit2D = Physics2D.Raycast(transform.position, Vector2.down, 5, maskPlayer);
-
-        Debug.Log(hit2D.collider.name);
-
-        if(hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, Vector2.down, 1f, maskPlayer))
-        {
-
-            Debug.Log("pp");
-            playerControlPower = 1;
-            if (Input.GetKey(KeyCode.Space))
-            {
-
-                jumpOnOff = 1;
-
-            }
-
-        }
-        else
-        {
-
-            jumpOnOff = 0;
-            playerControlPower = 0.4f;
-
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
-        else speedMultiplier = 1f;
-
-        if (rb2D.velocity.x >= (5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
-        else
-        if (rb2D.velocity.x <= (-5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
-        else xMoveDir = Input.GetAxisRaw("Horizontal");
-
-        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), rb2D.velocity.y + (jumpForce * jumpOnOff));
-
-        rb2D.velocity = movementVector;
-
-        if(Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
 
             capsuleCollider.size = new Vector2(1f, 1f);
@@ -96,15 +57,47 @@ public class MovementScript : MonoBehaviour
 
         }
 
+        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, Vector2.down, 1f, maskPlayer))
+        {
+
+            playerControlPower = 1;
+            if (Input.GetKey(KeyCode.Space))
+            {
+
+                jumpOnOff = 1;
+
+            }
+
+        }
+        else
+        {
+
+            jumpOnOff = 0;
+            playerControlPower = 0.6f;
+
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
+        else speedMultiplier = 1f;
+
+        if (rb2D.velocity.x >= (5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
+        else
+        if (rb2D.velocity.x <= (-5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
+        else xMoveDir = Input.GetAxisRaw("Horizontal");
+
+        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), rb2D.velocity.y + (jumpForce * jumpOnOff));
+
+        rb2D.velocity = movementVector;
+
     }
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        /*if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
+        if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
         }
-        */
+        
     }
 
 }
