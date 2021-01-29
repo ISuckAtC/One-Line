@@ -57,7 +57,7 @@ public class MovementScript : MonoBehaviour
 
         }
 
-        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, Vector2.down, 1f, maskPlayer))
+        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, Vector2.down, 0.5f, maskPlayer))
         {
 
             playerControlPower = 1;
@@ -69,13 +69,13 @@ public class MovementScript : MonoBehaviour
             }
 
         }
-        else
-        {
-
+        
+        if (rb2D.velocity.y >= jumpForce)
             jumpOnOff = 0;
+
+        if( jumpOnOff == 0)
             playerControlPower = 0.6f;
 
-        }
 
         if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
         else speedMultiplier = 1f;
