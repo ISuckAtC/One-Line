@@ -14,6 +14,8 @@ public class MovementScript : MonoBehaviour
     private float speedMultiplier = 1f;
     private float yGroundCheckOffset;
     private float xMoveDir;
+    private float jumpPower;
+    private float groundCheckDist;
     private int jumpOnOff;
     private CapsuleCollider2D capsuleCollider;
     private SpriteRenderer spriteRenderer;
@@ -31,6 +33,7 @@ public class MovementScript : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
         yGroundCheckOffset = -0.05f;
+        groundCheckDist = 0.5f;
 
     }
 
@@ -45,19 +48,31 @@ public class MovementScript : MonoBehaviour
 
             capsuleCollider.size = new Vector2(1f, 1f);
             spriteRenderer.size = new Vector2(1f, 1f);
-            yGroundCheckOffset = 0.45f;
+            yGroundCheckOffset = -0.05f;
+            groundCheckDist = 0f;
+            jumpPower = 1f;
 
         }
         else
         {
 
-            capsuleCollider.size = new Vector2(1f, 2f);
-            spriteRenderer.size = new Vector2(1f, 2f);
-            yGroundCheckOffset = -0.05f;
+            hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, 0.4f, 0),
+                0.5f, new Vector2(0, 1), 0.5f, maskPlayer);
+
+            if (!hit2D)
+            {
+
+                capsuleCollider.size = new Vector2(1f, 1.98f);
+                spriteRenderer.size = new Vector2(1f, 1.99f);
+                yGroundCheckOffset = -0.05f;
+                groundCheckDist = 0.5f;
+                jumpPower = 1.5f;
+
+            }
 
         }
 
-        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, Vector2.down, 0.5f, maskPlayer))
+        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
 
             playerControlPower = 1;
@@ -85,9 +100,11 @@ public class MovementScript : MonoBehaviour
         if (rb2D.velocity.x <= (-5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
         else xMoveDir = Input.GetAxisRaw("Horizontal");
 
-        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), rb2D.velocity.y + (jumpForce * jumpOnOff));
+        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), rb2D.velocity.y + (jumpForce * jumpOnOff * jumpPower));
 
         rb2D.velocity = movementVector;
+
+        jumpOnOff = 0;
 
     }
 
