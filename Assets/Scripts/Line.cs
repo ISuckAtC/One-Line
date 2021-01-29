@@ -127,10 +127,10 @@ public class Line : MonoBehaviour
         return a.y * (1 / a.x);
     }
 
-    public void ConstructFromCursor(float drawRate, LineType lineType)
+    public void ConstructFromCursor(float drawRate, LineType lineType, bool freeDraw)
     {
         Setup(lineType);
-        StartCoroutine(Drawing(drawRate));
+        if (freeDraw) StartCoroutine(Drawing(drawRate));
     }
 
     void Setup(LineType lineType)

@@ -58,7 +58,7 @@ public class GameControl : MonoBehaviour
                 GameObject line = Instantiate(LinePrefab, Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
                 lastLine = line;
-                line.GetComponent<Line>().ConstructFromCursor(DrawRateSeconds, lineType);
+                line.GetComponent<Line>().ConstructFromCursor(DrawRateSeconds, lineType, true);
             }
         }
     }
