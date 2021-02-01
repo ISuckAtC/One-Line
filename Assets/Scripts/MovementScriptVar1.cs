@@ -5,10 +5,13 @@ using UnityEngine;
 public class MovementScriptVar1 : MonoBehaviour
 {
 
-    [Range(0, 1)]
-    public float moveSpeed;
+    [Range(0, 10)]
+    public float moveSpeed = 0.6f;
     public float BumpForce;
     public float jumpForce;
+    private bool isGrounded;
+    private float yVel;
+    private float crouchedMoveDebuf;
     [SerializeField]
     private float playerControlPower;
     private float speedMultiplier = 1f;
@@ -50,7 +53,8 @@ public class MovementScriptVar1 : MonoBehaviour
             spriteRenderer.size = new Vector2(1f, 1f);
             yGroundCheckOffset = -0.05f;
             groundCheckDist = 0f;
-            jumpPower = 1f;
+            jumpPower = 0.7f;
+            crouchedMoveDebuf = 0.4f;
 
         }
         else
@@ -66,7 +70,8 @@ public class MovementScriptVar1 : MonoBehaviour
                 spriteRenderer.size = new Vector2(1f, 1.99f);
                 yGroundCheckOffset = -0.05f;
                 groundCheckDist = 0.5f;
-                jumpPower = 1.5f;
+                jumpPower = 1f;
+                crouchedMoveDebuf = 1f;
 
             }
 
@@ -75,8 +80,10 @@ public class MovementScriptVar1 : MonoBehaviour
         if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
 
+            isGrounded = true;
+
             playerControlPower = 1;
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
             {
 
                 jumpOnOff = 1;
@@ -84,23 +91,29 @@ public class MovementScriptVar1 : MonoBehaviour
             }
 
         }
+        else isGrounded = false;
 
-        if (rb2D.velocity.y >= jumpForce)
-            jumpOnOff = 0;
+        if (isGrounded == false)
+        {
 
-        if (jumpOnOff == 0)
+            Debug.Log("pp");
             playerControlPower = 0.6f;
+
+        }
+        else playerControlPower = 1f;
 
 
         if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
-        else speedMultiplier = 1f;
+        else speedMultiplier = 0.8f;
 
-        if (rb2D.velocity.x >= (5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
+        if (rb2D.velocity.x >= (moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
         else
-        if (rb2D.velocity.x <= (-5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
+        if (rb2D.velocity.x <= (-moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
         else xMoveDir = Input.GetAxisRaw("Horizontal");
 
-        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), (jumpForce * jumpOnOff * jumpPower));
+        yVel = rb2D.velocity.y - jumpForce;
+
+        movementVector = new Vector2(rb2D.velocity.x + (speedMultiplier * xMoveDir * playerControlPower * crouchedMoveDebuf),rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
 
         rb2D.velocity = movementVector;
 
@@ -110,12 +123,9 @@ public class MovementScriptVar1 : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-
         if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
         {
-
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
-
         }
 
     }
