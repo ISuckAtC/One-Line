@@ -96,8 +96,7 @@ public class MovementScriptVar1 : MonoBehaviour
         if (isGrounded == false)
         {
 
-            Debug.Log("pp");
-            playerControlPower = 0.6f;
+            playerControlPower = 0.3f;
 
         }
         else playerControlPower = 1f;
@@ -106,10 +105,10 @@ public class MovementScriptVar1 : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
         else speedMultiplier = 0.8f;
 
-        if (rb2D.velocity.x >= (moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
+        if (rb2D.velocity.x >= (moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxis("Horizontal") > 0) xMoveDir = 0;
         else
-        if (rb2D.velocity.x <= (-moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
-        else xMoveDir = Input.GetAxisRaw("Horizontal");
+        if (rb2D.velocity.x <= (-moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxis("Horizontal") < 0) xMoveDir = 0;
+        else xMoveDir = Input.GetAxis("Horizontal");
 
         yVel = rb2D.velocity.y - jumpForce;
 
