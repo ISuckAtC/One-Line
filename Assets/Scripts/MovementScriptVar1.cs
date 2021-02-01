@@ -1,12 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementScript : MonoBehaviour
+public class MovementScriptVar1 : MonoBehaviour
 {
 
     [Range(0, 1)]
-    public float moveSpeed = 0.6f;
+    public float moveSpeed;
     public float BumpForce;
     public float jumpForce;
     [SerializeField]
@@ -50,7 +50,7 @@ public class MovementScript : MonoBehaviour
             spriteRenderer.size = new Vector2(1f, 1f);
             yGroundCheckOffset = -0.05f;
             groundCheckDist = 0f;
-            jumpPower = 0.5f;
+            jumpPower = 1f;
 
         }
         else
@@ -66,7 +66,7 @@ public class MovementScript : MonoBehaviour
                 spriteRenderer.size = new Vector2(1f, 1.99f);
                 yGroundCheckOffset = -0.05f;
                 groundCheckDist = 0.5f;
-                jumpPower = 1f;
+                jumpPower = 1.5f;
 
             }
 
@@ -84,11 +84,11 @@ public class MovementScript : MonoBehaviour
             }
 
         }
-        
+
         if (rb2D.velocity.y >= jumpForce)
             jumpOnOff = 0;
 
-        if( jumpOnOff == 0)
+        if (jumpOnOff == 0)
             playerControlPower = 0.6f;
 
 
@@ -100,7 +100,7 @@ public class MovementScript : MonoBehaviour
         if (rb2D.velocity.x <= (-5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
         else xMoveDir = Input.GetAxisRaw("Horizontal");
 
-        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), rb2D.velocity.y + (jumpForce * jumpOnOff * jumpPower));
+        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), (jumpForce * jumpOnOff * jumpPower));
 
         rb2D.velocity = movementVector;
 
@@ -110,11 +110,14 @@ public class MovementScript : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
+
         if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
         {
+
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
+
         }
-        
+
     }
 
 }
