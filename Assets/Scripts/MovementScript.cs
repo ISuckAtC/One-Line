@@ -96,7 +96,7 @@ public class MovementScript : MonoBehaviour
         {
 
             Debug.Log("pp");
-            playerControlPower = 0.6f;
+            playerControlPower = 0.4f;
 
         }
         else playerControlPower = 1f;
