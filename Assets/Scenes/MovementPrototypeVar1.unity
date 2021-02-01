@@ -1548,17 +1548,7 @@ PrefabInstance:
     - target: {fileID: 7269934806407825825, guid: 81aad7882cd8cef42a299f8d2c51dc8a,
         type: 3}
       propertyPath: jumpForce
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269934806407825825, guid: 81aad7882cd8cef42a299f8d2c51dc8a,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269934806407825825, guid: 81aad7882cd8cef42a299f8d2c51dc8a,
-        type: 3}
-      propertyPath: movementVector.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7269934806407825828, guid: 81aad7882cd8cef42a299f8d2c51dc8a,
         type: 3}
@@ -1614,11 +1604,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269934806407825830, guid: 81aad7882cd8cef42a299f8d2c51dc8a,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7269934806407825834, guid: 81aad7882cd8cef42a299f8d2c51dc8a,
         type: 3}
