@@ -5,11 +5,12 @@ using UnityEngine;
 public class MovementScriptVar1 : MonoBehaviour
 {
 
-    [Range(0, 1)]
+    [Range(0, 10)]
     public float moveSpeed = 0.6f;
     public float BumpForce;
     public float jumpForce;
     private bool isGrounded;
+    private float yVel;
     private float crouchedMoveDebuf;
     [SerializeField]
     private float playerControlPower;
@@ -103,14 +104,16 @@ public class MovementScriptVar1 : MonoBehaviour
 
 
         if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
-        else speedMultiplier = 1f;
+        else speedMultiplier = 0.8f;
 
-        if (rb2D.velocity.x >= (5 * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
+        if (rb2D.velocity.x >= (moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
         else
-        if (rb2D.velocity.x <= (-5 * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
+        if (rb2D.velocity.x <= (-moveSpeed * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
         else xMoveDir = Input.GetAxisRaw("Horizontal");
 
-        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower * crouchedMoveDebuf), rb2D.velocity.y + (jumpForce * jumpOnOff * jumpPower));
+        yVel = rb2D.velocity.y - jumpForce;
+
+        movementVector = new Vector2(rb2D.velocity.x + (speedMultiplier * xMoveDir * playerControlPower * crouchedMoveDebuf),rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
 
         rb2D.velocity = movementVector;
 
