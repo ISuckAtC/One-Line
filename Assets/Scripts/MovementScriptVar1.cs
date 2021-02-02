@@ -35,9 +35,10 @@ public class MovementScriptVar1 : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
-        yGroundCheckOffset = -0.05f;
+        yGroundCheckOffset = -0.4f;
         groundCheckDist = 0.5f;
         crouchedMoveDebuf = 1f;
+        jumpPower = 1f;
 
     }
 
@@ -47,11 +48,12 @@ public class MovementScriptVar1 : MonoBehaviour
 
         RaycastHit2D hit2D;
 
+        /*
         if (Input.GetKey(KeyCode.LeftControl))
         {
 
-            capsuleCollider.size = new Vector2(1f, 1f);
-            spriteRenderer.size = new Vector2(1f, 1f);
+            capsuleCollider.size = new Vector2(0.98f, 1f);
+            spriteRenderer.size = new Vector2(0.98f, 1f);
             yGroundCheckOffset = -0.05f;
             groundCheckDist = 0f;
             jumpPower = 0.7f;
@@ -67,8 +69,8 @@ public class MovementScriptVar1 : MonoBehaviour
             if (!hit2D)
             {
 
-                capsuleCollider.size = new Vector2(1f, 1.98f);
-                spriteRenderer.size = new Vector2(1f, 1.98f);
+                capsuleCollider.size = new Vector2(0.98f, 2.6f);
+                spriteRenderer.size = new Vector2(0.98f, 2.6f);
                 yGroundCheckOffset = -0.05f;
                 groundCheckDist = 0.5f;
                 jumpPower = 1f;
@@ -77,6 +79,7 @@ public class MovementScriptVar1 : MonoBehaviour
             }
 
         }
+        */
 
         if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
