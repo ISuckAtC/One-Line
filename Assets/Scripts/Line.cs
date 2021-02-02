@@ -5,7 +5,7 @@ using UnityEngine;
 public class Line : MonoBehaviour
 {
     public PhysicsMaterial2D Bounce, Slide;
-    public float NormalLength, IceLength, RubberLength;
+    public float NormalLength, IceLength, RubberLength, WeightLength;
     public LineType LineType;
     PhysicsMaterial2D material;
     float lengthLimit;
@@ -156,6 +156,11 @@ public class Line : MonoBehaviour
                 color = Color.black;
                 lengthLimit = RubberLength;
                 break;
+            case LineType.Weight:
+                material = null;
+                color = Color.gray;
+                lengthLimit = WeightLength;
+                break;
         }
     }
 
@@ -166,7 +171,10 @@ public class Line : MonoBehaviour
             position = Vector2.Lerp(End, position, (lengthLimit - Length) / Vector2.Distance(End, position));
         }
 
-        if (Vector2.Distance(End, position) < MinLengthForNewPiece && !start) return;
+        if (Vector2.Distance(End, position) < MinLengthForNewPiece && !start) 
+        {
+            return;
+        }
 
         Length += Vector2.Distance(End, position);
 
@@ -193,6 +201,8 @@ public class Line : MonoBehaviour
             Add(pos, false);
             yield return new WaitForSeconds(drawRate);
         }
+        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.mass = 1000000;
     }
     public void Update()
     {

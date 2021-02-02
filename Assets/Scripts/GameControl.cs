@@ -7,13 +7,14 @@ public enum LineType
 {
     Normal,
     Ice,
-    Rubber
+    Rubber,
+    Weight
 }
 public class GameControl : MonoBehaviour
 {
     LineType lineType;
     public GameObject GameCursor;
-    public Sprite CursorNormal, CursorIce, CursorRubber;
+    public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight;
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
@@ -46,6 +47,11 @@ public class GameControl : MonoBehaviour
             {
                 lineType = LineType.Rubber;
                 GameCursor.GetComponent<Image>().sprite = CursorRubber;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                lineType = LineType.Weight;
+                GameCursor.GetComponent<Image>().sprite = CursorWeight;
             }
         }
 
