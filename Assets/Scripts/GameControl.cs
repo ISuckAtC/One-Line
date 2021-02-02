@@ -33,7 +33,7 @@ public class GameControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         Vector3 mousePos = Input.mousePosition;
-        GameCursor.transform.position = new Vector3(mousePos.x + 20, mousePos.y - 40, mousePos.z);
+        GameCursor.transform.position = new Vector3(mousePos.x + 18, mousePos.y - 20, mousePos.z);
 
         if (!Input.GetMouseButton(0))
         {
