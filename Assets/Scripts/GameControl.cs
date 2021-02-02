@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum LineType
 {
@@ -28,6 +29,9 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit(0);
+        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+
         Vector3 mousePos = Input.mousePosition;
         GameCursor.transform.position = new Vector3(mousePos.x + 20, mousePos.y - 40, mousePos.z);
 

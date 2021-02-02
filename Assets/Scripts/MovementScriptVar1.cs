@@ -9,6 +9,7 @@ public class MovementScriptVar1 : MonoBehaviour
     public float moveSpeed = 0.6f;
     public float BumpForce;
     public float jumpForce;
+    [SerializeField]
     private bool isGrounded;
     private float yVel;
     private float crouchedMoveDebuf;
@@ -35,8 +36,8 @@ public class MovementScriptVar1 : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
-        yGroundCheckOffset = -0.4f;
-        groundCheckDist = 0.5f;
+        yGroundCheckOffset = -0.4f * transform.localScale.y;
+        groundCheckDist = 0.5f * transform.localScale.y;
         crouchedMoveDebuf = 1f;
         jumpPower = 1f;
 
@@ -81,7 +82,7 @@ public class MovementScriptVar1 : MonoBehaviour
         }
         */
 
-        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, new Vector2(0, -1), groundCheckDist, maskPlayer))
+        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
 
             isGrounded = true;
