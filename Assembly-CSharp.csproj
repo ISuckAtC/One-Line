@@ -599,11 +599,20 @@
     <Reference Include="Unity.2D.SpriteShape.Editor">
         <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.IK.Editor">
+        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Path.Editor">
         <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Runtime">
+        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
         <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
@@ -659,6 +668,9 @@
     <Reference Include="Unity.2D.Animation.Editor">
         <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
         <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
@@ -679,18 +691,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Editor">
-        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-        <HintPath>G:/_UNITY/Projects/One Line/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,11 @@ public class Spike : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        Destroy(Instantiate(BloodPrefab, col.GetContact(0).point, Quaternion.identity), 60);
-        Destroy(col.collider.gameObject);
+        if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.transform.GetChild(0).SetParent(null);
+            Destroy(Instantiate(BloodPrefab, col.GetContact(0).point, Quaternion.identity), 60);
+            Destroy(col.collider.gameObject);
+        }
     }
 }

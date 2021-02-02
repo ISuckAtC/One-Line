@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum LineType
 {
     Normal,
     Ice,
-    Rubber
+    Rubber,
+    Weight
 }
 public class GameControl : MonoBehaviour
 {
     LineType lineType;
     public GameObject GameCursor;
-    public Sprite CursorNormal, CursorIce, CursorRubber;
+    public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight;
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
@@ -27,8 +29,11 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit(0);
+        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+
         Vector3 mousePos = Input.mousePosition;
-        GameCursor.transform.position = new Vector3(mousePos.x + 20, mousePos.y - 40, mousePos.z);
+        GameCursor.transform.position = new Vector3(mousePos.x + 18, mousePos.y - 20, mousePos.z);
 
         if (!Input.GetMouseButton(0))
         {
@@ -46,6 +51,11 @@ public class GameControl : MonoBehaviour
             {
                 lineType = LineType.Rubber;
                 GameCursor.GetComponent<Image>().sprite = CursorRubber;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                lineType = LineType.Weight;
+                GameCursor.GetComponent<Image>().sprite = CursorWeight;
             }
         }
 

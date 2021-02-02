@@ -9,12 +9,14 @@ public class MovementScriptVar1 : MonoBehaviour
     public float moveSpeed = 0.6f;
     public float BumpForce;
     public float jumpForce;
+    [SerializeField]
     private bool isGrounded;
     private float yVel;
     private float crouchedMoveDebuf;
     [SerializeField]
     private float playerControlPower;
     private float speedMultiplier = 1f;
+    [SerializeField]
     private float yGroundCheckOffset;
     private float xMoveDir;
     private float jumpPower;
@@ -35,9 +37,10 @@ public class MovementScriptVar1 : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
-        yGroundCheckOffset = -0.05f;
-        groundCheckDist = 0.5f;
+        yGroundCheckOffset = -0.4f * transform.localScale.y;
+        groundCheckDist = 0.5f * transform.localScale.y;
         crouchedMoveDebuf = 1f;
+        jumpPower = 1f;
 
     }
 
@@ -47,6 +50,7 @@ public class MovementScriptVar1 : MonoBehaviour
 
         RaycastHit2D hit2D;
 
+        /*
         if (Input.GetKey(KeyCode.LeftControl))
         {
 
@@ -67,8 +71,8 @@ public class MovementScriptVar1 : MonoBehaviour
             if (!hit2D)
             {
 
-                capsuleCollider.size = new Vector2(0.98f, 1.98f);
-                spriteRenderer.size = new Vector2(0.98f, 1.98f);
+                capsuleCollider.size = new Vector2(0.98f, 2.6f);
+                spriteRenderer.size = new Vector2(0.98f, 2.6f);
                 yGroundCheckOffset = -0.05f;
                 groundCheckDist = 0.5f;
                 jumpPower = 1f;
@@ -77,8 +81,9 @@ public class MovementScriptVar1 : MonoBehaviour
             }
 
         }
+        */
 
-        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, new Vector2(0, -1), groundCheckDist, maskPlayer))
+        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
 
             isGrounded = true;
