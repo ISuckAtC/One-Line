@@ -201,8 +201,11 @@ public class Line : MonoBehaviour
             Add(pos, false);
             yield return new WaitForSeconds(drawRate);
         }
-        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.mass = 1000000;
+        if (LineType == LineType.Weight)
+        {
+            Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.mass = 1000000;
+        }
     }
     public void Update()
     {
