@@ -50,8 +50,8 @@ public class MovementScriptVar1 : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
 
-            capsuleCollider.size = new Vector2(1f, 1f);
-            spriteRenderer.size = new Vector2(1f, 1f);
+            capsuleCollider.size = new Vector2(0.98f, 1f);
+            spriteRenderer.size = new Vector2(0.98f, 1f);
             yGroundCheckOffset = -0.05f;
             groundCheckDist = 0f;
             jumpPower = 0.7f;
@@ -67,8 +67,8 @@ public class MovementScriptVar1 : MonoBehaviour
             if (!hit2D)
             {
 
-                capsuleCollider.size = new Vector2(1f, 1.98f);
-                spriteRenderer.size = new Vector2(1f, 1.98f);
+                capsuleCollider.size = new Vector2(0.98f, 1.98f);
+                spriteRenderer.size = new Vector2(0.98f, 1.98f);
                 yGroundCheckOffset = -0.05f;
                 groundCheckDist = 0.5f;
                 jumpPower = 1f;
