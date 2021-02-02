@@ -15,6 +15,7 @@ public class MovementScriptVar1 : MonoBehaviour
     [SerializeField]
     private float playerControlPower;
     private float speedMultiplier = 1f;
+    [SerializeField]
     private float yGroundCheckOffset;
     private float xMoveDir;
     private float jumpPower;
