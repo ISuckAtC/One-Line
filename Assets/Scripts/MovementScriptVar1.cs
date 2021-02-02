@@ -37,6 +37,7 @@ public class MovementScriptVar1 : MonoBehaviour
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
         yGroundCheckOffset = -0.05f;
         groundCheckDist = 0.5f;
+        crouchedMoveDebuf = 1f;
 
     }
 
@@ -67,7 +68,7 @@ public class MovementScriptVar1 : MonoBehaviour
             {
 
                 capsuleCollider.size = new Vector2(1f, 1.98f);
-                spriteRenderer.size = new Vector2(1f, 1.99f);
+                spriteRenderer.size = new Vector2(1f, 1f);
                 yGroundCheckOffset = -0.05f;
                 groundCheckDist = 0.5f;
                 jumpPower = 1f;
