@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         Camera.main.transform.parent = null;
         Destroy(Instantiate(BloodPrefab, deathPosition, Quaternion.identity), 60);
+        Destroy(gameObject);
     }
 
     public void OnCollisionEnter2D(Collision2D col)

@@ -23,7 +23,6 @@ public class Spike : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.GetComponent<PlayerController>().Kill(col.GetContact(0).point);
-            Destroy(col.collider.gameObject);
         }
     }
 }
