@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float BumpForce, FallSpeed;
+    public GameObject BloodPrefab;
     private Rigidbody2D rb;
     private float defaultGravity, defaultDrag, lastSpeed;
     // Start is called before the first frame update
@@ -57,6 +58,19 @@ public class PlayerController : MonoBehaviour
             rb.drag = defaultDrag;
         }
         lastSpeed = rb.velocity.x;
+    }
+
+    public void Kill()
+    {
+        Camera.main.transform.parent = null;
+        Destroy(Instantiate(BloodPrefab, transform.position, Quaternion.identity), 60);
+        Destroy(gameObject);
+    }
+    public void Kill(Vector2 deathPosition)
+    {
+        Camera.main.transform.parent = null;
+        Destroy(Instantiate(BloodPrefab, deathPosition, Quaternion.identity), 60);
+        Destroy(gameObject);
     }
 
     public void OnCollisionEnter2D(Collision2D col)
