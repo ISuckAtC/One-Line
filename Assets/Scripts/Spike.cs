@@ -22,8 +22,7 @@ public class Spike : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.transform.GetChild(0).SetParent(null);
-            Destroy(Instantiate(BloodPrefab, col.GetContact(0).point, Quaternion.identity), 60);
+            col.gameObject.GetComponent<PlayerController>().Kill(col.GetContact(0).point);
             Destroy(col.collider.gameObject);
         }
     }
