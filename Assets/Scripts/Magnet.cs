@@ -21,7 +21,7 @@ public class Magnet : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         
-        rb 
+        
 
     }
 
