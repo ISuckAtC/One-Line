@@ -14,15 +14,19 @@ public enum LineType
 public class GameControl : MonoBehaviour
 {
     LineType lineType;
+    public float SetMinDrawDistanceAroundPlayer;
+    static public float MinDrawDistanceAroundPlayer;
     public GameObject GameCursor;
     public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight;
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
+    public GameObject Player;
     GameObject lastLine;
     // Start is called before the first frame update
     void Start()
     {
+        MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
     }
 
@@ -65,10 +69,16 @@ public class GameControl : MonoBehaviour
             if (rayhit.collider != null) StartCoroutine(Dragging(rayhit.collider.gameObject));
             else
             {
-                GameObject line = Instantiate(LinePrefab, Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
+                Vector2 lineStartPos = Camera.main.ScreenToWorldPoint(mousePos, Camera.MonoOrStereoscopicEye.Mono);
+                Vector2 playerPos = Player.transform.position;
+                if (Vector2.Distance(playerPos, lineStartPos) < MinDrawDistanceAroundPlayer)
+                {
+                    lineStartPos = ((lineStartPos - playerPos).normalized * MinDrawDistanceAroundPlayer) + playerPos; 
+                }
+                GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
                 lastLine = line;
-                line.GetComponent<Line>().ConstructFromCursor(DrawRateSeconds, lineType, true);
+                line.GetComponent<Line>().ConstructFromCursor(DrawRateSeconds, lineType, true, Player);
             }
         }
     }
