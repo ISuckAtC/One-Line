@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         Camera.main.transform.parent = null;
         Destroy(Instantiate(BloodPrefab, transform.position, Quaternion.identity), 60);
+        Destroy(gameObject);
     }
     public void Kill(Vector2 deathPosition)
     {
