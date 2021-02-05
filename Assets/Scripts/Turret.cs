@@ -13,7 +13,7 @@ public class Turret : MonoBehaviour
     private void TurretShoot()
     {
         GameObject newBullet = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
-        newBullet.GetComponent<Rigidbody2D>().velocity = Vector2.down;
+        newBullet.GetComponent<Rigidbody2D>().velocity = Vector2.down * 3;
     }
 
     // Update is called once per frame
