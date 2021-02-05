@@ -6,9 +6,11 @@ public class MovementScript : MonoBehaviour
 {
 
     [Range(0, 1)]
-    public float moveSpeed;
+    public float moveSpeed = 0.6f;
     public float BumpForce;
     public float jumpForce;
+    private bool isGrounded;
+    private float crouchedMoveDebuf;
     [SerializeField]
     private float playerControlPower;
     private float speedMultiplier = 1f;
@@ -32,8 +34,10 @@ public class MovementScript : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
-        yGroundCheckOffset = -0.05f;
+        yGroundCheckOffset = -0.4f;
         groundCheckDist = 0.5f;
+        crouchedMoveDebuf = 1f;
+        jumpPower = 1f;
 
     }
 
@@ -43,14 +47,16 @@ public class MovementScript : MonoBehaviour
 
         RaycastHit2D hit2D;
 
+        /*
         if (Input.GetKey(KeyCode.LeftControl))
         {
 
-            capsuleCollider.size = new Vector2(1f, 1f);
-            spriteRenderer.size = new Vector2(1f, 1f);
+            capsuleCollider.size = new Vector2(0.98f, 1f);
+            spriteRenderer.size = new Vector2(0.98f, 1f);
             yGroundCheckOffset = -0.05f;
             groundCheckDist = 0f;
-            jumpPower = 1f;
+            jumpPower = 0.7f;
+            crouchedMoveDebuf = 0.4f;
 
         }
         else
@@ -62,21 +68,25 @@ public class MovementScript : MonoBehaviour
             if (!hit2D)
             {
 
-                capsuleCollider.size = new Vector2(1f, 1.98f);
-                spriteRenderer.size = new Vector2(1f, 1.99f);
+                capsuleCollider.size = new Vector2(0.98f, 2.6f);
+                spriteRenderer.size = new Vector2(0.98f, 2.6f);
                 yGroundCheckOffset = -0.05f;
                 groundCheckDist = 0.5f;
-                jumpPower = 1.5f;
+                jumpPower = 1f;
+                crouchedMoveDebuf = 1f;
 
             }
 
         }
+        */
 
         if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
 
+            isGrounded = true;
+
             playerControlPower = 1;
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
             {
 
                 jumpOnOff = 1;
@@ -84,23 +94,27 @@ public class MovementScript : MonoBehaviour
             }
 
         }
-        
-        if (rb2D.velocity.y >= jumpForce)
-            jumpOnOff = 0;
+        else isGrounded = false;
 
-        if( jumpOnOff == 0)
-            playerControlPower = 0.6f;
+        if (isGrounded == false)
+        {
+
+            Debug.Log("pp");
+            playerControlPower = 0.4f;
+
+        }
+        else playerControlPower = 1f;
 
 
         if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
         else speedMultiplier = 1f;
 
-        if (rb2D.velocity.x >= (5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
+        if (rb2D.velocity.x >= (5 * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == 1) xMoveDir = 0;
         else
-        if (rb2D.velocity.x <= (-5 * speedMultiplier) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
+        if (rb2D.velocity.x <= (-5 * speedMultiplier * crouchedMoveDebuf) && Input.GetAxisRaw("Horizontal") == -1) xMoveDir = 0;
         else xMoveDir = Input.GetAxisRaw("Horizontal");
 
-        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower), rb2D.velocity.y + (jumpForce * jumpOnOff * jumpPower));
+        movementVector = new Vector2(rb2D.velocity.x + (moveSpeed * xMoveDir * playerControlPower * crouchedMoveDebuf), rb2D.velocity.y + (jumpForce * jumpOnOff * jumpPower));
 
         rb2D.velocity = movementVector;
 

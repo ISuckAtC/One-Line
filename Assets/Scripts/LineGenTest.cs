@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class LineGenTest : MonoBehaviour
 {
-    public Transform a, b, c;
+    [Header("Require")]
+    
+    public Transform a;
+    public Transform b;
+    public Transform c;
     public GameObject linePrefab;
 
-    GameObject current;
-
+    [Header("Parameters")]
     [Tooltip("Make the circle piece be drawn continously at the rate defined below")]
     public bool Continuous;
     [Tooltip("The rate at which to draw new circles when Continuous is checked")]
@@ -16,6 +19,7 @@ public class LineGenTest : MonoBehaviour
     [Tooltip("The limit of line pieces in a circle, set to avoid infinite loops due to inprecise cosigns")]
     public int iterationLimit;
 
+    GameObject current;
     bool drawing;
     // Update is called once per frame
     void Update()

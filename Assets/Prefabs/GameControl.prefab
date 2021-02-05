@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 966797339021094353}
   - component: {fileID: 5817488484349952844}
-  - component: {fileID: 1811318550791185904}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: Untagged
@@ -48,27 +47,8 @@ MonoBehaviour:
   CursorNormal: {fileID: 21300000, guid: 7c0d7ae57b3d6544b9f61337585edb35, type: 3}
   CursorIce: {fileID: 21300000, guid: 5c24d7687c0d11b499d63e147a01b3d5, type: 3}
   CursorRubber: {fileID: 21300000, guid: ab1cb40f19d9bd74c8eda4ce295ebfdb, type: 3}
+  CursorWeight: {fileID: 21300000, guid: 43bdc12d45aba7f41a89013ca2cc0441, type: 3}
   LinePrefab: {fileID: 9046088624349132471, guid: 4818b6780f8ed7643bd2859fcf8717f9,
     type: 3}
   LifeTimeAfterNewLine: 1
   DrawRateSeconds: 0.01
---- !u!114 &1811318550791185904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212601822244465691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1ba683a4d965e4aba99d28e3bede8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  a: {fileID: 0}
-  b: {fileID: 0}
-  c: {fileID: 0}
-  linePrefab: {fileID: 9046088624349132471, guid: 4818b6780f8ed7643bd2859fcf8717f9,
-    type: 3}
-  Continuous: 0
-  drawRate: 0.02
-  iterationLimit: 100
