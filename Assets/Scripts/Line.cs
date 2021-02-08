@@ -127,10 +127,10 @@ public class Line : MonoBehaviour
         return a.y * (1 / a.x);
     }
 
-    public void ConstructFromCursor(float drawRate, LineType lineType, bool freeDraw)
+    public void ConstructFromCursor(float drawRate, LineType lineType, bool freeDraw, GameObject player = null)
     {
         Setup(lineType);
-        if (freeDraw) StartCoroutine(Drawing(drawRate));
+        if (freeDraw) StartCoroutine(Drawing(drawRate, player));
     }
 
     void Setup(LineType lineType)
@@ -164,8 +164,14 @@ public class Line : MonoBehaviour
         }
     }
 
-    public void Add(Vector2 position, bool start)
+    public void Add(Vector2 position, bool start, GameObject player = null)
     {
+        Vector2 playerPos = player.transform.position;
+        if (player && Vector2.Distance(playerPos, position) < GameControl.MinDrawDistanceAroundPlayer)
+        {
+            position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos; 
+        }
+
         if (Length + Vector2.Distance(End, position) > lengthLimit)
         {
             position = Vector2.Lerp(End, position, (lengthLimit - Length) / Vector2.Distance(End, position));
@@ -189,23 +195,25 @@ public class Line : MonoBehaviour
         }
     }
 
-    public IEnumerator Drawing(float drawRate)
+    public IEnumerator Drawing(float drawRate, GameObject player = null)
     {
+        Time.timeScale = 0.01f;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
-        Add(pos, true);
+        Add(pos, true, player);
         while (Input.GetMouseButton(0))
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            Add(pos, false);
-            yield return new WaitForSeconds(drawRate);
+            Add(pos, false, player);
+            yield return new WaitForSecondsRealtime(drawRate);
         }
         if (LineType == LineType.Weight)
         {
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 1000000;
         }
+        Time.timeScale = 1;
     }
     public void Update()
     {

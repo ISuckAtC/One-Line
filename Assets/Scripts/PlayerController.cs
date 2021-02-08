@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float BumpForce;
+    public float BumpForce, FallSpeed;
+    public GameObject BloodPrefab;
+    private Rigidbody2D rb;
+    private float defaultGravity, defaultDrag, lastSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        defaultGravity = rb.gravityScale;
+        defaultDrag = rb.drag;
     }
 
     // Update is called once per frame
@@ -17,11 +22,66 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    void FixedUpdate()
+    {
+        if (rb.velocity.y < 0) rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - FallSpeed);
+        CapsuleCollider2D capsule = GetComponent<CapsuleCollider2D>();
+        List<Collider2D> colliders = new List<Collider2D>();
+        if (capsule.GetContacts(colliders) > 0)
+        {
+            Line line = null;
+            Debug.Log("has collisions");
+            if (colliders.Exists(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out line)))
+            {
+                if (line.LineType == LineType.Ice)
+                {
+                    rb.drag = 0;
+                    if (lastSpeed < 0 && rb.velocity.x > lastSpeed) rb.velocity = new Vector2(lastSpeed, rb.velocity.y);
+                    if (lastSpeed > 0 && rb.velocity.x < lastSpeed) rb.velocity = new Vector2(lastSpeed, rb.velocity.y);
+                    /*if (rb.velocity.y > 0) 
+                    {
+                        Debug.Log("up");
+                        rb.gravityScale = 0;
+                    }*/
+                    else rb.gravityScale = defaultGravity;
+                }
+            }
+            else 
+            {
+                //rb.gravityScale = defaultGravity;
+                rb.drag = defaultDrag;
+            }
+        } 
+        else 
+        {
+            //rb.gravityScale = defaultGravity;
+            rb.drag = defaultDrag;
+        }
+        lastSpeed = rb.velocity.x;
+    }
+
+    public void Kill()
+    {
+        Camera.main.transform.parent = null;
+        Destroy(Instantiate(BloodPrefab, transform.position, Quaternion.identity), 60);
+        Destroy(gameObject);
+    }
+    public void Kill(Vector2 deathPosition)
+    {
+        Camera.main.transform.parent = null;
+        Destroy(Instantiate(BloodPrefab, deathPosition, Quaternion.identity), 60);
+        Destroy(gameObject);
+    }
+
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
+        if (col.gameObject.transform.parent != null)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
+            Line groundLine;
+            if (col.gameObject.transform.parent.TryGetComponent<Line>(out groundLine) && groundLine.LineType == LineType.Rubber)
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
+            }
         }
     }
 }
