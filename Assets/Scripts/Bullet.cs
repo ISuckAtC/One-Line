@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Camera.main.transform.parent = null;
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<PlayerController>().Kill(collision.GetContact(0).point);
             Destroy(gameObject);
         }
     }
