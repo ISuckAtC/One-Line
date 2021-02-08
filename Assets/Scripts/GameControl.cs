@@ -23,11 +23,28 @@ public class GameControl : MonoBehaviour
     public float DrawRateSeconds;
     public GameObject Player;
     GameObject lastLine;
+
+    public bool LimitLinesInAir;
+    public int NormalLimit, IceLimit, RubberLimit, WeightLimit;
+    private int normalLeft, iceLeft, rubberLeft, weightLeft;
+
+    public void ResetLineLimits()
+    {
+        normalLeft = NormalLimit;
+        iceLeft = IceLimit;
+        rubberLeft = RubberLimit;
+        weightLeft = WeightLimit;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
+        normalLeft = NormalLimit;
+        iceLeft = IceLimit;
+        rubberLeft = RubberLimit;
+        weightLeft = WeightLimit;
     }
 
     // Update is called once per frame
@@ -65,15 +82,39 @@ public class GameControl : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+
             RaycastHit2D rayhit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Camera.main.transform.forward, 20f, 1 << 8);
             if (rayhit.collider != null) StartCoroutine(Dragging(rayhit.collider.gameObject));
             else
             {
+                if (LimitLinesInAir)
+                {
+                    if (lineType == LineType.Normal)
+                    {
+                        if (normalLeft <= 0) return;
+                        else normalLeft--;
+                    }
+                    if (lineType == LineType.Ice)
+                    {
+                        if (iceLeft <= 0) return;
+                        else iceLeft--;
+                    }
+                    if (lineType == LineType.Normal)
+                    {
+                        if (rubberLeft <= 0) return;
+                        else rubberLeft--;
+                    }
+                    if (lineType == LineType.Normal)
+                    {
+                        if (weightLeft <= 0) return;
+                        else weightLeft--;
+                    }
+                }
                 Vector2 lineStartPos = Camera.main.ScreenToWorldPoint(mousePos, Camera.MonoOrStereoscopicEye.Mono);
                 Vector2 playerPos = Player.transform.position;
                 if (Vector2.Distance(playerPos, lineStartPos) < MinDrawDistanceAroundPlayer)
                 {
-                    lineStartPos = ((lineStartPos - playerPos).normalized * MinDrawDistanceAroundPlayer) + playerPos; 
+                    lineStartPos = ((lineStartPos - playerPos).normalized * MinDrawDistanceAroundPlayer) + playerPos;
                 }
                 GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
