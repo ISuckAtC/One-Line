@@ -22,6 +22,7 @@ public class GameControl : MonoBehaviour
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
     public GameObject Player;
+    public long Coins;
     GameObject lastLine;
 
     public bool LimitLinesInAir;
@@ -99,12 +100,12 @@ public class GameControl : MonoBehaviour
                         if (iceLeft <= 0) return;
                         else iceLeft--;
                     }
-                    if (lineType == LineType.Normal)
+                    if (lineType == LineType.Rubber)
                     {
                         if (rubberLeft <= 0) return;
                         else rubberLeft--;
                     }
-                    if (lineType == LineType.Normal)
+                    if (lineType == LineType.Weight)
                     {
                         if (weightLeft <= 0) return;
                         else weightLeft--;
