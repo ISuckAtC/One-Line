@@ -28,6 +28,7 @@ public class MovementScriptVar1 : MonoBehaviour
     [SerializeField]
     private Vector2 movementVector;
     private LayerMask maskPlayer;
+    private GameControl gc;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class MovementScriptVar1 : MonoBehaviour
         groundCheckDist = 0.5f * transform.localScale.y;
         crouchedMoveDebuf = 1f;
         jumpPower = 1f;
+        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
 
     }
 
@@ -87,6 +89,8 @@ public class MovementScriptVar1 : MonoBehaviour
         {
 
             isGrounded = true;
+
+            gc.ResetLineLimits();
 
             playerControlPower = 1;
             if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
