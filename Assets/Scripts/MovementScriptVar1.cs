@@ -90,7 +90,14 @@ public class MovementScriptVar1 : MonoBehaviour
 
             isGrounded = true;
 
-            gc.ResetLineLimits();
+            if (hit2D.collider.transform.parent != null)
+            {
+                Line line;
+                if (hit2D.collider.transform.parent.TryGetComponent<Line>(out line))
+                {
+                    
+                } else gc.ResetLineLimits();
+            } 
 
             playerControlPower = 1;
             if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
