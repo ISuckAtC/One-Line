@@ -34,7 +34,7 @@ public class MovementScriptVar1 : MonoBehaviour
     void Start()
     {
 
-        maskPlayer = ~(1 << LayerMask.NameToLayer("Player"));
+        maskPlayer = ~(((1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Air"))));
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
