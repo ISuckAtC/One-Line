@@ -11,12 +11,12 @@ public class AnimationController : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             playerAnim.SetBool("isWalking", true);
-            Debug.Log("true");
+            //Debug.Log("true");
         }
         else
         {
             playerAnim.SetBool("isWalking", false);
-            Debug.Log("false");
+            //Debug.Log("false");
         }
     }
 }

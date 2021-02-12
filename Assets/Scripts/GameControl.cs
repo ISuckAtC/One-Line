@@ -107,7 +107,7 @@ public class GameControl : MonoBehaviour
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
                 lastLine = line;
                 if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, false, Player, DrawRateSeconds, StraightPieceLength);
-                else line.GetComponent<Line>().ConstructFromCursor(lineType, true, Player, DrawRateSeconds);
+                else line.GetComponent<Line>().ConstructFromCursor(lineType, true, Player, DrawRateSeconds, StraightPieceLength);
             }
         }
         else

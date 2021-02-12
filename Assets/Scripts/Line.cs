@@ -22,6 +22,7 @@ public class Line : MonoBehaviour
     public float Length;
     public float MinLengthForNewPiece;
     public float MaxDistanceForValidConstruction;
+    public float ThresholdAltConstruction;
 
     public void ConstructFromPoints(Vector2 a, Vector2 b, Vector2 c, LineType lineType, float pieceLength, int iterationLimit)
     {
@@ -130,11 +131,8 @@ public class Line : MonoBehaviour
     public void ConstructFromCursor(LineType lineType, bool freeDraw = false, GameObject player = null, float drawRate = 0, float pieceLength = 0)
     {
         Setup(lineType);
-        if (freeDraw) StartCoroutine(Drawing(drawRate, player));
-        else
-        {
-            StartCoroutine(DrawStraight(drawRate, pieceLength, player));
-        }
+        if (freeDraw) StartCoroutine(Drawing(drawRate, pieceLength, player));
+        else StartCoroutine(DrawStraight(drawRate, pieceLength, player));
     }
 
     void Setup(LineType lineType)
@@ -183,6 +181,7 @@ public class Line : MonoBehaviour
 
         if (Length + Vector2.Distance(End, position) > lengthLimit)
         {
+            Debug.Log("Limit reached");
             position = Vector2.Lerp(End, position, (lengthLimit - Length) / Vector2.Distance(End, position));
         }
 
@@ -206,6 +205,17 @@ public class Line : MonoBehaviour
         return false;
     }
 
+    public void FromTo(Vector2 from, Vector2 to, float pieceLength, GameObject player = null)
+    {
+        float length = Vector2.Distance(from, to);
+        int pieceCount = (int)(length / pieceLength);
+        Debug.Log("FromTo: Constructing " + pieceCount + " pieces");
+        for(int i = 0; i < pieceCount; ++i)
+        {
+            Add(Vector3.Lerp(from, to, 1f / pieceCount * i), false, player);
+        }
+    }
+
     public IEnumerator DrawStraight(float drawRate, float pieceLength, GameObject player = null)
     {
         Time.timeScale = 0.01f;
@@ -226,11 +236,7 @@ public class Line : MonoBehaviour
             length = Vector2.Distance(startPos, pos);
         }
 
-        int pieceCount = (int)(length / pieceLength);
-        for(int i = 0; i < pieceCount; ++i)
-        {
-            Debug.Log("Creating linepieces " + Add(Vector3.Lerp(startPos, pos, 1f / pieceCount * i), false, player).ToString());
-        }
+        FromTo(startPos, pos, pieceLength, player);
 
         if (LineType == LineType.Weight)
         {
@@ -240,7 +246,7 @@ public class Line : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public IEnumerator Drawing(float drawRate, GameObject player = null)
+    public IEnumerator Drawing(float drawRate, float pieceLength, GameObject player = null)
     {
         Time.timeScale = 0.01f;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -250,7 +256,8 @@ public class Line : MonoBehaviour
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            Add(pos, false, player);
+            if (Vector2.Distance(End, pos) > ThresholdAltConstruction) FromTo(End, pos, pieceLength, player);
+            else Add(pos, false, player);
             yield return new WaitForSecondsRealtime(drawRate);
         }
         if (LineType == LineType.Weight)
