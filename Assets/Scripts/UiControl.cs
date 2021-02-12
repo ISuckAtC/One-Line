@@ -36,11 +36,15 @@ public class UiControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             PauseGameUiOnOff = !PauseGameUiOnOff;
 
-        PauseGameUi.SetActive(PauseGameUiOnOff);
-        InGameUi.SetActive(!PauseGameUiOnOff);
+        if(InGameUi)
+        {
 
-        coinsText.GetComponent<Text>().text = "coins: " + gc.Coins;
+            PauseGameUi.SetActive(PauseGameUiOnOff);
+            InGameUi.SetActive(!PauseGameUiOnOff);
+            coinsText.GetComponent<Text>().text = "coins: " + gc.Coins;
 
+        }
+        
     }
 
     public void MainMenuButton()
