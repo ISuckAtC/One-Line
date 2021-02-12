@@ -14,7 +14,7 @@ public class Turret : MonoBehaviour
     }
     private void TurretShoot()
     {
-        GameObject newBullet = Instantiate(bullet, transform.position + transform.up*1.019f, Quaternion.identity);
+        GameObject newBullet = Instantiate(bullet, transform.position + transform.up*1.02f, Quaternion.identity);
         newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * 3;
         newBullet.transform.rotation = transform.rotation;
     }
