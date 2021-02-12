@@ -100,7 +100,7 @@ public class MovementScriptVar1 : MonoBehaviour
                 {
                     
                 } else gc.ResetLineLimits();
-            } 
+            } else gc.ResetLineLimits();
 
             playerControlPower = 1;
             if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
