@@ -43,7 +43,7 @@ public class MovementScriptVar1 : MonoBehaviour
         groundCheckDist = 0.5f * transform.localScale.y;
         crouchedMoveDebuf = 1f;
         jumpPower = 1f;
-        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControl>();
+        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
         rb2D.sharedMaterial = PM2D;
         capsuleCollider.sharedMaterial = PM2D;
 
