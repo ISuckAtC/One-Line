@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3792871842350579250}
   - component: {fileID: 8365554454033916229}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Line
   m_TagString: Line
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   LineType: 0
   Circle: {fileID: 21300000, guid: 46e318dad39320848a397d88711d6dea, type: 3}
   Box: {fileID: 21300000, guid: 29984e4da5bdedc49a1d50770493ff4a, type: 3}
-  Thickness: 0.2
+  Thickness: 0.3
   Length: 0
   MinLengthForNewPiece: 0.05
   MaxDistanceForValidConstruction: 0.01
