@@ -90,25 +90,32 @@ public class MovementScriptVar1 : MonoBehaviour
 
         if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
-
-            isGrounded = true;
-
-            if (hit2D.collider.transform.parent != null)
+            if (hit2D.collider.isTrigger != true)
             {
-                Line line;
-                if (hit2D.collider.transform.parent.TryGetComponent<Line>(out line))
+
+                isGrounded = true;
+
+                if (hit2D.collider.transform.parent != null)
                 {
-                    
-                } else gc.ResetLineLimits();
-            } else gc.ResetLineLimits();
+                    Line line;
+                    if (hit2D.collider.transform.parent.TryGetComponent<Line>(out line))
+                    {
 
-            playerControlPower = 1;
-            if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
-            {
+                    }
+                    else gc.ResetLineLimits();
+                }
+                else gc.ResetLineLimits();
 
-                jumpOnOff = 1;
+                playerControlPower = 1;
+                if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
+                {
+
+                    jumpOnOff = 1;
+
+                }
 
             }
+            else isGrounded = false;            
 
         }
         else isGrounded = false;
