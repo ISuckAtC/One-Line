@@ -21,10 +21,12 @@ public class GameControl : MonoBehaviour
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
+    public float StraightPieceLength;
     public GameObject Player;
     public long Coins;
     GameObject lastLine;
 
+    bool AssistedDraw;
     public bool LimitLinesInAir;
     public int NormalLimit, IceLimit, RubberLimit, WeightLimit;
     private int normalLeft, iceLeft, rubberLeft, weightLeft;
@@ -57,33 +59,17 @@ public class GameControl : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         GameCursor.transform.position = new Vector3(mousePos.x + 18, mousePos.y - 20, mousePos.z);
 
-        if (!Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(1))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (lastLine != null)
             {
-                lineType = LineType.Normal;
-                GameCursor.GetComponent<Image>().sprite = CursorNormal;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                lineType = LineType.Ice;
-                GameCursor.GetComponent<Image>().sprite = CursorIce;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                lineType = LineType.Rubber;
-                GameCursor.GetComponent<Image>().sprite = CursorRubber;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                lineType = LineType.Weight;
-                GameCursor.GetComponent<Image>().sprite = CursorWeight;
+                Destroy(lastLine);
+                lastLine = null;
             }
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-
             RaycastHit2D rayhit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Camera.main.transform.forward, 20f, 1 << 8);
             if (rayhit.collider != null) StartCoroutine(Dragging(rayhit.collider.gameObject));
             else
@@ -120,7 +106,35 @@ public class GameControl : MonoBehaviour
                 GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
                 lastLine = line;
-                line.GetComponent<Line>().ConstructFromCursor(DrawRateSeconds, lineType, true, Player);
+                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, false, Player, DrawRateSeconds, StraightPieceLength);
+                else line.GetComponent<Line>().ConstructFromCursor(lineType, true, Player, DrawRateSeconds);
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                AssistedDraw = !AssistedDraw;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                lineType = LineType.Normal;
+                GameCursor.GetComponent<Image>().sprite = CursorNormal;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                lineType = LineType.Ice;
+                GameCursor.GetComponent<Image>().sprite = CursorIce;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                lineType = LineType.Rubber;
+                GameCursor.GetComponent<Image>().sprite = CursorRubber;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                lineType = LineType.Weight;
+                GameCursor.GetComponent<Image>().sprite = CursorWeight;
             }
         }
     }
