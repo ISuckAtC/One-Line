@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5817488484349952844}
   m_Layer: 0
   m_Name: GameControl
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5381e3399d2781d4a851b2ae140583ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetMinDrawDistanceAroundPlayer: 0
   GameCursor: {fileID: 0}
   CursorNormal: {fileID: 21300000, guid: 7c0d7ae57b3d6544b9f61337585edb35, type: 3}
   CursorIce: {fileID: 21300000, guid: 5c24d7687c0d11b499d63e147a01b3d5, type: 3}
@@ -52,3 +53,11 @@ MonoBehaviour:
     type: 3}
   LifeTimeAfterNewLine: 1
   DrawRateSeconds: 0.01
+  StraightPieceLength: 0
+  Player: {fileID: 0}
+  Coins: 0
+  LimitLinesInAir: 0
+  NormalLimit: 0
+  IceLimit: 0
+  RubberLimit: 0
+  WeightLimit: 0
