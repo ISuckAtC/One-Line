@@ -114,10 +114,15 @@ public class MovementScriptVar1 : MonoBehaviour
         {
 
             playerControlPower = 0.3f;
+            capsuleCollider.sharedMaterial.friction = 0;
 
         }
-        else playerControlPower = 1f;
+        else
+        {
 
+            playerControlPower = 1f;
+
+        }
 
         if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
         else speedMultiplier = 0.8f;
