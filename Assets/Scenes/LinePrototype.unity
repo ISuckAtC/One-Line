@@ -849,6 +849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BumpForce: 30
+  FallSpeed: 0
+  BloodPrefab: {fileID: 0}
 --- !u!1 &1207910849
 GameObject:
   m_ObjectHideFlags: 0
