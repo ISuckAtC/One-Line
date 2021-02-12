@@ -586,7 +586,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5745138739628167507}
-  - component: {fileID: 5745138739628167510}
   - component: {fileID: 164536433849707636}
   - component: {fileID: 5745138739628167505}
   - component: {fileID: 5745138739628167504}
@@ -621,23 +620,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5745138739628167510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5745138739628167517}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88dd72e766b75df4f8eab96e24392027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.4
-  BumpForce: 0
-  jumpForce: 5
-  playerControlPower: 0
-  movementVector: {x: 0, y: 0}
 --- !u!114 &164536433849707636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +635,10 @@ MonoBehaviour:
   moveSpeed: 4
   BumpForce: 0
   jumpForce: 9
+  PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
+  isGrounded: 0
   playerControlPower: 0
+  yGroundCheckOffset: 0
   movementVector: {x: 0, y: 0}
 --- !u!50 &5745138739628167505
 Rigidbody2D:
