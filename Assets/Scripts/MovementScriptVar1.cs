@@ -9,6 +9,7 @@ public class MovementScriptVar1 : MonoBehaviour
     public float moveSpeed = 0.6f;
     public float BumpForce;
     public float jumpForce;
+    public PhysicsMaterial2D PM2D;
     [SerializeField]
     private bool isGrounded;
     private float yVel;
@@ -43,6 +44,8 @@ public class MovementScriptVar1 : MonoBehaviour
         crouchedMoveDebuf = 1f;
         jumpPower = 1f;
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+        rb2D.sharedMaterial = PM2D;
+        capsuleCollider.sharedMaterial = PM2D;
 
     }
 
@@ -114,13 +117,18 @@ public class MovementScriptVar1 : MonoBehaviour
         {
 
             playerControlPower = 0.3f;
-            capsuleCollider.sharedMaterial.friction = 0;
+            PM2D.friction = 0;
+            rb2D.sharedMaterial = PM2D;
+            capsuleCollider.sharedMaterial = PM2D;
 
         }
         else
         {
 
             playerControlPower = 1f;
+            PM2D.friction = 0.6f;
+            rb2D.sharedMaterial = PM2D;
+            capsuleCollider.sharedMaterial = PM2D;
 
         }
 
