@@ -7,9 +7,14 @@ using UnityEngine.UI;
 public class UiControl : MonoBehaviour
 {
 
-    private GameObject inGameUi;
-    private bool inGameUiOnOff;
+    [SerializeField]
+    private GameObject PauseGameUi;
+    [SerializeField]
+    private GameObject InGameUi;
+    private bool PauseGameUiOnOff;
+    [SerializeField]
     private GameControl gc;
+    [SerializeField]
     private Text coinsText;
 
     // Start is called before the first frame update
@@ -18,8 +23,9 @@ public class UiControl : MonoBehaviour
 
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
-        inGameUiOnOff = false;
-        inGameUi = GameObject.Find("inGameUi");
+        PauseGameUiOnOff = false;
+        PauseGameUi = GameObject.Find("PauseGameUi");
+        InGameUi = GameObject.Find("InGameUi");
 
     }
 
@@ -28,9 +34,10 @@ public class UiControl : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            inGameUiOnOff = !inGameUiOnOff;
+            PauseGameUiOnOff = !PauseGameUiOnOff;
 
-        inGameUi.SetActive(inGameUiOnOff);
+        PauseGameUi.SetActive(PauseGameUiOnOff);
+        InGameUi.SetActive(!PauseGameUiOnOff);
 
         coinsText.GetComponent<Text>().text = "coins: " + gc.Coins;
 
