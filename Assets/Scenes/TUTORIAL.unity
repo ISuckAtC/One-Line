@@ -140914,6 +140914,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1899880375}
   - component: {fileID: 1899880374}
+  - component: {fileID: 1899880377}
+  - component: {fileID: 1899880376}
   m_Layer: 0
   m_Name: Coin_Prototype
   m_TagString: Untagged
@@ -140979,12 +140981,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899880373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 916.86, y: -406.85495, z: 0}
+  m_LocalPosition: {x: 709.7, y: -395.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1899880376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899880373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a259ed91e99c04d4da8cf8b79f1561f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &1899880377
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899880373}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.9
 --- !u!1001 &1904019489
 PrefabInstance:
   m_ObjectHideFlags: 0
