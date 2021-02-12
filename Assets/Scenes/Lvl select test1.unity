@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &66652020 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 196403788488710490, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 220805747}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c88e97aa897a0b46815a0bfea5c0854, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &220805747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,15 +128,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 758264377831979093, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+    - target: {fileID: 196403788488710490, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: gc
       value: 
-      objectReference: {fileID: 66652020}
-    - target: {fileID: 758264377831979093, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+      objectReference: {fileID: 0}
+    - target: {fileID: 196403788488710490, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitButton
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 196403788488710490, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+        type: 3}
+      propertyPath: InGameUi
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 196403788488710490, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+        type: 3}
+      propertyPath: PauseGameUi
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274273623604862373, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+        type: 3}
+      propertyPath: m_Name
+      value: CoinsText
       objectReference: {fileID: 0}
     - target: {fileID: 2997787420949036411, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
@@ -259,16 +262,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI_Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4116584715762800650, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 66652020}
-    - target: {fileID: 4116584715762800650, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenuButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc0eceb0d95e8841b9f9febb34002e9, type: 3}
@@ -718,6 +711,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameControl
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: m_TagString
+      value: GameController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 451f17cb00cfc464383b0a1741a5c169, type: 3}

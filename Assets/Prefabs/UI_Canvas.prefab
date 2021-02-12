@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 9183655915755716379}
   - component: {fileID: 5410934230660373819}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CoinsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,8 +537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c88e97aa897a0b46815a0bfea5c0854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseGameUi: {fileID: 569439396720927614}
-  InGameUi: {fileID: 5536734374799979516}
+  PauseGameUi: {fileID: 0}
+  InGameUi: {fileID: 0}
   gc: {fileID: 0}
   coinsText: {fileID: 0}
 --- !u!1 &2997787421052079004
