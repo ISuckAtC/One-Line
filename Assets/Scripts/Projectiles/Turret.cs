@@ -5,7 +5,7 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     public GameObject bullet;
-    public int fireRate = 1;
+    public float fireRate = 1;
 
     void Start()
     {
