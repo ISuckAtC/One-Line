@@ -8,9 +8,14 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        GameControl gc = GameObject.Find("GameControl").GetComponent<GameControl>();
-        gc.Coins += 1;
-        Destroy(gameObject);
+        if(collision.tag == "Player")
+        {
+
+            GameControl gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+            gc.Coins += 1;
+            Destroy(gameObject);
+
+        }
 
     }
 
