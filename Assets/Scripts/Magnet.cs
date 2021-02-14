@@ -7,7 +7,7 @@ public class Magnet : MonoBehaviour
 
     public float magnetPower;
     [SerializeField]
-    private List<GameObject> Lines;
+    private List<GameObject> Lines = new List<GameObject>();
 
     private void OnTriggerStay2D(Collider2D col)
     {

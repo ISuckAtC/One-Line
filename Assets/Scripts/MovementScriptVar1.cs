@@ -161,7 +161,7 @@ public class MovementScriptVar1 : MonoBehaviour
     {
         if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
+            rb2D.AddForce(new Vector2(0, BumpForce));
         }
 
     }

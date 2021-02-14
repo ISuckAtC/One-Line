@@ -14276,7 +14276,7 @@ PrefabInstance:
     - target: {fileID: 756537274665789661, guid: b1555f92727f02f4a843a3458d3164cb,
         type: 3}
       propertyPath: magnetPower
-      value: 0.001
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 756537274665789651, guid: b1555f92727f02f4a843a3458d3164cb, type: 3}
@@ -126761,7 +126761,7 @@ PrefabInstance:
     - target: {fileID: 5110859463822174555, guid: 5864dd2d1c0861d47a0f5b1a802a8191,
         type: 3}
       propertyPath: magnetPower
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5110859465218207436, guid: 5864dd2d1c0861d47a0f5b1a802a8191,
         type: 3}
