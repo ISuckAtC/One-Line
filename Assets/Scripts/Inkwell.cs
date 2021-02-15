@@ -19,7 +19,7 @@ public class Inkwell : MonoBehaviour
                 sr.sprite = GameControl.main.InkIce;
                 break;
             case LineType.Rubber:
-                sr.sprite = GameControl.main.InkNormal;
+                sr.sprite = GameControl.main.InkRubber;
                 break;
             case LineType.Weight:
                 sr.sprite = GameControl.main.InkWeight;
