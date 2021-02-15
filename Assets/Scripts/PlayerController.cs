@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
         if (capsule.GetContacts(colliders) > 0)
         {
             Line line = null;
-            Debug.Log("has collisions");
             if (colliders.Exists(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out line)))
             {
                 if (line.LineType == LineType.Ice)
