@@ -13,6 +13,7 @@ public enum LineType
 }
 public class GameControl : MonoBehaviour
 {
+    public static GameControl main {get; private set;}
     LineType lineType;
     public float SetMinDrawDistanceAroundPlayer;
     static public float MinDrawDistanceAroundPlayer;
@@ -24,6 +25,7 @@ public class GameControl : MonoBehaviour
     public float StraightPieceLength;
     public GameObject Player;
     public long Coins;
+    public int[] Ink;
     GameObject lastLine;
 
     bool AssistedDraw;
@@ -42,12 +44,14 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        main = this;
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
         normalLeft = NormalLimit;
         iceLeft = IceLimit;
         rubberLeft = RubberLimit;
         weightLeft = WeightLimit;
+        Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
     }
 
     // Update is called once per frame
@@ -139,6 +143,12 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    public void ModInk(LineType type, int amount)
+    {
+        Ink[(int)type] += amount;
+
+        // Update UI for inkwells here
+    }
     IEnumerator Dragging(GameObject ball)
     {
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();

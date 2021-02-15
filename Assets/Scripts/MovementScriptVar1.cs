@@ -159,7 +159,8 @@ public class MovementScriptVar1 : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
+        Line l;
+        if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.TryGetComponent<Line>(out l) && l.LineType == LineType.Rubber)
         {
             rb2D.AddForce(new Vector2(0, BumpForce));
         }
