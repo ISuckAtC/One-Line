@@ -9,6 +9,7 @@ public class MovementScriptVar1 : MonoBehaviour
     public float moveSpeed = 0.6f;
     public float BumpForce;
     public float jumpForce;
+    public PhysicsMaterial2D PM2D;
     [SerializeField]
     private bool isGrounded;
     private float yVel;
@@ -43,6 +44,8 @@ public class MovementScriptVar1 : MonoBehaviour
         crouchedMoveDebuf = 1f;
         jumpPower = 1f;
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+        rb2D.sharedMaterial = PM2D;
+        capsuleCollider.sharedMaterial = PM2D;
 
     }
 
@@ -87,25 +90,32 @@ public class MovementScriptVar1 : MonoBehaviour
 
         if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
-
-            isGrounded = true;
-
-            if (hit2D.collider.transform.parent != null)
+            if (hit2D.collider.isTrigger != true)
             {
-                Line line;
-                if (hit2D.collider.transform.parent.TryGetComponent<Line>(out line))
+
+                isGrounded = true;
+
+                if (hit2D.collider.transform.parent != null)
                 {
-                    
-                } else gc.ResetLineLimits();
-            } 
+                    Line line;
+                    if (hit2D.collider.transform.parent.TryGetComponent<Line>(out line))
+                    {
 
-            playerControlPower = 1;
-            if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
-            {
+                    }
+                    else gc.ResetLineLimits();
+                }
+                else gc.ResetLineLimits();
 
-                jumpOnOff = 1;
+                playerControlPower = 1;
+                if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
+                {
+
+                    jumpOnOff = 1;
+
+                }
 
             }
+            else isGrounded = false;            
 
         }
         else isGrounded = false;
@@ -114,10 +124,20 @@ public class MovementScriptVar1 : MonoBehaviour
         {
 
             playerControlPower = 0.3f;
+            PM2D.friction = 0;
+            rb2D.sharedMaterial = PM2D;
+            capsuleCollider.sharedMaterial = PM2D;
 
         }
-        else playerControlPower = 1f;
+        else
+        {
 
+            playerControlPower = 1f;
+            PM2D.friction = 0.6f;
+            rb2D.sharedMaterial = PM2D;
+            capsuleCollider.sharedMaterial = PM2D;
+
+        }
 
         if (Input.GetKey(KeyCode.LeftShift)) speedMultiplier = 1.6f;
         else speedMultiplier = 0.8f;
@@ -141,7 +161,7 @@ public class MovementScriptVar1 : MonoBehaviour
     {
         if (col.gameObject.transform.parent != null && col.gameObject.transform.parent.GetComponent<Line>().LineType == LineType.Rubber)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
+            rb2D.AddForce(new Vector2(0, BumpForce));
         }
 
     }

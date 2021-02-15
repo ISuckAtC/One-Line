@@ -21,7 +21,7 @@ public class Spike : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
-        {
+        { 
             col.gameObject.GetComponent<PlayerController>().Kill(col.GetContact(0).point);
         }
     }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Line
+  - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - 
   - Draggable
   - Player
-  - Line
   - Ground
-  - Air
+  - Line
+  - 
   - 
   - 
   - 

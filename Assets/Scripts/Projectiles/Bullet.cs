@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public bool bouncy = false;
+    private void Start()
+    {
+        Physics2D.IgnoreLayerCollision(13, 13);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -14,7 +19,10 @@ public class Bullet : MonoBehaviour
 
         if (collision.transform.parent != null && collision.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line"))
         {
-            Destroy(gameObject);
+            if (bouncy == false)                    //Placeholder until we have individual layer for rubber
+            {
+                Destroy(gameObject);
+            }
         }
 
         if (collision.gameObject.tag == "Player")
@@ -23,9 +31,12 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().Kill(collision.GetContact(0).point);
             Destroy(gameObject);
         }
-    }
-    void Update()
-    {
-        
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+
     }
 }

@@ -6,15 +6,51 @@ public class Magnet : MonoBehaviour
 {
 
     public float magnetPower;
+    [SerializeField]
+    private List<GameObject> Lines = new List<GameObject>();
 
     private void OnTriggerStay2D(Collider2D col)
     {
-
-        if (col.transform.parent.GetComponent<Rigidbody2D>() && col.transform.parent.tag == "Line")
+        if(col != null)
         {
 
-            Vector2 posDif = transform.position - col.transform.parent.position; Vector2 posDifNormal = posDif.normalized; 
-            col.transform.parent.GetComponent<Rigidbody2D>().velocity = col.transform.parent.GetComponent<Rigidbody2D>().velocity + (posDifNormal * magnetPower);
+            if (col.transform.parent.GetComponent<Rigidbody2D>() && col.transform.parent.tag == "Line")
+            {
+                if(!Lines.Contains(col.transform.parent.gameObject))
+                    Lines.Add(col.transform.parent.gameObject);
+
+            }
+
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+
+        if (col != null)
+        {
+
+            if (col.transform.parent.GetComponent<Rigidbody2D>() && col.transform.parent.tag == "Line")
+            {
+
+                Lines.Remove(col.transform.parent.gameObject);
+
+            }
+
+        }
+
+    }
+
+    private void Update()
+    {
+        
+        foreach(GameObject line in Lines)
+        {
+
+            if (line == null) Lines.Remove(line);
+            Vector2 posDif = transform.position - line.transform.position; Vector2 posDifNormal = posDif.normalized;
+            line.transform.GetComponent<Rigidbody2D>().velocity = line.transform.GetComponent<Rigidbody2D>().velocity + (posDifNormal * magnetPower);
 
         }
 

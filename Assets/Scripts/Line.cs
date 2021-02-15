@@ -22,6 +22,7 @@ public class Line : MonoBehaviour
     public float Length;
     public float MinLengthForNewPiece;
     public float MaxDistanceForValidConstruction;
+    public float ThresholdAltConstruction;
 
     public void ConstructFromPoints(Vector2 a, Vector2 b, Vector2 c, LineType lineType, float pieceLength, int iterationLimit)
     {
@@ -127,10 +128,11 @@ public class Line : MonoBehaviour
         return a.y * (1 / a.x);
     }
 
-    public void ConstructFromCursor(float drawRate, LineType lineType, bool freeDraw, GameObject player = null)
+    public void ConstructFromCursor(LineType lineType, bool freeDraw = false, GameObject player = null, float drawRate = 0, float pieceLength = 0)
     {
         Setup(lineType);
-        if (freeDraw) StartCoroutine(Drawing(drawRate, player));
+        if (freeDraw) StartCoroutine(Drawing(drawRate, pieceLength, player));
+        else StartCoroutine(DrawStraight(drawRate, pieceLength, player));
     }
 
     void Setup(LineType lineType)
@@ -164,22 +166,28 @@ public class Line : MonoBehaviour
         }
     }
 
-    public void Add(Vector2 position, bool start, GameObject player = null)
+    public bool Add(Vector2 position, bool start, GameObject player = null)
     {
         Vector2 playerPos = player.transform.position;
         if (player && Vector2.Distance(playerPos, position) < GameControl.MinDrawDistanceAroundPlayer)
         {
-            position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos; 
+            Vector2 newPosition = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
+            if (Vector2.Distance(End, newPosition) > Vector2.Distance(End, position))
+            {
+                position = Vector2.Lerp(End, position, 0.5f);
+                position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
+            } else position = newPosition;
         }
 
         if (Length + Vector2.Distance(End, position) > lengthLimit)
         {
+            Debug.Log("Limit reached");
             position = Vector2.Lerp(End, position, (lengthLimit - Length) / Vector2.Distance(End, position));
         }
 
         if (Vector2.Distance(End, position) < MinLengthForNewPiece && !start) 
         {
-            return;
+            return true;
         }
 
         Length += Vector2.Distance(End, position);
@@ -191,11 +199,54 @@ public class Line : MonoBehaviour
 
         if (Length == lengthLimit)
         {
+            return true;
             // Change the end of the last linepiece to an ending sprite
+        }
+        return false;
+    }
+
+    public void FromTo(Vector2 from, Vector2 to, float pieceLength, GameObject player = null)
+    {
+        float length = Vector2.Distance(from, to);
+        int pieceCount = (int)(length / pieceLength);
+        Debug.Log("FromTo: Constructing " + pieceCount + " pieces");
+        for(int i = 0; i < pieceCount; ++i)
+        {
+            Add(Vector3.Lerp(from, to, 1f / pieceCount * i), false, player);
         }
     }
 
-    public IEnumerator Drawing(float drawRate, GameObject player = null)
+    public IEnumerator DrawStraight(float drawRate, float pieceLength, GameObject player = null)
+    {
+        Time.timeScale = 0.01f;
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0;
+        Vector3 startPos = transform.position;
+        startPos.z = 0;
+        Add(pos, true, player);
+        while (Input.GetMouseButton(0)) yield return new WaitForSecondsRealtime(drawRate);
+
+        pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0;
+
+        float length = Vector2.Distance(startPos, pos);
+        if (length > lengthLimit) 
+        {
+            pos = Vector2.Lerp(startPos, pos, lengthLimit / length);
+            length = Vector2.Distance(startPos, pos);
+        }
+
+        FromTo(startPos, pos, pieceLength, player);
+
+        if (LineType == LineType.Weight)
+        {
+            Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.mass = 1000000;
+        }
+        Time.timeScale = 1;
+    }
+
+    public IEnumerator Drawing(float drawRate, float pieceLength, GameObject player = null)
     {
         Time.timeScale = 0.01f;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -205,7 +256,8 @@ public class Line : MonoBehaviour
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            Add(pos, false, player);
+            if (Vector2.Distance(End, pos) > ThresholdAltConstruction) FromTo(End, pos, pieceLength, player);
+            else Add(pos, false, player);
             yield return new WaitForSecondsRealtime(drawRate);
         }
         if (LineType == LineType.Weight)

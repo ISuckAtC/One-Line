@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2677138447192562899}
   - component: {fileID: 5770278074999797329}
   - component: {fileID: 6842449819706347090}
-  m_Layer: 0
+  - component: {fileID: -7797248384589767743}
+  m_Layer: 12
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,3 +96,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7871054985576896798, guid: ccf71d777bc5ffa499ffab706cf48f73, type: 3}
+  fireRate: 1
+--- !u!60 &-7797248384589767743
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920302007444287581}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 8}
+    newSize: {x: 8, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.01, y: 4}
+      - {x: -0.04, y: 3.99}
+      - {x: -4, y: -3.9599998}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: -3.9599998}
+      - {x: 0.03, y: 4}
