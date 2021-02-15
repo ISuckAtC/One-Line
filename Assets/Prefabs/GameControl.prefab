@@ -49,6 +49,10 @@ MonoBehaviour:
   CursorIce: {fileID: 21300000, guid: 5c24d7687c0d11b499d63e147a01b3d5, type: 3}
   CursorRubber: {fileID: 21300000, guid: ab1cb40f19d9bd74c8eda4ce295ebfdb, type: 3}
   CursorWeight: {fileID: 21300000, guid: 43bdc12d45aba7f41a89013ca2cc0441, type: 3}
+  InkNormal: {fileID: 21300000, guid: c5aaf6bed74666f42b7c719cd9ddcd7a, type: 3}
+  InkIce: {fileID: 21300000, guid: 1ebca70334c27ba4b9ee85b062f84308, type: 3}
+  InkRubber: {fileID: 21300000, guid: 3eb5e1a5df4cd224b9f5b4664e092580, type: 3}
+  InkWeight: {fileID: 21300000, guid: c4b37294e02ef71488aca9495903bb7b, type: 3}
   LinePrefab: {fileID: 9046088624349132471, guid: 4818b6780f8ed7643bd2859fcf8717f9,
     type: 3}
   LifeTimeAfterNewLine: 1
@@ -56,6 +60,8 @@ MonoBehaviour:
   StraightPieceLength: 0
   Player: {fileID: 0}
   Coins: 0
+  UseInk: 0
+  Ink: 
   LimitLinesInAir: 0
   NormalLimit: 0
   IceLimit: 0
