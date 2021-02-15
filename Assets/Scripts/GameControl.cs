@@ -25,6 +25,8 @@ public class GameControl : MonoBehaviour
     public float StraightPieceLength;
     public GameObject Player;
     public long Coins;
+    public bool UseInk;
+    [Tooltip("If empty, creates empty inkwell. If values are specified make sure the size is equal to the amount of line types")]
     public int[] Ink;
     GameObject lastLine;
 
@@ -32,6 +34,7 @@ public class GameControl : MonoBehaviour
     public bool LimitLinesInAir;
     public int NormalLimit, IceLimit, RubberLimit, WeightLimit;
     private int normalLeft, iceLeft, rubberLeft, weightLeft;
+    private Text[] inkWellTexts;
 
     public void ResetLineLimits()
     {
@@ -47,11 +50,20 @@ public class GameControl : MonoBehaviour
         main = this;
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
+
         normalLeft = NormalLimit;
         iceLeft = IceLimit;
         rubberLeft = RubberLimit;
         weightLeft = WeightLimit;
-        Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
+
+        if (Ink.Length < System.Enum.GetNames(typeof(LineType)).Length) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
+        
+        inkWellTexts = new Text[System.Enum.GetNames(typeof(LineType)).Length];
+        inkWellTexts[0] = GameObject.Find("Text_Inkwell_Regular").GetComponent<Text>();
+        inkWellTexts[1] = GameObject.Find("Text_Inkwell_Ice").GetComponent<Text>();
+        inkWellTexts[2] = GameObject.Find("Text_Inkwell_Rubber").GetComponent<Text>();
+        inkWellTexts[3] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
+        for(int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
     }
 
     // Update is called once per frame
@@ -101,6 +113,11 @@ public class GameControl : MonoBehaviour
                         else weightLeft--;
                     }
                 }
+                if (UseInk)
+                {
+                    if (Ink[(int)lineType] <= 0) return;
+                    else ModInk(lineType, -1);
+                }
                 Vector2 lineStartPos = Camera.main.ScreenToWorldPoint(mousePos, Camera.MonoOrStereoscopicEye.Mono);
                 Vector2 playerPos = Player.transform.position;
                 if (Vector2.Distance(playerPos, lineStartPos) < MinDrawDistanceAroundPlayer)
@@ -148,6 +165,8 @@ public class GameControl : MonoBehaviour
         Ink[(int)type] += amount;
 
         // Update UI for inkwells here
+
+        inkWellTexts[(int)type].text = Ink[(int)type].ToString();
     }
     IEnumerator Dragging(GameObject ball)
     {
