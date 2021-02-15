@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public bool bouncy = false;
     private void Start()
     {
-        Physics2D.IgnoreLayerCollision(13, 13);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
-        }
+        }   
 
     }
 }
