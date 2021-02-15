@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 5745138739628167504}
   - component: {fileID: 5745138739628167519}
   - component: {fileID: 5745138739628167516}
+  - component: {fileID: 2059828135364442239}
   m_Layer: 9
   m_Name: Player 1
   m_TagString: Untagged
@@ -709,6 +710,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 5745138739628167519}
+--- !u!114 &2059828135364442239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745138739628167517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c28766394175a4e91d16746e9db7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BumpForce: 0
+  FallSpeed: 0
+  BloodPrefab: {fileID: 59939400877777916, guid: be8740e72f12f5d459373a0c5b732c8d,
+    type: 3}
 --- !u!1 &6419261290070109748
 GameObject:
   m_ObjectHideFlags: 0
