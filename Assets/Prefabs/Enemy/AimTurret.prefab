@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2677138447192562899}
   - component: {fileID: 5770278074999797329}
-  - component: {fileID: 6842449819706347090}
   - component: {fileID: -7797248384589767743}
+  - component: {fileID: 6497651371269315936}
   m_Layer: 12
-  m_Name: Turret
+  m_Name: AimTurret
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 224025a8bed34274aa9895a6098691d8, type: 3}
-  m_Color: {r: 0.90099996, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.3, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83,20 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6842449819706347090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2920302007444287581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d40d75aedd400a489b26b89bc759a3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 7871054985576896798, guid: ccf71d777bc5ffa499ffab706cf48f73, type: 3}
-  fireRate: 1
 --- !u!60 &-7797248384589767743
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -129,3 +115,22 @@ PolygonCollider2D:
       - {x: 4, y: -4}
       - {x: 4, y: -3.9599998}
       - {x: 0.03, y: 4}
+--- !u!114 &6497651371269315936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920302007444287581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff6117a9f6a7944c932807348cc07cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 20
+  BulletSpawnOffset: 2
+  BulletSpeed: 3
+  FireRate: 1
+  BulletPrefab: {fileID: 7871054985576896798, guid: 8f2fc6e69e5567442bba8bf7a4441935,
+    type: 3}
+  TargetMask: 09000000
