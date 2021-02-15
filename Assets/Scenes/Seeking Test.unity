@@ -2423,6 +2423,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
+      propertyPath: Ink.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 235204095}
@@ -2465,6 +2470,16 @@ PrefabInstance:
         type: 3}
       propertyPath: StraightPieceLength
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: UseInk
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: Ink.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
@@ -6890,6 +6905,7 @@ GameObject:
   - component: {fileID: 1181605497}
   - component: {fileID: 1181605496}
   - component: {fileID: 1181605495}
+  - component: {fileID: 1181605498}
   m_Layer: 0
   m_Name: Inkwell_Regular
   m_TagString: Untagged
@@ -6910,6 +6926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineType: 0
+  Amount: 5
 --- !u!212 &1181605496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6974,6 +6991,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1181605498
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181605494}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.024
 --- !u!1001 &1188912511
 PrefabInstance:
   m_ObjectHideFlags: 0
