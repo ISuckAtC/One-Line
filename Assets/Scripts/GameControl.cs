@@ -18,7 +18,7 @@ public class GameControl : MonoBehaviour
     public float SetMinDrawDistanceAroundPlayer;
     static public float MinDrawDistanceAroundPlayer;
     public GameObject GameCursor;
-    public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight;
+    public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight, InkNormal, InkIce, InkRubber, InkWeight;
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
