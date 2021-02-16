@@ -88,6 +88,8 @@ public class GameControl : MonoBehaviour
             }
         }
 
+        if (Input.GetMouseButtonUp(0)) Time.timeScale = 1;
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D rayhit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Camera.main.transform.forward, 20f, 1 << 8);
