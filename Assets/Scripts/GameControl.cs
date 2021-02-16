@@ -44,10 +44,14 @@ public class GameControl : MonoBehaviour
         weightLeft = WeightLimit;
     }
 
+    void Awake()
+    {
+        main = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        main = this;
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
 
