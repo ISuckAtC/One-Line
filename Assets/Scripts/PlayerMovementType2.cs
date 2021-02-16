@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovementType2 : MonoBehaviour
 {
 
+    public float gravity;
+
     private bool isGrounded;
     private int jumpOnOff;
     private float jumpForce, playerControlPower;
@@ -12,6 +14,8 @@ public class PlayerMovementType2 : MonoBehaviour
     private Rigidbody2D rb2D;
     private GameControl gc;
     private LayerMask maskPlayer;
+    [SerializeField]
+    private Vector3 movementVector;
 
     void Start()
     {
@@ -60,6 +64,13 @@ public class PlayerMovementType2 : MonoBehaviour
 
         }
         else isGrounded = false;
+
+        movementVector = new Vector3(Input.GetAxis("Horizontal") + rb2D.velocity.x, Input.GetAxis("Vertical") + rb2D.velocity.y - 0.2f, 0);
+
+        if(!isGrounded)
+            rb2D.AddForce(-Vector3.up * (gravity * rb2D.mass));
+
+        rb2D.MovePosition(transform.position + movementVector);
 
     }
 
