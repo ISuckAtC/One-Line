@@ -6,11 +6,12 @@ public class Turret : MonoBehaviour
 {
     public GameObject bullet;
     public float fireRate = 1;
+    public float waitBeforeStart = 8;
 
     void Start()
     {
 
-        InvokeRepeating(nameof(TurretShoot), 5, fireRate);
+        InvokeRepeating(nameof(TurretShoot), waitBeforeStart, fireRate);
     }
     private void TurretShoot()
     {
