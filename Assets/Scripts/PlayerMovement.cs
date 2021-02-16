@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("should be between 0 and 1")]
     public float controlPowerInAir;
     public bool sprintOnOff;
+    [Tooltip("should be the Player physicsMaterial 2D")]
     public PhysicsMaterial2D PM2D;
     private float yVel, jumpPower;
     private Vector2 movementVector;
