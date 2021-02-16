@@ -629,7 +629,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5745138739628167517}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f82c97fcb5b687409a79c075d31e50c, type: 3}
   m_Name: 
@@ -650,11 +650,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5745138739628167517}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84f99c01bf413cf44b743a86ef38fffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravity: 0
+  movementVector: {x: 0, y: 0, z: 0}
 --- !u!50 &5745138739628167505
 Rigidbody2D:
   serializedVersion: 4
