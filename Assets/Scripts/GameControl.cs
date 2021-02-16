@@ -88,7 +88,11 @@ public class GameControl : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0)) Time.timeScale = 1;
+        if (Input.GetMouseButtonUp(0))
+        {
+            //bit sloppy
+            Time.timeScale = 1;
+        } 
 
         if (Input.GetMouseButtonDown(0))
         {
