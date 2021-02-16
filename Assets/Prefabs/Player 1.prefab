@@ -655,6 +655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f99c01bf413cf44b743a86ef38fffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravity: 0
+  movementVector: {x: 0, y: 0, z: 0}
 --- !u!50 &5745138739628167505
 Rigidbody2D:
   serializedVersion: 4
@@ -738,7 +740,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BumpForce: 0
   FallSpeed: 0.1
-  SlideVeloctyThreshold: 0
+  SlideVelocityThreshold: 0.5
+  IceSpeedMod: 1.05
   BloodPrefab: {fileID: 59939400877777916, guid: be8740e72f12f5d459373a0c5b732c8d,
     type: 3}
 --- !u!1 &6419261290070109748
