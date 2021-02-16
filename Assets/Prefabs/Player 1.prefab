@@ -725,6 +725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BumpForce: 0
   FallSpeed: 0.1
+  SlideVelocityThreshold: 0.5
+  IceSpeedMod: 1.05
   BloodPrefab: {fileID: 59939400877777916, guid: be8740e72f12f5d459373a0c5b732c8d,
     type: 3}
 --- !u!1 &6419261290070109748

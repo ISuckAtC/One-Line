@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float BumpForce, FallSpeed, SlideVeloctyThreshold;
+    public float BumpForce, FallSpeed, SlideVelocityThreshold, IceSpeedMod;
     public GameObject BloodPrefab;
     private Rigidbody2D rb;
     private float defaultGravity, defaultDrag;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -38,22 +38,27 @@ public class PlayerController : MonoBehaviour
                 if (line.LineType == LineType.Ice)
                 {
                     rb.drag = 0;
-                    if (lastSpeed.x < -SlideVeloctyThreshold && rb.velocity.x > lastSpeed.x) 
+                    if (rb.velocity.magnitude != 0 && rb.velocity.y > 0)
                     {
-                        rb.velocity = new Vector2(lastSpeed.x, rb.velocity.y);
+                        if (lastSpeed.x < -SlideVelocityThreshold && rb.velocity.magnitude < lastSpeed.magnitude)
+                        {
+                            rb.velocity = (rb.velocity / rb.velocity.magnitude) * lastSpeed.magnitude * IceSpeedMod;
+                            rb.velocity = new Vector2(rb.velocity.x * (rb.velocity.x < 0 ? 1 : -1), rb.velocity.y);
+                        }
+                        if (lastSpeed.x > SlideVelocityThreshold && rb.velocity.magnitude < lastSpeed.magnitude)
+                        {
+                            rb.velocity = (rb.velocity / rb.velocity.magnitude) * lastSpeed.magnitude * IceSpeedMod;
+                            rb.velocity = new Vector2(rb.velocity.x * (rb.velocity.x < 0 ? -1 : 1), rb.velocity.y);
+                        }
                     }
-                    if (lastSpeed.x > SlideVeloctyThreshold && rb.velocity.x < lastSpeed.x)
-                    {
-                        rb.velocity = new Vector2(lastSpeed.x, rb.velocity.y);
-                    } 
                 }
             }
-            else 
+            else
             {
                 rb.drag = defaultDrag;
             }
-        } 
-        else 
+        }
+        else
         {
             rb.drag = defaultDrag;
         }
