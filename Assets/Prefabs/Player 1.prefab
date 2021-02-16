@@ -359,7 +359,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -586,7 +586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5745138739628167507}
-  - component: {fileID: 164536433849707636}
+  - component: {fileID: 3924558189765503664}
   - component: {fileID: 5745138739628167505}
   - component: {fileID: 5745138739628167504}
   - component: {fileID: 5745138739628167519}
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 2059828135364442239}
   m_Layer: 9
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,7 +621,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &164536433849707636
+--- !u!114 &3924558189765503664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -630,13 +630,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5745138739628167517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165b5fabb4736a44e9bcc30ea62c0235, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f82c97fcb5b687409a79c075d31e50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
   BumpForce: 0
   jumpForce: 9
   PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
+  sprintOnOff: 0
   isGrounded: 0
   playerControlPower: 0
   yGroundCheckOffset: 0
@@ -723,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BumpForce: 0
-  FallSpeed: 0
+  FallSpeed: 0.1
   BloodPrefab: {fileID: 59939400877777916, guid: be8740e72f12f5d459373a0c5b732c8d,
     type: 3}
 --- !u!1 &6419261290070109748

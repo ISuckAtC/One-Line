@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float defaultGravity, defaultDrag;
     private Vector2 lastSpeed;
+    private UiControl uiController;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         defaultGravity = rb.gravityScale;
         defaultDrag = rb.drag;
+        uiController = GameObject.FindObjectOfType<Canvas>().GetComponent<UiControl>();
     }
 
     // Update is called once per frame
@@ -63,12 +65,14 @@ public class PlayerController : MonoBehaviour
         Camera.main.transform.parent = null;
         Destroy(Instantiate(BloodPrefab, transform.position, Quaternion.identity), 60);
         Destroy(gameObject);
+        uiController.PauseGameUiOnOff = true;
     }
     public void Kill(Vector2 deathPosition)
     {
         Camera.main.transform.parent = null;
         Destroy(Instantiate(BloodPrefab, deathPosition, Quaternion.identity), 60);
         Destroy(gameObject);
+        uiController.PauseGameUiOnOff = true;
     }
 
     public void OnCollisionEnter2D(Collision2D col)

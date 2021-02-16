@@ -11,11 +11,12 @@ public class UiControl : MonoBehaviour
     private GameObject PauseGameUi;
     [SerializeField]
     private GameObject InGameUi;
-    private bool PauseGameUiOnOff;
+    public bool PauseGameUiOnOff;
     [SerializeField]
     private GameControl gc;
     [SerializeField]
     private Text coinsText;
+    private GameObject FinishUi;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +24,11 @@ public class UiControl : MonoBehaviour
 
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+        FinishUi = GameObject.Find("FinishUi");
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
         InGameUi = GameObject.Find("InGameUi");
+        FinishUi.SetActive(false);
 
     }
 
@@ -47,25 +50,16 @@ public class UiControl : MonoBehaviour
         
     }
 
-    public void MainMenuButton()
-    {
+    public void MainMenuButton() => SceneManager.LoadScene(0);
 
-        SceneManager.LoadScene(0);
+    public void QuitButton() => Application.Quit();
 
-    }
+    public void LevelSelect(int lvlToLoad) => SceneManager.LoadScene(lvlToLoad);
 
-    public void QuitButton()
-    {
+    public void LevelFinish() => FinishUi.SetActive(true);
 
-        Application.Quit();
+    public void NextLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-    }
-
-    public void LevelSelect(int lvlToLoad)
-    {
-
-        SceneManager.LoadScene(lvlToLoad);
-
-    }
+    public void ReplayLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
 }
