@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float BumpForce, FallSpeed;
+    public float BumpForce, FallSpeed, SlideVeloctyThreshold;
     public GameObject BloodPrefab;
     private Rigidbody2D rb;
-    private float defaultGravity, defaultDrag, lastSpeed;
+    private float defaultGravity, defaultDrag;
+    private Vector2 lastSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,28 +36,26 @@ public class PlayerController : MonoBehaviour
                 if (line.LineType == LineType.Ice)
                 {
                     rb.drag = 0;
-                    if (lastSpeed < 0 && rb.velocity.x > lastSpeed) rb.velocity = new Vector2(lastSpeed, rb.velocity.y);
-                    if (lastSpeed > 0 && rb.velocity.x < lastSpeed) rb.velocity = new Vector2(lastSpeed, rb.velocity.y);
-                    /*if (rb.velocity.y > 0) 
+                    if (lastSpeed.x < -SlideVeloctyThreshold && rb.velocity.x > lastSpeed.x) 
                     {
-                        Debug.Log("up");
-                        rb.gravityScale = 0;
-                    }*/
-                    else rb.gravityScale = defaultGravity;
+                        rb.velocity = new Vector2(lastSpeed.x, rb.velocity.y);
+                    }
+                    if (lastSpeed.x > SlideVeloctyThreshold && rb.velocity.x < lastSpeed.x)
+                    {
+                        rb.velocity = new Vector2(lastSpeed.x, rb.velocity.y);
+                    } 
                 }
             }
             else 
             {
-                //rb.gravityScale = defaultGravity;
                 rb.drag = defaultDrag;
             }
         } 
         else 
         {
-            //rb.gravityScale = defaultGravity;
             rb.drag = defaultDrag;
         }
-        lastSpeed = rb.velocity.x;
+        lastSpeed = rb.velocity;
     }
 
     public void Kill()
