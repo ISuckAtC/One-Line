@@ -42,7 +42,7 @@ public class Magnet : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         
         foreach(GameObject line in Lines)
