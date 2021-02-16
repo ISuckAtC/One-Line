@@ -634,9 +634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f82c97fcb5b687409a79c075d31e50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 6
   BumpForce: 0
-  jumpForce: 9
+  jumpForce: 5
   PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
   sprintOnOff: 0
   isGrounded: 0
