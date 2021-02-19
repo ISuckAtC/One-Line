@@ -2011,6 +2011,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3924558189765503664, guid: 2287ef4c559590641a2c162db3545ca0,
+        type: 3}
+      propertyPath: friction
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3924558189765503664, guid: 2287ef4c559590641a2c162db3545ca0,
+        type: 3}
+      propertyPath: controlPowerInAir
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5745138739628167507, guid: 2287ef4c559590641a2c162db3545ca0,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -217,6 +217,11 @@ PrefabInstance:
       propertyPath: gc
       value: 
       objectReference: {fileID: 365525918}
+    - target: {fileID: 569439396720927614, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2997787420949036411, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -328,6 +333,11 @@ PrefabInstance:
       value: UI_Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 2997787420949036415, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635486949707740457, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1284,6 +1294,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sprintOnOff
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3924558189765503664, guid: 2287ef4c559590641a2c162db3545ca0,
+        type: 3}
+      propertyPath: friction
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3924558189765503664, guid: 2287ef4c559590641a2c162db3545ca0,
+        type: 3}
+      propertyPath: controlPowerInAir
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5745138739628167507, guid: 2287ef4c559590641a2c162db3545ca0,
         type: 3}
