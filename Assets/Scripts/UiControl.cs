@@ -7,14 +7,10 @@ using UnityEngine.UI;
 public class UiControl : MonoBehaviour
 {
 
-    [SerializeField]
     private GameObject PauseGameUi;
-    [SerializeField]
     private GameObject InGameUi;
     public bool PauseGameUiOnOff;
-    [SerializeField]
     private GameControl gc;
-    [SerializeField]
     private Text coinsText;
     private GameObject FinishUi;
 
