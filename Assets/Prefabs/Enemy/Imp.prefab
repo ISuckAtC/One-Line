@@ -92,8 +92,8 @@ GameObject:
   m_Component:
   - component: {fileID: 821053480205323269}
   - component: {fileID: 821053480205323268}
-  - component: {fileID: 8986646094603891793}
   - component: {fileID: 821053480205323275}
+  - component: {fileID: 140855035676119827}
   m_Layer: 0
   m_Name: Imp
   m_TagString: Enemy
@@ -166,22 +166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8986646094603891793
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 821053480205323274}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.411
 --- !u!114 &821053480205323275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,3 +196,19 @@ MonoBehaviour:
   - TrackedPosition: {fileID: 0}
     WaitStep: 0
   Speed: 0.2
+--- !u!70 &140855035676119827
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821053480205323274}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 5, y: 4}
+  m_Direction: 1
