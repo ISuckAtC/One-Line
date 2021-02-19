@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Range: 15
   BulletSpawnOffset: 3
-  BulletSpeed: 3
-  FireRate: 1
+  BulletSpeed: 15
+  FireRate: 2
   BulletPrefab: {fileID: 7871054985576896798, guid: ccf71d777bc5ffa499ffab706cf48f73,
     type: 3}
   TargetMask: 09000000

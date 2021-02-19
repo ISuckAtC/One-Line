@@ -15,20 +15,14 @@ public class AimTurret : MonoBehaviour
     private int targetMask;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         targetMask = 0;
         foreach(int i in TargetMask) targetMask = targetMask | i;
         InvokeRepeating(nameof(Fire), 0, FireRate);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, Range).ToList();
         if (!hits.Exists(x => x.gameObject == target)) target = null;
@@ -36,7 +30,7 @@ public class AimTurret : MonoBehaviour
         {
             int h = hits.Count;
             hits = hits.Where(x => x.gameObject.layer != 0 && (x.gameObject.layer & targetMask) == x.gameObject.layer).ToList();
-            Debug.Log(h + " | " + hits.Count);
+            //Debug.Log(h + " | " + hits.Count);
             if (hits.Count > 0)
             {
                 hits.OrderBy(x => Vector2.Distance(x.transform.position, transform.position));
