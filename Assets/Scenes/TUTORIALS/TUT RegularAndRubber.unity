@@ -440,7 +440,7 @@ PrefabInstance:
     - target: {fileID: 6089209965991342150, guid: fdbc10a3b8506df469b32e80a1a1918a,
         type: 3}
       propertyPath: Amount
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6089209965991342151, guid: fdbc10a3b8506df469b32e80a1a1918a,
         type: 3}
@@ -520,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 6089209965991342150, guid: fdbc10a3b8506df469b32e80a1a1918a,
         type: 3}
       propertyPath: Amount
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6089209965991342151, guid: fdbc10a3b8506df469b32e80a1a1918a,
         type: 3}
@@ -77328,6 +77328,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: Ink.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
