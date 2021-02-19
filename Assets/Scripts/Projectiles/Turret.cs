@@ -8,7 +8,7 @@ public class Turret : MonoBehaviour
     public float fireRate = 1;
     public float waitBeforeStart = 8;
     public float bulletSpeed = 6;
-
+    public float startPointDist = 1.02f;
     void Start()
     {
 
@@ -16,7 +16,7 @@ public class Turret : MonoBehaviour
     }
     private void TurretShoot()
     {
-        GameObject newBullet = Instantiate(bullet, transform.position + transform.up*1.02f, Quaternion.identity);
+        GameObject newBullet = Instantiate(bullet, transform.position + transform.up*startPointDist, Quaternion.identity);
         newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
         newBullet.transform.rotation = transform.rotation;
     }
