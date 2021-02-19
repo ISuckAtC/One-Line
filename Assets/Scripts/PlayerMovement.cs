@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
                 if (rb2D.velocity.x < 0) negDampen = -1;
                 else negDampen = 1;
 
-                movementVector = new Vector2(rb2D.velocity.x * (negDampen * damping), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
+                movementVector = new Vector2(rb2D.velocity.x * (damping / speedDampening), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
 
             }
 
