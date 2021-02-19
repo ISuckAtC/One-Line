@@ -494,7 +494,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &87397606
 PrefabInstance:
@@ -2727,7 +2727,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &426140290
 PrefabInstance:
@@ -5560,7 +5560,7 @@ PrefabInstance:
     - target: {fileID: 2997787420949036411, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2997787420949036411, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
@@ -138111,7 +138111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1441934017
 PrefabInstance:
@@ -139208,7 +139208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597809312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 741.9, y: -385, z: 0}
+  m_LocalPosition: {x: 741.9, y: -389.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -139995,6 +139995,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1713753055}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1756877496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1756877497}
+  m_Layer: 0
+  m_Name: GameObject (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1756877497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756877496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 741.9, y: -395.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1776692519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142218,7 +142248,7 @@ PrefabInstance:
     - target: {fileID: 821053480205323269, guid: 87dba5ddf4353944293c0fa57cdb7add,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -385
+      value: -389.2
       objectReference: {fileID: 0}
     - target: {fileID: 821053480205323269, guid: 87dba5ddf4353944293c0fa57cdb7add,
         type: 3}
@@ -142265,10 +142295,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 821053480205323269, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 821053480205323269, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 821053480205323274, guid: 87dba5ddf4353944293c0fa57cdb7add,
         type: 3}
       propertyPath: m_Name
       value: Imp
+      objectReference: {fileID: 0}
+    - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: PatrolPattern.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
         type: 3}
@@ -142279,7 +142324,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PatrolPattern.Array.data[1].TrackedPosition
       value: 
-      objectReference: {fileID: 73239471}
+      objectReference: {fileID: 1756877497}
     - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
         type: 3}
       propertyPath: PatrolPattern.Array.data[2].TrackedPosition
@@ -142290,6 +142335,32 @@ PrefabInstance:
       propertyPath: PatrolPattern.Array.data[3].TrackedPosition
       value: 
       objectReference: {fileID: 410701547}
+    - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: behavior
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: BulletSpawnOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: PatrolPattern.Array.data[0].WaitStep
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: PatrolPattern.Array.data[1].WaitStep
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 821053480205323275, guid: 87dba5ddf4353944293c0fa57cdb7add,
+        type: 3}
+      propertyPath: BulletPrefab
+      value: 
+      objectReference: {fileID: 7871054985576896798, guid: 987a67b6f2623b446a6257920db6369d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87dba5ddf4353944293c0fa57cdb7add, type: 3}
 --- !u!1001 &1578390834168989066

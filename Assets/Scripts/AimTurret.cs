@@ -43,7 +43,7 @@ public class AimTurret : MonoBehaviour
         }
     }
 
-    void Fire()
+    public void Fire()
     {
         if (target)
         {
