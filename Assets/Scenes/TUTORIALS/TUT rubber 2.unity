@@ -612,7 +612,12 @@ PrefabInstance:
     - target: {fileID: 6842449819706347090, guid: 01f596644c3964d4ba93ff25d60b3b08,
         type: 3}
       propertyPath: waitBeforeStart
-      value: 12
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842449819706347090, guid: 01f596644c3964d4ba93ff25d60b3b08,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01f596644c3964d4ba93ff25d60b3b08, type: 3}
