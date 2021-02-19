@@ -41,8 +41,6 @@ public class Line : MonoBehaviour
         hitYAxisA = ac.y - (yRatioA * ac.x);
 
         Debug.Log("A: " + ac + " | " + hitYAxisA + " | " + yRatioA);
-
-
         
         Vector2 bc = c + ((b - c) / 2);
         End = bc;
@@ -334,6 +332,7 @@ public class LinePiece
         MiddleBox.transform.localScale = new Vector3(thickness, length, 1);
         MiddleBox.transform.position = new Vector2((start.x + end.x) / 2, (start.y + end.y) / 2);
         MiddleBox.transform.up = end - start;
+        
 
         BoxCollider2D bc = MiddleBox.AddComponent<BoxCollider2D>();
         bc.sharedMaterial = mat;
