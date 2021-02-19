@@ -38,7 +38,7 @@ public class UiControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -92,7 +92,13 @@ public class UiControl : MonoBehaviour
 
     public void LevelFinish() => FinishUi.SetActive(true);
 
-    public void NextLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    public void NextLevel()
+    {
+
+        if (SceneManager.sceneCountInBuildSettings == (SceneManager.GetActiveScene().buildIndex + 1)) SceneManager.LoadScene(0);
+        else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+    }
 
     public void ReplayLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
