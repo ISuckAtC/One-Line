@@ -10,10 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     [Tooltip("should be between 0 and 1")]
     public float controlPowerInAir, friction;
+    public float speedDampening;
     public bool sprintOnOff, shouldSlide;
     [Tooltip("should be the Player physicsMaterial 2D")]
     public PhysicsMaterial2D PM2D;
-    private float yVel, jumpPower;
+    private float yVel, jumpPower, damping;
     [SerializeField]
     private Vector2 movementVector;
     //Jumping
@@ -129,14 +130,18 @@ public class PlayerMovement : MonoBehaviour
 
                 int negDampen;
 
+                damping -= Time.deltaTime;
+                damping = Mathf.Clamp(damping, 0, speedDampening);
+
                 if (rb2D.velocity.x < 0) negDampen = -1;
                 else negDampen = 1;
 
-                movementVector = new Vector2(rb2D.velocity.x * (negDampen * Input.GetAxis("Horizontal")), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
+                movementVector = new Vector2(rb2D.velocity.x * (damping / speedDampening), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
 
             }
 
         }
+        else damping = speedDampening;
 
         rb2D.velocity = movementVector;
 
