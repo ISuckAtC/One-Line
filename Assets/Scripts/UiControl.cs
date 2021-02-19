@@ -19,7 +19,7 @@ public class UiControl : MonoBehaviour
     {
 
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
-        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+        gc = GameControl.main;
         FinishUi = GameObject.Find("FinishUi");
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
