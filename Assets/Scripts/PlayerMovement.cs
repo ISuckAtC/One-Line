@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
-        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+        gc = GameControl.main;
         maskPlayer = ~(((1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Air"))));
         rb2D.sharedMaterial = PM2D;
         capsuleCollider.sharedMaterial = PM2D;
@@ -128,13 +128,8 @@ public class PlayerMovement : MonoBehaviour
             if (shouldSlide == false && isGrounded)
             {
 
-                int negDampen;
-
                 damping -= Time.deltaTime;
                 damping = Mathf.Clamp(damping, 0, speedDampening);
-
-                if (rb2D.velocity.x < 0) negDampen = -1;
-                else negDampen = 1;
 
                 movementVector = new Vector2(rb2D.velocity.x * (damping / speedDampening), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
 
