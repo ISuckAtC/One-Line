@@ -93,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2018656446672622338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -747,11 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c88e97aa897a0b46815a0bfea5c0854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseGameUi: {fileID: 569439396720927614}
-  InGameUi: {fileID: 5536734374799979516}
   PauseGameUiOnOff: 0
-  gc: {fileID: 0}
-  coinsText: {fileID: 5410934230660373819}
 --- !u!1 &2997787421134674925
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7930021759613123156
 RectTransform:
   m_ObjectHideFlags: 0
