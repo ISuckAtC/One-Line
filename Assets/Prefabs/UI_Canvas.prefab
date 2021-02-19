@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4833968461170144483}
   - component: {fileID: 2432953749677289081}
   - component: {fileID: 7684999509296656397}
-  m_Layer: 5
+  m_Layer: 1
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
