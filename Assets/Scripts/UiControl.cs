@@ -14,7 +14,7 @@ public class UiControl : MonoBehaviour
     private Text coinsText;
     private GameObject FinishUi;
     private RawImage regGlow, iceGlow, rubGlow, weightGlow;
-    private float fadeValue;
+    private float fadeValue, invert, alphaFadeValue;
     private LineType CLT; 
     private RawImage CGT;
 
@@ -33,11 +33,12 @@ public class UiControl : MonoBehaviour
         iceGlow = GameObject.Find("Ice_Glow").GetComponent<RawImage>();
         rubGlow = GameObject.Find("Rubber_Glow").GetComponent<RawImage>();
         weightGlow = GameObject.Find("Weight_Glow").GetComponent<RawImage>();
+        invert = 1;
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -52,31 +53,33 @@ public class UiControl : MonoBehaviour
 
         }
 
-        fadeValue = Mathf.PingPong(Time.time, 1);
+        if (fadeValue > 1) { invert = -1; alphaFadeValue = 1; }
+        else if (fadeValue < 0) { invert = 1; alphaFadeValue = 0; }
+        fadeValue += Time.unscaledDeltaTime * invert;
 
         CLT = LineType.Normal;
         CGT = regGlow;
         if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(fadeValue, 1, true); }
-        else CGT.enabled = true;
+        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
+        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
 
         CLT = LineType.Ice;
         CGT = iceGlow;
         if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(fadeValue, 1, true); }
-        else CGT.enabled = true;
+        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
+        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
 
         CLT = LineType.Rubber;
         CGT = rubGlow;
         if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(fadeValue, 1, true); }
-        else CGT.enabled = true;
+        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
+        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
 
         CLT = LineType.Weight;
         CGT = weightGlow;
         if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(fadeValue, 1, true); }
-        else CGT.enabled = true;
+        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
+        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
 
 
     }
