@@ -127,7 +127,6 @@ public class GameControl : MonoBehaviour
                 if (UseInk)
                 {
                     if (Ink[(int)lineType] <= 0) return;
-                    else ModInk(lineType, -1);
                 }
                 Vector2 lineStartPos = Camera.main.ScreenToWorldPoint(mousePos, Camera.MonoOrStereoscopicEye.Mono);
                 Vector2 playerPos = Player.transform.position;
@@ -178,6 +177,10 @@ public class GameControl : MonoBehaviour
         // Update UI for inkwells here
 
         inkWellTexts[(int)type].text = Ink[(int)type].ToString();
+    }
+    public void ModInkDisplayOnly(LineType type, int setamount)
+    {
+        inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
     }
     IEnumerator Dragging(GameObject ball)
     {
