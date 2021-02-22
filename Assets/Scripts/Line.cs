@@ -182,6 +182,11 @@ public class Line : MonoBehaviour
             Debug.Log("Limit reached");
             position = Vector2.Lerp(End, position, (lengthLimit - Length) / Vector2.Distance(End, position));
         }
+        if (GameControl.main.InkByLength && Length + Vector2.Distance(End, position) >= GameControl.main.Ink[(int)LineType])
+        {
+            Debug.Log("Total Limit reached");
+            position = Vector2.Lerp(End, position, (GameControl.main.Ink[(int)LineType] - Length) / Vector2.Distance(End, position));
+        }
 
         if (Vector2.Distance(End, position) < MinLengthForNewPiece && !start) 
         {
@@ -189,7 +194,7 @@ public class Line : MonoBehaviour
         }
 
         Length += Vector2.Distance(End, position);
-
+        if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
 
 
         pieces.Add(new LinePiece(End, position, Thickness, Circle, Box, transform, material, color, stuckPieces));
@@ -241,6 +246,7 @@ public class Line : MonoBehaviour
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 1000000;
         }
+        GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         Time.timeScale = 1;
     }
 
@@ -263,6 +269,7 @@ public class Line : MonoBehaviour
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 1000000;
         }
+        GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         Time.timeScale = 1;
     }
     public void Update()
