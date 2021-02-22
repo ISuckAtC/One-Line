@@ -26,6 +26,7 @@ public class GameControl : MonoBehaviour
     public GameObject Player;
     public long Coins;
     public bool UseInk;
+    public bool InkByLength;
     [Tooltip("If empty, creates empty inkwell. If values are specified make sure the size is equal to the amount of line types")]
     public int[] Ink;
     GameObject lastLine;
