@@ -7,6 +7,7 @@ public class PrototypeGoalPrefab : MonoBehaviour
 {
 
     private UiControl uiController;
+    public GameObject fireworks, confettiCanon;
 
     private void Start()
     {
@@ -18,8 +19,7 @@ public class PrototypeGoalPrefab : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player")
-            uiController.LevelFinish();
+        if (collision.tag == "Player") { uiController.LevelFinish(); fireworks.SetActive(true); confettiCanon.SetActive(true); }
 
     }
 
