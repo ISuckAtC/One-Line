@@ -37,6 +37,11 @@ public class GameControl : MonoBehaviour
     private int normalLeft, iceLeft, rubberLeft, weightLeft;
     private Text[] inkWellTexts;
 
+    public float LevelTransCamOffset;
+    public float LevelStartCamDelay;
+    public float LevelEndCamDelay;
+    public float CamFollowSpeed;
+
     public void ResetLineLimits()
     {
         normalLeft = NormalLimit;
@@ -48,6 +53,7 @@ public class GameControl : MonoBehaviour
     void Awake()
     {
         main = this;
+        StartCoroutine(StartTravel());
     }
 
     // Start is called before the first frame update
@@ -181,6 +187,35 @@ public class GameControl : MonoBehaviour
     public void ModInkDisplayOnly(LineType type, int setamount)
     {
         inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
+    }
+    IEnumerator StartTravel()
+    {
+        Camera.main.transform.parent = null;
+        Camera.main.transform.Translate(new Vector3(-LevelTransCamOffset, 0, 0));
+        yield return new WaitForSeconds(LevelStartCamDelay);
+        while(true)
+        {
+            Vector3 nPos = Vector2.MoveTowards(Camera.main.transform.position, Player.transform.position, CamFollowSpeed);
+            nPos.z = Camera.main.transform.position.z;
+            Camera.main.transform.position = nPos;
+            if ((Vector2)Camera.main.transform.position == (Vector2)Player.transform.position) break;
+            yield return new WaitForFixedUpdate();
+        }
+        Camera.main.transform.parent = Player.transform;
+    }
+    public IEnumerator EndTravel(string nextScene)
+    {
+        Camera.main.transform.parent = null;
+        Vector3 nPos = Camera.main.transform.position;
+        nPos.x = nPos.x + LevelTransCamOffset;
+        yield return new WaitForSeconds(LevelEndCamDelay);
+        while(true)
+        {
+            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, nPos, CamFollowSpeed);
+            if (Camera.main.transform.position == nPos) break;
+            yield return new WaitForFixedUpdate();
+        }
+        SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }
     IEnumerator Dragging(GameObject ball)
     {
