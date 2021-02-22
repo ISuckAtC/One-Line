@@ -634,9 +634,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  controlPowerInAir: 0
-  sprintOnOff: 0
+  controlPowerInAir: 0.2
+  friction: 0.6
+  speedDampening: 2
+  sprintOnOff: 1
+  shouldSlide: 0
   PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
+  movementVector: {x: 0, y: 0}
   BumpForce: 0
   jumpForce: 5
 --- !u!50 &5745138739628167505

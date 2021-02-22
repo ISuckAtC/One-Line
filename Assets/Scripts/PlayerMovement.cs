@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 10)]
     public float moveSpeed;
     [Tooltip("should be between 0 and 1")]
-    public float controlPowerInAir;
-    public bool sprintOnOff;
+    public float controlPowerInAir, friction;
+    public float speedDampening;
+    public bool sprintOnOff, shouldSlide;
     [Tooltip("should be the Player physicsMaterial 2D")]
     public PhysicsMaterial2D PM2D;
-    private float yVel, jumpPower;
+    private float yVel, jumpPower, damping;
+    [SerializeField]
     private Vector2 movementVector;
     //Jumping
     public float BumpForce, jumpForce;
@@ -33,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
-        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+        gc = GameControl.main;
         maskPlayer = ~(((1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Air"))));
         rb2D.sharedMaterial = PM2D;
         capsuleCollider.sharedMaterial = PM2D;
@@ -48,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         RaycastHit2D hit2D;
+        shouldSlide = false;
 
         if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
@@ -61,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
                     Line line;
                     if (hit2D.collider.transform.parent.TryGetComponent<Line>(out line))
                     {
+
+                        if (line.LineType == LineType.Ice) shouldSlide = true;
 
                     }
                     else gc.ResetLineLimits();
@@ -94,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             playerControlPower = 1f;
-            PM2D.friction = 0.6f;
+            PM2D.friction = friction;
             rb2D.sharedMaterial = PM2D;
             capsuleCollider.sharedMaterial = PM2D;
 
@@ -116,6 +121,22 @@ public class PlayerMovement : MonoBehaviour
         yVel = rb2D.velocity.y - jumpForce;
 
         movementVector = new Vector2(rb2D.velocity.x + (speedMultiplier * xMoveDir * playerControlPower), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
+
+        if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+
+            if (shouldSlide == false && isGrounded)
+            {
+
+                damping -= Time.deltaTime;
+                damping = Mathf.Clamp(damping, 0, speedDampening);
+
+                movementVector = new Vector2(rb2D.velocity.x * (damping / speedDampening), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
+
+            }
+
+        }
+        else damping = speedDampening;
 
         rb2D.velocity = movementVector;
 
