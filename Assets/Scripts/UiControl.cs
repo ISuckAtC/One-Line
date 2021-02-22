@@ -13,10 +13,11 @@ public class UiControl : MonoBehaviour
     private GameControl gc;
     private Text coinsText;
     private GameObject FinishUi;
+    private Image regNum, iceNum, rubNum, weightNum;
     private RawImage regGlow, iceGlow, rubGlow, weightGlow;
     private float fadeValue, invert, alphaFadeValue;
-    private LineType CLT; 
-    private RawImage CGT;
+    private LineType CLT; //CurrentLineType
+    private RawImage CGT; //CurrentGlowType
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,10 @@ public class UiControl : MonoBehaviour
         rubGlow = GameObject.Find("Rubber_Glow").GetComponent<RawImage>();
         weightGlow = GameObject.Find("Weight_Glow").GetComponent<RawImage>();
         invert = 1;
+        regNum = GameObject.Find("NumberGraphicReg").GetComponent<Image>();
+        iceNum = GameObject.Find("NumberGraphicIce").GetComponent<Image>();
+        rubNum = GameObject.Find("NumberGraphicRub").GetComponent<Image>();
+        weightNum = GameObject.Find("NumberGraphicGrav").GetComponent<Image>();
 
     }
 
@@ -52,6 +57,8 @@ public class UiControl : MonoBehaviour
             coinsText.GetComponent<Text>().text = "coins: " + gc.Coins;
 
         }
+
+
 
         if (fadeValue > 1) { invert = -1; alphaFadeValue = 1; }
         else if (fadeValue < 0) { invert = 1; alphaFadeValue = 0; }
