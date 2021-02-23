@@ -30,6 +30,7 @@ public class GameControl : MonoBehaviour
     [Tooltip("If empty, creates empty inkwell. If values are specified make sure the size is equal to the amount of line types")]
     public int[] Ink;
     GameObject lastLine;
+    public int UINumInkwells;
 
     bool AssistedDraw;
     public bool LimitLinesInAir;
@@ -157,21 +158,25 @@ public class GameControl : MonoBehaviour
             {
                 lineType = LineType.Normal;
                 GameCursor.GetComponent<Image>().sprite = CursorNormal;
+                UINumInkwells = 0;
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 lineType = LineType.Ice;
                 GameCursor.GetComponent<Image>().sprite = CursorIce;
+                UINumInkwells = 1;
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 lineType = LineType.Rubber;
                 GameCursor.GetComponent<Image>().sprite = CursorRubber;
+                UINumInkwells = 2;
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 lineType = LineType.Weight;
                 GameCursor.GetComponent<Image>().sprite = CursorWeight;
+                UINumInkwells = 3;
             }
         }
     }
