@@ -86189,6 +86189,11 @@ PrefabInstance:
       propertyPath: Ink.Array.data[2]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: InkByLength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: m_Name
