@@ -61,9 +61,15 @@ MonoBehaviour:
   Player: {fileID: 0}
   Coins: 0
   UseInk: 0
+  InkByLength: 0
   Ink: 
+  UINumInkwells: 0
   LimitLinesInAir: 0
   NormalLimit: 0
   IceLimit: 0
   RubberLimit: 0
   WeightLimit: 0
+  LevelTransCamOffset: 0
+  LevelStartCamDelay: 0
+  LevelEndCamDelay: 0
+  CamFollowSpeed: 1
