@@ -58,7 +58,14 @@ public class UiControl : MonoBehaviour
 
         }
 
-
+        if (gc.UINumInkwells == 0) regNum.color = Color.red;
+        else regNum.color = Color.white;
+        if (gc.UINumInkwells == 1) iceNum.color = Color.blue;
+        else iceNum.color = Color.white;
+        if (gc.UINumInkwells == 2) rubNum.color = Color.black;
+        else rubNum.color = Color.white;
+        if (gc.UINumInkwells == 3) weightNum.color = Color.green;
+        else weightNum.color = Color.white;
 
         if (fadeValue > 1) { invert = -1; alphaFadeValue = 1; }
         else if (fadeValue < 0) { invert = 1; alphaFadeValue = 0; }
