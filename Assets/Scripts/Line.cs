@@ -5,7 +5,7 @@ using UnityEngine;
 public class Line : MonoBehaviour
 {
     public PhysicsMaterial2D Bounce, Slide;
-    public float NormalLength, IceLength, RubberLength, WeightLength;
+    public float NormalLength, IceLength, RubberLength, WeightLength, JointLength;
     public LineType LineType;
     PhysicsMaterial2D material;
     float lengthLimit;
@@ -14,15 +14,17 @@ public class Line : MonoBehaviour
     public Sprite Circle;
     public Sprite Box;
     public float Thickness;
-    public LinePiece[] Pieces {get {return pieces.ToArray();}}
-    List<LinePiece> pieces;
-    List<LinePiece> stuckPieces;
-    public int Size {get {return Pieces.Length;}}
+    public LinePiece[] Pieces { get { return pieces.ToArray(); } }
+    public List<LinePiece> pieces;
+    public List<LinePiece> stuckPieces;
+    public int Size { get { return Pieces.Length; } }
 
     public float Length;
     public float MinLengthForNewPiece;
     public float MaxDistanceForValidConstruction;
     public float ThresholdAltConstruction;
+
+    public GameObject LastPiece;
 
     public void ConstructFromPoints(Vector2 a, Vector2 b, Vector2 c, LineType lineType, float pieceLength, int iterationLimit)
     {
@@ -32,7 +34,7 @@ public class Line : MonoBehaviour
         Vector2 ac = c + ((a - c) / 2);
         End = ac;
         Vector2 acDir = Rotate((c - a).normalized, Mathf.Deg2Rad * 90f);
-        
+
 
         float yRatioA = XtoYRatio(acDir);
 
@@ -41,7 +43,7 @@ public class Line : MonoBehaviour
         hitYAxisA = ac.y - (yRatioA * ac.x);
 
         Debug.Log("A: " + ac + " | " + hitYAxisA + " | " + yRatioA);
-        
+
         Vector2 bc = c + ((b - c) / 2);
         End = bc;
         Vector2 bcDir = Rotate((b - c).normalized, Mathf.Deg2Rad * 90f);
@@ -88,7 +90,7 @@ public class Line : MonoBehaviour
 
         while (End != b)
         {
-            if (Vector2.Distance(End, b) < pieceLength) 
+            if (Vector2.Distance(End, b) < pieceLength)
             {
                 Add(b, false);
                 break;
@@ -161,10 +163,15 @@ public class Line : MonoBehaviour
                 color = Color.gray;
                 lengthLimit = WeightLength;
                 break;
+            case LineType.Joint:
+                material = null;
+                color = Color.yellow;
+                lengthLimit = JointLength;
+                break;
         }
     }
 
-    public bool Add(Vector2 position, bool start, GameObject player = null)
+    public bool Add(Vector2 position, bool start, GameObject player = null, bool joint = false)
     {
         Vector2 playerPos = player.transform.position;
         if (player && Vector2.Distance(playerPos, position) < GameControl.MinDrawDistanceAroundPlayer)
@@ -174,7 +181,8 @@ public class Line : MonoBehaviour
             {
                 position = Vector2.Lerp(End, position, 0.5f);
                 position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
-            } else position = newPosition;
+            }
+            else position = newPosition;
         }
 
         if (Length + Vector2.Distance(End, position) > lengthLimit)
@@ -188,7 +196,7 @@ public class Line : MonoBehaviour
             position = Vector2.Lerp(End, position, (GameControl.main.Ink[(int)LineType] - Length) / Vector2.Distance(End, position));
         }
 
-        if (Vector2.Distance(End, position) < MinLengthForNewPiece && !start) 
+        if (Vector2.Distance(End, position) < MinLengthForNewPiece && !start)
         {
             return true;
         }
@@ -197,7 +205,7 @@ public class Line : MonoBehaviour
         if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
 
 
-        pieces.Add(new LinePiece(End, position, Thickness, Circle, Box, transform, material, color, stuckPieces));
+        pieces.Add(new LinePiece(End, position, Thickness, Circle, Box, transform, this, material, color, joint));
         End = position;
 
         if (Length == lengthLimit)
@@ -208,14 +216,14 @@ public class Line : MonoBehaviour
         return false;
     }
 
-    public void FromTo(Vector2 from, Vector2 to, float pieceLength, GameObject player = null)
+    public void FromTo(Vector2 from, Vector2 to, float pieceLength, GameObject player = null, bool joint = false)
     {
         float length = Vector2.Distance(from, to);
         int pieceCount = (int)(length / pieceLength);
         Debug.Log("FromTo: Constructing " + pieceCount + " pieces");
-        for(int i = 0; i < pieceCount; ++i)
+        for (int i = 0; i < pieceCount; ++i)
         {
-            Add(Vector3.Lerp(from, to, 1f / pieceCount * i), false, player);
+            Add(Vector3.Lerp(from, to, 1f / pieceCount * i), false, player, joint);
         }
     }
 
@@ -233,7 +241,7 @@ public class Line : MonoBehaviour
         pos.z = 0;
 
         float length = Vector2.Distance(startPos, pos);
-        if (length > lengthLimit) 
+        if (length > lengthLimit)
         {
             pos = Vector2.Lerp(startPos, pos, lengthLimit / length);
             length = Vector2.Distance(startPos, pos);
@@ -255,13 +263,13 @@ public class Line : MonoBehaviour
         Time.timeScale = 0.01f;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
-        Add(pos, true, player);
+        Add(pos, true, player, LineType == LineType.Joint);
         while (Input.GetMouseButton(0))
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            if (Vector2.Distance(End, pos) > ThresholdAltConstruction) FromTo(End, pos, pieceLength, player);
-            else Add(pos, false, player);
+            if (Vector2.Distance(End, pos) > ThresholdAltConstruction) FromTo(End, pos, pieceLength, player, LineType == LineType.Joint);
+            else Add(pos, false, player, LineType == LineType.Joint);
             yield return new WaitForSecondsRealtime(drawRate);
         }
         if (LineType == LineType.Weight)
@@ -291,20 +299,22 @@ public class LinePiece
     GameObject MiddleBox;
     GameObject EndCircle;
 
-    public LinePiece(Vector2 start, Vector2 end, float thickness, Sprite c, Sprite b, Transform parent, PhysicsMaterial2D mat, Color color, List<LinePiece> stuck)
+    public LinePiece(Vector2 start, Vector2 end, float thickness, Sprite c, Sprite b, Transform parent, Line line, PhysicsMaterial2D mat, Color color, bool joint)
     {
         MiddleBox = new GameObject();
         SpriteRenderer mbr = MiddleBox.AddComponent<SpriteRenderer>();
         mbr.sprite = b;
         mbr.color = color;
+        MiddleBox.layer = LayerMask.NameToLayer("Line");
         EndCircle = new GameObject();
         SpriteRenderer ecr = EndCircle.AddComponent<SpriteRenderer>();
         ecr.sprite = c;
         ecr.color = color;
+        EndCircle.layer = LayerMask.NameToLayer("Line");
 
         if (start == end)
         {
-            StartCircle = new GameObject();
+            StartCircle = new GameObject("Start");
             SpriteRenderer scr = StartCircle.AddComponent<SpriteRenderer>();
             scr.sprite = c;
             scr.color = color;
@@ -315,23 +325,33 @@ public class LinePiece
             ccs.sharedMaterial = mat;
             StartCircle.transform.parent = parent;
             EndCircle.transform.up = -StartCircle.transform.up;
-        } 
-        else 
-        {
-            if (stuck.Count > 0)
+
+            StartCircle.layer = LayerMask.NameToLayer("Line");
+
+            line.LastPiece = StartCircle;
+            if (joint)
             {
-                foreach(LinePiece p in stuck) 
+                Debug.Log("Creating starting joint");
+                Rigidbody2D rb = StartCircle.AddComponent<Rigidbody2D>();
+                rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            }
+        }
+        else
+        {
+            if (line.stuckPieces.Count > 0)
+            {
+                foreach (LinePiece p in line.stuckPieces)
                 {
                     p.StartCircle.transform.up = start - end;
                     p.MiddleBox.transform.up = end - start;
                     p.EndCircle.transform.up = end - start;
                 }
-                stuck.Clear();
+                line.stuckPieces.Clear();
             }
             StartCircle = null;
             EndCircle.transform.up = end - start;
         }
-        
+
         EndCircle.transform.position = end;
         EndCircle.transform.localScale = new Vector3(thickness, thickness, 1);
 
@@ -339,7 +359,7 @@ public class LinePiece
         MiddleBox.transform.localScale = new Vector3(thickness, length, 1);
         MiddleBox.transform.position = new Vector2((start.x + end.x) / 2, (start.y + end.y) / 2);
         MiddleBox.transform.up = end - start;
-        
+
 
         BoxCollider2D bc = MiddleBox.AddComponent<BoxCollider2D>();
         bc.sharedMaterial = mat;
@@ -349,6 +369,23 @@ public class LinePiece
         MiddleBox.transform.parent = parent;
         EndCircle.transform.parent = parent;
 
-        if (start == end) stuck.Add(this);
+        if (joint)
+        {
+            MiddleBox.AddComponent<Rigidbody2D>();
+            FixedJoint2D fixedJoint2D = MiddleBox.AddComponent<FixedJoint2D>();
+            Debug.Log(line.LastPiece.name);
+            fixedJoint2D.connectedBody = line.LastPiece.GetComponent<Rigidbody2D>();
+            fixedJoint2D.dampingRatio = 1;
+            //fixedJoint2D.connectedAnchor = line.LastPiece.transform.position;
+
+            EndCircle.AddComponent<Rigidbody2D>();
+            HingeJoint2D hingeJoint2D = EndCircle.AddComponent<HingeJoint2D>();
+            hingeJoint2D.connectedBody = line.LastPiece.GetComponent<Rigidbody2D>();
+            //hingeJoint2D.connectedAnchor = line.LastPiece.transform.position;
+        }
+
+        line.LastPiece = EndCircle;
+
+        if (start == end) line.stuckPieces.Add(this);
     }
 }

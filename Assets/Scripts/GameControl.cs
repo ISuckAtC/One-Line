@@ -9,7 +9,8 @@ public enum LineType
     Normal,
     Ice,
     Rubber,
-    Weight
+    Weight,
+    Joint
 }
 public class GameControl : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameControl : MonoBehaviour
     public float SetMinDrawDistanceAroundPlayer;
     static public float MinDrawDistanceAroundPlayer;
     public GameObject GameCursor;
-    public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight, InkNormal, InkIce, InkRubber, InkWeight;
+    public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight, CursorJoint, InkNormal, InkIce, InkRubber, InkWeight, InkJoint;
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
@@ -34,8 +35,8 @@ public class GameControl : MonoBehaviour
 
     bool AssistedDraw;
     public bool LimitLinesInAir;
-    public int NormalLimit, IceLimit, RubberLimit, WeightLimit;
-    private int normalLeft, iceLeft, rubberLeft, weightLeft;
+    public int NormalLimit, IceLimit, RubberLimit, WeightLimit, JointLimit;
+    private int normalLeft, iceLeft, rubberLeft, weightLeft, jointLeft;
     private Text[] inkWellTexts;
 
     public float LevelTransCamOffset;
@@ -49,6 +50,7 @@ public class GameControl : MonoBehaviour
         iceLeft = IceLimit;
         rubberLeft = RubberLimit;
         weightLeft = WeightLimit;
+        //jointLeft = JointLimit;
     }
 
     void Awake()
@@ -67,6 +69,7 @@ public class GameControl : MonoBehaviour
         iceLeft = IceLimit;
         rubberLeft = RubberLimit;
         weightLeft = WeightLimit;
+        //jointLeft = JointLimit;
 
         if (Ink.Length < System.Enum.GetNames(typeof(LineType)).Length) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
         
@@ -75,6 +78,7 @@ public class GameControl : MonoBehaviour
         inkWellTexts[1] = GameObject.Find("Text_Inkwell_Ice").GetComponent<Text>();
         inkWellTexts[2] = GameObject.Find("Text_Inkwell_Rubber").GetComponent<Text>();
         inkWellTexts[3] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
+        //inkWellTexts[4] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
         for(int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
     }
 
@@ -130,6 +134,11 @@ public class GameControl : MonoBehaviour
                         if (weightLeft <= 0) return;
                         else weightLeft--;
                     }
+                    if (lineType == LineType.Joint)
+                    {
+                        if (jointLeft <= 0) return;
+                        else jointLeft--;
+                    }
                 }
                 if (UseInk)
                 {
@@ -178,6 +187,10 @@ public class GameControl : MonoBehaviour
                 GameCursor.GetComponent<Image>().sprite = CursorWeight;
                 UINumInkwells = 3;
             }
+            /*if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                lineType = LineType.Joint;
+            }*/
         }
     }
 
