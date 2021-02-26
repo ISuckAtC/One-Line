@@ -7,18 +7,15 @@ public class BarController : MonoBehaviour
 {
 
     public GameObject Confines, Bar;
-    public RectTransform CRect, BRect;
-    public float Max, CurrentAmount;
-    [SerializeField]
-    public float ProsentOfTotal;
-    public Vector2 BarPos;
+    private RectTransform CRect, BRect;
+    public float Max;
+    private float ProsentOfTotal, CurrentAmount;
+    private Vector2 BarPos;
+    private LineType InkType;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        Confines = GameObject.Find("Confines");
-        Bar = GameObject.Find("Bar");
 
         CRect = Confines.GetComponent<RectTransform>();
         BRect = Bar.GetComponent<RectTransform>();
