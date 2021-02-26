@@ -71,7 +71,7 @@ public class GameControl : MonoBehaviour
         weightLeft = WeightLimit;
         //jointLeft = JointLimit;
 
-        if (Ink.Length < System.Enum.GetNames(typeof(LineType)).Length) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
+        if (Ink.Length < 4 /*System.Enum.GetNames(typeof(LineType)).Length*/) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
 
         inkWellTexts = new Text[System.Enum.GetNames(typeof(LineType)).Length];
         inkWellTexts[0] = GameObject.Find("Text_Inkwell_Regular").GetComponent<Text>();
@@ -188,6 +188,7 @@ public class GameControl : MonoBehaviour
 
     public void SwitchLineType(LineType type)
     {
+        lineType = type;
         switch (type)
         {
             case LineType.Normal:
