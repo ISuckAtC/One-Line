@@ -18,11 +18,14 @@ public class UiControl : MonoBehaviour
     private float fadeValue, invert, alphaFadeValue;
     private LineType CLT; //CurrentLineType
     private RawImage CGT; //CurrentGlowType
+    private Text levelSceneNumber;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Scene scene = SceneManager.GetActiveScene(); ;
+        levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
+        levelSceneNumber.text = "level " + scene.buildIndex.ToString();
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
         gc = GameControl.main;
         FinishUi = GameObject.Find("FinishUi");
