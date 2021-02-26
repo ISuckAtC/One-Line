@@ -31,6 +31,7 @@ public class Inkwell : MonoBehaviour
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             GameControl.main.ModInk(lineType, Amount);
+            GameControl.main.SwitchLineType(lineType);
             Destroy(gameObject);
         }
     }
