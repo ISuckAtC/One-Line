@@ -31,7 +31,7 @@ public class GameControl : MonoBehaviour
     [Tooltip("If empty, creates empty inkwell. If values are specified make sure the size is equal to the amount of line types")]
     public int[] Ink;
     GameObject lastLine;
-    public int UINumInkwells;
+    public int InkTypeSelected;
 
     bool AssistedDraw;
     public bool LimitLinesInAir;
