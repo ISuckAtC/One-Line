@@ -38,6 +38,7 @@ public class Gate : MonoBehaviour, IActivatable
 
     public void Activate()
     {
+        Debug.Log(gameObject.name + " activated");
         open = !open;
     }
 }
