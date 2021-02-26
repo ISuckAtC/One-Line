@@ -61,13 +61,13 @@ public class UiControl : MonoBehaviour
         if(regNum != null)
         {
 
-            if (gc.UINumInkwells == 0) regNum.color = Color.red;
+            if (gc.InkTypeSelected == 0) regNum.color = Color.red;
             else regNum.color = Color.white;
-            if (gc.UINumInkwells == 1) iceNum.color = Color.blue;
+            if (gc.InkTypeSelected == 1) iceNum.color = Color.blue;
             else iceNum.color = Color.white;
-            if (gc.UINumInkwells == 2) rubNum.color = Color.black;
+            if (gc.InkTypeSelected == 2) rubNum.color = Color.black;
             else rubNum.color = Color.white;
-            if (gc.UINumInkwells == 3) weightNum.color = Color.green;
+            if (gc.InkTypeSelected == 3) weightNum.color = Color.green;
             else weightNum.color = Color.white;
 
         }

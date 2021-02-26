@@ -167,25 +167,25 @@ public class GameControl : MonoBehaviour
             {
                 lineType = LineType.Normal;
                 GameCursor.GetComponent<Image>().sprite = CursorNormal;
-                UINumInkwells = 0;
+                InkTypeSelected = 0;
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 lineType = LineType.Ice;
                 GameCursor.GetComponent<Image>().sprite = CursorIce;
-                UINumInkwells = 1;
+                InkTypeSelected = 1;
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 lineType = LineType.Rubber;
                 GameCursor.GetComponent<Image>().sprite = CursorRubber;
-                UINumInkwells = 2;
+                InkTypeSelected = 2;
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 lineType = LineType.Weight;
                 GameCursor.GetComponent<Image>().sprite = CursorWeight;
-                UINumInkwells = 3;
+                InkTypeSelected = 3;
             }
             /*if (Input.GetKeyDown(KeyCode.Alpha8))
             {
