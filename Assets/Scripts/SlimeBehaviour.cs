@@ -99,6 +99,9 @@ public class SlimeBehaviour : MonoBehaviour
 
         }
 
+        if (JumpTimer > 0 && JumpTimer < JumpTime - 0.5f)
+            RB2D.velocity = new Vector2(0, RB2D.velocity.y);
+
     }
 
 }
