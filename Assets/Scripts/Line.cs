@@ -252,7 +252,7 @@ public class Line : MonoBehaviour
         if (LineType == LineType.Weight)
         {
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
-            rb.mass = 1000000;
+            rb.mass = 10;
         }
         GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         Time.timeScale = 1;
@@ -275,7 +275,7 @@ public class Line : MonoBehaviour
         if (LineType == LineType.Weight)
         {
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
-            rb.mass = 1000000;
+            rb.mass = 10;
         }
         GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         Time.timeScale = 1;
