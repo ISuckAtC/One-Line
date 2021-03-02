@@ -19,8 +19,6 @@ public class PrototypeGoalPrefab : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player") { uiController.LevelFinish(); fireworks.SetActive(true); confettiCanon.SetActive(true); }
-
     }
 
 }

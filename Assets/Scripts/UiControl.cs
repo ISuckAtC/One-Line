@@ -12,7 +12,6 @@ public class UiControl : MonoBehaviour
     public bool PauseGameUiOnOff;
     private GameControl gc;
     private Text coinsText;
-    private GameObject FinishUi;
     private Image regNum, iceNum, rubNum, weightNum;
     private RawImage regGlow, iceGlow, rubGlow, weightGlow;
     private float fadeValue, invert, alphaFadeValue;
@@ -28,11 +27,9 @@ public class UiControl : MonoBehaviour
         levelSceneNumber.text = "level " + scene.buildIndex.ToString();
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
         gc = GameControl.main;
-        FinishUi = GameObject.Find("FinishUi");
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
         InGameUi = GameObject.Find("InGameUi");
-        FinishUi.SetActive(false);
         regGlow = GameObject.Find("Regular_Glow").GetComponent<RawImage>();
         iceGlow = GameObject.Find("Ice_Glow").GetComponent<RawImage>();
         rubGlow = GameObject.Find("Rubber_Glow").GetComponent<RawImage>();
@@ -111,8 +108,6 @@ public class UiControl : MonoBehaviour
     public void QuitButton() => Application.Quit();
 
     public void LevelSelect(int lvlToLoad) => SceneManager.LoadScene(lvlToLoad);
-
-    public void LevelFinish() => FinishUi.SetActive(true);
 
     public void NextLevel()
     {
