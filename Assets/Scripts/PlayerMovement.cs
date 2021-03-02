@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
         gc = GameControl.main;
-        maskPlayer = ~(((1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Air")) + (1 << LayerMask.NameToLayer("Enemy"))));
+        maskPlayer = ~((1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Air")) + (1 << LayerMask.NameToLayer("Enemy")));
         rb2D.sharedMaterial = PM2D;
         capsuleCollider.sharedMaterial = PM2D;
         speedMultiplier = 1f;

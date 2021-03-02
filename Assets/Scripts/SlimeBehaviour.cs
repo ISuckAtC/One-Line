@@ -24,7 +24,7 @@ public class SlimeBehaviour : MonoBehaviour
 
         Player = GameObject.Find("Player 1");
         RB2D = gameObject.GetComponent<Rigidbody2D>();
-        EnemyMask = ~(1 << LayerMask.NameToLayer("Enemy"));
+        EnemyMask = ~((1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Air")));
         PlayerControl = Player.GetComponent<PlayerController>();
 
     }
@@ -55,6 +55,13 @@ public class SlimeBehaviour : MonoBehaviour
             else
                 SlimeMoveDir = Vector2.zero;
 
+        }
+        else
+            HasSeenPlayer = false;
+
+        if(AggroTimer > 0)
+        {
+
             if (JumpTimer < 0)
             {
 
@@ -64,8 +71,6 @@ public class SlimeBehaviour : MonoBehaviour
             }
 
         }
-        else
-            HasSeenPlayer = false;
 
         if (HasSeenPlayer)
             AggroTimer = AggroTime;
@@ -96,6 +101,25 @@ public class SlimeBehaviour : MonoBehaviour
                 LastAttackTimer = AttackSpeed;
 
             }
+
+        }
+
+        if(collision.gameObject.transform.parent != null)
+        {
+
+            Rigidbody2D OtherRB2D;
+            if (collision.gameObject.transform.parent.TryGetComponent<Rigidbody2D>(out OtherRB2D))
+            {
+
+                Debug.Log(OtherRB2D);
+
+                if (OtherRB2D.velocity.magnitude > 4)
+                    Destroy(gameObject);
+
+
+            }
+            else
+                Debug.Log("Parent Does Not Have Rigidbody2D Component");
 
         }
 
