@@ -17,6 +17,7 @@ public class ActivatorButton : MonoBehaviour
         if (active) return;
         active = true;
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground")) return;
+        if (col.gameObject.layer == LayerMask.NameToLayer("Player")) return;
         foreach(GameObject activatable in Activatables)
         {
             activatable.GetComponent<IActivatable>().Activate();
