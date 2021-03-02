@@ -65,7 +65,7 @@ public class UiControl : MonoBehaviour
             else regNum.color = Color.white;
             if (gc.InkTypeSelected == 1) iceNum.color = Color.blue;
             else iceNum.color = Color.white;
-            if (gc.InkTypeSelected == 2) rubNum.color = Color.black;
+            if (gc.InkTypeSelected == 2) rubNum.color = Color.gray;
             else rubNum.color = Color.white;
             if (gc.InkTypeSelected == 3) weightNum.color = Color.green;
             else weightNum.color = Color.white;
