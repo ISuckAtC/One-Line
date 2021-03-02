@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1907768330417056100}
   - component: {fileID: 5979009530830637293}
   - component: {fileID: 2428020784098581351}
-  - component: {fileID: 8061482504717577758}
+  - component: {fileID: 2535320567636850688}
   m_Layer: 12
   m_Name: Bullet 2
   m_TagString: Projectile
@@ -120,8 +120,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!70 &8061482504717577758
-CapsuleCollider2D:
+--- !u!68 &2535320567636850688
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -134,5 +134,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 8.000001, y: 8}
-  m_Direction: 0
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -3.9693465, y: -3.9695241}
+  - {x: 0.02955369, y: 4.012439}
+  - {x: 3.9693484, y: -3.969525}
