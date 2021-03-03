@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5372026431576458180}
   - component: {fileID: 1907768330417056100}
   - component: {fileID: 2428020784098581351}
-  - component: {fileID: 2295280491068186334}
   - component: {fileID: 217772801657391794}
+  - component: {fileID: 4100046879128043136}
   m_Layer: 12
   m_Name: BulletBouncy
   m_TagString: Projectile
@@ -105,7 +105,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &2295280491068186334
+--- !u!114 &217772801657391794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7871054985576896798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1d09d5964eff745b512f7018510713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bouncy: 1
+  friendlyFire: 0
+  LineDestroyRadius: 0
+--- !u!60 &4100046879128043136
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +137,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 32, y: 32}
+    oldSize: {x: 8, y: 8}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -130,26 +145,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 5.67, y: 4}
-      - {x: 3.36, y: 9.27}
-      - {x: -0.06, y: 15.81}
-      - {x: -7.824683, y: 0.094159365}
-      - {x: -15.72, y: -15.92}
-      - {x: -1.78, y: -15.97}
-      - {x: 16.07, y: -15.98}
-      - {x: 5.73, y: 4}
---- !u!114 &217772801657391794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7871054985576896798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1d09d5964eff745b512f7018510713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bouncy: 1
-  friendlyFire: 0
-  LineDestroyRadius: 0
+    - - {x: -0.01, y: 4}
+      - {x: -0.04, y: 3.99}
+      - {x: -4, y: -3.9599998}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: -3.9599998}
+      - {x: 0.03, y: 4}
