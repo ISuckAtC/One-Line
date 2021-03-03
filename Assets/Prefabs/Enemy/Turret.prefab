@@ -97,6 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7871054985576896798, guid: ccf71d777bc5ffa499ffab706cf48f73, type: 3}
   fireRate: 1
+  waitBeforeStart: 8
+  bulletSpeed: 10
+  startPointDist: 1.02
 --- !u!60 &-7797248384589767743
 PolygonCollider2D:
   m_ObjectHideFlags: 0
