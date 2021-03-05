@@ -36,7 +36,9 @@ public class Bullet : MonoBehaviour
         if (collision.transform.parent != null && collision.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line"))
         {
             Transform p = collision.transform.parent;
-            if (bouncy == false && p.GetComponent<Line>().LineType != LineType.Rubber)                    //Placeholder until we have individual layer for rubber
+            Line l = p.GetComponent<Line>();
+            l.Refund = false;
+            if (bouncy == false && l.LineType != LineType.Rubber)                    //Placeholder until we have individual layer for rubber
             {
                 List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, LineDestroyRadius).ToList();
                 hits = hits.Where(x => x.transform.parent == p).ToList();

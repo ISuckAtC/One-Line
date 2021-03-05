@@ -12,7 +12,6 @@ public class UiControl : MonoBehaviour
     public bool PauseGameUiOnOff;
     private GameControl gc;
     private Text coinsText;
-    private Image regNum, iceNum, rubNum, weightNum;
     private RawImage regGlow, iceGlow, rubGlow, weightGlow;
     private float fadeValue, invert, alphaFadeValue;
     private LineType CLT; //CurrentLineType
@@ -22,6 +21,7 @@ public class UiControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         Scene scene = SceneManager.GetActiveScene(); ;
         levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
         levelSceneNumber.text = "level " + scene.buildIndex.ToString();
@@ -35,10 +35,6 @@ public class UiControl : MonoBehaviour
         rubGlow = GameObject.Find("Rubber_Glow").GetComponent<RawImage>();
         weightGlow = GameObject.Find("Weight_Glow").GetComponent<RawImage>();
         invert = 1;
-        regNum = GameObject.Find("NumberGraphicReg").GetComponent<Image>();
-        iceNum = GameObject.Find("NumberGraphicIce").GetComponent<Image>();
-        rubNum = GameObject.Find("NumberGraphicRub").GetComponent<Image>();
-        weightNum = GameObject.Find("NumberGraphicGrav").GetComponent<Image>();
 
     }
 
@@ -55,20 +51,6 @@ public class UiControl : MonoBehaviour
             PauseGameUi.SetActive(PauseGameUiOnOff);
             InGameUi.SetActive(!PauseGameUiOnOff);
             coinsText.GetComponent<Text>().text = "coins: " + gc.Coins;
-
-        }
-
-        if(regNum != null)
-        {
-
-            if (gc.InkTypeSelected == 0) regNum.color = Color.red;
-            else regNum.color = Color.white;
-            if (gc.InkTypeSelected == 1) iceNum.color = Color.blue;
-            else iceNum.color = Color.white;
-            if (gc.InkTypeSelected == 2) rubNum.color = Color.gray;
-            else rubNum.color = Color.white;
-            if (gc.InkTypeSelected == 3) weightNum.color = Color.green;
-            else weightNum.color = Color.white;
 
         }
 

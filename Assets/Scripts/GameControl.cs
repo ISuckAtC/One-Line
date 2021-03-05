@@ -38,15 +38,17 @@ public class GameControl : MonoBehaviour
     public bool LimitLinesInAir;
     public int NormalLimit, IceLimit, RubberLimit, WeightLimit, JointLimit;
     private int normalLeft, iceLeft, rubberLeft, weightLeft, jointLeft;
-    private Text[] inkWellTexts;
+    //private Text[] inkWellTexts;
 
     public float LevelTransCamOffset;
     public float LevelStartCamDelay;
     public float LevelEndCamDelay;
     public float CamFollowSpeed;
+    public float DrawingTimeScale;
 
     public LineType DefaultLineType;
     public bool ForceDefault;
+    public bool SwitchOnInkEmpty;
     static private LineType? lastType;
 
     public void ResetLineLimits()
@@ -85,13 +87,13 @@ public class GameControl : MonoBehaviour
 
         if (Ink.Length < 4 /*System.Enum.GetNames(typeof(LineType)).Length*/) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
 
-        inkWellTexts = new Text[System.Enum.GetNames(typeof(LineType)).Length];
-        inkWellTexts[0] = GameObject.Find("Text_Inkwell_Regular").GetComponent<Text>();
-        inkWellTexts[1] = GameObject.Find("Text_Inkwell_Ice").GetComponent<Text>();
-        inkWellTexts[2] = GameObject.Find("Text_Inkwell_Rubber").GetComponent<Text>();
-        inkWellTexts[3] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
+        //inkWellTexts = new Text[System.Enum.GetNames(typeof(LineType)).Length];
+        //inkWellTexts[0] = GameObject.Find("Text_Inkwell_Regular").GetComponent<Text>();
+        //inkWellTexts[1] = GameObject.Find("Text_Inkwell_Ice").GetComponent<Text>();
+        //inkWellTexts[2] = GameObject.Find("Text_Inkwell_Rubber").GetComponent<Text>();
+        //inkWellTexts[3] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
         //inkWellTexts[4] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
-        for (int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
+        //for (int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
     }
 
     // Update is called once per frame
@@ -165,8 +167,8 @@ public class GameControl : MonoBehaviour
                 GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
                 lastLine = line;
-                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, false, Player, DrawRateSeconds, StraightPieceLength);
-                else line.GetComponent<Line>().ConstructFromCursor(lineType, true, Player, DrawRateSeconds, StraightPieceLength);
+                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, false, Player, DrawRateSeconds, StraightPieceLength);
+                else line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, true, Player, DrawRateSeconds, StraightPieceLength);
             }
         }
         else
@@ -228,13 +230,25 @@ public class GameControl : MonoBehaviour
     {
         Ink[(int)type] += amount;
 
+        if (SwitchOnInkEmpty && Ink[(int)type] <= 0)
+        {
+            for (int i = 0; i < Ink.Length; ++i)
+            {
+                if (Ink[i] > 0)
+                {
+                    SwitchLineType((LineType)i);
+                    break;
+                }
+            }
+        }
+
         // Update UI for inkwells here
 
-        inkWellTexts[(int)type].text = Ink[(int)type].ToString();
+        //inkWellTexts[(int)type].text = Ink[(int)type].ToString();
     }
     public void ModInkDisplayOnly(LineType type, int setamount)
     {
-        inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
+        //inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
     }
     IEnumerator StartTravel()
     {

@@ -8,7 +8,7 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
             playerAnim.SetBool("isWalking", true);
             //Debug.Log("true");

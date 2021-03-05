@@ -13,6 +13,7 @@ public class BarController : MonoBehaviour
     private Vector2 BarPos;
     public LineType InkType;
     private GameControl gc;
+    public Sprite BarSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class BarController : MonoBehaviour
         gc = GameControl.main;
         CRect = Confines.GetComponent<RectTransform>();
         BRect = Bar.GetComponent<RectTransform>();
+        Bar.GetComponent<Image>().sprite = BarSprite;
         CurrentAmount = gc.Ink[(int)InkType];
 
     }
@@ -31,13 +33,13 @@ public class BarController : MonoBehaviour
 
         CurrentAmount = gc.Ink[(int)InkType];
 
-        BarPos = new Vector2(-CRect.rect.width * (1 - ProsentOfTotal) / 2 + CRect.position.x, CRect.position.y);
+        BarPos = new Vector2(0, CRect.position.y);
 
         ProsentOfTotal = CurrentAmount / Max;
 
         BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height) * 0.95f;
 
-        BRect.position = BarPos;
+        BRect.position = Vector2.zero;
 
     }
 }
