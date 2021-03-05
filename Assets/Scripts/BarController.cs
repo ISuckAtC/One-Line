@@ -29,7 +29,7 @@ public class BarController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateInkBar()
     {
 
         CurrentAmount = gc.Ink[(int)InkType];

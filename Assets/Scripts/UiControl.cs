@@ -15,6 +15,7 @@ public class UiControl : MonoBehaviour
     public GameObject[] Inkwells, InkwellPositions;
     private Text coinsText;
     private Text levelSceneNumber;
+    public BarController[] BarControllers;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class UiControl : MonoBehaviour
     {
 
         if(Input.GetKey(KeyCode.Escape)) SwitchUi();
+        if(Input.GetMouseButton(0)) UpdateUi();
 
     }
 
@@ -76,6 +78,13 @@ public class UiControl : MonoBehaviour
                 Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[i].GetComponent<RectTransform>().position;
                 
             }
+
+        }
+
+        foreach(BarController bc in BarControllers) 
+        {
+
+            bc.UpdateInkBar();
 
         }
 
