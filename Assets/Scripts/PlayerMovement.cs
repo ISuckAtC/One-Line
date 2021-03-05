@@ -50,21 +50,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.anyKey)
-        {
-
-            if (Input.GetAxisRaw("Horizontal") == 0 && !Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.R) && !Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.Mouse1))
-            {
-
-                Debug.Log("Ass");
-
-            }
-            else
-                JumpInput = false;
-
+        if (Input.GetAxisRaw("Vertical") != 0 || Input.GetKey(KeyCode.Space))
             JumpInput = true;
-
-        }
         else
             JumpInput = false;
 

@@ -33,13 +33,11 @@ public class BarController : MonoBehaviour
 
         CurrentAmount = gc.Ink[(int)InkType];
 
-        BarPos = new Vector2(0, CRect.position.y);
-
         ProsentOfTotal = CurrentAmount / Max;
 
-        BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height) * 0.95f;
+        BarPos = new Vector2(0, 0);
 
-        BRect.position = Vector2.zero;
+        BRect.rect.Set(BarPos.x, BarPos.y, CRect.rect.width * ProsentOfTotal * 0.99f, CRect.rect.height * 0.99f);
 
     }
 }
