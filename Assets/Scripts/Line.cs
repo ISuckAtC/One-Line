@@ -209,7 +209,10 @@ public class Line : MonoBehaviour
         }
 
         Length += Vector2.Distance(End, position);
-        if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
+        if (GameControl.main.InkByLength) 
+        {
+            GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
+        }
 
 
         pieces.Add(new LinePiece(End, position, Thickness, Circle, Box, transform, this, material, color, joint));
@@ -236,12 +239,17 @@ public class Line : MonoBehaviour
 
     public IEnumerator DrawStraight(float drawRate, float pieceLength, GameObject player = null)
     {
+        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(true);
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         Vector3 startPos = transform.position;
         startPos.z = 0;
         Add(pos, true, player);
-        while (Input.GetMouseButton(0)) yield return new WaitForSecondsRealtime(drawRate);
+        while (Input.GetMouseButton(0)) 
+        {
+            if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
+            yield return new WaitForSecondsRealtime(drawRate);
+        }
 
         pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
@@ -261,6 +269,7 @@ public class Line : MonoBehaviour
             rb.mass = 10;
         }
         Time.timeScale = 1;
+        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {
             GameControl.main.ModInk(LineType, 0);
@@ -271,6 +280,7 @@ public class Line : MonoBehaviour
 
     public IEnumerator Drawing(float drawRate, float pieceLength, GameObject player = null)
     {
+        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(true);
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         Add(pos, true, player, LineType == LineType.Joint);
@@ -291,6 +301,7 @@ public class Line : MonoBehaviour
 
 
         Time.timeScale = 1;
+        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {
             GameControl.main.ModInk(LineType, 0);

@@ -51,6 +51,8 @@ public class GameControl : MonoBehaviour
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
     public Dialogue dialogue;
+    public GameObject CursorLinePanel;
+    public Text CursorLineText;
 
     public void ResetLineLimits()
     {
@@ -63,6 +65,7 @@ public class GameControl : MonoBehaviour
 
     void Awake()
     {
+        CursorLinePanel.SetActive(false);
         main = this;
         if (ForceDefault) lineType = DefaultLineType;
         else
@@ -250,6 +253,7 @@ public class GameControl : MonoBehaviour
     }
     public void ModInkDisplayOnly(LineType type, int setamount)
     {
+        CursorLineText.text = (Ink[(int)type] + setamount).ToString();
         //inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
     }
     IEnumerator StartTravel()
