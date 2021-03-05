@@ -50,6 +50,7 @@ public class GameControl : MonoBehaviour
     public bool ForceDefault;
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
+    public Dialogue dialogue;
 
     public void ResetLineLimits()
     {
@@ -99,6 +100,7 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.V)) StartCoroutine(dialogue.Speak());
         if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         Vector3 mousePos = Input.mousePosition;
