@@ -9,15 +9,21 @@ public class Bullet : MonoBehaviour
     public bool friendlyFire;
     public float LineDestroyRadius;
     private Rigidbody2D rb;
+    private Collider2D collider;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
     }
 
     void FixedUpdate()
     {
         transform.up = rb.velocity;
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Enemy") collider.isTrigger = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

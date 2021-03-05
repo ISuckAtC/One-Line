@@ -47,7 +47,7 @@ public class AimTurret : MonoBehaviour
     {
         if (target)
         {
-            GameObject bullet = Instantiate(BulletPrefab, transform.position + (transform.up * BulletSpawnOffset), transform.rotation);
+            GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = transform.up * BulletSpeed;
         }
     }
