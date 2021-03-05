@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float BumpForce, jumpForce;
     private float playerControlPower, speedMultiplier, xMoveDir;
     private int jumpOnOff;
+    private bool JumpInput;
     //GroundCheck
     private float yGroundCheckOffset, groundCheckDist;
     private bool isGrounded;
@@ -49,6 +50,24 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (Input.anyKey)
+        {
+
+            if (Input.GetAxisRaw("Horizontal") == 0 && !Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.R) && !Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.Mouse1))
+            {
+
+                Debug.Log("Ass");
+
+            }
+            else
+                JumpInput = false;
+
+            JumpInput = true;
+
+        }
+        else
+            JumpInput = false;
+
         RaycastHit2D hit2D;
         shouldSlide = false;
 
@@ -73,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 else gc.ResetLineLimits();
 
                 playerControlPower = 1;
-                if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
+                if (JumpInput && rb2D.velocity.y < jumpForce)
                 {
 
                     jumpOnOff = 1;
