@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         rb2D.sharedMaterial = PM2D;
         capsuleCollider.sharedMaterial = PM2D;
         speedMultiplier = 1f;
-        yGroundCheckOffset = -0.4f * transform.localScale.y;
+        yGroundCheckOffset = (-0.4f + ((1 - capsuleCollider.size.x) * -0.4f)) * transform.localScale.y;
         groundCheckDist = 0.5f * transform.localScale.y;
         jumpPower = 1f;
 
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit2D;
         shouldSlide = false;
 
-        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
+        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * capsuleCollider.size.x * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
             if (hit2D.collider.isTrigger != true)
             {
