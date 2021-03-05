@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,18 +8,12 @@ public class UiControl : MonoBehaviour
 {
 
     public Vector3 MinimizedSize, EnlargedSize;
-    public RectTransform Selected, NotSelected;
     private GameObject PauseGameUi;
     private GameObject InGameUi;
     public bool PauseGameUiOnOff;
     private GameControl gc;
+    public GameObject[] Inkwells, InkwellPositions;
     private Text coinsText;
-    [SerializeField]
-    private GameObject[] InkWells;
-    private RawImage regGlow, iceGlow, rubGlow, weightGlow;
-    private float fadeValue, invert, alphaFadeValue;
-    private LineType CLT; //CurrentLineType
-    private RawImage CGT; //CurrentGlowType
     private Text levelSceneNumber;
 
     // Start is called before the first frame update
@@ -34,11 +28,8 @@ public class UiControl : MonoBehaviour
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
         InGameUi = GameObject.Find("InGameUi");
-        /*regGlow = GameObject.Find("Regular_Glow").GetComponent<RawImage>();
-        iceGlow = GameObject.Find("Ice_Glow").GetComponent<RawImage>();
-        rubGlow = GameObject.Find("Rubber_Glow").GetComponent<RawImage>();
-        weightGlow = GameObject.Find("Weight_Glow").GetComponent<RawImage>();
-        invert = 1;*/
+
+        UpdateUi();
 
     }
 
@@ -46,9 +37,14 @@ public class UiControl : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            PauseGameUiOnOff = !PauseGameUiOnOff;
+        if(Input.GetKey(KeyCode.Escape)) SwitchUi();
 
+    }
+
+    private void SwitchUi() 
+    {
+
+        PauseGameUiOnOff = !PauseGameUiOnOff;
         if (InGameUi)
         {
 
@@ -58,54 +54,30 @@ public class UiControl : MonoBehaviour
 
         }
 
-        for(int i = 0; i <= InkWells.Length - 1; i++) 
+    }
+
+    public void UpdateUi() 
+    {
+
+        for(int i = 0; i <= Inkwells.Length - 1; i++) 
         {
 
             if(gc.InkTypeSelected == i)
             {
                 
-                InkWells[i].transform.localScale = EnlargedSize;
-                InkWells[i].GetComponent<RectTransform>().position = Selected.position;
+                Inkwells[i].transform.localScale = EnlargedSize;
+                Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[4].GetComponent<RectTransform>().position;;
                 
             }
             else 
             {
                 
-                InkWells[i].transform.localScale = MinimizedSize;
-                InkWells[i].GetComponent<RectTransform>().position = new Vector2(NotSelected.position.x, NotSelected.position.y - (i * 30));
+                Inkwells[i].transform.localScale = MinimizedSize;
+                Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[i].GetComponent<RectTransform>().position;
                 
             }
 
         }
-
-        /*if (fadeValue > 1) { invert = -1; alphaFadeValue = 1; }
-        else if (fadeValue < 0) { invert = 1; alphaFadeValue = 0; }
-        fadeValue += Time.unscaledDeltaTime * invert;
-
-        CLT = LineType.Normal;
-        CGT = regGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
-
-        CLT = LineType.Ice;
-        CGT = iceGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
-
-        CLT = LineType.Rubber;
-        CGT = rubGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
-
-        CLT = LineType.Weight;
-        CGT = weightGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
-*/
 
     }
 
