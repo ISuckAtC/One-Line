@@ -24,6 +24,7 @@ public class GameControl : MonoBehaviour
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
     public float StraightPieceLength;
+    public float MinLineLength;
     public GameObject Player;
     public long Coins;
     public bool UseInk;
