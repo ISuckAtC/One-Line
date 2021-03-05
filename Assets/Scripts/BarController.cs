@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class BarController : MonoBehaviour
 {
-
+    public Color BarColor;
     public GameObject Confines, Bar;
     private RectTransform CRect, BRect;
     public float Max;
+    [SerializeField]
     private float ProsentOfTotal, CurrentAmount;
-    private Vector2 BarPos;
     public LineType InkType;
-    private GameControl gc;
+    public GameControl gc;
     public Sprite BarSprite;
 
     // Start is called before the first frame update
@@ -24,6 +24,7 @@ public class BarController : MonoBehaviour
         BRect = Bar.GetComponent<RectTransform>();
         Bar.GetComponent<Image>().sprite = BarSprite;
         CurrentAmount = gc.Ink[(int)InkType];
+        Bar.GetComponent<Image>().color = BarColor;
 
     }
 
@@ -35,9 +36,7 @@ public class BarController : MonoBehaviour
 
         ProsentOfTotal = CurrentAmount / Max;
 
-        BarPos = new Vector2(0, 0);
-
-        BRect.rect.Set(BarPos.x, BarPos.y, CRect.rect.width * ProsentOfTotal * 0.99f, CRect.rect.height * 0.99f);
+        BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height * 0.99f);
 
     }
 }
