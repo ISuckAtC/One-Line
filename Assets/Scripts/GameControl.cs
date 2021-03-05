@@ -45,6 +45,10 @@ public class GameControl : MonoBehaviour
     public float LevelEndCamDelay;
     public float CamFollowSpeed;
 
+    public LineType DefaultLineType;
+    public bool ForceDefault;
+    static private LineType? lastType;
+
     public void ResetLineLimits()
     {
         normalLeft = NormalLimit;
@@ -57,6 +61,13 @@ public class GameControl : MonoBehaviour
     void Awake()
     {
         main = this;
+        if (ForceDefault) lineType = DefaultLineType;
+        else
+        {
+            if (lastType != null) lineType = (LineType)lastType;
+            else lineType = DefaultLineType;
+        }
+        lastType = null;
         StartCoroutine(StartTravel());
     }
 
@@ -252,6 +263,7 @@ public class GameControl : MonoBehaviour
             if (Camera.main.transform.position == nPos) break;
             yield return new WaitForFixedUpdate();
         }
+        lastType = lineType;
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }
     IEnumerator Dragging(GameObject ball)
