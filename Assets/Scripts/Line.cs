@@ -25,6 +25,12 @@ public class Line : MonoBehaviour
     public float ThresholdAltConstruction;
 
     public GameObject LastPiece;
+    public bool Refund;
+
+    public void SetTriggerActive(bool active)
+    {
+        foreach (LinePiece piece in pieces) piece.SetTriggerActive(active);
+    }
 
     public void ConstructFromPoints(Vector2 a, Vector2 b, Vector2 c, LineType lineType, float pieceLength, int iterationLimit)
     {
@@ -128,9 +134,10 @@ public class Line : MonoBehaviour
         return a.y * (1 / a.x);
     }
 
-    public void ConstructFromCursor(LineType lineType, bool freeDraw = false, GameObject player = null, float drawRate = 0, float pieceLength = 0)
+    public void ConstructFromCursor(LineType lineType, float timeScale = 0.01f, bool freeDraw = false, GameObject player = null, float drawRate = 0, float pieceLength = 0)
     {
         Setup(lineType);
+        Time.timeScale = timeScale;
         if (freeDraw) StartCoroutine(Drawing(drawRate, pieceLength, player));
         else StartCoroutine(DrawStraight(drawRate, pieceLength, player));
     }
@@ -229,7 +236,6 @@ public class Line : MonoBehaviour
 
     public IEnumerator DrawStraight(float drawRate, float pieceLength, GameObject player = null)
     {
-        Time.timeScale = 0.01f;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         Vector3 startPos = transform.position;
@@ -255,7 +261,7 @@ public class Line : MonoBehaviour
             rb.mass = 10;
         }
         Time.timeScale = 1;
-        if (Length < GameControl.main.MinLineLength)
+        if (Length < GameControl.main.MinLineLength && Refund)
         {
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
@@ -265,7 +271,6 @@ public class Line : MonoBehaviour
 
     public IEnumerator Drawing(float drawRate, float pieceLength, GameObject player = null)
     {
-        Time.timeScale = 0.01f;
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         Add(pos, true, player, LineType == LineType.Joint);
@@ -282,8 +287,11 @@ public class Line : MonoBehaviour
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 10;
         }
+
+
+
         Time.timeScale = 1;
-        if (Length < GameControl.main.MinLineLength)
+        if (Length < GameControl.main.MinLineLength && Refund)
         {
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
@@ -308,6 +316,13 @@ public class LinePiece
     GameObject StartCircle;
     GameObject MiddleBox;
     GameObject EndCircle;
+
+    public void SetTriggerActive(bool active)
+    {
+        if (StartCircle) StartCircle.GetComponent<Collider2D>().isTrigger = active;
+        if (MiddleBox) MiddleBox.GetComponent<Collider2D>().isTrigger = active;
+        if (EndCircle) EndCircle.GetComponent<Collider2D>().isTrigger = active;
+    }
 
     public LinePiece(Vector2 start, Vector2 end, float thickness, Sprite c, Sprite b, Transform parent, Line line, PhysicsMaterial2D mat, Color color, bool joint)
     {

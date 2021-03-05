@@ -44,6 +44,7 @@ public class GameControl : MonoBehaviour
     public float LevelStartCamDelay;
     public float LevelEndCamDelay;
     public float CamFollowSpeed;
+    public float DrawingTimeScale;
 
     public LineType DefaultLineType;
     public bool ForceDefault;
@@ -165,8 +166,8 @@ public class GameControl : MonoBehaviour
                 GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
                 lastLine = line;
-                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, false, Player, DrawRateSeconds, StraightPieceLength);
-                else line.GetComponent<Line>().ConstructFromCursor(lineType, true, Player, DrawRateSeconds, StraightPieceLength);
+                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, false, Player, DrawRateSeconds, StraightPieceLength);
+                else line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, true, Player, DrawRateSeconds, StraightPieceLength);
             }
         }
         else
