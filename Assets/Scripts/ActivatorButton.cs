@@ -6,10 +6,10 @@ public class ActivatorButton : MonoBehaviour
 {
     public GameObject[] Activatables;
     private bool active;
-    private Collider2D collider;
+    private Collider2D collider2Df;
     public void Start()
     {
-        collider = GetComponent<Collider2D>();
+        collider2Df = GetComponent<Collider2D>();
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -25,6 +25,11 @@ public class ActivatorButton : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D col)
     {
-        if (collider.GetContacts(new ContactPoint2D[0]) == 0) active = false;
+        Debug.Log(collider2Df.GetContacts(new ContactPoint2D[0]));
+        if (collider2Df.GetContacts(new ContactPoint2D[0]) == 0) 
+        {
+            
+            active = false;
+        }
     }
 }

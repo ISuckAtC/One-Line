@@ -254,8 +254,13 @@ public class Line : MonoBehaviour
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 10;
         }
-        GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         Time.timeScale = 1;
+        if (Length < GameControl.main.MinLineLength)
+        {
+            GameControl.main.ModInk(LineType, 0);
+            Destroy(gameObject);
+        } 
+        else GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
     }
 
     public IEnumerator Drawing(float drawRate, float pieceLength, GameObject player = null)
@@ -277,8 +282,13 @@ public class Line : MonoBehaviour
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 10;
         }
-        GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         Time.timeScale = 1;
+        if (Length < GameControl.main.MinLineLength)
+        {
+            GameControl.main.ModInk(LineType, 0);
+            Destroy(gameObject);
+        } 
+        else GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
     }
     public void Update()
     {
