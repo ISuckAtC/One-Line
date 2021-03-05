@@ -10,7 +10,7 @@ public class SlimeBehaviour : MonoBehaviour
     private Vector2 SlimeMoveDir, TempVector2;
     [SerializeField]
     private float AggroTimer, JumpTimer, LastAttackTimer;
-    public float AggroTime, JumpTime, ForwardJump, Jumpheight, AttackSpeed;
+    public float AggroTime, JumpTime, ForwardJump, Jumpheight, AttackSpeed, CrushVelocity;
     [SerializeField]
     private bool HasSeenPlayer;
     [SerializeField]
@@ -41,8 +41,6 @@ public class SlimeBehaviour : MonoBehaviour
 
         if (hit2D.collider.name == ("Player 1"))
         {
-
-            Debug.Log("Hit");
 
             HasSeenPlayer = true;
 
@@ -90,36 +88,31 @@ public class SlimeBehaviour : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        
-        if(LastAttackTimer < 0)
+
+        if (collision.collider.name == "Player 1")
         {
 
-            if(collision.collider.name == "Player 1")
-            {
-
-                PlayerControl.Kill(true);
-                LastAttackTimer = AttackSpeed;
-
-            }
+            PlayerControl.Kill(true);
 
         }
 
-        if(collision.gameObject.transform.parent != null)
+        Rigidbody2D OtherRB2D;
+        if (collision.gameObject.TryGetComponent<Rigidbody2D>(out OtherRB2D))
         {
 
-            Rigidbody2D OtherRB2D;
-            if (collision.gameObject.transform.parent.TryGetComponent<Rigidbody2D>(out OtherRB2D))
+            Debug.Log(collision.gameObject.name);
+
+            if(OtherRB2D.velocity.magnitude > CrushVelocity)
             {
 
-                Debug.Log(OtherRB2D);
+                Destroy(gameObject);
 
-                if (OtherRB2D.velocity.magnitude > 4)
-                    Destroy(gameObject);
+            } else
+            {
 
+                Debug.Log(OtherRB2D.velocity.magnitude);
 
             }
-            else
-                Debug.Log("Parent Does Not Have Rigidbody2D Component");
 
         }
 

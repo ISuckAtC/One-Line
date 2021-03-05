@@ -321,6 +321,11 @@ PrefabInstance:
       propertyPath: GameCursor
       value: 
       objectReference: {fileID: 756542052}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 546096227}
     - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: m_Name
@@ -1084,6 +1089,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &546096227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5745138739628167517, guid: 2287ef4c559590641a2c162db3545ca0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2104370025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &756542052 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 739607708361941608, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
@@ -2214,6 +2225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
+        type: 3}
+      propertyPath: CrushVelocity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
