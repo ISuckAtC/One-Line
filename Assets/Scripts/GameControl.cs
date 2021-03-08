@@ -51,6 +51,8 @@ public class GameControl : MonoBehaviour
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
     public Dialogue dialogue;
+    public char CustomWaitDefCharacter;
+    public int CustomWaitDefDigits;
     public GameObject CursorLinePanel;
     public Text CursorLineText;
 

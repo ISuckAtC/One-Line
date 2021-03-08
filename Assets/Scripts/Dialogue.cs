@@ -17,7 +17,17 @@ public struct Dialogue
         bool prevVocal = false;
         for(int i = 0; i < text.Length; ++i)
         {
-            DisplayText.text = text.Substring(0, i + 1);
+            if (text[i] == GameControl.main.CustomWaitDefCharacter)
+            {
+                int customWait;
+                if (int.TryParse(text.Substring(i + 1, GameControl.main.CustomWaitDefDigits), out customWait))
+                {
+                    i += GameControl.main.CustomWaitDefDigits;
+                    yield return new WaitForSeconds(customWait);
+                    continue;
+                } else throw new System.ArgumentException("Number of digits in wait definition was lower than num defined in GameControl. Num defined in GC: [" + GameControl.main.CustomWaitDefDigits + "]");
+            }
+            DisplayText.text += text[i];
             if (vocals.Contains(text[i].ToString()))
             {
                 if (!prevVocal && audios.Length > 0)
