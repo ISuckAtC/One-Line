@@ -197,6 +197,7 @@ public class GameControl : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+                
                 SwitchLineType(LineType.Normal);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
