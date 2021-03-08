@@ -29,6 +29,7 @@ public class UiControl : MonoBehaviour
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
         InGameUi = GameObject.Find("InGameUi");
+        PauseGameUi.SetActive(false);
 
         UpdateUi();
 
@@ -38,7 +39,7 @@ public class UiControl : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.Escape)) SwitchUi();
+        if(Input.GetKeyDown(KeyCode.Escape)) SwitchUi();
         if(Input.GetMouseButton(0)) UpdateUi();
 
     }
