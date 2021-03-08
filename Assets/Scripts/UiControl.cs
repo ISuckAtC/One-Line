@@ -16,6 +16,7 @@ public class UiControl : MonoBehaviour
     private Text coinsText;
     private Text levelSceneNumber;
     public BarController[] BarControllers;
+    public GlobalData globalData;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class UiControl : MonoBehaviour
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
         InGameUi = GameObject.Find("InGameUi");
+        PauseGameUi.SetActive(false);
 
         UpdateUi();
 
@@ -38,8 +40,7 @@ public class UiControl : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.Escape)) SwitchUi();
-        if(Input.GetMouseButton(0)) UpdateUi();
+        if(Input.GetKeyDown(KeyCode.Escape)) SwitchUi();
 
     }
 
@@ -92,7 +93,13 @@ public class UiControl : MonoBehaviour
 
     public void MainMenuButton() => SceneManager.LoadScene(0);
 
-    public void QuitButton() => Application.Quit();
+    public void QuitButton() 
+    {
+
+        Application.Quit();
+        globalData.ResetCount += 1;
+
+    }
 
     public void LevelSelect(int lvlToLoad) => SceneManager.LoadScene(lvlToLoad);
 
@@ -104,6 +111,11 @@ public class UiControl : MonoBehaviour
 
     }
 
-    public void ReplayLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public void ReplayLevel() 
+    {
 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        globalData.ResetCount += 1;
+
+    } 
 }
