@@ -247,6 +247,7 @@ public class Line : MonoBehaviour
         Add(pos, true, player);
         while (Input.GetMouseButton(0)) 
         {
+            if (GameControl.main.InCutScene) break;
             if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
             yield return new WaitForSecondsRealtime(drawRate);
         }
@@ -268,7 +269,7 @@ public class Line : MonoBehaviour
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 10;
         }
-        Time.timeScale = 1;
+        if (!GameControl.main.InCutScene) Time.timeScale = 1;
         if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {
@@ -286,6 +287,7 @@ public class Line : MonoBehaviour
         Add(pos, true, player, LineType == LineType.Joint);
         while (Input.GetMouseButton(0))
         {
+            if (GameControl.main.InCutScene) break;
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
             if (Vector2.Distance(End, pos) > ThresholdAltConstruction) FromTo(End, pos, pieceLength, player, LineType == LineType.Joint);
@@ -300,7 +302,7 @@ public class Line : MonoBehaviour
 
 
 
-        Time.timeScale = 1;
+        if (!GameControl.main.InCutScene) Time.timeScale = 1;
         if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {
