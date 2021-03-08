@@ -49,13 +49,13 @@ public class GameControl : MonoBehaviour
     public bool ForceDefault;
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
-    public Dialogue dialogue;
+    public Dialogue DialoguePrimitive;
     public GameObject CursorLinePanel;
     public Text CursorLineText;
     public char CustomWaitDefCharacter;
     public int CustomWaitDefDigits;
     public bool LevelCompleted;
-    public GlobalData Global;
+    [HideInInspector] public GlobalData Global;
 
     public void ResetLineLimits()
     {
@@ -112,7 +112,6 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V)) StartCoroutine(dialogue.Speak());
         if (Input.GetKeyDown(KeyCode.R)) 
         {
             if (!LevelCompleted) Global.ResetCount++;
@@ -197,6 +196,7 @@ public class GameControl : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+                
                 SwitchLineType(LineType.Normal);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))

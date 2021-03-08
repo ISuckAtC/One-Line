@@ -80,19 +80,18 @@ MonoBehaviour:
   DefaultLineType: 0
   ForceDefault: 0
   SwitchOnInkEmpty: 0
-  dialogue:
+  DialoguePrimitive:
     text: 
-    audios: []
-    pitchShift: 0
-    NormalWait: 0
-    SpaceWait: 0
-    CommaWait: 0
-    PeriodWait: 0
-    source: {fileID: 0}
-    DisplayText: {fileID: 0}
+    UseOwnSettings: 0
+    pitchShift: 0.2
+    NormalWait: 0.05
+    SpaceWait: 0.15
+    CommaWait: 0.3
+    PeriodWait: 0.5
+    Enemy: 0
   CursorLinePanel: {fileID: 0}
   CursorLineText: {fileID: 0}
-  CustomWaitDefCharacter: 0
-  CustomWaitDefDigits: 0
+  CustomWaitDefCharacter: 124
+  CustomWaitDefDigits: 3
   LevelCompleted: 0
   Global: {fileID: 0}

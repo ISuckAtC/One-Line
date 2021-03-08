@@ -8,11 +8,23 @@ public struct Dialogue
 {
     const string vocals = "aeiouy";
     [TextArea] public string text;
-    public AudioClip[] audios;
+    private AudioClip[] audios;
+    public bool UseOwnSettings;
     public float pitchShift, NormalWait, SpaceWait, CommaWait, PeriodWait;
-    public AudioSource source;
-    public Text DisplayText;
-    public IEnumerator Speak()
+    public bool Enemy;
+    public void Load()
+    {
+        audios = Resources.LoadAll<AudioClip>("Sound/HeroDialogue");
+        if (!UseOwnSettings)
+        {
+            pitchShift = GameControl.main.DialoguePrimitive.pitchShift;
+            NormalWait = GameControl.main.DialoguePrimitive.NormalWait;
+            SpaceWait = GameControl.main.DialoguePrimitive.SpaceWait;
+            CommaWait = GameControl.main.DialoguePrimitive.CommaWait;
+            PeriodWait = GameControl.main.DialoguePrimitive.PeriodWait;
+        }
+    }
+    public IEnumerator Speak(Text DisplayText, AudioSource source)
     {
         bool prevVocal = false;
         for(int i = 0; i < text.Length; ++i)
