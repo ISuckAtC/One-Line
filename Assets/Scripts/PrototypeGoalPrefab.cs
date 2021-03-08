@@ -6,18 +6,18 @@ using UnityEngine.SceneManagement;
 public class PrototypeGoalPrefab : MonoBehaviour
 {
 
-    private UiControl uiController;
     public GameObject fireworks, confettiCanon;
-
-    private void Start()
-    {
-
-        uiController = GameObject.FindObjectOfType<Canvas>().GetComponent<UiControl>();
-
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+        if(collision.gameObject.tag == "Player") 
+        {
+
+            fireworks.SetActive(true);
+            confettiCanon.SetActive(true);
+
+        }
 
     }
 
