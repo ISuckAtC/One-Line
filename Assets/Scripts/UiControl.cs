@@ -17,7 +17,8 @@ public class UiControl : MonoBehaviour
     private Text coinsText;
     private Text levelSceneNumber;
     public BarController[] BarControllers;
-    public GlobalData globalData;
+    private GlobalData globalData;
+    public GameObject DialogueBoxHero, DialogueBoxEnemy;
 
     // Start is called before the first frame update
     void Start()
