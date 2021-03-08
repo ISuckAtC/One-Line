@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UiControl : MonoBehaviour
 {
 
+    public static UiControl main { get; private set;}
     public Vector3 MinimizedSize, EnlargedSize;
     private GameObject PauseGameUi;
     private GameObject InGameUi;
@@ -22,17 +23,25 @@ public class UiControl : MonoBehaviour
     void Start()
     {
 
+        gc = GameControl.main;
+        globalData = gc.Global;
         Scene scene = SceneManager.GetActiveScene();
         levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
         levelSceneNumber.text = "level " + scene.buildIndex.ToString();
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
-        gc = GameControl.main;
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
         InGameUi = GameObject.Find("InGameUi");
         PauseGameUi.SetActive(false);
 
         UpdateUi();
+
+    }
+
+    void Awake() 
+    {
+
+        main = this;
 
     }
 

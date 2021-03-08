@@ -32,11 +32,14 @@ public class BarController : MonoBehaviour
     public void UpdateInkBar()
     {
 
-        CurrentAmount = gc.Ink[(int)InkType];
+        if(gc != null)
+        {
+            
+            CurrentAmount = gc.Ink[(int)InkType];
+            ProsentOfTotal = CurrentAmount / Max;
+            BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height * 0.99f);
 
-        ProsentOfTotal = CurrentAmount / Max;
-
-        BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height * 0.99f);
+        }
 
     }
 }
