@@ -26,7 +26,6 @@ public class GameControl : MonoBehaviour
     public float StraightPieceLength;
     public float MinLineLength;
     public GameObject Player;
-    public long Coins;
     public bool UseInk;
     public bool InkByLength;
     [Tooltip("If empty, creates empty inkwell. If values are specified make sure the size is equal to the amount of line types")]
@@ -51,10 +50,12 @@ public class GameControl : MonoBehaviour
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
     public Dialogue dialogue;
-    public char CustomWaitDefCharacter;
-    public int CustomWaitDefDigits;
     public GameObject CursorLinePanel;
     public Text CursorLineText;
+    public char CustomWaitDefCharacter;
+    public int CustomWaitDefDigits;
+    public bool LevelCompleted;
+    public GlobalData Global;
 
     public void ResetLineLimits()
     {
@@ -67,6 +68,12 @@ public class GameControl : MonoBehaviour
 
     void Awake()
     {
+        if (Global == null) 
+        {
+            Global = (new GameObject("Global Data")).AddComponent<GlobalData>();
+            DontDestroyOnLoad(Global.gameObject);
+            Debug.Log(Global.Coins);
+        }
         CursorLinePanel.SetActive(false);
         main = this;
         if (ForceDefault) lineType = DefaultLineType;
@@ -106,7 +113,11 @@ public class GameControl : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V)) StartCoroutine(dialogue.Speak());
-        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            if (!LevelCompleted) Global.ResetCount++;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
 
         Vector3 mousePos = Input.mousePosition;
         //GameCursor.transform.position = new Vector3(mousePos.x + 18, mousePos.y - 20, mousePos.z);

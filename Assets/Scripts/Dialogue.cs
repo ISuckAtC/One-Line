@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public struct Dialogue
 {
     const string vocals = "aeiouy";
-    public string text;
+    [TextArea] public string text;
     public AudioClip[] audios;
     public float pitchShift, NormalWait, SpaceWait, CommaWait, PeriodWait;
     public AudioSource source;
@@ -23,7 +23,7 @@ public struct Dialogue
                 if (int.TryParse(text.Substring(i + 1, GameControl.main.CustomWaitDefDigits), out customWait))
                 {
                     i += GameControl.main.CustomWaitDefDigits;
-                    yield return new WaitForSeconds(customWait);
+                    yield return new WaitForSeconds((float)customWait / 10f);
                     continue;
                 } else throw new System.ArgumentException("Number of digits in wait definition was lower than num defined in GameControl. Num defined in GC: [" + GameControl.main.CustomWaitDefDigits + "]");
             }

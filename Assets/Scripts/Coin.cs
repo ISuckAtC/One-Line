@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
 
         if(collision.tag == "Player")
         {
-            GameControl.main.Coins += 1;
+            GameControl.main.Global.Coins += 1;
             Destroy(gameObject);
 
         }
