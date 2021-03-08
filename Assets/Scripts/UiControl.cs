@@ -52,7 +52,7 @@ public class UiControl : MonoBehaviour
 
             PauseGameUi.SetActive(PauseGameUiOnOff);
             InGameUi.SetActive(!PauseGameUiOnOff);
-            coinsText.GetComponent<Text>().text = "coins: " + gc.Coins;
+            coinsText.GetComponent<Text>().text = "coins: " + gc.Global.Coins;
 
         }
 

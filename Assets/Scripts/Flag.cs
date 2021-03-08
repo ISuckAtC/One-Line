@@ -11,6 +11,7 @@ public class Flag : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            GameControl.main.LevelCompleted = true;
             StartCoroutine(GameControl.main.EndTravel(nextScene));
         }
     }

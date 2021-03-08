@@ -8,7 +8,7 @@ public class Lava : MonoBehaviour
     {
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            collider.gameObject.GetComponent<PlayerController>().Kill(false);
+            collider.gameObject.GetComponent<PlayerController>().Kill(gore:true);
         }
     }
 }

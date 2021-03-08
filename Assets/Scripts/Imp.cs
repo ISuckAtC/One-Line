@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [System.Serializable] public struct BehaviorPattern
 {
-    [SerializeField] private Transform TrackedPosition;
-    public Vector3 Position {get {return TrackedPosition.position;}}
+    public Vector3 Position;
     public float WaitStep;
 }
 public enum Behavior

@@ -64,18 +64,10 @@ public class PlayerController : MonoBehaviour
         }
         lastSpeed = rb.velocity;
     }
-
-    public void Kill(bool gore = true)
+    public void Kill(Vector2? deathPosition = null, bool gore = true)
     {
         Camera.main.transform.parent = null;
-        if (gore) Destroy(Instantiate(BloodPrefab, transform.position, Quaternion.identity), 60);
-        Destroy(gameObject);
-        uiController.PauseGameUiOnOff = true;
-    }
-    public void Kill(Vector2 deathPosition, bool gore = true)
-    {
-        Camera.main.transform.parent = null;
-        if (gore) Destroy(Instantiate(BloodPrefab, deathPosition, Quaternion.identity), 60);
+        if (gore) Destroy(Instantiate(BloodPrefab, deathPosition != null ? (Vector3)deathPosition : transform.position, Quaternion.identity), 60);
         Destroy(gameObject);
         uiController.PauseGameUiOnOff = true;
     }
