@@ -55,6 +55,12 @@ public struct Dialogue
                 case '.':
                     yield return new WaitForSecondsRealtime(PeriodWait);
                     break;
+                case '!':
+                    yield return new WaitForSecondsRealtime(PeriodWait);
+                    break;
+                case '?':
+                    yield return new WaitForSecondsRealtime(PeriodWait);
+                    break;
                 case ',':
                     yield return new WaitForSecondsRealtime(CommaWait);
                     break;
