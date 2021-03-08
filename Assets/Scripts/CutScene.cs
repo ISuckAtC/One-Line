@@ -22,7 +22,7 @@ public class CutScene : MonoBehaviour
         DialogueBoxEnemyText = DialogueBoxEnemy.transform.GetChild(0).GetComponent<Text>();
         DialogueBoxHeroText = DialogueBoxHero.transform.GetChild(0).GetComponent<Text>();
 
-        foreach(Dialogue d in Dialogues) d.Load();
+        for (int i = 0; i < Dialogues.Length; ++i) Dialogues[i].Load();
     }
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -44,6 +44,7 @@ public class CutScene : MonoBehaviour
                 EnemyDialogueAnim.SetTrigger("MoveIn");
                 yield return new WaitForSeconds(DialoguePopupSpeed);
                 yield return Dialogues[i].Speak(DialogueBoxEnemyText, audioSource);
+                while(!Input.anyKey) yield return new WaitForFixedUpdate();
                 EnemyDialogueAnim.ResetTrigger("MoveIn");
                 EnemyDialogueAnim.SetTrigger("MoveOut");
                 yield return new WaitForSeconds(DialogueTranscisionSpeed);
@@ -54,11 +55,11 @@ public class CutScene : MonoBehaviour
                 HeroDialogueAnim.SetTrigger("MoveIn");
                 yield return new WaitForSeconds(DialoguePopupSpeed);
                 yield return Dialogues[i].Speak(DialogueBoxHeroText, audioSource);
+                while(!Input.anyKey) yield return new WaitForFixedUpdate();
                 HeroDialogueAnim.ResetTrigger("MoveIn");
                 HeroDialogueAnim.SetTrigger("MoveOut");
                 yield return new WaitForSeconds(DialogueTranscisionSpeed);
             }
-            
         }
     }
 }
