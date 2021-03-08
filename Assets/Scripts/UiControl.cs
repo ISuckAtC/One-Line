@@ -21,7 +21,7 @@ public class UiControl : MonoBehaviour
     void Start()
     {
 
-        Scene scene = SceneManager.GetActiveScene(); ;
+        Scene scene = SceneManager.GetActiveScene();
         levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
         levelSceneNumber.text = "level " + scene.buildIndex.ToString();
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
