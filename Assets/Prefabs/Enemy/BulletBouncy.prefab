@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5372026431576458180}
   - component: {fileID: 1907768330417056100}
   - component: {fileID: 2428020784098581351}
-  - component: {fileID: 2295280491068186334}
   - component: {fileID: 217772801657391794}
+  - component: {fileID: 4100046879128043136}
   m_Layer: 12
   m_Name: BulletBouncy
   m_TagString: Projectile
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7871054985576896798}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.035, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.04445, y: 0.0635, z: 0.0635}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,7 +105,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &2295280491068186334
+--- !u!114 &217772801657391794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7871054985576896798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1d09d5964eff745b512f7018510713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bouncy: 1
+  friendlyFire: 0
+  LineDestroyRadius: 0
+--- !u!60 &4100046879128043136
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,16 +152,3 @@ PolygonCollider2D:
       - {x: 4, y: -4}
       - {x: 4, y: -3.9599998}
       - {x: 0.03, y: 4}
---- !u!114 &217772801657391794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7871054985576896798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1d09d5964eff745b512f7018510713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bouncy: 1

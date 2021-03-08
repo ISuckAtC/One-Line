@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,38 +7,30 @@ using UnityEngine.UI;
 public class UiControl : MonoBehaviour
 {
 
+    public Vector3 MinimizedSize, EnlargedSize;
     private GameObject PauseGameUi;
     private GameObject InGameUi;
     public bool PauseGameUiOnOff;
     private GameControl gc;
+    public GameObject[] Inkwells, InkwellPositions;
     private Text coinsText;
-    private GameObject FinishUi;
-    private Image regNum, iceNum, rubNum, weightNum;
-    private RawImage regGlow, iceGlow, rubGlow, weightGlow;
-    private float fadeValue, invert, alphaFadeValue;
-    private LineType CLT; //CurrentLineType
-    private RawImage CGT; //CurrentGlowType
+    private Text levelSceneNumber;
+    public BarController[] BarControllers;
 
     // Start is called before the first frame update
     void Start()
     {
 
+        Scene scene = SceneManager.GetActiveScene(); ;
+        levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
+        levelSceneNumber.text = "level " + scene.buildIndex.ToString();
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
         gc = GameControl.main;
-        FinishUi = GameObject.Find("FinishUi");
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
         InGameUi = GameObject.Find("InGameUi");
-        FinishUi.SetActive(false);
-        regGlow = GameObject.Find("Regular_Glow").GetComponent<RawImage>();
-        iceGlow = GameObject.Find("Ice_Glow").GetComponent<RawImage>();
-        rubGlow = GameObject.Find("Rubber_Glow").GetComponent<RawImage>();
-        weightGlow = GameObject.Find("Weight_Glow").GetComponent<RawImage>();
-        invert = 1;
-        regNum = GameObject.Find("NumberGraphicReg").GetComponent<Image>();
-        iceNum = GameObject.Find("NumberGraphicIce").GetComponent<Image>();
-        rubNum = GameObject.Find("NumberGraphicRub").GetComponent<Image>();
-        weightNum = GameObject.Find("NumberGraphicGrav").GetComponent<Image>();
+
+        UpdateUi();
 
     }
 
@@ -46,9 +38,15 @@ public class UiControl : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            PauseGameUiOnOff = !PauseGameUiOnOff;
+        if(Input.GetKey(KeyCode.Escape)) SwitchUi();
+        if(Input.GetMouseButton(0)) UpdateUi();
 
+    }
+
+    private void SwitchUi() 
+    {
+
+        PauseGameUiOnOff = !PauseGameUiOnOff;
         if (InGameUi)
         {
 
@@ -58,48 +56,37 @@ public class UiControl : MonoBehaviour
 
         }
 
-        if(regNum != null)
+    }
+
+    public void UpdateUi() 
+    {
+
+        for(int i = 0; i <= Inkwells.Length - 1; i++) 
         {
 
-            if (gc.UINumInkwells == 0) regNum.color = Color.red;
-            else regNum.color = Color.white;
-            if (gc.UINumInkwells == 1) iceNum.color = Color.blue;
-            else iceNum.color = Color.white;
-            if (gc.UINumInkwells == 2) rubNum.color = Color.black;
-            else rubNum.color = Color.white;
-            if (gc.UINumInkwells == 3) weightNum.color = Color.green;
-            else weightNum.color = Color.white;
+            if(gc.InkTypeSelected == i)
+            {
+                
+                Inkwells[i].transform.localScale = EnlargedSize;
+                Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[4].GetComponent<RectTransform>().position;;
+                
+            }
+            else 
+            {
+                
+                Inkwells[i].transform.localScale = MinimizedSize;
+                Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[i].GetComponent<RectTransform>().position;
+                
+            }
 
         }
 
-        if (fadeValue > 1) { invert = -1; alphaFadeValue = 1; }
-        else if (fadeValue < 0) { invert = 1; alphaFadeValue = 0; }
-        fadeValue += Time.unscaledDeltaTime * invert;
+        foreach(BarController bc in BarControllers) 
+        {
 
-        CLT = LineType.Normal;
-        CGT = regGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
+            bc.UpdateInkBar();
 
-        CLT = LineType.Ice;
-        CGT = iceGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
-
-        CLT = LineType.Rubber;
-        CGT = rubGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
-
-        CLT = LineType.Weight;
-        CGT = weightGlow;
-        if (gc.Ink[(int)CLT] <= 0) CGT.enabled = false;
-        else if (gc.Ink[(int)CLT] == 1) { CGT.enabled = true; CGT.CrossFadeAlpha(alphaFadeValue, 1, true); }
-        else { CGT.enabled = true; CGT.CrossFadeAlpha(1, 1, true); }
-
+        }
 
     }
 
@@ -108,8 +95,6 @@ public class UiControl : MonoBehaviour
     public void QuitButton() => Application.Quit();
 
     public void LevelSelect(int lvlToLoad) => SceneManager.LoadScene(lvlToLoad);
-
-    public void LevelFinish() => FinishUi.SetActive(true);
 
     public void NextLevel()
     {

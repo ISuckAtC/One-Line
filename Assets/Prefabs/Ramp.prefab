@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9180359234116003769}
   - component: {fileID: 9180359234116003768}
-  - component: {fileID: 9180359234116003771}
   m_Layer: 0
   m_Name: Ramp
   m_TagString: Untagged
@@ -27,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 9180359234116003770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 757.97, y: -402.66, z: 0}
-  m_LocalScale: {x: 1.1933473, y: 0.93447423, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 62d2e98c835615741a59e241b8431939, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -82,50 +81,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &9180359234116003771
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9180359234116003770}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: fd4ca5a88a26f564bb308ff333701709, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -5.712401, y: 5.33816}
-  - {x: -5.3185534, y: 4.666208}
-  - {x: -5.0182743, y: 4.1721983}
-  - {x: -4.6446004, y: 3.5472646}
-  - {x: -4.110071, y: 2.7457516}
-  - {x: -3.6492956, y: 2.0728772}
-  - {x: -3.0794759, y: 1.3336421}
-  - {x: -2.2895744, y: 0.3996055}
-  - {x: -1.8772339, y: -0.05067592}
-  - {x: -1.4147702, y: -0.49331546}
-  - {x: -0.8301182, y: -0.9887295}
-  - {x: -0.25661615, y: -1.417163}
-  - {x: 0.15684956, y: -1.6929554}
-  - {x: 0.47068262, y: -1.85203}
-  - {x: 0.8216475, y: -2.0340629}
-  - {x: 1.2553672, y: -2.2269382}
-  - {x: 1.6922066, y: -2.3668425}
-  - {x: 2.0462406, y: -2.4463634}
-  - {x: 2.4630818, y: -2.5014896}
-  - {x: 2.8742971, y: -2.524023}
-  - {x: 3.2555916, y: -2.5222597}
-  - {x: 3.706036, y: -2.4640641}
-  - {x: 4.1887026, y: -2.3499587}
-  - {x: 4.6263604, y: -2.1975465}
-  - {x: 5.081255, y: -1.9962782}
-  - {x: 5.597217, y: -1.731328}
-  - {x: 6.3005795, y: -1.2568475}
-  - {x: 6.7992034, y: -0.8295243}
-  - {x: 7.308006, y: -0.34981847}
-  - {x: 7.7391167, y: 0.08733461}
-  - {x: 8.246643, y: 0.6829333}

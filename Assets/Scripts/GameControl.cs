@@ -14,7 +14,7 @@ public enum LineType
 }
 public class GameControl : MonoBehaviour
 {
-    public static GameControl main {get; private set;}
+    public static GameControl main { get; private set; }
     LineType lineType;
     public float SetMinDrawDistanceAroundPlayer;
     static public float MinDrawDistanceAroundPlayer;
@@ -24,6 +24,7 @@ public class GameControl : MonoBehaviour
     public float LifeTimeAfterNewLine;
     public float DrawRateSeconds;
     public float StraightPieceLength;
+    public float MinLineLength;
     public GameObject Player;
     public long Coins;
     public bool UseInk;
@@ -31,18 +32,27 @@ public class GameControl : MonoBehaviour
     [Tooltip("If empty, creates empty inkwell. If values are specified make sure the size is equal to the amount of line types")]
     public int[] Ink;
     GameObject lastLine;
-    public int UINumInkwells;
+    public int InkTypeSelected;
 
     bool AssistedDraw;
     public bool LimitLinesInAir;
     public int NormalLimit, IceLimit, RubberLimit, WeightLimit, JointLimit;
     private int normalLeft, iceLeft, rubberLeft, weightLeft, jointLeft;
-    private Text[] inkWellTexts;
+    //private Text[] inkWellTexts;
 
     public float LevelTransCamOffset;
     public float LevelStartCamDelay;
     public float LevelEndCamDelay;
     public float CamFollowSpeed;
+    public float DrawingTimeScale;
+
+    public LineType DefaultLineType;
+    public bool ForceDefault;
+    public bool SwitchOnInkEmpty;
+    static private LineType? lastType;
+    public Dialogue dialogue;
+    public GameObject CursorLinePanel;
+    public Text CursorLineText;
 
     public void ResetLineLimits()
     {
@@ -55,7 +65,15 @@ public class GameControl : MonoBehaviour
 
     void Awake()
     {
+        CursorLinePanel.SetActive(false);
         main = this;
+        if (ForceDefault) lineType = DefaultLineType;
+        else
+        {
+            if (lastType != null) lineType = (LineType)lastType;
+            else lineType = DefaultLineType;
+        }
+        lastType = null;
         StartCoroutine(StartTravel());
     }
 
@@ -71,20 +89,21 @@ public class GameControl : MonoBehaviour
         weightLeft = WeightLimit;
         //jointLeft = JointLimit;
 
-        if (Ink.Length < System.Enum.GetNames(typeof(LineType)).Length) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
-        
-        inkWellTexts = new Text[System.Enum.GetNames(typeof(LineType)).Length];
-        inkWellTexts[0] = GameObject.Find("Text_Inkwell_Regular").GetComponent<Text>();
-        inkWellTexts[1] = GameObject.Find("Text_Inkwell_Ice").GetComponent<Text>();
-        inkWellTexts[2] = GameObject.Find("Text_Inkwell_Rubber").GetComponent<Text>();
-        inkWellTexts[3] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
+        if (Ink.Length < 4 /*System.Enum.GetNames(typeof(LineType)).Length*/) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
+
+        //inkWellTexts = new Text[System.Enum.GetNames(typeof(LineType)).Length];
+        //inkWellTexts[0] = GameObject.Find("Text_Inkwell_Regular").GetComponent<Text>();
+        //inkWellTexts[1] = GameObject.Find("Text_Inkwell_Ice").GetComponent<Text>();
+        //inkWellTexts[2] = GameObject.Find("Text_Inkwell_Rubber").GetComponent<Text>();
+        //inkWellTexts[3] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
         //inkWellTexts[4] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
-        for(int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
+        //for (int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.V)) StartCoroutine(dialogue.Speak());
         if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         Vector3 mousePos = Input.mousePosition;
@@ -104,7 +123,7 @@ public class GameControl : MonoBehaviour
         {
             //bit sloppy
             Time.timeScale = 1;
-        } 
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -153,8 +172,8 @@ public class GameControl : MonoBehaviour
                 GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
                 lastLine = line;
-                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, false, Player, DrawRateSeconds, StraightPieceLength);
-                else line.GetComponent<Line>().ConstructFromCursor(lineType, true, Player, DrawRateSeconds, StraightPieceLength);
+                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, false, Player, DrawRateSeconds, StraightPieceLength);
+                else line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, true, Player, DrawRateSeconds, StraightPieceLength);
             }
         }
         else
@@ -165,32 +184,50 @@ public class GameControl : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                lineType = LineType.Normal;
-                GameCursor.GetComponent<Image>().sprite = CursorNormal;
-                UINumInkwells = 0;
+                SwitchLineType(LineType.Normal);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                lineType = LineType.Ice;
-                GameCursor.GetComponent<Image>().sprite = CursorIce;
-                UINumInkwells = 1;
+                SwitchLineType(LineType.Ice);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                lineType = LineType.Rubber;
-                GameCursor.GetComponent<Image>().sprite = CursorRubber;
-                UINumInkwells = 2;
+                SwitchLineType(LineType.Rubber);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                lineType = LineType.Weight;
-                GameCursor.GetComponent<Image>().sprite = CursorWeight;
-                UINumInkwells = 3;
+                SwitchLineType(LineType.Weight);
             }
-            /*if (Input.GetKeyDown(KeyCode.Alpha8))
+            if (Input.GetKeyDown(KeyCode.Alpha8))
             {
-                lineType = LineType.Joint;
-            }*/
+                SwitchLineType(LineType.Joint);
+            }
+        }
+    }
+
+    public void SwitchLineType(LineType type)
+    {
+        lineType = type;
+        switch (type)
+        {
+            case LineType.Normal:
+                GameCursor.GetComponent<Image>().sprite = CursorNormal;
+                InkTypeSelected = 0;
+                break;
+            case LineType.Ice:
+                GameCursor.GetComponent<Image>().sprite = CursorIce;
+                InkTypeSelected = 1;
+                break;
+            case LineType.Rubber:
+                GameCursor.GetComponent<Image>().sprite = CursorRubber;
+                InkTypeSelected = 2;
+                break;
+            case LineType.Weight:
+                GameCursor.GetComponent<Image>().sprite = CursorWeight;
+                InkTypeSelected = 3;
+                break;
+            case LineType.Joint:
+                break;
         }
     }
 
@@ -198,20 +235,33 @@ public class GameControl : MonoBehaviour
     {
         Ink[(int)type] += amount;
 
+        if (SwitchOnInkEmpty && Ink[(int)type] <= 0)
+        {
+            for (int i = 0; i < Ink.Length; ++i)
+            {
+                if (Ink[i] > 0)
+                {
+                    SwitchLineType((LineType)i);
+                    break;
+                }
+            }
+        }
+
         // Update UI for inkwells here
 
-        inkWellTexts[(int)type].text = Ink[(int)type].ToString();
+        //inkWellTexts[(int)type].text = Ink[(int)type].ToString();
     }
     public void ModInkDisplayOnly(LineType type, int setamount)
     {
-        inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
+        CursorLineText.text = (Ink[(int)type] + setamount).ToString();
+        //inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
     }
     IEnumerator StartTravel()
     {
         Camera.main.transform.parent = null;
         Camera.main.transform.Translate(new Vector3(-LevelTransCamOffset, 0, 0));
         yield return new WaitForSeconds(LevelStartCamDelay);
-        while(true)
+        while (true)
         {
             Vector3 nPos = Vector2.MoveTowards(Camera.main.transform.position, Player.transform.position, CamFollowSpeed);
             nPos.z = Camera.main.transform.position.z;
@@ -227,12 +277,13 @@ public class GameControl : MonoBehaviour
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
         yield return new WaitForSeconds(LevelEndCamDelay);
-        while(true)
+        while (true)
         {
             Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, nPos, CamFollowSpeed);
             if (Camera.main.transform.position == nPos) break;
             yield return new WaitForFixedUpdate();
         }
+        lastType = lineType;
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }
     IEnumerator Dragging(GameObject ball)

@@ -637,7 +637,7 @@ MonoBehaviour:
   controlPowerInAir: 0.2
   friction: 0.6
   speedDampening: 2
-  sprintOnOff: 0
+  sprintOnOff: 1
   shouldSlide: 0
   PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
   movementVector: {x: 0, y: 0}
@@ -678,7 +678,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2.6}
+  m_Size: {x: 0.3, y: 2.6}
   m_Direction: 0
 --- !u!95 &5745138739628167519
 Animator:

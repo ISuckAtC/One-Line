@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float BumpForce, jumpForce;
     private float playerControlPower, speedMultiplier, xMoveDir;
     private int jumpOnOff;
+    private bool JumpInput;
     //GroundCheck
     private float yGroundCheckOffset, groundCheckDist;
     private bool isGrounded;
@@ -36,11 +37,11 @@ public class PlayerMovement : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
         gc = GameControl.main;
-        maskPlayer = ~(((1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Air"))));
+        maskPlayer = ~((1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Air")) + (1 << LayerMask.NameToLayer("Enemy")));
         rb2D.sharedMaterial = PM2D;
         capsuleCollider.sharedMaterial = PM2D;
         speedMultiplier = 1f;
-        yGroundCheckOffset = -0.4f * transform.localScale.y;
+        yGroundCheckOffset = (-0.4f + ((1 - capsuleCollider.size.x) * -0.4f)) * transform.localScale.y;
         groundCheckDist = 0.5f * transform.localScale.y;
         jumpPower = 1f;
 
@@ -49,10 +50,15 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (Input.GetAxisRaw("Vertical") != 0 || Input.GetKey(KeyCode.Space))
+            JumpInput = true;
+        else
+            JumpInput = false;
+
         RaycastHit2D hit2D;
         shouldSlide = false;
 
-        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
+        if (hit2D = Physics2D.CircleCast(transform.position + new Vector3(0, yGroundCheckOffset, 0), 0.5f * capsuleCollider.size.x * transform.localScale.y, new Vector2(0, -1), groundCheckDist, maskPlayer))
         {
             if (hit2D.collider.isTrigger != true)
             {
@@ -73,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                 else gc.ResetLineLimits();
 
                 playerControlPower = 1;
-                if (Input.GetKey(KeyCode.Space) && rb2D.velocity.y < jumpForce)
+                if (JumpInput && rb2D.velocity.y < jumpForce)
                 {
 
                     jumpOnOff = 1;

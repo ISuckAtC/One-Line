@@ -85,9 +85,10 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.transform.parent != null)
         {
             Line groundLine;
-            if (col.gameObject.transform.parent.TryGetComponent<Line>(out groundLine) && groundLine.LineType == LineType.Rubber)
+            if (col.gameObject.transform.parent.TryGetComponent<Line>(out groundLine))
             {
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
+                groundLine.Refund = false;
+                if (groundLine.LineType == LineType.Rubber) GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BumpForce));
             }
         }
     }

@@ -9,15 +9,21 @@ public class Bullet : MonoBehaviour
     public bool friendlyFire;
     public float LineDestroyRadius;
     private Rigidbody2D rb;
+    private Collider2D collider2d;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider2d = GetComponent<Collider2D>();
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
     }
 
     void FixedUpdate()
     {
         transform.up = rb.velocity;
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Enemy") collider2d.isTrigger = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,7 +36,9 @@ public class Bullet : MonoBehaviour
         if (collision.transform.parent != null && collision.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line"))
         {
             Transform p = collision.transform.parent;
-            if (bouncy == false && p.GetComponent<Line>().LineType != LineType.Rubber)                    //Placeholder until we have individual layer for rubber
+            Line l = p.GetComponent<Line>();
+            l.Refund = false;
+            if (bouncy == false && l.LineType != LineType.Rubber)                    //Placeholder until we have individual layer for rubber
             {
                 List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, LineDestroyRadius).ToList();
                 hits = hits.Where(x => x.transform.parent == p).ToList();
