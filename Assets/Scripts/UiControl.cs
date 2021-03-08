@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UiControl : MonoBehaviour
 {
 
+    public static UiControl main { get; private set;}
     public Vector3 MinimizedSize, EnlargedSize;
     private GameObject PauseGameUi;
     private GameObject InGameUi;
@@ -23,6 +24,7 @@ public class UiControl : MonoBehaviour
     {
 
         gc = GameControl.main;
+        globalData = gc.Global;
         Scene scene = SceneManager.GetActiveScene();
         levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
         levelSceneNumber.text = "level " + scene.buildIndex.ToString();
@@ -33,6 +35,13 @@ public class UiControl : MonoBehaviour
         PauseGameUi.SetActive(false);
 
         UpdateUi();
+
+    }
+
+    void Awake() 
+    {
+
+        main = this;
 
     }
 
