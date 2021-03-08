@@ -40,18 +40,22 @@ public class CutScene : MonoBehaviour
             DialogueBoxHeroText.text = "";
             if (Dialogues[i].Enemy)
             {
-                EnemyDialogueAnim.SetTrigger(0);
+                EnemyDialogueAnim.ResetTrigger("MoveOut");
+                EnemyDialogueAnim.SetTrigger("MoveIn");
                 yield return new WaitForSeconds(DialoguePopupSpeed);
-                Dialogues[i].Speak(DialogueBoxEnemyText, audioSource);
-                EnemyDialogueAnim.SetTrigger(0);
+                yield return Dialogues[i].Speak(DialogueBoxEnemyText, audioSource);
+                EnemyDialogueAnim.ResetTrigger("MoveIn");
+                EnemyDialogueAnim.SetTrigger("MoveOut");
                 yield return new WaitForSeconds(DialogueTranscisionSpeed);
             }
             else
             {
-                HeroDialogueAnim.SetTrigger(0);
+                HeroDialogueAnim.ResetTrigger("MoveOut");
+                HeroDialogueAnim.SetTrigger("MoveIn");
                 yield return new WaitForSeconds(DialoguePopupSpeed);
-                Dialogues[i].Speak(DialogueBoxHeroText, audioSource);
-                HeroDialogueAnim.SetTrigger(0);
+                yield return Dialogues[i].Speak(DialogueBoxHeroText, audioSource);
+                HeroDialogueAnim.ResetTrigger("MoveIn");
+                HeroDialogueAnim.SetTrigger("MoveOut");
                 yield return new WaitForSeconds(DialogueTranscisionSpeed);
             }
             

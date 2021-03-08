@@ -196,19 +196,22 @@ public class GameControl : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                
+                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Normal);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
+                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Ice);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
+                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Rubber);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
+                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Weight);
             }
             if (Input.GetKeyDown(KeyCode.Alpha8))
