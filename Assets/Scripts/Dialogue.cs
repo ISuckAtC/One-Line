@@ -35,7 +35,7 @@ public struct Dialogue
                 if (int.TryParse(text.Substring(i + 1, GameControl.main.CustomWaitDefDigits), out customWait))
                 {
                     i += GameControl.main.CustomWaitDefDigits;
-                    yield return new WaitForSeconds((float)customWait / 10f);
+                    yield return new WaitForSecondsRealtime((float)customWait / 10f);
                     continue;
                 } else throw new System.ArgumentException("Number of digits in wait definition was lower than num defined in GameControl. Num defined in GC: [" + GameControl.main.CustomWaitDefDigits + "]");
             }
@@ -53,16 +53,16 @@ public struct Dialogue
             switch(text[i])
             {
                 case '.':
-                    yield return new WaitForSeconds(PeriodWait);
+                    yield return new WaitForSecondsRealtime(PeriodWait);
                     break;
                 case ',':
-                    yield return new WaitForSeconds(CommaWait);
+                    yield return new WaitForSecondsRealtime(CommaWait);
                     break;
                 case ' ':
-                    yield return new WaitForSeconds(SpaceWait);
+                    yield return new WaitForSecondsRealtime(SpaceWait);
                     break;
                 default:
-                    yield return new WaitForSeconds(NormalWait);
+                    yield return new WaitForSecondsRealtime(NormalWait);
                     break;
             }
         }

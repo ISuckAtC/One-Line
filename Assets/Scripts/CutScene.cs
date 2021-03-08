@@ -34,6 +34,8 @@ public class CutScene : MonoBehaviour
     }
     IEnumerator Play()
     {
+        Time.timeScale = 0;
+        GameControl.main.InCutScene = true;
         for(int i = 0; i < Dialogues.Length; ++i)
         {
             DialogueBoxEnemyText.text = "";
@@ -42,24 +44,26 @@ public class CutScene : MonoBehaviour
             {
                 EnemyDialogueAnim.ResetTrigger("MoveOut");
                 EnemyDialogueAnim.SetTrigger("MoveIn");
-                yield return new WaitForSeconds(DialoguePopupSpeed);
+                yield return new WaitForSecondsRealtime(DialoguePopupSpeed);
                 yield return Dialogues[i].Speak(DialogueBoxEnemyText, audioSource);
-                while(!Input.anyKey) yield return new WaitForFixedUpdate();
+                yield return new WaitWhile(() => !Input.anyKey);
                 EnemyDialogueAnim.ResetTrigger("MoveIn");
                 EnemyDialogueAnim.SetTrigger("MoveOut");
-                yield return new WaitForSeconds(DialogueTranscisionSpeed);
+                yield return new WaitForSecondsRealtime(DialogueTranscisionSpeed);
             }
             else
             {
                 HeroDialogueAnim.ResetTrigger("MoveOut");
                 HeroDialogueAnim.SetTrigger("MoveIn");
-                yield return new WaitForSeconds(DialoguePopupSpeed);
+                yield return new WaitForSecondsRealtime(DialoguePopupSpeed);
                 yield return Dialogues[i].Speak(DialogueBoxHeroText, audioSource);
-                while(!Input.anyKey) yield return new WaitForFixedUpdate();
+                yield return new WaitWhile(() => !Input.anyKey);
                 HeroDialogueAnim.ResetTrigger("MoveIn");
                 HeroDialogueAnim.SetTrigger("MoveOut");
-                yield return new WaitForSeconds(DialogueTranscisionSpeed);
+                yield return new WaitForSecondsRealtime(DialogueTranscisionSpeed);
             }
         }
+        Time.timeScale = 1;
+        GameControl.main.InCutScene = false;
     }
 }

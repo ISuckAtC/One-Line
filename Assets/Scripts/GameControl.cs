@@ -55,6 +55,7 @@ public class GameControl : MonoBehaviour
     public char CustomWaitDefCharacter;
     public int CustomWaitDefDigits;
     public bool LevelCompleted;
+    public bool InCutScene;
     [HideInInspector] public GlobalData Global;
 
     public void ResetLineLimits()
@@ -122,7 +123,7 @@ public class GameControl : MonoBehaviour
         //GameCursor.transform.position = new Vector3(mousePos.x + 18, mousePos.y - 20, mousePos.z);
         GameCursor.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !InCutScene)
         {
             if (lastLine != null)
             {
@@ -131,13 +132,13 @@ public class GameControl : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !InCutScene)
         {
             //bit sloppy
             Time.timeScale = 1;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !InCutScene)
         {
             RaycastHit2D rayhit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Camera.main.transform.forward, 20f, 1 << 8);
             if (rayhit.collider != null) StartCoroutine(Dragging(rayhit.collider.gameObject));
@@ -290,6 +291,7 @@ public class GameControl : MonoBehaviour
     public IEnumerator EndTravel(string nextScene)
     {
         Camera.main.transform.parent = null;
+        Player.GetComponent<PlayerMovement>().moveSpeed = 0;
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
         yield return new WaitForSeconds(LevelEndCamDelay);
