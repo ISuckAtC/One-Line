@@ -75,7 +75,7 @@ public class UiControl : MonoBehaviour
         for(int i = 0; i <= Inkwells.Length - 1; i++) 
         {
 
-            if(gc.InkTypeSelected == i)
+            if(GameControl.main.InkTypeSelected == i)
             {
                 
                 Inkwells[i].transform.localScale = EnlargedSize;

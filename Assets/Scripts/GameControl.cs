@@ -96,7 +96,7 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SwitchLineType(lineType);
+        
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
 
@@ -115,6 +115,8 @@ public class GameControl : MonoBehaviour
         //inkWellTexts[3] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
         //inkWellTexts[4] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
         //for (int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
+
+        SwitchLineType(lineType);
     }
 
     // Update is called once per frame
