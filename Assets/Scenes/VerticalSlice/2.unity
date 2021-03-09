@@ -132,7 +132,8 @@ GameObject:
   - component: {fileID: 85787716}
   - component: {fileID: 85787718}
   - component: {fileID: 85787717}
-  m_Layer: 0
+  - component: {fileID: 85787719}
+  m_Layer: 10
   m_Name: Terrazzo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3368,6 +3369,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &85787719
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85787715}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!20 &221013780 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3123574058893323774, guid: 2287ef4c559590641a2c162db3545ca0,
