@@ -274,6 +274,8 @@ public class GameControl : MonoBehaviour
             }
         }
 
+        UiControl.main.UpdateUi();
+
         // Update UI for inkwells here
 
         //inkWellTexts[(int)type].text = Ink[(int)type].ToString();
@@ -285,6 +287,7 @@ public class GameControl : MonoBehaviour
     }
     IEnumerator StartTravel()
     {
+        Player.transform.Find("Body").gameObject.SetActive(false);
         Camera.main.transform.parent = null;
         Camera.main.transform.Translate(new Vector3(-LevelTransCamOffset, 0, 0));
         yield return new WaitForSeconds(LevelStartCamDelay);
@@ -296,7 +299,9 @@ public class GameControl : MonoBehaviour
             if ((Vector2)Camera.main.transform.position == (Vector2)Player.transform.position) break;
             yield return new WaitForFixedUpdate();
         }
+        Player.transform.Find("Body").gameObject.SetActive(true);
         Camera.main.transform.parent = Player.transform;
+        Player.GetComponent<Animator>().SetTrigger("PopIn");
     }
     public IEnumerator EndTravel(string nextScene)
     {
@@ -305,6 +310,7 @@ public class GameControl : MonoBehaviour
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
         yield return new WaitForSeconds(LevelEndCamDelay);
+        Player.GetComponent<Animator>().SetTrigger("PopOut");
         while (true)
         {
             Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, nPos, CamFollowSpeed);
