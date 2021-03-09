@@ -66,15 +66,15 @@ MonoBehaviour:
   InkByLength: 1
   Ink: 
   InkTypeSelected: 0
-  LimitLinesInAir: 1
+  LimitLinesInAir: 0
   NormalLimit: 1
   IceLimit: 1
   RubberLimit: 1
   WeightLimit: 1
   JointLimit: 0
-  LevelTransCamOffset: 0
+  LevelTransCamOffset: 35
   LevelStartCamDelay: 0
-  LevelEndCamDelay: 3
+  LevelEndCamDelay: 2
   CamFollowSpeed: 1
   DrawingTimeScale: 0
   DefaultLineType: 0
