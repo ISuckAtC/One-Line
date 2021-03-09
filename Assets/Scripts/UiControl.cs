@@ -104,7 +104,7 @@ public class UiControl : MonoBehaviour
     public void QuitButton() 
     {
 
-        globalData.ResetCount += 1;
+        if (globalData != null) globalData.ResetCount += 1;
         Application.Quit();
         Debug.Log("I do be working - (The Quit Button).");
 
