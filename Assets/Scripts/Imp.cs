@@ -68,7 +68,19 @@ public class Imp : AimTurret
             yield return new WaitForEndOfFrame();
         }
     }
+    public override void TakeDamage(int amount)
+    {
+        StartCoroutine(flashRed(0.2f));
+        base.TakeDamage(amount);
+    }
 
+    IEnumerator flashRed(float duration)
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSecondsRealtime(duration);
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+     
     public override void Death()
     {
         foreach(GameObject a in Activatables) a.GetComponent<IActivatable>().Activate();

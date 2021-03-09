@@ -83,7 +83,7 @@ MonoBehaviour:
   DialoguePrimitive:
     text: 
     UseOwnSettings: 0
-    pitchShift: 0.2
+    pitchShift: 0.1
     NormalWait: 0.05
     SpaceWait: 0.15
     CommaWait: 0.3
@@ -94,4 +94,5 @@ MonoBehaviour:
   CustomWaitDefCharacter: 124
   CustomWaitDefDigits: 3
   LevelCompleted: 0
+  InCutScene: 0
   Global: {fileID: 0}

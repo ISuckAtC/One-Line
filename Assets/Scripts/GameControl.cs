@@ -121,7 +121,7 @@ public class GameControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.U)) 
         {
-            System.IO.File.WriteAllText("./LogDump.txt", LogDump);
+            //System.IO.File.WriteAllText("./LogDump.txt", LogDump);
         }
         if (Input.GetKeyDown(KeyCode.R)) 
         {
@@ -288,6 +288,7 @@ public class GameControl : MonoBehaviour
     IEnumerator StartTravel()
     {
         Player.transform.Find("Body").gameObject.SetActive(false);
+        Player.GetComponent<PlayerMovement>().MovementEnabled = false;
         Camera.main.transform.parent = null;
         Camera.main.transform.Translate(new Vector3(-LevelTransCamOffset, 0, 0));
         yield return new WaitForSeconds(LevelStartCamDelay);
@@ -309,8 +310,9 @@ public class GameControl : MonoBehaviour
         Player.GetComponent<PlayerMovement>().moveSpeed = 0;
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
-        yield return new WaitForSeconds(LevelEndCamDelay);
+        yield return new WaitForSeconds(LevelEndCamDelay / 2);
         Player.GetComponent<Animator>().SetTrigger("PopOut");
+        yield return new WaitForSeconds(LevelEndCamDelay / 2);
         while (true)
         {
             Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, nPos, CamFollowSpeed);

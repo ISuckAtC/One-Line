@@ -202,6 +202,11 @@ public class Line : MonoBehaviour
             Debug.Log("Total Limit reached");
             position = Vector2.Lerp(End, position, (GameControl.main.Ink[(int)LineType] - Length) / Vector2.Distance(End, position));
         }
+        if (position.x != position.x)
+        {
+            Debug.LogError("NaN error in Line. Position: (" + position + ") | End: (" + End + ") | Length: (" + Length + ")");
+        }
+
 
         if (Vector2.Distance(End, position) < MinLengthForNewPiece && !start)
         {
@@ -216,7 +221,6 @@ public class Line : MonoBehaviour
 
 
         pieces.Add(new LinePiece(End, position, Thickness, Circle, Box, transform, this, material, color, joint));
-        GameControl.main.DumpLog(position + " | " + End);
         End = position;
 
         if (Length == lengthLimit)
@@ -234,7 +238,11 @@ public class Line : MonoBehaviour
         Debug.Log("FromTo: Constructing " + pieceCount + " pieces");
         for (int i = 0; i < pieceCount; ++i)
         {
-            Add(Vector3.Lerp(from, to, 1f / pieceCount * i), false, player, joint);
+            if (Add(Vector2.Lerp(from, to, 1f / pieceCount * i), false, player, joint)) 
+            {
+                Debug.Log("Stopping early at limit");
+                break;
+            }
         }
     }
 
