@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable CS1718
+
 public class Line : MonoBehaviour
 {
     public PhysicsMaterial2D Bounce, Slide;
