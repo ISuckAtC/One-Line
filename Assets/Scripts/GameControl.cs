@@ -96,7 +96,7 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UiControl.main.UpdateUi();
+        SwitchLineType(lineType);
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
 
