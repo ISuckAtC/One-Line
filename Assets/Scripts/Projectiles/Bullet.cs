@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy" && friendlyFire)
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(1);
             Destroy(gameObject);
         }   
 

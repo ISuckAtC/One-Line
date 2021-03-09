@@ -67,4 +67,9 @@ public class Imp : AimTurret
             yield return new WaitForEndOfFrame();
         }
     }
+
+    public override void Death()
+    {
+        // DEATH LOGIC HERE
+    }
 }
