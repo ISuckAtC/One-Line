@@ -104,7 +104,7 @@ public class UiControl : MonoBehaviour
     public void QuitButton() 
     {
 
-        globalData.ResetCount += 1;
+        //globalData.ResetCount += 1;
         Application.Quit();
         Debug.Log("I do be working - (The Quit Button).");
 
@@ -123,8 +123,8 @@ public class UiControl : MonoBehaviour
     public void ReplayLevel() 
     {
 
+        //globalData.ResetCount += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        globalData.ResetCount += 1;
 
     } 
 }
