@@ -14,6 +14,7 @@ public enum Behavior
 }
 public class Imp : AimTurret
 {
+    public GameObject[] Activatables;
     public Behavior behavior;
     public BehaviorPattern[] PatrolPattern;
     public float Speed;
@@ -50,7 +51,7 @@ public class Imp : AimTurret
                 yield return new WaitForSeconds(pattern[patrol].WaitStep);
                 patrol = patrol + 1 < PatrolPattern.Length ? patrol + 1 : 0;
             }
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
     }
     IEnumerator ShootMoveBehavior(BehaviorPattern[] pattern)
@@ -64,7 +65,25 @@ public class Imp : AimTurret
                 Fire();
                 patrol = patrol + 1 < PatrolPattern.Length ? patrol + 1 : 0;
             }
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
+    }
+    public override void TakeDamage(int amount)
+    {
+        StartCoroutine(flashRed(0.2f));
+        base.TakeDamage(amount);
+    }
+
+    IEnumerator flashRed(float duration)
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSecondsRealtime(duration);
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+     
+    public override void Death()
+    {
+        foreach(GameObject a in Activatables) a.GetComponent<IActivatable>().Activate();
+        Destroy(gameObject);
     }
 }

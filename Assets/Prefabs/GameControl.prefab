@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5381e3399d2781d4a851b2ae140583ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetMinDrawDistanceAroundPlayer: 0
+  SetMinDrawDistanceAroundPlayer: 2
   GameCursor: {fileID: 0}
   CursorNormal: {fileID: 21300000, guid: 7c0d7ae57b3d6544b9f61337585edb35, type: 3}
   CursorIce: {fileID: 21300000, guid: 5c24d7687c0d11b499d63e147a01b3d5, type: 3}
@@ -60,21 +60,21 @@ MonoBehaviour:
   LifeTimeAfterNewLine: 1
   DrawRateSeconds: 0.01
   StraightPieceLength: 0.1
-  MinLineLength: 0
+  MinLineLength: 1
   Player: {fileID: 0}
-  UseInk: 0
-  InkByLength: 0
+  UseInk: 1
+  InkByLength: 1
   Ink: 
   InkTypeSelected: 0
-  LimitLinesInAir: 0
-  NormalLimit: 0
-  IceLimit: 0
-  RubberLimit: 0
-  WeightLimit: 0
+  LimitLinesInAir: 1
+  NormalLimit: 1
+  IceLimit: 1
+  RubberLimit: 1
+  WeightLimit: 1
   JointLimit: 0
   LevelTransCamOffset: 0
   LevelStartCamDelay: 0
-  LevelEndCamDelay: 5
+  LevelEndCamDelay: 3
   CamFollowSpeed: 1
   DrawingTimeScale: 0
   DefaultLineType: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   DialoguePrimitive:
     text: 
     UseOwnSettings: 0
-    pitchShift: 0.2
+    pitchShift: 0.1
     NormalWait: 0.05
     SpaceWait: 0.15
     CommaWait: 0.3
@@ -94,4 +94,5 @@ MonoBehaviour:
   CustomWaitDefCharacter: 124
   CustomWaitDefDigits: 3
   LevelCompleted: 0
+  InCutScene: 0
   Global: {fileID: 0}

@@ -57,6 +57,7 @@ public class GameControl : MonoBehaviour
     public bool LevelCompleted;
     public bool InCutScene;
     [HideInInspector] public GlobalData Global;
+    private string LogDump;
 
     public void ResetLineLimits()
     {
@@ -65,6 +66,11 @@ public class GameControl : MonoBehaviour
         rubberLeft = RubberLimit;
         weightLeft = WeightLimit;
         //jointLeft = JointLimit;
+    }
+
+    public void DumpLog(string message)
+    {
+        LogDump += message + "\n";
     }
 
     void Awake()
@@ -113,6 +119,10 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.U)) 
+        {
+            //System.IO.File.WriteAllText("./LogDump.txt", LogDump);
+        }
         if (Input.GetKeyDown(KeyCode.R)) 
         {
             if (!LevelCompleted) Global.ResetCount++;
@@ -197,23 +207,23 @@ public class GameControl : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Normal);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Ice);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Rubber);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Weight);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha8))
             {
@@ -264,6 +274,8 @@ public class GameControl : MonoBehaviour
             }
         }
 
+        UiControl.main.UpdateUi();
+
         // Update UI for inkwells here
 
         //inkWellTexts[(int)type].text = Ink[(int)type].ToString();
@@ -275,6 +287,8 @@ public class GameControl : MonoBehaviour
     }
     IEnumerator StartTravel()
     {
+        Player.transform.Find("Body").gameObject.SetActive(false);
+        Player.GetComponent<PlayerMovement>().MovementEnabled = false;
         Camera.main.transform.parent = null;
         Camera.main.transform.Translate(new Vector3(-LevelTransCamOffset, 0, 0));
         yield return new WaitForSeconds(LevelStartCamDelay);
@@ -286,15 +300,20 @@ public class GameControl : MonoBehaviour
             if ((Vector2)Camera.main.transform.position == (Vector2)Player.transform.position) break;
             yield return new WaitForFixedUpdate();
         }
+        Player.transform.Find("Body").gameObject.SetActive(true);
         Camera.main.transform.parent = Player.transform;
+        Player.GetComponent<Animator>().SetTrigger("PopIn");
     }
     public IEnumerator EndTravel(string nextScene)
     {
         Camera.main.transform.parent = null;
-        Player.GetComponent<PlayerMovement>().moveSpeed = 0;
+        Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
+        Player.GetComponent<PlayerMovement>().MovementEnabled = false;
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
-        yield return new WaitForSeconds(LevelEndCamDelay);
+        yield return new WaitForSeconds(LevelEndCamDelay / 2);
+        Player.GetComponent<Animator>().SetTrigger("PopOut");
+        yield return new WaitForSeconds(LevelEndCamDelay / 2);
         while (true)
         {
             Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, nPos, CamFollowSpeed);

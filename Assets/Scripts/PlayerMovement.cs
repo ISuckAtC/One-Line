@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("should be between 0 and 1")]
     public float controlPowerInAir, friction;
     public float speedDampening;
-    public bool sprintOnOff, shouldSlide;
+    public bool sprintOnOff, shouldSlide, MovementEnabled;
     [Tooltip("should be the Player physicsMaterial 2D")]
     public PhysicsMaterial2D PM2D;
     private float yVel, jumpPower, damping;
@@ -147,6 +147,17 @@ public class PlayerMovement : MonoBehaviour
         rb2D.velocity = movementVector;
 
         jumpOnOff = 0;
+
+        if(!MovementEnabled)
+        {
+
+            rb2D.simulated = MovementEnabled;
+            rb2D.velocity = Vector2.zero;
+
+        }
+        else
+            rb2D.simulated = MovementEnabled;
+        
 
     }
 

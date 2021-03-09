@@ -8,10 +8,12 @@ public class Bullet : MonoBehaviour
     public bool bouncy = false;
     public bool friendlyFire;
     public float LineDestroyRadius;
+    public float LifeTime = 30;
     private Rigidbody2D rb;
     private Collider2D collider2d;
     private void Start()
     {
+        Destroy(gameObject, LifeTime);
         rb = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
@@ -56,7 +58,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy" && friendlyFire)
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(1);
             Destroy(gameObject);
         }   
 

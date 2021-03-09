@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -541,6 +541,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc0eceb0d95e8841b9f9febb34002e9, type: 3}
+--- !u!114 &1411941269 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 789085414, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1411941268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1411941270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 716935282, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1411941268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1578428966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 569439396720927614, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
@@ -93771,13 +93789,23 @@ PrefabInstance:
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: LevelEndCamDelay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: LevelStartCamDelay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: CursorLinePanel
+      value: 
+      objectReference: {fileID: 1411941270}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: CursorLineText
+      value: 
+      objectReference: {fileID: 1411941269}
     - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: m_Name

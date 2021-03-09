@@ -203,7 +203,7 @@ PrefabInstance:
     - target: {fileID: 7438184539106030933, guid: 8293a7f32809cda468cd336a2fed13e8,
         type: 3}
       propertyPath: nextScene
-      value: TUT rubber 4 LENGTH
+      value: TUT IMP
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8293a7f32809cda468cd336a2fed13e8, type: 3}
@@ -311,6 +311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Range
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578390832720107453, guid: b253cc50750f16148a6add75164c791f,
+        type: 3}
+      propertyPath: BulletSpawnOffset
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b253cc50750f16148a6add75164c791f, type: 3}
@@ -829,6 +834,11 @@ PrefabInstance:
         type: 3}
       propertyPath: BulletSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578390832720107453, guid: b253cc50750f16148a6add75164c791f,
+        type: 3}
+      propertyPath: BulletSpawnOffset
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b253cc50750f16148a6add75164c791f, type: 3}
@@ -143840,6 +143850,16 @@ PrefabInstance:
       propertyPath: CursorLineText
       value: 
       objectReference: {fileID: 809693950}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: LevelEndCamDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: LevelTransCamOffset
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: m_Name
