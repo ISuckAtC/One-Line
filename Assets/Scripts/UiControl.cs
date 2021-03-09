@@ -17,7 +17,6 @@ public class UiControl : MonoBehaviour
     private Text coinsText;
     private Text levelSceneNumber;
     public BarController[] BarControllers;
-    private GlobalData globalData;
     public GameObject DialogueBoxHero, DialogueBoxEnemy;
 
     // Start is called before the first frame update
@@ -25,7 +24,6 @@ public class UiControl : MonoBehaviour
     {
 
         gc = GameControl.main;
-        globalData = gc.Global;
         Scene scene = SceneManager.GetActiveScene();
         levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
         levelSceneNumber.text = "level " + scene.buildIndex.ToString();
@@ -104,7 +102,7 @@ public class UiControl : MonoBehaviour
     public void QuitButton() 
     {
 
-        //globalData.ResetCount += 1;
+        if (gc.Global != null) gc.Global.ResetCount += 1;
         Application.Quit();
         Debug.Log("I do be working - (The Quit Button).");
 
@@ -123,7 +121,7 @@ public class UiControl : MonoBehaviour
     public void ReplayLevel() 
     {
 
-        //globalData.ResetCount += 1;
+        gc.Global.ResetCount += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     } 
