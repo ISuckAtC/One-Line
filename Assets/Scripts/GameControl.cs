@@ -116,7 +116,13 @@ public class GameControl : MonoBehaviour
         //inkWellTexts[4] = GameObject.Find("Text_Inkwell_Gravity").GetComponent<Text>();
         //for (int i = 0; i < Ink.Length; ++i) inkWellTexts[i].text = Ink[i].ToString();
 
-        SwitchLineType(lineType);
+        StartCoroutine(LateStart(() => SwitchLineType(lineType)));
+    }
+
+    IEnumerator LateStart(System.Action m)
+    {
+        yield return new WaitForFixedUpdate();
+        m();
     }
 
     // Update is called once per frame
