@@ -165,7 +165,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6969490413038953012}
   m_Bounds:
-    m_Center: {x: 0.003542792, y: 0.66465557, z: 0}
+    m_Center: {x: 0.003542792, y: 0.6646554, z: 0}
     m_Extent: {x: 0.056823097, y: 0.68988264, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 252975723612782126}
   m_Bounds:
-    m_Center: {x: -0.07121397, y: -0.33420652, z: 0}
+    m_Center: {x: -0.07121397, y: -0.33420628, z: 0}
     m_Extent: {x: 0.12369759, y: 0.39750403, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 9201327555791088700}
   m_Bounds:
-    m_Center: {x: 0.07882382, y: -0.3457002, z: 0}
+    m_Center: {x: 0.07882406, y: -0.34570044, z: 0}
     m_Extent: {x: 0.1349374, y: 0.398485, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -687,11 +687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f82c97fcb5b687409a79c075d31e50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 7
   controlPowerInAir: 0.2
   friction: 0.6
   speedDampening: 2
-  sprintOnOff: 1
+  sprintOnOff: 0
   shouldSlide: 0
   MovementEnabled: 0
   PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
@@ -5828,8 +5828,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7776929062893483799}
   m_Bounds:
-    m_Center: {x: 0.012814373, y: 1.5017622, z: 0}
-    m_Extent: {x: 0.4120288, y: 0.41168064, z: 0}
+    m_Center: {x: 0.012814134, y: 1.5017623, z: 0}
+    m_Extent: {x: 0.4120288, y: 0.41168058, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7716996858783496161
@@ -5961,7 +5961,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6396403897138574468}
   m_Bounds:
-    m_Center: {x: 0.10868415, y: 0.7828065, z: 0}
+    m_Center: {x: 0.10868463, y: 0.7828063, z: 0}
     m_Extent: {x: 0.16027808, y: 0.38894272, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -6064,7 +6064,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7578250106097762017}
   m_Bounds:
-    m_Center: {x: -0.064534605, y: 0.90377223, z: 0}
+    m_Center: {x: -0.06453484, y: 0.90377223, z: 0}
     m_Extent: {x: 0.13238609, y: 0.40017927, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
