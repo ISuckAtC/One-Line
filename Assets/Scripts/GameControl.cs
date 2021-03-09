@@ -209,22 +209,18 @@ public class GameControl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 SwitchLineType(LineType.Normal);
-                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 SwitchLineType(LineType.Ice);
-                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 SwitchLineType(LineType.Rubber);
-                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 SwitchLineType(LineType.Weight);
-                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha8))
             {
@@ -257,6 +253,7 @@ public class GameControl : MonoBehaviour
             case LineType.Joint:
                 break;
         }
+        UiControl.main.UpdateUi();
     }
 
     public void ModInk(LineType type, int amount)
