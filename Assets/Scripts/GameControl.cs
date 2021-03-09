@@ -57,6 +57,7 @@ public class GameControl : MonoBehaviour
     public bool LevelCompleted;
     public bool InCutScene;
     [HideInInspector] public GlobalData Global;
+    private string LogDump;
 
     public void ResetLineLimits()
     {
@@ -65,6 +66,11 @@ public class GameControl : MonoBehaviour
         rubberLeft = RubberLimit;
         weightLeft = WeightLimit;
         //jointLeft = JointLimit;
+    }
+
+    public void DumpLog(string message)
+    {
+        LogDump += message + "\n";
     }
 
     void Awake()
@@ -113,6 +119,10 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.U)) 
+        {
+            System.IO.File.WriteAllText("./LogDump.txt", LogDump);
+        }
         if (Input.GetKeyDown(KeyCode.R)) 
         {
             if (!LevelCompleted) Global.ResetCount++;
@@ -197,23 +207,23 @@ public class GameControl : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Normal);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Ice);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Rubber);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                UiControl.main.UpdateUi();
                 SwitchLineType(LineType.Weight);
+                UiControl.main.UpdateUi();
             }
             if (Input.GetKeyDown(KeyCode.Alpha8))
             {

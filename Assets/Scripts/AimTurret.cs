@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AimTurret : MonoBehaviour
+public class AimTurret : Enemy
 {
     public float Range;
     public float BulletSpawnOffset;
@@ -15,8 +15,9 @@ public class AimTurret : MonoBehaviour
     private int targetMask;
 
     // Start is called before the first frame update
-    public void Start()
+    new public void Start()
     {
+        base.Start();
         targetMask = 0;
         foreach(int i in TargetMask) targetMask = targetMask | i;
         InvokeRepeating(nameof(Fire), 0, FireRate);
@@ -50,5 +51,10 @@ public class AimTurret : MonoBehaviour
             GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = transform.up * BulletSpeed;
         }
+    }
+
+    public override void Death()
+    {
+        Destroy(gameObject);
     }
 }

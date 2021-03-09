@@ -312,6 +312,11 @@ PrefabInstance:
       propertyPath: Range
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1578390832720107453, guid: b253cc50750f16148a6add75164c791f,
+        type: 3}
+      propertyPath: BulletSpawnOffset
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b253cc50750f16148a6add75164c791f, type: 3}
 --- !u!1 &725890127 stripped
@@ -811,6 +816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: BulletSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578390832720107453, guid: b253cc50750f16148a6add75164c791f,
+        type: 3}
+      propertyPath: BulletSpawnOffset
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b253cc50750f16148a6add75164c791f, type: 3}
@@ -137083,6 +137093,21 @@ PrefabInstance:
         type: 3}
       propertyPath: Ink.Array.data[2]
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: LevelEndCamDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: CamFollowSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: LevelTransCamOffset
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1476838951456481144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476838951456481149}
+  - component: {fileID: 1476838951456481147}
+  m_Layer: 0
+  m_Name: CutScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476838951456481149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476838951456481144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476838951456481147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476838951456481144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd08b3bf973695942ab89cb3ff1616e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialogues:
+  - text: Hello.
+    UseOwnSettings: 0
+    pitchShift: 0
+    NormalWait: 0
+    SpaceWait: 0
+    CommaWait: 0
+    PeriodWait: 0
+    Enemy: 0
+  - text: Hi there.
+    UseOwnSettings: 0
+    pitchShift: 0
+    NormalWait: 0
+    SpaceWait: 0
+    CommaWait: 0
+    PeriodWait: 0
+    Enemy: 1
+  - text: Die Beast!
+    UseOwnSettings: 0
+    pitchShift: 0
+    NormalWait: 0
+    SpaceWait: 0
+    CommaWait: 0
+    PeriodWait: 0
+    Enemy: 0
+  DialogueTranscisionSpeed: 1
+  DialoguePopupSpeed: 1

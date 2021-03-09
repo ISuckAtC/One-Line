@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CutScene : MonoBehaviour
+public class CutScene : MonoBehaviour, IActivatable
 {
     public Dialogue[] Dialogues;
     public float DialogueTranscisionSpeed;
@@ -24,13 +24,9 @@ public class CutScene : MonoBehaviour
 
         for (int i = 0; i < Dialogues.Length; ++i) Dialogues[i].Load();
     }
-    public void OnTriggerEnter2D(Collider2D col)
+    public void Activate()
     {
-        if (col.tag == "Player")
-        {
-            StartCoroutine(Play());
-            GetComponent<Collider2D>().enabled = false;
-        }
+        StartCoroutine(Play());
     }
     IEnumerator Play()
     {

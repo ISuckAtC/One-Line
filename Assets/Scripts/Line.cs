@@ -216,6 +216,7 @@ public class Line : MonoBehaviour
 
 
         pieces.Add(new LinePiece(End, position, Thickness, Circle, Box, transform, this, material, color, joint));
+        GameControl.main.DumpLog(position + " | " + End);
         End = position;
 
         if (Length == lengthLimit)
