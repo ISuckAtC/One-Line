@@ -12,7 +12,8 @@ public class ActivatorArea : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("Player")) foreach(GameObject activatable in Activatables)
         {
             activatable.GetComponent<IActivatable>().Activate();
+            if (OneTime) GetComponent<Collider2D>().enabled = false;
         }
-        if (OneTime) GetComponent<Collider2D>().enabled = false;
+        
     }
 }
