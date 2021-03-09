@@ -35,8 +35,6 @@ public class UiControl : MonoBehaviour
         InGameUi = GameObject.Find("InGameUi");
         PauseGameUi.SetActive(false);
 
-        UpdateUi();
-
     }
 
     void Awake() 
@@ -72,6 +70,13 @@ public class UiControl : MonoBehaviour
     public void UpdateUi() 
     {
 
+        foreach(BarController bc in BarControllers) 
+        {
+
+            bc.UpdateInkBar();
+
+        }
+
         for(int i = 0; i <= Inkwells.Length - 1; i++) 
         {
 
@@ -92,13 +97,6 @@ public class UiControl : MonoBehaviour
 
         }
 
-        foreach(BarController bc in BarControllers) 
-        {
-
-            bc.UpdateInkBar();
-
-        }
-
     }
 
     public void MainMenuButton() => SceneManager.LoadScene(0);
@@ -106,8 +104,9 @@ public class UiControl : MonoBehaviour
     public void QuitButton() 
     {
 
-        Application.Quit();
         globalData.ResetCount += 1;
+        Application.Quit();
+        Debug.Log("I do be working - (The Quit Button).");
 
     }
 
