@@ -209,7 +209,7 @@ public class Line : MonoBehaviour
         if (GameControl.main.InkByLength && Length + Vector2.Distance(End, position) >= GameControl.main.Ink[(int)LineType])
         {
             Debug.Log("Total Limit reached");
-            position = Vector2.Lerp(End, position, (GameControl.main.Ink[(int)LineType] - Length) / Vector2.Distance(End, position));
+            if (Vector2.Distance(End, position) != 0) position = Vector2.Lerp(End, position, (GameControl.main.Ink[(int)LineType] - Length) / Vector2.Distance(End, position));
         }
 
         debugString += "Post total limit position: (" + position + ")";
@@ -252,8 +252,8 @@ public class Line : MonoBehaviour
         {
             if (Add(Vector2.Lerp(from, to, 1f / pieceCount * i), false, player, joint)) 
             {
-                Debug.Log("Stopping early at limit");
-                break;
+                //Debug.Log("Stopping early at limit");
+                //break;
             }
         }
     }
