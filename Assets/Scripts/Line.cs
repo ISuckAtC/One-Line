@@ -252,8 +252,8 @@ public class Line : MonoBehaviour
         {
             if (Add(Vector2.Lerp(from, to, 1f / pieceCount * i), false, player, joint)) 
             {
-                Debug.Log("Stopping early at limit");
-                break;
+                //Debug.Log("Stopping early at limit");
+                //break;
             }
         }
     }
