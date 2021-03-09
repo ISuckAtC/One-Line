@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
     {
         health = Health;
     }
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         health -= amount;
         if (health <= 0) 
