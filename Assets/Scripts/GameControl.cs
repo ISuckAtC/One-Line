@@ -307,7 +307,8 @@ public class GameControl : MonoBehaviour
     public IEnumerator EndTravel(string nextScene)
     {
         Camera.main.transform.parent = null;
-        Player.GetComponent<PlayerMovement>().moveSpeed = 0;
+        Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
+        Player.GetComponent<PlayerMovement>().MovementEnabled = false;
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
         yield return new WaitForSeconds(LevelEndCamDelay / 2);
