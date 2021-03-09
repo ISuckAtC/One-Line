@@ -183,8 +183,10 @@ public class Line : MonoBehaviour
     public bool Add(Vector2 position, bool start, GameObject player = null, bool joint = false)
     {
         Vector2 playerPos = player.transform.position;
+        string debugString = "Initial Position: (" + position + ") | ";
         if (player && Vector2.Distance(playerPos, position) < GameControl.MinDrawDistanceAroundPlayer)
         {
+            Debug.Log("Around player");
             Vector2 newPosition = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
             if (Vector2.Distance(End, newPosition) > Vector2.Distance(End, position))
             {
@@ -194,19 +196,27 @@ public class Line : MonoBehaviour
             else position = newPosition;
         }
 
+        debugString += "Post push position: (" + position + ") | ";
+
         if (Length + Vector2.Distance(End, position) > lengthLimit)
         {
             Debug.Log("Limit reached");
             position = Vector2.Lerp(End, position, (lengthLimit - Length) / Vector2.Distance(End, position));
         }
+
+        debugString += "Post line limit position: (" + position + ") | ";
+
         if (GameControl.main.InkByLength && Length + Vector2.Distance(End, position) >= GameControl.main.Ink[(int)LineType])
         {
             Debug.Log("Total Limit reached");
             position = Vector2.Lerp(End, position, (GameControl.main.Ink[(int)LineType] - Length) / Vector2.Distance(End, position));
         }
+
+        debugString += "Post total limit position: (" + position + ")";
+
         if (position.x != position.x)
         {
-            Debug.LogError("NaN error in Line. Position: (" + position + ") | End: (" + End + ") | Length: (" + Length + ")");
+            Debug.LogError("NaN error in Line. End: (" + End + ") | Length: (" + Length + ") | " + debugString);
         }
 
 
