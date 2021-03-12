@@ -75,6 +75,7 @@ public class GameControl : MonoBehaviour
 
     void Awake()
     {
+        if (GameObject.Find("Global Data") != null) Global = GameObject.Find("Global Data").GetComponent<GlobalData>();
         if (Global == null) 
         {
             Global = (new GameObject("Global Data")).AddComponent<GlobalData>();
