@@ -10,11 +10,13 @@ public struct Dialogue
     [TextArea] public string text;
     private AudioClip[] audios;
     public bool UseOwnSettings;
-    public float pitchShift, NormalWait, SpaceWait, CommaWait, PeriodWait;
+    public float pitchShift, NormalWait, SpaceWait, CommaWait, PeriodWait, WaitSpeedUp;
+    [SerializeField] private float waitMult;
     public bool Enemy;
     public void Load()
     {
         audios = Resources.LoadAll<AudioClip>("Sound/HeroDialogue");
+        waitMult = 1;
         if (!UseOwnSettings)
         {
             pitchShift = GameControl.main.DialoguePrimitive.pitchShift;
@@ -22,11 +24,32 @@ public struct Dialogue
             SpaceWait = GameControl.main.DialoguePrimitive.SpaceWait;
             CommaWait = GameControl.main.DialoguePrimitive.CommaWait;
             PeriodWait = GameControl.main.DialoguePrimitive.PeriodWait;
+            WaitSpeedUp = GameControl.main.DialoguePrimitive.WaitSpeedUp;
         }
     }
-    public IEnumerator Speak(Text DisplayText, AudioSource source)
+    public void DecreaseWait()
+    {
+        waitMult = waitMult - (waitMult * (WaitSpeedUp / 100)) > 0 ? waitMult - (waitMult * (WaitSpeedUp / 100)) : 0;
+    }
+    public IEnumerator SpeedUp(CutScene cut, int i)
+    {
+        bool first = true;
+        while(true)
+        {
+            yield return new WaitUntil(() => Input.anyKeyDown);
+            Debug.Log(waitMult);
+            cut.Dialogues[i].DecreaseWait();
+            if (first)
+            {
+                first = false;
+                WaitSpeedUp /= 10;
+            }
+        }
+    }
+    public IEnumerator Speak(Text DisplayText, AudioSource source, CutScene cut, int d)
     {
         bool prevVocal = false;
+        
         for(int i = 0; i < text.Length; ++i)
         {
             if (text[i] == GameControl.main.CustomWaitDefCharacter)
@@ -35,7 +58,7 @@ public struct Dialogue
                 if (int.TryParse(text.Substring(i + 1, GameControl.main.CustomWaitDefDigits), out customWait))
                 {
                     i += GameControl.main.CustomWaitDefDigits;
-                    yield return new WaitForSecondsRealtime((float)customWait / 10f);
+                    yield return new WaitForSecondsRealtime(((float)customWait / 10f) * cut.Dialogues[d].waitMult);
                     continue;
                 } else throw new System.ArgumentException("Number of digits in wait definition was lower than num defined in GameControl. Num defined in GC: [" + GameControl.main.CustomWaitDefDigits + "]");
             }
@@ -53,22 +76,22 @@ public struct Dialogue
             switch(text[i])
             {
                 case '.':
-                    yield return new WaitForSecondsRealtime(PeriodWait);
+                    yield return new WaitForSecondsRealtime(PeriodWait * cut.Dialogues[d].waitMult);
                     break;
                 case '!':
-                    yield return new WaitForSecondsRealtime(PeriodWait);
+                    yield return new WaitForSecondsRealtime(PeriodWait * cut.Dialogues[d].waitMult);
                     break;
                 case '?':
-                    yield return new WaitForSecondsRealtime(PeriodWait);
+                    yield return new WaitForSecondsRealtime(PeriodWait * cut.Dialogues[d].waitMult);
                     break;
                 case ',':
-                    yield return new WaitForSecondsRealtime(CommaWait);
+                    yield return new WaitForSecondsRealtime(CommaWait * cut.Dialogues[d].waitMult);
                     break;
                 case ' ':
-                    yield return new WaitForSecondsRealtime(SpaceWait);
+                    yield return new WaitForSecondsRealtime(SpaceWait * cut.Dialogues[d].waitMult);
                     break;
                 default:
-                    yield return new WaitForSecondsRealtime(NormalWait);
+                    yield return new WaitForSecondsRealtime(NormalWait * cut.Dialogues[d].waitMult);
                     break;
             }
         }

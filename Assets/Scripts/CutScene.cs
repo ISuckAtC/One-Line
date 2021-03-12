@@ -41,7 +41,9 @@ public class CutScene : MonoBehaviour, IActivatable
                 EnemyDialogueAnim.ResetTrigger("MoveOut");
                 EnemyDialogueAnim.SetTrigger("MoveIn");
                 yield return new WaitForSecondsRealtime(DialoguePopupSpeed);
-                yield return Dialogues[i].Speak(DialogueBoxEnemyText, audioSource);
+                StartCoroutine(Dialogues[i].SpeedUp(this, i));
+                yield return Dialogues[i].Speak(DialogueBoxEnemyText, audioSource, this, i);
+                StopCoroutine(Dialogues[i].SpeedUp(this, i));
                 yield return new WaitWhile(() => !Input.anyKey);
                 EnemyDialogueAnim.ResetTrigger("MoveIn");
                 EnemyDialogueAnim.SetTrigger("MoveOut");
@@ -52,7 +54,9 @@ public class CutScene : MonoBehaviour, IActivatable
                 HeroDialogueAnim.ResetTrigger("MoveOut");
                 HeroDialogueAnim.SetTrigger("MoveIn");
                 yield return new WaitForSecondsRealtime(DialoguePopupSpeed);
-                yield return Dialogues[i].Speak(DialogueBoxHeroText, audioSource);
+                StartCoroutine(Dialogues[i].SpeedUp(this, i));
+                yield return Dialogues[i].Speak(DialogueBoxHeroText, audioSource, this, i);
+                StopCoroutine(Dialogues[i].SpeedUp(this, i));
                 yield return new WaitWhile(() => !Input.anyKey);
                 HeroDialogueAnim.ResetTrigger("MoveIn");
                 HeroDialogueAnim.SetTrigger("MoveOut");
