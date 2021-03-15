@@ -19,12 +19,6 @@ public class PlayerController : MonoBehaviour
         uiController = GameObject.FindObjectOfType<Canvas>().GetComponent<UiControl>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void FixedUpdate()
     {
         if (rb.velocity.y < 0) rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - FallSpeed);

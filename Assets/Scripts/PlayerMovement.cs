@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("should be between 0 and 1")]
     public float controlPowerInAir, friction;
     public float speedDampening;
-    public bool sprintOnOff, shouldSlide, MovementEnabled;
+    public bool sprintOnOff, shouldSlide;
+    public bool MovementEnabled, NukeMovement;
     [Tooltip("should be the Player physicsMaterial 2D")]
     public PhysicsMaterial2D PM2D;
     private float yVel, jumpPower, damping;
@@ -31,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2D;
     private GameControl gc;
 
+    public void PopInFinal()
+    {
+        Debug.Log("popin final");
+    }
+
     void Start()
     {
 
@@ -44,12 +50,15 @@ public class PlayerMovement : MonoBehaviour
         yGroundCheckOffset = (-0.4f + ((1 - capsuleCollider.size.x) * -0.4f)) * transform.localScale.y;
         groundCheckDist = 0.5f * transform.localScale.y;
         jumpPower = 1f;
-
     }
 
     void FixedUpdate()
     {
-
+        if (NukeMovement && MovementEnabled) 
+        {
+            //Debug.Log("Nuking movement");
+            MovementEnabled = false;
+        }
         if (Input.GetAxisRaw("Vertical") != 0 || Input.GetKey(KeyCode.Space))
             JumpInput = true;
         else

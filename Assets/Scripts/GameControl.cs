@@ -315,7 +315,7 @@ public class GameControl : MonoBehaviour
     {
         Camera.main.transform.parent = null;
         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
-        Player.GetComponent<PlayerMovement>().MovementEnabled = false;
+        Player.GetComponent<PlayerMovement>().NukeMovement = true;
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
         yield return new WaitForSeconds(LevelEndCamDelay / 2);

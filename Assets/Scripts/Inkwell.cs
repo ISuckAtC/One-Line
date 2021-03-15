@@ -6,6 +6,8 @@ public class Inkwell : MonoBehaviour
 {
     public LineType lineType;
     public int Amount;
+    public bool Respawnable;
+    public float RespawnTime;
 
     void Start()
     {
@@ -26,13 +28,21 @@ public class Inkwell : MonoBehaviour
                 break;
         }
     }
+    void Respawn()
+    {
+        GetComponent<Collider2D>().enabled = true;
+    }
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             GameControl.main.ModInk(lineType, Amount);
             GameControl.main.SwitchLineType(lineType);
-            Destroy(gameObject);
+            if (Respawnable)
+            {
+                GetComponent<Collider>().enabled = false;
+                Invoke(nameof(Respawn), RespawnTime);
+            } else Destroy(gameObject);
         }
     }
 }
