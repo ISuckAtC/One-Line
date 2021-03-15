@@ -153,8 +153,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else damping = speedDampening;
 
-        rb2D.velocity = movementVector;
-
         jumpOnOff = 0;
 
         if(!MovementEnabled)
@@ -162,11 +160,13 @@ public class PlayerMovement : MonoBehaviour
 
             rb2D.simulated = MovementEnabled;
             rb2D.velocity = Vector2.zero;
+            movementVector = Vector2.zero;
 
         }
         else
             rb2D.simulated = MovementEnabled;
-        
+
+        rb2D.velocity = movementVector;        
 
     }
 
