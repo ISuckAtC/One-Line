@@ -8,7 +8,7 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (GetComponent<Rigidbody2D>().velocity.x != 0 || (!GetComponent<PlayerMovement>().NukeMovement && Input.GetAxisRaw("Horizontal") != 0))
         {
             playerAnim.SetBool("isWalking", true);
             //Debug.Log("true");
