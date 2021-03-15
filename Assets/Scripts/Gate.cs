@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gate : MonoBehaviour, IActivatable
 {
     public float MoveLength, Speed;
-    private bool open;
+    public bool Open;
     private Vector2 origin;
 
     void Start()
@@ -15,7 +15,7 @@ public class Gate : MonoBehaviour, IActivatable
 
     void FixedUpdate()
     {
-        if (open)
+        if (Open)
         {
             if (transform.position.y != origin.y + MoveLength)
             {
@@ -39,6 +39,6 @@ public class Gate : MonoBehaviour, IActivatable
     public void Activate()
     {
         Debug.Log(gameObject.name + " activated");
-        open = !open;
+        Open = !Open;
     }
 }
