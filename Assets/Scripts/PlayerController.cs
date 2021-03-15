@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         Camera.main.transform.parent = null;
         if (gore) Destroy(Instantiate(BloodPrefab, deathPosition != null ? (Vector3)deathPosition : transform.position, Quaternion.identity), 60);
+        GameControl.main.DeathCountText.text = (++GameControl.main.Global.ResetCount).ToString();
         Destroy(gameObject);
         uiController.PauseGameUiOnOff = true;
     }
