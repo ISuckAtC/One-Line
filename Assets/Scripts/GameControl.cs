@@ -111,6 +111,7 @@ public class GameControl : MonoBehaviour
         if (Ink.Length < 4 /*System.Enum.GetNames(typeof(LineType)).Length*/) Ink = new int[System.Enum.GetNames(typeof(LineType)).Length];
 
         DeathCountText = GameObject.Find("DeathCounter").GetComponent<Text>();
+        DeathCountText.text = GameControl.main.Global.ResetCount.ToString();
 
         //inkWellTexts = new Text[System.Enum.GetNames(typeof(LineType)).Length];
         //inkWellTexts[0] = GameObject.Find("Text_Inkwell_Regular").GetComponent<Text>();
