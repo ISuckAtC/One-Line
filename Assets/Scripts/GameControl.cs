@@ -52,6 +52,7 @@ public class GameControl : MonoBehaviour
     public Dialogue DialoguePrimitive;
     public GameObject CursorLinePanel;
     public Text CursorLineText;
+    public Text DeathCountText;
     public char CustomWaitDefCharacter;
     public int CustomWaitDefDigits;
     public bool LevelCompleted;
