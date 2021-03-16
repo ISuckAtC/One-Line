@@ -10,6 +10,7 @@ public class SlimeBehaviour : MonoBehaviour
     private Vector2 SlimeMoveDir, TempVector2;
     private float AggroTimer, JumpTimer, LastAttackTimer;
     public float AggroTime, JumpTime, ForwardJump, Jumpheight, AttackSpeed, CrushVelocity;
+    [SerializeField]
     private bool HasSeenPlayer;
     private Rigidbody2D RB2D;
     private PlayerController PlayerControl;
