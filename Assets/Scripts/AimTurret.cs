@@ -19,7 +19,7 @@ public class AimTurret : Enemy
     {
         base.Start();
         targetMask = 0;
-        foreach(int i in TargetMask) targetMask = targetMask | i;
+        foreach(int i in TargetMask) targetMask = targetMask | 1 << i;
         InvokeRepeating(nameof(Fire), 0, FireRate);
     }
 
