@@ -24,6 +24,7 @@ public class SlimeBehaviour : MonoBehaviour
         RB2D = gameObject.GetComponent<Rigidbody2D>();
         EnemyMask = ~((1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Air")));
         PlayerControl = Player.GetComponent<PlayerController>();
+        JumpTimer = JumpTime;
 
     }
 
