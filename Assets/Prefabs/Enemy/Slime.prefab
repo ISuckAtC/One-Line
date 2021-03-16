@@ -133,16 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b096853d8daf96749b13dff0a536c49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  AggroTimer: 0
-  JumpTimer: 0
-  LastAttackTimer: 0
   AggroTime: 3
   JumpTime: 2
   ForwardJump: 5
   Jumpheight: 3
   AttackSpeed: 0
   CrushVelocity: 2
-  HasSeenPlayer: 0
-  RB2D: {fileID: 0}
-  PlayerControl: {fileID: 0}
+  SlimeDeath: {fileID: 59939400877777916, guid: 1ce146e49595f4747a9ee6172cca3297,
+    type: 3}
