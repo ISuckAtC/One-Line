@@ -118,12 +118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AggroTime: 3
-  JumpTime: 2
-  ForwardJump: 5
+  TimeBetweenJumps: 3
+  JumpDistance: 5
   Jumpheight: 3
-  AttackSpeed: 0
   CrushVelocity: 2
-  HasSeenPlayer: 0
   SlimeDeath: {fileID: 59939400877777916, guid: 1ce146e49595f4747a9ee6172cca3297,
     type: 3}
 --- !u!60 &1598041742779619295

@@ -9,8 +9,9 @@ public class SlimeBehaviour : MonoBehaviour
     private LayerMask EnemyMask;
     private Vector2 SlimeMoveDir, TempVector2;
     private float AggroTimer, JumpTimer, LastAttackTimer;
-    public float AggroTime, JumpTime, ForwardJump, Jumpheight, AttackSpeed, CrushVelocity;
-    [SerializeField]
+    public float AggroTime, TimeBetweenJumps, JumpDistance, Jumpheight;
+    [Tooltip("Lower is easier to crush")]
+    public float CrushVelocity;
     private bool HasSeenPlayer;
     private Rigidbody2D RB2D;
     private PlayerController PlayerControl;
@@ -24,7 +25,7 @@ public class SlimeBehaviour : MonoBehaviour
         RB2D = gameObject.GetComponent<Rigidbody2D>();
         EnemyMask = ~((1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Air")) + (1 << LayerMask.NameToLayer("Slimes")));
         PlayerControl = Player.GetComponent<PlayerController>();
-        JumpTimer = JumpTime;
+        JumpTimer = TimeBetweenJumps;
 
     }
 
@@ -62,8 +63,8 @@ public class SlimeBehaviour : MonoBehaviour
             if (JumpTimer < 0)
             {
 
-                RB2D.velocity = new Vector2(SlimeMoveDir.x * ForwardJump, Jumpheight);
-                JumpTimer = JumpTime;
+                RB2D.velocity = new Vector2(SlimeMoveDir.x * JumpDistance, Jumpheight);
+                JumpTimer = TimeBetweenJumps;
 
             }
 
@@ -121,7 +122,7 @@ public class SlimeBehaviour : MonoBehaviour
 
         }
 
-        if (JumpTimer > 0 && JumpTimer < JumpTime - 0.5f)
+        if (JumpTimer > 0 && JumpTimer < TimeBetweenJumps - 0.5f)
             RB2D.velocity = new Vector2(0, RB2D.velocity.y);
 
     }
