@@ -42,6 +42,7 @@ public class WizardBossBehaviour : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.I)) DashAttack(false);
         if(Input.GetKeyDown(KeyCode.J)) StartCoroutine(FireballAttack(1, false));
         if(Input.GetKeyDown(KeyCode.P)) StartCoroutine(FireballAttack(1, true));
+        if(Input.GetKeyDown(KeyCode.U)) SlimeStorm();
 
     }
 
@@ -108,6 +109,7 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator DashAttack(bool InSequence)
     {
 
+        RB2D.simulated = true;
         DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, PlayerTransfom.position.y - transform.position.y).normalized;
 
         if(Collided)
@@ -116,6 +118,10 @@ public class WizardBossBehaviour : MonoBehaviour
             Destination = FireballAttackPos[FireballAttackPos.Length - 1].position;
             StartCoroutine(Move(1));
             Collided = false;
+            RB2D.simulated = false;
+
+            yield return new WaitForSeconds(2);
+            SlimeStorm();
 
         }
         else

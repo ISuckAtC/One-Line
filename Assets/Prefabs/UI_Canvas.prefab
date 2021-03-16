@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 4311284429718246897}
   - component: {fileID: 2612264882050835678}
   - component: {fileID: 8972855734063105539}
-  m_Layer: 5
+  m_Layer: 1
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +960,7 @@ GameObject:
   - component: {fileID: 9068749464099453978}
   - component: {fileID: 8628623680846055858}
   - component: {fileID: 6734247673268413580}
-  m_Layer: 5
+  m_Layer: 1
   m_Name: DialogueBox_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1980,7 +1980,7 @@ GameObject:
   - component: {fileID: 1647096512613192060}
   - component: {fileID: 8423448135286593239}
   - component: {fileID: 6121310458882374525}
-  m_Layer: 5
+  m_Layer: 1
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2267,7 +2267,7 @@ GameObject:
   - component: {fileID: 7020150262680627844}
   - component: {fileID: 2219331445341495452}
   - component: {fileID: 7182588829846576391}
-  m_Layer: 5
+  m_Layer: 1
   m_Name: DialogueBox_Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2316,7 +2316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
