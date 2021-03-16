@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ActivatorButton : MonoBehaviour
 {
@@ -27,7 +28,9 @@ public class ActivatorButton : MonoBehaviour
     public void OnTriggerExit2D(Collider2D col)
     {
         Debug.Log(collider2Df.GetContacts(new ContactPoint2D[0]));
-        if (collider2Df.GetContacts(new ContactPoint2D[0]) == 0) 
+        List<ContactPoint2D> contactPoints = new List<ContactPoint2D>();
+        collider2Df.GetContacts(contactPoints);
+        if (contactPoints.Where(x => x.collider.gameObject.layer != LayerMask.NameToLayer("Ground") && x.collider.gameObject.layer != LayerMask.NameToLayer("Player")).Count() == 0) 
         {
             if (Toggle) active = false;
             else foreach(GameObject activatable in Activatables)
