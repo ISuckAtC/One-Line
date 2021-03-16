@@ -88,9 +88,12 @@ MonoBehaviour:
     SpaceWait: 0.15
     CommaWait: 0.3
     PeriodWait: 0.5
+    WaitSpeedUp: 40
+    waitMult: 0
     Enemy: 0
   CursorLinePanel: {fileID: 0}
   CursorLineText: {fileID: 0}
+  DeathCountText: {fileID: 0}
   CustomWaitDefCharacter: 124
   CustomWaitDefDigits: 3
   LevelCompleted: 0

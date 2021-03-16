@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5488547210505344817}
   - component: {fileID: 5488547210505344815}
   - component: {fileID: 1598041742779619295}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5488547210505344815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,10 +118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AggroTime: 3
-  JumpTime: 2
-  ForwardJump: 5
+  TimeBetweenJumps: 3
+  JumpDistance: 5
   Jumpheight: 3
-  AttackSpeed: 0
   CrushVelocity: 2
   SlimeDeath: {fileID: 59939400877777916, guid: 1ce146e49595f4747a9ee6172cca3297,
     type: 3}
