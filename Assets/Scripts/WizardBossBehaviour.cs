@@ -97,7 +97,7 @@ public class WizardBossBehaviour : MonoBehaviour
             for(int i = 0; i < slimeAmount; i++)
             {
 
-                GameObject spawnedSlime = Instantiate(SlimePrefab, T.position, Quaternion.identity);
+                GameObject spawnedSlime = Instantiate(SlimePrefab, new Vector2(T.position.x + (i - (slimeAmount / 2)), T.position.y), Quaternion.identity);
 
             }
 
