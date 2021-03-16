@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5488547210505344817}
   - component: {fileID: 5488547210505344815}
   - component: {fileID: 1598041742779619295}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   Jumpheight: 3
   AttackSpeed: 0
   CrushVelocity: 2
+  HasSeenPlayer: 0
   SlimeDeath: {fileID: 59939400877777916, guid: 1ce146e49595f4747a9ee6172cca3297,
     type: 3}
 --- !u!60 &1598041742779619295
