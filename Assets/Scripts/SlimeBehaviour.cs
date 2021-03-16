@@ -99,16 +99,21 @@ public class SlimeBehaviour : MonoBehaviour
 
             Debug.Log(collision.gameObject.name);
 
-            if(OtherRB2D.velocity.magnitude > CrushVelocity)
+            if(collision.gameObject.tag == "Line")
             {
 
-                Instantiate(SlimeDeath, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                if(OtherRB2D.velocity.magnitude > CrushVelocity)
+                {
 
-            } else
-            {
+                    Instantiate(SlimeDeath, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
 
-                Debug.Log(OtherRB2D.velocity.magnitude);
+                } else
+                {
+
+                    Debug.Log(OtherRB2D.velocity.magnitude);
+
+                }
 
             }
 
