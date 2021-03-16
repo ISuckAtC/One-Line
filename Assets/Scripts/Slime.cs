@@ -29,12 +29,13 @@ public class Slime : Enemy
         if (!target)
         {
             int h = hits.Count;
-            hits = hits.Where(x => x.gameObject.layer != 0 && ((1 << x.gameObject.layer) & targetMask) == x.gameObject.layer).ToList();
+            hits = hits.Where(x => x.gameObject.layer != 0 && ((1 << x.gameObject.layer) & targetMask) == 1 << x.gameObject.layer).ToList();
 
             if (hits.Count > 0)
             {
                 hits.OrderBy(x => Vector2.Distance(x.transform.position, transform.position));
                 target = hits[hits.Count - 1].gameObject;
+                Debug.Log(gameObject.name + " aquired target: " + target.name);
             }
         }
     }
@@ -42,8 +43,9 @@ public class Slime : Enemy
     public void Jump()
     {
         if (!target) return;
-        Vector2 dir = new Vector2(target.transform.position.x < transform.position.x ? 1 : -1, 0);
-        dir.y += Random.Range(0, 2);
+        Debug.Log("Jumping");
+        Vector2 dir = new Vector2(target.transform.position.x > transform.position.x ? 1 : -1, 0);
+        dir.y += Random.Range(0.3f, 4);
         rb.velocity = dir.normalized * Random.Range(MinForce, MaxForce);
 
         jumping = false;
@@ -53,6 +55,7 @@ public class Slime : Enemy
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground") && !jumping)
         {
+            jumping = true;
             Invoke(nameof(Jump), JumpCD);
         }
     }
@@ -60,6 +63,7 @@ public class Slime : Enemy
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            jumping = false;
             CancelInvoke(nameof(Jump));
         }
     }

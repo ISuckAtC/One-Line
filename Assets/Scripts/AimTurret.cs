@@ -30,7 +30,7 @@ public class AimTurret : Enemy
         if (!target)
         {
             int h = hits.Count;
-            hits = hits.Where(x => x.gameObject.layer != 0 && ((1 << x.gameObject.layer) & targetMask) == x.gameObject.layer).ToList();
+            hits = hits.Where(x => x.gameObject.layer != 0 && ((1 << x.gameObject.layer) & targetMask) == 1 << x.gameObject.layer).ToList();
 
             if (hits.Count > 0)
             {
