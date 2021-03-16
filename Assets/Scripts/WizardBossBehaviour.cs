@@ -11,17 +11,22 @@ public class WizardBossBehaviour : MonoBehaviour
 
     "Rythm": Fireballs - Dash - SlimeStorm while laughing Manically - Use cannon during SlimeStorm.*/
 
-    public float maxMoveDist, moveSpeed;
+    public float maxMoveDist, moveSpeed, fireballSpeed;
     LayerMask pathBlockingElements;
     private bool pathBlocked, DestinationChange;
-    private int executions;
-    private Vector2 Destination, FireballAttackPos;
+    [SerializeField]
+    private int executions, i;
+    private Vector2 Destination;
+    public Transform[] FireballAttackPos;
+    public GameObject Fireball;
+    public Transform PlayerTransfom;
 
 
     void Start()
     {
         
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line");
+        i = 0;
 
     }
 
@@ -29,6 +34,8 @@ public class WizardBossBehaviour : MonoBehaviour
     {
 
         if(Input.GetKey(KeyCode.L)) WizardMove();
+        if(Input.GetKey(KeyCode.K)) ShootFireball();
+        if(Input.GetKeyDown(KeyCode.J)) StartCoroutine(FireballAttack(1.5f));
 
     }
 
@@ -36,6 +43,41 @@ public class WizardBossBehaviour : MonoBehaviour
     {
 
         transform.position = Vector2.MoveTowards(transform.position, Destination, moveSpeed);
+
+    }
+
+    void ShootFireball()
+    {
+
+        GameObject fireball = Instantiate(Fireball, transform.position, transform.rotation);
+        fireball.transform.up = PlayerTransfom.position - transform.position;
+        fireball.GetComponent<Rigidbody2D>().velocity = fireball.transform.up * fireballSpeed;
+
+    }
+
+    IEnumerator FireballAttack(float AttackDelay)
+    {
+
+        if(i <= FireballAttackPos.Length - 1)
+        {
+
+            transform.position = FireballAttackPos[i].position;
+            Destination = FireballAttackPos[i].position;
+            ShootFireball();
+            i++;
+            yield return new WaitForSeconds(AttackDelay);
+            StartCoroutine(FireballAttack(AttackDelay));
+
+        }
+        else if(i > FireballAttackPos.Length - 1)
+        {
+
+            int RandomNum = Random.Range(0, FireballAttackPos.Length - 1);
+            transform.position = FireballAttackPos[RandomNum].position;
+            Destination = FireballAttackPos[RandomNum].position;
+            i = 0;
+
+        }
 
     }
 
