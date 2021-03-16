@@ -11,38 +11,38 @@ public class WizardBossBehaviour : MonoBehaviour
 
     "Rythm": Fireballs - Dash - SlimeStorm while laughing Manically - Use cannon during SlimeStorm.*/
 
-    public float maxMoveDist, moveSpeed, fireballSpeed;
+    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed;
+    public int slimeAmount;
     LayerMask pathBlockingElements;
-    private bool pathBlocked, DestinationChange;
+    private bool Collided, pathBlocked, DestinationChange;
     [SerializeField]
-    private int executions, i;
-    private Vector2 Destination;
-    public Transform[] FireballAttackPos;
-    public GameObject Fireball;
+    private int executions, fireballShots;
+    private Vector3 Destination;
+    public Transform[] FireballAttackPos, SlimeSpawnPos;
+    public GameObject Fireball, SlimePrefab;
     public Transform PlayerTransfom;
+    private Rigidbody2D RB2D;
+    private Vector2 DashDir;
 
 
     void Start()
     {
         
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line");
-        i = 0;
+        fireballShots = 0;
+        RB2D = gameObject.GetComponent<Rigidbody2D>();
 
     }
 
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.L)) WizardMove();
-        if(Input.GetKey(KeyCode.K)) ShootFireball();
-        if(Input.GetKeyDown(KeyCode.J)) StartCoroutine(FireballAttack(1.5f));
-
-    }
-
-    void FixedUpdate()
-    {
-
-        transform.position = Vector2.MoveTowards(transform.position, Destination, moveSpeed);
+        if(Input.GetKeyDown(KeyCode.L)) WizardMove();
+        if(Input.GetKeyDown(KeyCode.K)) ShootFireball();
+        if(Input.GetKeyDown(KeyCode.I)) DashAttack(false);
+        if(Input.GetKeyDown(KeyCode.J)) StartCoroutine(FireballAttack(1, false));
+        if(Input.GetKeyDown(KeyCode.P)) StartCoroutine(FireballAttack(1, true));
+        if(Input.GetKeyDown(KeyCode.U)) SlimeStorm();
 
     }
 
@@ -55,27 +55,119 @@ public class WizardBossBehaviour : MonoBehaviour
 
     }
 
-    IEnumerator FireballAttack(float AttackDelay)
+    IEnumerator FireballAttack(float AttackDelay, bool InSequence)
     {
 
-        if(i <= FireballAttackPos.Length - 1)
+        if(fireballShots <= FireballAttackPos.Length - 1)
         {
 
-            transform.position = FireballAttackPos[i].position;
-            Destination = FireballAttackPos[i].position;
+            transform.position = FireballAttackPos[fireballShots].position;
+            Destination = FireballAttackPos[fireballShots].position;
             ShootFireball();
-            i++;
+            fireballShots++;
             yield return new WaitForSeconds(AttackDelay);
-            StartCoroutine(FireballAttack(AttackDelay));
+            StartCoroutine(FireballAttack(AttackDelay, InSequence));
 
         }
-        else if(i > FireballAttackPos.Length - 1)
+        else if(fireballShots > FireballAttackPos.Length - 1)
         {
 
             int RandomNum = Random.Range(0, FireballAttackPos.Length - 1);
             transform.position = FireballAttackPos[RandomNum].position;
             Destination = FireballAttackPos[RandomNum].position;
-            i = 0;
+            fireballShots = 0;
+
+            if(InSequence)
+            {
+
+                yield return new WaitForSeconds(AttackDelay);
+                StartCoroutine(DashAttack(InSequence));
+
+            }
+
+        }
+
+    }
+
+    void SlimeStorm()
+    {
+
+        foreach (Transform T in SlimeSpawnPos)
+        {
+            
+            for(int i = 0; i < slimeAmount; i++)
+            {
+
+                GameObject spawnedSlime = Instantiate(SlimePrefab, new Vector2(T.position.x + (i - (slimeAmount / 2)), T.position.y), Quaternion.identity);
+
+            }
+
+        }
+
+    }
+
+    IEnumerator DashAttack(bool InSequence)
+    {
+
+        RB2D.simulated = true;
+        DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, PlayerTransfom.position.y - transform.position.y).normalized;
+
+        if(Collided)
+        {
+
+            Destination = FireballAttackPos[FireballAttackPos.Length - 1].position;
+            StartCoroutine(Move(1));
+            Collided = false;
+            RB2D.simulated = false;
+
+            yield return new WaitForSeconds(2);
+            SlimeStorm();
+
+        }
+        else
+        {
+
+            RB2D.velocity = DashDir * dashSpeed;
+            yield return new WaitForFixedUpdate();
+            StartCoroutine(DashAttack(InSequence));
+
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if(collision.gameObject.tag == "Line")
+        {
+
+
+
+        }
+
+        if(collision.gameObject.tag == "Player")
+        {
+
+            collision.gameObject.GetComponent<PlayerController>().Kill(collision.transform.position, true);
+
+        }
+
+        Collided = true;
+
+    }
+
+    IEnumerator Move(float firstMoveWait)
+    {
+
+        RB2D.velocity = Vector2.zero;
+        yield return new WaitForSeconds(firstMoveWait);
+
+        if(transform.position != Destination)
+        {
+
+            transform.position = Vector2.MoveTowards(transform.position, Destination, moveSpeed);
+            yield return new WaitForFixedUpdate();
+            StartCoroutine(Move(0));
 
         }
 
@@ -98,7 +190,8 @@ public class WizardBossBehaviour : MonoBehaviour
         {
 
             executions = 0;
-            Destination = moveToNewPos;
+            Destination = moveToNewPos;            
+            StartCoroutine(Move(0));
 
         }
         else if(pathBlocked && executions < 50)

@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class SlimeBehaviour : MonoBehaviour
 {
-    [SerializeField]
+
     private GameObject Player;
     private LayerMask EnemyMask;
     private Vector2 SlimeMoveDir, TempVector2;
-    [SerializeField]
     private float AggroTimer, JumpTimer, LastAttackTimer;
     public float AggroTime, JumpTime, ForwardJump, Jumpheight, AttackSpeed, CrushVelocity;
     [SerializeField]
     private bool HasSeenPlayer;
-    [SerializeField]
     private Rigidbody2D RB2D;
-    [SerializeField]
     private PlayerController PlayerControl;
+    public GameObject SlimeDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -102,15 +100,21 @@ public class SlimeBehaviour : MonoBehaviour
 
             Debug.Log(collision.gameObject.name);
 
-            if(OtherRB2D.velocity.magnitude > CrushVelocity)
+            if(collision.gameObject.tag == "Line")
             {
 
-                Destroy(gameObject);
+                if(OtherRB2D.velocity.magnitude > CrushVelocity)
+                {
 
-            } else
-            {
+                    Instantiate(SlimeDeath, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
 
-                Debug.Log(OtherRB2D.velocity.magnitude);
+                } else
+                {
+
+                    Debug.Log(OtherRB2D.velocity.magnitude);
+
+                }
 
             }
 
