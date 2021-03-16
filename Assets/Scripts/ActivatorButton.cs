@@ -9,6 +9,7 @@ public class ActivatorButton : MonoBehaviour
     private bool active;
     private Collider2D collider2Df;
     public bool Toggle = true;
+    public bool PlayerInteractable;
     public void Start()
     {
         collider2Df = GetComponent<Collider2D>();
@@ -19,7 +20,7 @@ public class ActivatorButton : MonoBehaviour
         if (active) return;
         if (Toggle) active = true;
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground")) return;
-        if (col.gameObject.layer == LayerMask.NameToLayer("Player")) return;
+        if (!PlayerInteractable && col.gameObject.layer == LayerMask.NameToLayer("Player")) return;
         foreach(GameObject activatable in Activatables)
         {
             activatable.GetComponent<IActivatable>().Activate();
@@ -30,7 +31,7 @@ public class ActivatorButton : MonoBehaviour
         Debug.Log(collider2Df.GetContacts(new ContactPoint2D[0]));
         List<ContactPoint2D> contactPoints = new List<ContactPoint2D>();
         collider2Df.GetContacts(contactPoints);
-        if (contactPoints.Where(x => x.collider.gameObject.layer != LayerMask.NameToLayer("Ground") && x.collider.gameObject.layer != LayerMask.NameToLayer("Player")).Count() == 0) 
+        if (contactPoints.Where(x => x.collider.gameObject.layer != LayerMask.NameToLayer("Ground") && (PlayerInteractable || x.collider.gameObject.layer != LayerMask.NameToLayer("Player"))).Count() == 0) 
         {
             if (Toggle) active = false;
             else foreach(GameObject activatable in Activatables)
