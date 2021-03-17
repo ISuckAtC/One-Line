@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5488547210505344819}
   - component: {fileID: 5488547210505344816}
-  - component: {fileID: 5488547210505344817}
   - component: {fileID: 5488547210505344815}
+  - component: {fileID: 5488547210505344817}
   - component: {fileID: 1598041742779619295}
   m_Layer: 15
   m_Name: Slime
@@ -84,6 +84,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5488547210505344815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488547210505344812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b096853d8daf96749b13dff0a536c49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AggroTime: 3
+  TimeBetweenJumps: 3
+  JumpDistance: 5
+  Jumpheight: 3
+  CrushVelocity: 2
+  SlimeDeath: {fileID: 59939400877777916, guid: 1ce146e49595f4747a9ee6172cca3297,
+    type: 3}
 --- !u!50 &5488547210505344817
 Rigidbody2D:
   serializedVersion: 4
@@ -105,25 +124,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5488547210505344815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5488547210505344812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b096853d8daf96749b13dff0a536c49f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AggroTime: 3
-  TimeBetweenJumps: 3
-  JumpDistance: 5
-  Jumpheight: 3
-  CrushVelocity: 2
-  SlimeDeath: {fileID: 59939400877777916, guid: 1ce146e49595f4747a9ee6172cca3297,
-    type: 3}
 --- !u!60 &1598041742779619295
 PolygonCollider2D:
   m_ObjectHideFlags: 0
