@@ -11,7 +11,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     "Rythm": Fireballs - Dash - SlimeStorm while laughing Manically - Use cannon during SlimeStorm.*/
 
-    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed;
+    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, HurtVelocity;
     public int slimeAmount;
     LayerMask pathBlockingElements;
     private bool Collided, pathBlocked, DestinationChange;
@@ -22,6 +22,7 @@ public class WizardBossBehaviour : MonoBehaviour
     public GameObject Fireball, SlimePrefab;
     public Transform PlayerTransfom;
     private Rigidbody2D RB2D;
+    private CircleCollider2D Col2D;
     private Vector2 DashDir;
 
 
@@ -31,6 +32,8 @@ public class WizardBossBehaviour : MonoBehaviour
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line");
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
+        Col2D = gameObject.GetComponent<CircleCollider2D>();
+        Col2D.isTrigger = true;
 
     }
 
@@ -84,13 +87,13 @@ public class WizardBossBehaviour : MonoBehaviour
                 StartCoroutine(DashAttack(InSequence));
 
             }
-
         }
-
     }
 
     void SlimeStorm()
     {
+
+        Col2D.isTrigger = false;
 
         foreach (Transform T in SlimeSpawnPos)
         {
@@ -101,15 +104,13 @@ public class WizardBossBehaviour : MonoBehaviour
                 GameObject spawnedSlime = Instantiate(SlimePrefab, new Vector2(T.position.x + (i - (slimeAmount / 2)), T.position.y), Quaternion.identity);
 
             }
-
         }
-
     }
 
     IEnumerator DashAttack(bool InSequence)
     {
 
-        RB2D.simulated = true;
+        Col2D.isTrigger = false;
         DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, PlayerTransfom.position.y - transform.position.y).normalized;
 
         if(Collided)
@@ -118,7 +119,7 @@ public class WizardBossBehaviour : MonoBehaviour
             Destination = FireballAttackPos[FireballAttackPos.Length - 1].position;
             StartCoroutine(Move(1));
             Collided = false;
-            RB2D.simulated = false;
+            Col2D.isTrigger = true;
 
             yield return new WaitForSeconds(2);
             SlimeStorm();
@@ -132,7 +133,6 @@ public class WizardBossBehaviour : MonoBehaviour
             StartCoroutine(DashAttack(InSequence));
 
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -141,8 +141,21 @@ public class WizardBossBehaviour : MonoBehaviour
         if(collision.gameObject.tag == "Line")
         {
 
+            Line lineCheck;
+            if(collision.gameObject.TryGetComponent<Line>(out lineCheck))
+            {
 
+                if(lineCheck.LineType == LineType.Weight)
+                {
 
+                    if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude > HurtVelocity)
+                    {
+
+                        Debug.Log("Ouch :3");
+
+                    }
+                }
+            }                
         }
 
         if(collision.gameObject.tag == "Player")
@@ -207,7 +220,5 @@ public class WizardBossBehaviour : MonoBehaviour
             executions = 0;
 
         }
-
     }
-
 }
