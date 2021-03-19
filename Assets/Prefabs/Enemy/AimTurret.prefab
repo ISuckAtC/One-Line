@@ -97,9 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff6117a9f6a7944c932807348cc07cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 1
   Range: 15
   BulletSpawnOffset: 3
-  BulletSpeed: 15
+  BulletSpeed: 25
   FireRate: 2
   BulletPrefab: {fileID: 7871054985576896798, guid: ccf71d777bc5ffa499ffab706cf48f73,
     type: 3}
