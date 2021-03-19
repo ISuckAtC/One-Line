@@ -140,6 +140,7 @@ public class GameControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) 
         {
             if (!LevelCompleted) Global.ResetCount++;
+            Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 
