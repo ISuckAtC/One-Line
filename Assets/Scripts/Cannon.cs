@@ -6,11 +6,11 @@ using System.Linq;
 public class Cannon : MonoBehaviour
 {
 
-    private GameObject closestEnemy;
+    private GameObject closestEnemy, chamberedLine;
     public Transform BarrelTransform;
     public float CannonShotForce;
     public Transform targetTransform;
-    public bool cannonLockOn, autoTarget;
+    public bool cannonLockOn, autoTarget, onStandby;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,8 @@ public class Cannon : MonoBehaviour
 
         if(targetTransform == null)
             autoTarget = true;
+
+        onStandby = true;
         
     }
 
@@ -32,7 +34,13 @@ public class Cannon : MonoBehaviour
     void FixedUpdate()
     {
         if(cannonLockOn)
-            BarrelTransform.up = targetTransform.position - transform.position;
+        {
+
+            BarrelTransform.up = targetTransform.position - BarrelTransform.position;
+            chamberedLine.transform.position = BarrelTransform.position;
+            chamberedLine.transform.up = targetTransform.position - chamberedLine.transform.position;
+
+        }
         
     }
 
@@ -40,30 +48,53 @@ public class Cannon : MonoBehaviour
     {
 
         Line lineCheck;
+        Debug.Log("Check0");
 
-        if(col.gameObject.tag == "Line")
-            if(gameObject.TryGetComponent<Line>(out lineCheck))
-                if(lineCheck.LineType == LineType.Weight)
-                    StartCoroutine (fireCannon(col.gameObject));
+        if(onStandby)
+        {
 
+            if(col.gameObject.transform.parent.tag == "Line")
+            {
+
+                Debug.Log("Check1");
+                if(col.gameObject.transform.parent.TryGetComponent<Line>(out lineCheck))
+                {
+
+                    Debug.Log("Check2");
+                    if(lineCheck.LineType == LineType.Weight)
+                    {
+
+                        Debug.Log("Check3");
+                        onStandby = false;
+                        StartCoroutine(fireCannon(col.gameObject.transform.parent.gameObject));
+
+                    }
+                }                
+            }
+        }
     }
 
     IEnumerator fireCannon(GameObject lineToFire)
     {
 
+        Rigidbody2D currentRB2D = lineToFire.GetComponent<Rigidbody2D>();
+        chamberedLine = lineToFire;
         if(autoTarget)
             targetTransform = targetPicker();
 
         yield return new WaitForSeconds(1);
 
-        Rigidbody2D currentRB2D = lineToFire.GetComponent<Rigidbody2D>();
         currentRB2D.simulated = false;
         cannonLockOn = true;
         yield return new WaitForSeconds(2);
 
-        lineToFire.transform.up = targetTransform.position - lineToFire.transform.position;
-        currentRB2D.velocity = Vector2.up * CannonShotForce;
+        currentRB2D.simulated = true;
         cannonLockOn = false;
+        currentRB2D.velocity = lineToFire.transform.up * CannonShotForce;
+        yield return new WaitForSeconds(1);
+
+        onStandby = true;
+        BarrelTransform.rotation = Quaternion.identity;
 
     }
 
