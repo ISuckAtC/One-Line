@@ -98,7 +98,7 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(SortingLayer.NameToID("Line" + LineType.Normal.ToString()));
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
 
