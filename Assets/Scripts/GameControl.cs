@@ -98,7 +98,7 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(SortingLayer.NameToID("Line" + LineType.Normal.ToString()));
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
         Cursor.visible = false;
 
@@ -140,6 +140,7 @@ public class GameControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) 
         {
             if (!LevelCompleted) Global.ResetCount++;
+            Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 

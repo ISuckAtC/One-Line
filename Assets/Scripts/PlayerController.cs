@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         GameControl.main.DeathCountText.text = (++GameControl.main.Global.ResetCount).ToString();
         Destroy(gameObject);
         uiController.PauseGameUiOnOff = true;
+        UiControl.main.RestartText.SetActive(true);
     }
 
     public void OnCollisionEnter2D(Collision2D col)

@@ -363,12 +363,29 @@ public class LinePiece
         MiddleBox = new GameObject();
         SpriteRenderer mbr = MiddleBox.AddComponent<SpriteRenderer>();
         mbr.sprite = b;
-        mbr.color = color;
+
+        SpriteMask middleMask = MiddleBox.AddComponent<SpriteMask>();
+        middleMask.sprite = b;
+        middleMask.isCustomRangeActive = true;
+        middleMask.frontSortingOrder = 1;
+        middleMask.frontSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
+        middleMask.backSortingOrder = 0;
+        middleMask.backSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
+        
+
         MiddleBox.layer = LayerMask.NameToLayer("Line");
         EndCircle = new GameObject();
         SpriteRenderer ecr = EndCircle.AddComponent<SpriteRenderer>();
         ecr.sprite = c;
-        ecr.color = color;
+
+        SpriteMask endMask = EndCircle.AddComponent<SpriteMask>();
+        endMask.sprite = c;
+        endMask.isCustomRangeActive = true;
+        endMask.frontSortingOrder = 1;
+        endMask.frontSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
+        endMask.backSortingOrder = 0;
+        endMask.backSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
+
         EndCircle.layer = LayerMask.NameToLayer("Line");
 
         if (start == end)
@@ -376,7 +393,15 @@ public class LinePiece
             StartCircle = new GameObject("Start");
             SpriteRenderer scr = StartCircle.AddComponent<SpriteRenderer>();
             scr.sprite = c;
-            scr.color = color;
+
+            SpriteMask startMask = StartCircle.AddComponent<SpriteMask>();
+            startMask.sprite = c;
+            startMask.isCustomRangeActive = true;
+            startMask.frontSortingOrder = 1;
+            startMask.frontSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
+            startMask.backSortingOrder = 0;
+            startMask.backSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
+
             StartCircle.transform.position = start;
             StartCircle.transform.localScale = new Vector3(thickness, thickness, 1);
             CircleCollider2D ccs = StartCircle.AddComponent<CircleCollider2D>();
@@ -384,6 +409,8 @@ public class LinePiece
             ccs.sharedMaterial = mat;
             StartCircle.transform.parent = parent;
             EndCircle.transform.up = -StartCircle.transform.up;
+
+            scr.enabled = false;
 
             StartCircle.layer = LayerMask.NameToLayer("Line");
 
@@ -427,6 +454,9 @@ public class LinePiece
 
         MiddleBox.transform.parent = parent;
         EndCircle.transform.parent = parent;
+
+        mbr.enabled = false;
+        ecr.enabled = false;
 
         if (joint)
         {
