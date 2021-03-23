@@ -356,6 +356,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7684999509296656397, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc0eceb0d95e8841b9f9febb34002e9, type: 3}
 --- !u!1 &205690486
@@ -589,6 +594,7 @@ MonoBehaviour:
   AttackPause: 1.4
   FireballAttackSpeed: 0.4
   slimeAmount: 2
+  fireballs: 0
   FireballAttackPos:
   - {fileID: 205690488}
   - {fileID: 232260565}
@@ -603,6 +609,7 @@ MonoBehaviour:
     type: 3}
   Cannon: {fileID: 1168252016}
   PlayerTransfom: {fileID: 5745138740541359847}
+  FireballRainPos: {fileID: 0}
   HowToUseTheAttackPattern: Select the attack type you want the Wizard to use, or
     leave blank andomized attacks. The pause uses the AttackPause value * 2.
   AttackPattern: 0000000000000000020000000400000001000000

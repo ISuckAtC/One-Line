@@ -23,14 +23,14 @@ public class WizardBossBehaviour : MonoBehaviour
     }
 
     public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed;
-    public int slimeAmount;
+    public int slimeAmount, fireballs;
     LayerMask pathBlockingElements;
     private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive;
     private int executions, fireballShots, attackStage, sequencePart;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
     public GameObject Fireball, SlimePrefab, Cannon;
-    public Transform PlayerTransfom;
+    public Transform PlayerTransfom, FireballRainPos;
     private Rigidbody2D RB2D;
     private CircleCollider2D Col2D;
     private Vector2 DashDir;
@@ -129,6 +129,28 @@ public class WizardBossBehaviour : MonoBehaviour
         GameObject fireball = Instantiate(Fireball, transform.position, transform.rotation);
         fireball.transform.up = PlayerTransfom.position - transform.position;
         fireball.GetComponent<Rigidbody2D>().velocity = fireball.transform.up * fireballSpeed;
+
+    }
+
+    IEnumerator FireballRain()
+    {
+
+        transform.position = FireballRainPos.position;
+        Destination = FireballRainPos.position;
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 225);
+        float degPerIteration = 90/fireballs;
+
+        for(int i = 0; i < fireballs; i++)
+        {
+
+            ShootFireball();
+            transform.Rotate(Vector3.forward, degPerIteration);
+
+        }
+
+        yield return new WaitForSeconds(5);
+
+        StartCoroutine(RestartSequence());
 
     }
 
