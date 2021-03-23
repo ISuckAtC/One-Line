@@ -100,8 +100,6 @@ public class SlimeBehaviour : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Rigidbody2D>(out OtherRB2D))
         {
 
-            Debug.Log(collision.gameObject.name);
-
             if(collision.gameObject.tag == "Line")
             {
 
@@ -110,11 +108,6 @@ public class SlimeBehaviour : MonoBehaviour
 
                     Instantiate(SlimeDeath, transform.position, Quaternion.identity);
                     Destroy(gameObject);
-
-                } else
-                {
-
-                    Debug.Log(OtherRB2D.velocity.magnitude);
 
                 }
 

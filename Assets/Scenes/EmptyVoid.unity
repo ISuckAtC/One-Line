@@ -586,7 +586,7 @@ MonoBehaviour:
   moveSpeed: 0.2
   fireballSpeed: 6
   dashSpeed: 6
-  HurtVelocity: 0
+  HurtVelocity: 3
   slimeAmount: 3
   executions: 0
   fireballShots: 0
@@ -1821,12 +1821,12 @@ PrefabInstance:
     - target: {fileID: 1866472824652666235, guid: 8eb3a753c5386db48aec02e14aedf9e8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.36
+      value: 5.32
       objectReference: {fileID: 0}
     - target: {fileID: 1866472824652666235, guid: 8eb3a753c5386db48aec02e14aedf9e8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 1866472824652666235, guid: 8eb3a753c5386db48aec02e14aedf9e8,
         type: 3}

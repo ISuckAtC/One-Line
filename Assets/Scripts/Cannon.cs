@@ -82,6 +82,8 @@ public class Cannon : MonoBehaviour
         if(autoTarget)
             targetTransform = targetPicker();
 
+        lineToFire.tag = "Projectile";
+
         yield return new WaitForSeconds(1);
 
         currentRB2D.simulated = false;
