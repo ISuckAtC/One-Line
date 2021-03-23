@@ -22,7 +22,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     }
 
-    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause;
+    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed;
     public int slimeAmount;
     LayerMask pathBlockingElements;
     private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive;
@@ -94,7 +94,7 @@ public class WizardBossBehaviour : MonoBehaviour
             break;
 
             case attackType.FireballAttack:
-            StartCoroutine(FireballAttack(1, false));
+            StartCoroutine(FireballAttack(FireballAttackSpeed, false));
             break;
 
             case attackType.DashAttack:
