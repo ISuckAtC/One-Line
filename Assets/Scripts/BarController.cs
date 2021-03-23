@@ -37,6 +37,7 @@ public class BarController : MonoBehaviour
             
             CurrentAmount = gc.Ink[(int)InkType];
             ProsentOfTotal = CurrentAmount / Max;
+            ProsentOfTotal = Mathf.Clamp(ProsentOfTotal, 0, 1);
             BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height * 0.99f);
 
         }

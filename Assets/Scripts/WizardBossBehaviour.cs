@@ -6,7 +6,7 @@ public class WizardBossBehaviour : MonoBehaviour
 {
 
     /*LineWizard
-    Abilites: Shoot fireballs - Dash - Spawn slimes - Floats
+    Abilites: Shoot fireballs - Dash - Spawn slimes - Fireball Rain
     How to fight: Cannon using Grav Lines - Bounce back fireballs
 
     "Rythm": Fireballs - Dash - SlimeStorm while laughing Manically - Use cannon during SlimeStorm.*/
@@ -128,34 +128,35 @@ public class WizardBossBehaviour : MonoBehaviour
 
     }
 
+    IEnumerator FireballRain()
+    {
+
+        transform.position = FireballRainPos.position;
+        Destination = FireballRainPos.position;
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 140);
+        float degPerIteration = 90/fireballs;
+
+        for(int i = 0; i <= fireballs; i++)
+        {
+
+            GameObject fireball = Instantiate(Fireball, transform.position, transform.rotation);
+            fireball.GetComponent<Rigidbody2D>().velocity = fireball.transform.up * fireballSpeed;
+            transform.Rotate(Vector3.forward, degPerIteration);
+
+        }
+
+        yield return new WaitForSeconds(3);
+
+        StartCoroutine(RestartSequence());
+
+    }
+
     void ShootFireball()
     {
 
         GameObject fireball = Instantiate(Fireball, transform.position, transform.rotation);
         fireball.transform.up = PlayerTransfom.position - transform.position;
         fireball.GetComponent<Rigidbody2D>().velocity = fireball.transform.up * fireballSpeed;
-
-    }
-
-    IEnumerator FireballRain()
-    {
-
-        transform.position = FireballRainPos.position;
-        Destination = FireballRainPos.position;
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 225);
-        float degPerIteration = 90/fireballs;
-
-        for(int i = 0; i < fireballs; i++)
-        {
-
-            ShootFireball();
-            transform.Rotate(Vector3.forward, degPerIteration);
-
-        }
-
-        yield return new WaitForSeconds(5);
-
-        StartCoroutine(RestartSequence());
 
     }
 
