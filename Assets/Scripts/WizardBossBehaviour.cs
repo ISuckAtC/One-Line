@@ -252,6 +252,7 @@ public class WizardBossBehaviour : MonoBehaviour
         sequencePart = 0;
         slimeStage = false;
         yield return new WaitForSeconds(1);
+        Cannon.SetActive(false);
         Col2D.isTrigger = true;
         Attack();
 
