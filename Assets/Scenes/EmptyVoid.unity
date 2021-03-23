@@ -587,6 +587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e55b7963537404db29e49b2cbe55fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 3
+  Activatables: []
   maxMoveDist: 2
   moveSpeed: 0.2
   fireballSpeed: 8
@@ -602,7 +604,6 @@ MonoBehaviour:
   - {fileID: 647533644}
   SlimeSpawnPos:
   - {fileID: 647533644}
-  - {fileID: 205690488}
   Fireball: {fileID: 7871054985576896798, guid: 46993fe39acb126499507ac69a4b79fd,
     type: 3}
   SlimePrefab: {fileID: 5488547210505344812, guid: c0d9a4abfd7b15a49a336eb1dd943859,
@@ -610,9 +611,10 @@ MonoBehaviour:
   Cannon: {fileID: 1168252016}
   PlayerTransfom: {fileID: 5745138740541359847}
   FireballRainPos: {fileID: 1930813417}
+  WizardSpriteRenderer: {fileID: 625114460}
   HowToUseTheAttackPattern: Select the attack type you want the Wizard to use, or
     leave blank andomized attacks. The pause uses the AttackPause value * 2.
-  AttackPattern: 0000000002000000030000000100000004000000000000000500000004000000
+  AttackPattern: 0300000003000000030000000300000004000000000000000500000004000000
 --- !u!212 &625114460
 SpriteRenderer:
   m_ObjectHideFlags: 0

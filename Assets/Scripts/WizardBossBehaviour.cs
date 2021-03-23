@@ -19,19 +19,23 @@ public class WizardBossBehaviour : MonoBehaviour
         DashAttack,
         SlimeStorm,
         FireballRain,
+        RandomAttack,
         Pause
 
     }
 
+    public int Health;
+    public GameObject[] Activatables;
     public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed;
     public int slimeAmount, fireballs;
     LayerMask pathBlockingElements;
-    private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive;
+    private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive, invincibility;
     private int executions, fireballShots, attackStage, sequencePart;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
     public GameObject Fireball, SlimePrefab, Cannon;
     public Transform PlayerTransfom, FireballRainPos;
+    public SpriteRenderer WizardSpriteRenderer;
     private Rigidbody2D RB2D;
     private CircleCollider2D Col2D;
     private Vector2 DashDir;
@@ -103,6 +107,9 @@ public class WizardBossBehaviour : MonoBehaviour
             break;
 
             case attackType.SlimeStorm:
+            int RandomNum = Random.Range(0, FireballAttackPos.Length);
+            transform.position = FireballAttackPos[RandomNum].position;
+            Destination = FireballAttackPos[RandomNum].position;
             SlimeStorm();
             break;
 
@@ -110,11 +117,39 @@ public class WizardBossBehaviour : MonoBehaviour
             StartCoroutine(FireballRain());
             break;
 
+            case attackType.RandomAttack:
+            RandomAttack();
+            break;
+
             case attackType.Pause:
             StartCoroutine(pauseFor(AttackPause * 2));
             break;
 
         } 
+
+    }
+
+    void RandomAttack()
+    {
+
+        int RandomNum = Random.Range(0, 3);
+
+        switch (RandomNum)
+        {
+
+            case 0:
+            StartCoroutine(FireballAttack(FireballAttackSpeed, false));
+            break;
+
+            case 1:
+            StartCoroutine(DashAttack(false));
+            break;
+
+            case 2:
+            StartCoroutine(FireballRain());
+            break;
+
+        }
 
     }
 
@@ -197,7 +232,7 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator DashAttack(bool InSequence)
     {
 
-        int RandomNum = Random.Range(0, FireballAttackPos.Length - 1);
+        int RandomNum = Random.Range(0, FireballAttackPos.Length);
         transform.position = FireballAttackPos[RandomNum].position;
         Destination = FireballAttackPos[RandomNum].position;
         yield return new WaitForSeconds(AttackPause);
@@ -218,7 +253,7 @@ public class WizardBossBehaviour : MonoBehaviour
         if(Collided)
         {
 
-            int RandomNum = Random.Range(0, FireballAttackPos.Length - 1);
+            int RandomNum = Random.Range(0, FireballAttackPos.Length);
             Destination = FireballAttackPos[RandomNum].position;
             StartCoroutine(Move(1));
             Collided = false;
@@ -246,7 +281,7 @@ public class WizardBossBehaviour : MonoBehaviour
     }
 
     void SlimeStorm()
-    {
+    {            
 
         Debug.Log("Slime");
         slimeStage = true;
@@ -292,7 +327,7 @@ public class WizardBossBehaviour : MonoBehaviour
         if(collision.gameObject.tag == "Projectile")
         {
 
-            //Lose health here :3
+            StartCoroutine(Hurt());
             Debug.Log("BigOuch!");
 
             if(slimeStage)
@@ -322,6 +357,34 @@ public class WizardBossBehaviour : MonoBehaviour
         }
 
         Collided = true;
+
+    }
+
+    IEnumerator Hurt()
+    {
+
+        if(!invincibility)
+        {
+
+            invincibility = true;
+            Color32 tempColor = WizardSpriteRenderer.color;
+            WizardSpriteRenderer.color = Color.red;
+
+            Health--;
+
+            if(Health <= 0)
+                Death();
+            else
+            {
+
+                yield return new WaitForSeconds(0.4f);
+
+                invincibility = false;
+                WizardSpriteRenderer.color = Color.white;
+
+            }
+
+        }
 
     }
 
@@ -377,4 +440,19 @@ public class WizardBossBehaviour : MonoBehaviour
 
         }
     }
+
+    void Death()
+    {
+
+        foreach (GameObject GO in Activatables)
+        {
+            
+            GO.GetComponent<IActivatable>().Activate();
+
+        }
+
+        Destroy(gameObject);
+
+    }
+
 }
