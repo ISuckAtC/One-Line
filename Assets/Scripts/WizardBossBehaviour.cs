@@ -90,7 +90,7 @@ public class WizardBossBehaviour : MonoBehaviour
         {
             
             case attackType.AllAttacks:
-            StartCoroutine(FireballAttack(1, true));
+            StartCoroutine(FireballAttack(FireballAttackSpeed, true));
             break;
 
             case attackType.FireballAttack:
