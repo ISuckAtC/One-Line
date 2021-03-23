@@ -18,6 +18,7 @@ public class WizardBossBehaviour : MonoBehaviour
         FireballAttack,
         DashAttack,
         SlimeStorm,
+        FireballRain,
         Pause
 
     }
@@ -103,6 +104,10 @@ public class WizardBossBehaviour : MonoBehaviour
 
             case attackType.SlimeStorm:
             SlimeStorm();
+            break;
+
+            case attackType.FireballRain:
+            StartCoroutine(FireballRain());
             break;
 
             case attackType.Pause:
