@@ -584,9 +584,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMoveDist: 2
   moveSpeed: 0.2
-  fireballSpeed: 6
-  dashSpeed: 6
-  AttackPause: 3
+  fireballSpeed: 8
+  dashSpeed: 10
+  AttackPause: 1.4
+  FireballAttackSpeed: 0.4
   slimeAmount: 2
   FireballAttackPos:
   - {fileID: 205690488}
