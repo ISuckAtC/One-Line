@@ -614,7 +614,7 @@ MonoBehaviour:
   WizardSpriteRenderer: {fileID: 625114460}
   HowToUseTheAttackPattern: Select the attack type you want the Wizard to use, or
     leave blank andomized attacks. The pause uses the AttackPause value * 2.
-  AttackPattern: 0300000003000000030000000300000004000000000000000500000004000000
+  AttackPattern: 0000000002000000040000000500000005000000000000000500000004000000
 --- !u!212 &625114460
 SpriteRenderer:
   m_ObjectHideFlags: 0
