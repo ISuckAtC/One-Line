@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Flag : MonoBehaviour
 {
-    public string nextScene;
+    public int nextSceneIndex;
+    public bool GoToNext = true;
     public GameObject fireworks, confettiCanon;
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -15,7 +16,7 @@ public class Flag : MonoBehaviour
             fireworks.SetActive(true);
             confettiCanon.SetActive(true);
             GameControl.main.LevelCompleted = true;
-            StartCoroutine(GameControl.main.EndTravel(nextScene));
+            StartCoroutine(GameControl.main.EndTravel(GoToNext ? SceneManager.GetActiveScene().buildIndex + 1 : nextSceneIndex));
         }
     }
 }
