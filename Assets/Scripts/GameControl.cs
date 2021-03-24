@@ -316,7 +316,7 @@ public class GameControl : MonoBehaviour
         Camera.main.transform.parent = Player.transform;
         Player.GetComponent<Animator>().SetTrigger("PopIn");
     }
-    public IEnumerator EndTravel(string nextScene)
+    public IEnumerator EndTravel(int nextScene)
     {
         Camera.main.transform.parent = null;
         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
