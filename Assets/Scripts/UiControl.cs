@@ -20,7 +20,9 @@ public class UiControl : MonoBehaviour
     public BarController[] BarControllers;
     public GameObject DialogueBoxHero, DialogueBoxEnemy, RestartText, GameCursor;
     public Image CursorInkCircle;
+    public Sprite NormalCursor, IceCursor, RubberCursor, GravityCursor;
     public Color32 Normal, Ice, Rubber, Gravity;
+    private LineType lineTypeSelected;
 
     // Start is called before the first frame update
     void Start()
@@ -81,13 +83,39 @@ public class UiControl : MonoBehaviour
     void UpdateInkCircle()
     {
 
+        if(gc.InkTypeSelected == 0) lineTypeSelected = LineType.Normal;
+        else if(gc.InkTypeSelected == 1) lineTypeSelected = LineType.Ice;
+        else if(gc.InkTypeSelected == 1) lineTypeSelected = LineType.Rubber;
+        else if(gc.InkTypeSelected == 1) lineTypeSelected = LineType.Weight;
+
         float CurrentAmount = gc.Ink[(int)gc.InkTypeSelected];
         float ProsentOfTotal = CurrentAmount / 100;
         ProsentOfTotal = Mathf.Clamp(ProsentOfTotal, 0, 1);
-        if(gc.InkTypeSelected == 0) CursorInkCircle.color = Normal;
-        else if(gc.InkTypeSelected == 1) CursorInkCircle.color = Ice;
-        else if(gc.InkTypeSelected == 2) CursorInkCircle.color = Rubber;
-        else if(gc.InkTypeSelected == 3) CursorInkCircle.color = Gravity;
+
+        switch (lineTypeSelected)
+        {
+            
+            case LineType.Normal:
+            CursorInkCircle.color = Normal;
+            GameCursor.GetComponent<Image>().sprite = NormalCursor;
+            break;
+
+            case LineType.Ice:
+            CursorInkCircle.color = Ice;
+            GameCursor.GetComponent<Image>().sprite = IceCursor;
+            break;
+
+            case LineType.Rubber:
+            CursorInkCircle.color = Rubber;
+            GameCursor.GetComponent<Image>().sprite = RubberCursor;
+            break;
+
+            case LineType.Weight:
+            CursorInkCircle.color = Gravity;
+            GameCursor.GetComponent<Image>().sprite = GravityCursor;
+            break;
+
+        }
         CursorInkCircle.fillAmount = ProsentOfTotal;
 
     }
