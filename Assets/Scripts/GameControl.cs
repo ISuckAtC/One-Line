@@ -213,13 +213,16 @@ public class GameControl : MonoBehaviour
                 Debug.Log(xDistance + " | " + yDistance);
                 bool ellipseTest =
                 (Mathf.Pow(lineStartPos.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(lineStartPos.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) <= 1;
-            
+
                 if (ellipseTest)
                 {
-                    Vector2 outDir = (lineStartPos - playerPos).normalized;
-                    Vector2 newPosition = (outDir * (((GameControl.MinDrawDistanceOval.x - xDistance) + (GameControl.MinDrawDistanceOval.y - yDistance)) / 2f)) + playerPos;
+                    Vector2 oval = MinDrawDistanceOval;
+                    Vector2 dir = (lineStartPos - playerPos).normalized;
+                    float angle = Mathf.Atan2(dir.y, dir.x);
 
-                    Debug.Log("Around player");
+                    float pointRadius = (oval.x * oval.y) / Mathf.Sqrt((Mathf.Pow(oval.x, 2) * Mathf.Pow(Mathf.Sin(angle), 2)) + Mathf.Pow(oval.y, 2) * Mathf.Pow(Mathf.Cos(angle), 2));
+                    Vector2 newPosition = playerPos + (dir * pointRadius);
+                    //Debug.Log("Around player" + ((Mathf.Pow(newPosition.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(newPosition.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) < 1).ToString());
                     /*if (Vector2.Distance(End, newPosition) > Vector2.Distance(End, position))
                     {
                         position = Vector2.Lerp(End, position, 0.5f);
