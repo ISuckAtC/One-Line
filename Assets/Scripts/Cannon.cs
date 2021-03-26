@@ -34,11 +34,27 @@ public class Cannon : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(cannonLockOn)
+
+        if(!onStandby)
         {
 
+            if(chamberedLine == null)
+            {
+
+                StopAllCoroutines();
+                cannonLockOn = false;
+                onStandby = true;
+                BarrelTransform.rotation = Quaternion.identity;
+
+            }
+
+        }
+
+        if(cannonLockOn)
+        {
+            
+            chamberedLine.transform.SetParent(transform);
             BarrelTransform.up = targetTransform.position - BarrelTransform.position;
-            chamberedLine.transform.SetParent(BarrelTransform);
 
         }
         
@@ -90,7 +106,7 @@ public class Cannon : MonoBehaviour
         currentRB2D.simulated = true;
         cannonLockOn = false;
         chamberedLine.transform.SetParent(null);
-        currentRB2D.velocity = lineToFire.transform.up * CannonShotForce;
+        currentRB2D.velocity = BarrelTransform.up * CannonShotForce;
         yield return new WaitForSeconds(1);
 
         onStandby = true;
