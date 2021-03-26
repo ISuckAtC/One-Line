@@ -8,6 +8,7 @@ public class Cannon : MonoBehaviour
 
     private GameObject closestEnemy, chamberedLine;
     public Transform BarrelTransform;
+    private Vector2 projectileIdlePos;
     public float CannonShotForce;
     public Transform targetTransform;
     public bool cannonLockOn, autoTarget, onStandby;
@@ -37,8 +38,7 @@ public class Cannon : MonoBehaviour
         {
 
             BarrelTransform.up = targetTransform.position - BarrelTransform.position;
-            chamberedLine.transform.position = BarrelTransform.position;
-            chamberedLine.transform.up = targetTransform.position - chamberedLine.transform.position;
+            chamberedLine.transform.SetParent(BarrelTransform);
 
         }
         
@@ -48,7 +48,6 @@ public class Cannon : MonoBehaviour
     {
 
         Line lineCheck;
-        Debug.Log("Check0");
 
         if(onStandby)
         {
@@ -56,15 +55,12 @@ public class Cannon : MonoBehaviour
             if(col.gameObject.transform.parent.tag == "Line")
             {
 
-                Debug.Log("Check1");
                 if(col.gameObject.transform.parent.TryGetComponent<Line>(out lineCheck))
                 {
 
-                    Debug.Log("Check2");
                     if(lineCheck.LineType == LineType.Weight)
                     {
 
-                        Debug.Log("Check3");
                         onStandby = false;
                         StartCoroutine(fireCannon(col.gameObject.transform.parent.gameObject));
 
@@ -87,11 +83,13 @@ public class Cannon : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         currentRB2D.simulated = false;
+        projectileIdlePos = lineToFire.transform.position - BarrelTransform.position;
         cannonLockOn = true;
         yield return new WaitForSeconds(2);
 
         currentRB2D.simulated = true;
         cannonLockOn = false;
+        chamberedLine.transform.SetParent(null);
         currentRB2D.velocity = lineToFire.transform.up * CannonShotForce;
         yield return new WaitForSeconds(1);
 
