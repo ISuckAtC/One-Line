@@ -9,6 +9,7 @@ public class UiControl : MonoBehaviour
 
     public static UiControl main { get; private set;}
     public Vector3 MinimizedSize, EnlargedSize;
+    private Vector3 mousePosition;
     private GameObject PauseGameUi;
     private GameObject InGameUi;
     public bool PauseGameUiOnOff;
@@ -17,7 +18,9 @@ public class UiControl : MonoBehaviour
     private Text coinsText;
     private Text levelSceneNumber;
     public BarController[] BarControllers;
-    public GameObject DialogueBoxHero, DialogueBoxEnemy, RestartText;
+    public GameObject DialogueBoxHero, DialogueBoxEnemy, RestartText, GameCursor;
+    public Image CursorInkCircle;
+    public Color32 Normal, Ice, Rubber, Gravity;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +56,11 @@ public class UiControl : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape)) SwitchUi();
 
+        UpdateInkCircle();
+
+        mousePosition = Input.mousePosition;
+        GameCursor.transform.position = mousePosition;
+
     }
 
     private void SwitchUi() 
@@ -70,6 +78,20 @@ public class UiControl : MonoBehaviour
 
     }
 
+    void UpdateInkCircle()
+    {
+
+        float CurrentAmount = gc.Ink[(int)gc.InkTypeSelected];
+        float ProsentOfTotal = CurrentAmount / 100;
+        ProsentOfTotal = Mathf.Clamp(ProsentOfTotal, 0, 1);
+        if(gc.InkTypeSelected == 0) CursorInkCircle.color = Normal;
+        else if(gc.InkTypeSelected == 1) CursorInkCircle.color = Ice;
+        else if(gc.InkTypeSelected == 2) CursorInkCircle.color = Rubber;
+        else if(gc.InkTypeSelected == 3) CursorInkCircle.color = Gravity;
+        CursorInkCircle.fillAmount = ProsentOfTotal;
+
+    }
+
     public void UpdateUi() 
     {
 
@@ -80,10 +102,12 @@ public class UiControl : MonoBehaviour
 
         }
 
+        //UpdateInkCircle();
+
         for(int i = 0; i <= Inkwells.Length - 1; i++) 
         {
 
-            if(GameControl.main.InkTypeSelected == i)
+            if(gc.InkTypeSelected == i)
             {
                 
                 Inkwells[i].transform.localScale = EnlargedSize;
