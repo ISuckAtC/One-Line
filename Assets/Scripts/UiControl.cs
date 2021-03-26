@@ -25,13 +25,18 @@ public class UiControl : MonoBehaviour
 
         gc = GameControl.main;
         Scene scene = SceneManager.GetActiveScene();
-        levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
-        levelSceneNumber.text = "level " + scene.buildIndex.ToString() + " - " + scene.name;
-        coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
-        PauseGameUiOnOff = false;
-        PauseGameUi = GameObject.Find("PauseGameUi");
-        InGameUi = GameObject.Find("InGameUi");
-        PauseGameUi.SetActive(false);
+        if(SceneManager.GetActiveScene().buildIndex != 0)
+        {
+
+            levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
+            levelSceneNumber.text = "level " + scene.buildIndex.ToString() + " - " + scene.name;
+            coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
+            PauseGameUiOnOff = false;
+            PauseGameUi = GameObject.Find("PauseGameUi");
+            InGameUi = GameObject.Find("InGameUi");
+            PauseGameUi.SetActive(false);
+
+        }
 
     }
 
@@ -102,7 +107,7 @@ public class UiControl : MonoBehaviour
     public void QuitButton() 
     {
 
-        if (gc.Global != null) gc.Global.ResetCount += 1;
+        if(gc.Global != null) gc.Global.ResetCount += 1;
         Application.Quit();
         Debug.Log("I do be working - (The Quit Button).");
 
