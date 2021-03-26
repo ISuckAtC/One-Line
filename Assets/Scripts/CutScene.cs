@@ -12,6 +12,9 @@ public class CutScene : MonoBehaviour, IActivatable
     private Animator EnemyDialogueAnim, HeroDialogueAnim;
     private Text DialogueBoxEnemyText, DialogueBoxHeroText;
     private AudioSource audioSource;
+    public int SecondsHoldToSkip;
+    private bool playing;
+    [SerializeField] private float skip;
     public void Start()
     {
         audioSource = Camera.main.GetComponent<AudioSource>();
@@ -28,12 +31,35 @@ public class CutScene : MonoBehaviour, IActivatable
     {
         StartCoroutine(Play());
     }
+    public void Update()
+    {
+        if (playing)
+        {
+            if (Input.GetMouseButton(1)) skip += Time.unscaledDeltaTime;
+            else if (skip < SecondsHoldToSkip) skip = 0;
+
+            /*if (skip > SecondsHoldToSkip)
+            {
+                StopCoroutine(Play());
+                EnemyDialogueAnim.ResetTrigger("MoveOut");
+                EnemyDialogueAnim.ResetTrigger("MoveIn");
+                EnemyDialogueAnim.SetTrigger("MoveOut");
+                HeroDialogueAnim.ResetTrigger("MoveOut");
+                HeroDialogueAnim.ResetTrigger("MoveIn");
+                HeroDialogueAnim.SetTrigger("MoveOut");
+                Time.timeScale = 1;
+                GameControl.main.InCutScene = false;
+            }*/
+        }
+    }
     IEnumerator Play()
     {
+        playing = true;
         Time.timeScale = 0;
         GameControl.main.InCutScene = true;
-        for(int i = 0; i < Dialogues.Length; ++i)
+        for (int i = 0; i < Dialogues.Length; ++i)
         {
+            if (skip > SecondsHoldToSkip) break;
             DialogueBoxEnemyText.text = "";
             DialogueBoxHeroText.text = "";
             if (Dialogues[i].Enemy)
@@ -65,5 +91,6 @@ public class CutScene : MonoBehaviour, IActivatable
         }
         Time.timeScale = 1;
         GameControl.main.InCutScene = false;
+        playing = false;
     }
 }
