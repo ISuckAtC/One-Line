@@ -1293,12 +1293,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1743424964 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 716935282, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 78020968}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1752438966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 739607708361941608, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
@@ -1765,18 +1759,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2023179295 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 789085414, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 78020968}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2089362287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1853,12 +1835,12 @@ PrefabInstance:
         type: 3}
       propertyPath: CursorLinePanel
       value: 
-      objectReference: {fileID: 1743424964}
+      objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: CursorLineText
       value: 
-      objectReference: {fileID: 2023179295}
+      objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: Player

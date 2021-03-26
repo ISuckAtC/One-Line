@@ -85,8 +85,8 @@ public class UiControl : MonoBehaviour
 
         if(gc.InkTypeSelected == 0) lineTypeSelected = LineType.Normal;
         else if(gc.InkTypeSelected == 1) lineTypeSelected = LineType.Ice;
-        else if(gc.InkTypeSelected == 1) lineTypeSelected = LineType.Rubber;
-        else if(gc.InkTypeSelected == 1) lineTypeSelected = LineType.Weight;
+        else if(gc.InkTypeSelected == 2) lineTypeSelected = LineType.Rubber;
+        else if(gc.InkTypeSelected == 3) lineTypeSelected = LineType.Weight;
 
         float CurrentAmount = gc.Ink[(int)gc.InkTypeSelected];
         float ProsentOfTotal = CurrentAmount / 100;

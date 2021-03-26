@@ -1264,18 +1264,22 @@ MonoBehaviour:
   RestartText: {fileID: 489261287832892944}
   GameCursor: {fileID: 739607708361941608}
   CursorInkCircle: {fileID: 4825262320340170119}
+  NormalCursor: {fileID: 21300000, guid: a959e806d96c7b64080a394e70d3dd2c, type: 3}
+  IceCursor: {fileID: 21300000, guid: 5e784571904825f4399f2b6b8b67e8df, type: 3}
+  RubberCursor: {fileID: 21300000, guid: 7bc2e61b3ccc6b0469b1894f8d05cc22, type: 3}
+  GravityCursor: {fileID: 21300000, guid: 2b571f17f0fcf37439432248144c969b, type: 3}
   Normal:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   Ice:
     serializedVersion: 2
-    rgba: 16768768
+    rgba: 4294958848
   Rubber:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4278845440
   Gravity:
     serializedVersion: 2
-    rgba: 16818
+    rgba: 4278206898
 --- !u!1 &3060476779795402192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,8 +2179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
+  m_RaycastTarget: 0
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2185,7 +2189,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
