@@ -200,7 +200,9 @@ public class Line : MonoBehaviour
             float xDistance = Mathf.Abs(playerPos.x - position.x);
             float yDistance = Mathf.Abs(playerPos.y - position.y);
             Debug.Log(xDistance + " | " + yDistance);
-            if (xDistance < GameControl.MinDrawDistanceOval.x && yDistance < GameControl.MinDrawDistanceOval.y)
+            bool ellipseTest =
+            (Mathf.Pow(position.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(position.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) <= 1;
+            if (ellipseTest)
             {
                 Vector2 newPosition = (position - playerPos).normalized * (((GameControl.MinDrawDistanceOval.x - xDistance) + (GameControl.MinDrawDistanceOval.y - yDistance)) / 2f) + playerPos;
 
@@ -246,7 +248,7 @@ public class Line : MonoBehaviour
         Length += Vector2.Distance(End, position);
         if (GameControl.main.InkByLength)
         {
-            GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
+            //GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
         }
 
 
@@ -278,7 +280,6 @@ public class Line : MonoBehaviour
 
     public IEnumerator DrawStraight(float drawRate, float pieceLength, GameObject player = null)
     {
-        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(true);
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         Vector3 startPos = transform.position;
@@ -287,7 +288,7 @@ public class Line : MonoBehaviour
         while (Input.GetMouseButton(0))
         {
             if (GameControl.main.InCutScene) break;
-            if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
+            //if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
             yield return new WaitForSecondsRealtime(drawRate);
         }
 
@@ -309,7 +310,7 @@ public class Line : MonoBehaviour
             rb.mass = 10;
         }
         if (!GameControl.main.InCutScene) Time.timeScale = 1;
-        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
+        //if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {
             GameControl.main.ModInk(LineType, 0);
@@ -320,7 +321,7 @@ public class Line : MonoBehaviour
 
     public IEnumerator Drawing(float drawRate, float pieceLength, GameObject player = null)
     {
-        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(true);
+        //if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(true);
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         Add(pos, true, player, LineType == LineType.Joint);
@@ -342,7 +343,7 @@ public class Line : MonoBehaviour
 
 
         if (!GameControl.main.InCutScene) Time.timeScale = 1;
-        if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
+        //if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {
             GameControl.main.ModInk(LineType, 0);

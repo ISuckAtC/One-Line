@@ -76,13 +76,12 @@ public class GameControl : MonoBehaviour
     void Awake()
     {
         if (GameObject.Find("Global Data") != null) Global = GameObject.Find("Global Data").GetComponent<GlobalData>();
-        if (Global == null) 
+        if (Global == null)
         {
             Global = (new GameObject("Global Data")).AddComponent<GlobalData>();
             DontDestroyOnLoad(Global.gameObject);
             Debug.Log(Global.Coins);
         }
-        CursorLinePanel.SetActive(false);
         main = this;
         if (ForceDefault) lineType = DefaultLineType;
         else
@@ -136,11 +135,11 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U)) 
+        if (Input.GetKeyDown(KeyCode.U))
         {
             //System.IO.File.WriteAllText("./LogDump.txt", LogDump);
         }
-        if (Input.GetKeyDown(KeyCode.R)) 
+        if (Input.GetKeyDown(KeyCode.R))
         {
             if (!LevelCompleted) Global.ResetCount++;
             Time.timeScale = 1;
@@ -148,8 +147,7 @@ public class GameControl : MonoBehaviour
         }
 
         Vector3 mousePos = Input.mousePosition;
-        //GameCursor.transform.position = new Vector3(mousePos.x + 18, mousePos.y - 20, mousePos.z);
-        GameCursor.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
+
 
         if (Input.GetMouseButtonDown(1) && !InCutScene)
         {
@@ -206,9 +204,29 @@ public class GameControl : MonoBehaviour
                 }
                 Vector2 lineStartPos = Camera.main.ScreenToWorldPoint(mousePos, Camera.MonoOrStereoscopicEye.Mono);
                 Vector2 playerPos = Player.transform.position;
-                if (Vector2.Distance(playerPos, lineStartPos) < MinDrawDistanceAroundPlayer)
+                //if (Vector2.Distance(playerPos, lineStartPos) < MinDrawDistanceAroundPlayer)
+                //{
+                //    lineStartPos = ((lineStartPos - playerPos).normalized * MinDrawDistanceAroundPlayer) + playerPos;
+                //}
+                float xDistance = Mathf.Abs(playerPos.x - lineStartPos.x);
+                float yDistance = Mathf.Abs(playerPos.y - lineStartPos.y);
+                Debug.Log(xDistance + " | " + yDistance);
+                bool ellipseTest =
+                (Mathf.Pow(lineStartPos.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(lineStartPos.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) <= 1;
+            
+                if (ellipseTest)
                 {
-                    lineStartPos = ((lineStartPos - playerPos).normalized * MinDrawDistanceAroundPlayer) + playerPos;
+                    Vector2 outDir = (lineStartPos - playerPos).normalized;
+                    Vector2 newPosition = (outDir * (((GameControl.MinDrawDistanceOval.x - xDistance) + (GameControl.MinDrawDistanceOval.y - yDistance)) / 2f)) + playerPos;
+
+                    Debug.Log("Around player");
+                    /*if (Vector2.Distance(End, newPosition) > Vector2.Distance(End, position))
+                    {
+                        position = Vector2.Lerp(End, position, 0.5f);
+                        position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
+                    }
+                    else */
+                    lineStartPos = newPosition;
                 }
                 GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
                 if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
@@ -252,19 +270,19 @@ public class GameControl : MonoBehaviour
         switch (type)
         {
             case LineType.Normal:
-                GameCursor.GetComponent<Image>().sprite = CursorNormal;
+                //GameCursor.GetComponent<Image>().sprite = CursorNormal;
                 InkTypeSelected = 0;
                 break;
             case LineType.Ice:
-                GameCursor.GetComponent<Image>().sprite = CursorIce;
+                //GameCursor.GetComponent<Image>().sprite = CursorIce;
                 InkTypeSelected = 1;
                 break;
             case LineType.Rubber:
-                GameCursor.GetComponent<Image>().sprite = CursorRubber;
+                //GameCursor.GetComponent<Image>().sprite = CursorRubber;
                 InkTypeSelected = 2;
                 break;
             case LineType.Weight:
-                GameCursor.GetComponent<Image>().sprite = CursorWeight;
+                //GameCursor.GetComponent<Image>().sprite = CursorWeight;
                 InkTypeSelected = 3;
                 break;
             case LineType.Joint:
@@ -294,11 +312,6 @@ public class GameControl : MonoBehaviour
         // Update UI for inkwells here
 
         //inkWellTexts[(int)type].text = Ink[(int)type].ToString();
-    }
-    public void ModInkDisplayOnly(LineType type, int setamount)
-    {
-        CursorLineText.text = (Ink[(int)type] + setamount).ToString();
-        //inkWellTexts[(int)type].text = (Ink[(int)type] + setamount).ToString();
     }
     IEnumerator StartTravel()
     {
