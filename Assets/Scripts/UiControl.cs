@@ -26,7 +26,7 @@ public class UiControl : MonoBehaviour
         gc = GameControl.main;
         Scene scene = SceneManager.GetActiveScene();
         levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
-        levelSceneNumber.text = "level " + scene.buildIndex.ToString();
+        levelSceneNumber.text = "level " + scene.buildIndex.ToString() + " - " + scene.name;
         coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
         PauseGameUiOnOff = false;
         PauseGameUi = GameObject.Find("PauseGameUi");
