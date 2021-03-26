@@ -184,7 +184,7 @@ public class Line : MonoBehaviour
     {
         Vector2 playerPos = player.transform.position;
         string debugString = "Initial Position: (" + position + ") | ";
-        if (player && Vector2.Distance(playerPos, position) < GameControl.MinDrawDistanceAroundPlayer)
+        /*if (player && Vector2.Distance(playerPos, position) < GameControl.MinDrawDistanceAroundPlayer)
         {
             Debug.Log("Around player");
             Vector2 newPosition = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
@@ -194,6 +194,24 @@ public class Line : MonoBehaviour
                 position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
             }
             else position = newPosition;
+        }*/
+        if (player)
+        {
+            float xDistance = Mathf.Abs(playerPos.x - position.x);
+            float yDistance = Mathf.Abs(playerPos.y - position.y);
+            Debug.Log(xDistance + " | " + yDistance);
+            if (xDistance < GameControl.MinDrawDistanceOval.x && yDistance < GameControl.MinDrawDistanceOval.y)
+            {
+                Vector2 newPosition = (position - playerPos).normalized * (((GameControl.MinDrawDistanceOval.x - xDistance) + (GameControl.MinDrawDistanceOval.y - yDistance)) / 2f) + playerPos;
+
+                Debug.Log("Around player");
+                /*if (Vector2.Distance(End, newPosition) > Vector2.Distance(End, position))
+                {
+                    position = Vector2.Lerp(End, position, 0.5f);
+                    position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
+                }
+                else */position = newPosition;
+            }
         }
 
         debugString += "Post push position: (" + position + ") | ";
@@ -226,7 +244,7 @@ public class Line : MonoBehaviour
         }
 
         Length += Vector2.Distance(End, position);
-        if (GameControl.main.InkByLength) 
+        if (GameControl.main.InkByLength)
         {
             GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
         }
@@ -250,7 +268,7 @@ public class Line : MonoBehaviour
         Debug.Log("FromTo: Constructing " + pieceCount + " pieces");
         for (int i = 0; i < pieceCount; ++i)
         {
-            if (Add(Vector2.Lerp(from, to, 1f / pieceCount * i), false, player, joint)) 
+            if (Add(Vector2.Lerp(from, to, 1f / pieceCount * i), false, player, joint))
             {
                 //Debug.Log("Stopping early at limit");
                 //break;
@@ -266,7 +284,7 @@ public class Line : MonoBehaviour
         Vector3 startPos = transform.position;
         startPos.z = 0;
         Add(pos, true, player);
-        while (Input.GetMouseButton(0)) 
+        while (Input.GetMouseButton(0))
         {
             if (GameControl.main.InCutScene) break;
             if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
@@ -296,7 +314,7 @@ public class Line : MonoBehaviour
         {
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
-        } 
+        }
         else GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
     }
 
@@ -329,7 +347,7 @@ public class Line : MonoBehaviour
         {
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
-        } 
+        }
         else GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
     }
     public void Update()
@@ -371,7 +389,7 @@ public class LinePiece
         middleMask.frontSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
         middleMask.backSortingOrder = 0;
         middleMask.backSortingLayerID = SortingLayer.NameToID("Line" + line.LineType.ToString());
-        
+
 
         MiddleBox.layer = LayerMask.NameToLayer("Line");
         EndCircle = new GameObject();

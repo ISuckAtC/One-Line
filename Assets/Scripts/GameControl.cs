@@ -18,7 +18,8 @@ public class GameControl : MonoBehaviour
     LineType lineType;
     public float SetMinDrawDistanceAroundPlayer;
     static public float MinDrawDistanceAroundPlayer;
-    public GameObject GameCursor;
+    public Vector2 SetMinDrawDistanceOval;
+    static public Vector2 MinDrawDistanceOval;
     public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight, CursorJoint, InkNormal, InkIce, InkRubber, InkWeight, InkJoint;
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
@@ -50,8 +51,6 @@ public class GameControl : MonoBehaviour
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
     public Dialogue DialoguePrimitive;
-    public GameObject CursorLinePanel;
-    public Text CursorLineText;
     public Text DeathCountText;
     public char CustomWaitDefCharacter;
     public int CustomWaitDefDigits;
@@ -100,6 +99,7 @@ public class GameControl : MonoBehaviour
     {
         Debug.Log(SortingLayer.NameToID("Line" + LineType.Normal.ToString()));
         MinDrawDistanceAroundPlayer = SetMinDrawDistanceAroundPlayer;
+        MinDrawDistanceOval = SetMinDrawDistanceOval;
         Cursor.visible = false;
 
         normalLeft = NormalLimit;
