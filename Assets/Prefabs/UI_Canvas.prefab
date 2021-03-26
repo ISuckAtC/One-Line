@@ -1262,6 +1262,20 @@ MonoBehaviour:
   DialogueBoxHero: {fileID: 9097963612534844202}
   DialogueBoxEnemy: {fileID: 2393466697509233213}
   RestartText: {fileID: 489261287832892944}
+  GameCursor: {fileID: 739607708361941608}
+  CursorInkCircle: {fileID: 4825262320340170119}
+  Normal:
+    serializedVersion: 2
+    rgba: 16777215
+  Ice:
+    serializedVersion: 2
+    rgba: 16768768
+  Rubber:
+    serializedVersion: 2
+    rgba: 0
+  Gravity:
+    serializedVersion: 2
+    rgba: 16818
 --- !u!1 &3060476779795402192
 GameObject:
   m_ObjectHideFlags: 0
