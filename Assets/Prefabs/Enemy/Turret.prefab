@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 224025a8bed34274aa9895a6098691d8, type: 3}
-  m_Color: {r: 0.90099996, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.78039217, g: 0.3764706, b: 0.14117648, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,10 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d40d75aedd400a489b26b89bc759a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 1
   bullet: {fileID: 7871054985576896798, guid: ccf71d777bc5ffa499ffab706cf48f73, type: 3}
   fireRate: 1
   waitBeforeStart: 8
   bulletSpeed: 10
+  Inactive: 0
 --- !u!60 &-7797248384589767743
 PolygonCollider2D:
   m_ObjectHideFlags: 0
