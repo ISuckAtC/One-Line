@@ -11,10 +11,11 @@ public class MainMenuController : MonoBehaviour
     public Sprite[] LevelPreviewImage;
     public string[] LevelPreviewText;
     public GameObject MainMenuCursor, PreviewPanel;
-    public Text PreviewName, PreviewText, GoToLevelButtonText;
+    public Text PreviewName, PreviewText, GoToLevelButtonText, PreviewBestTimeText;
     public Image PreviewImage;
     private Vector3 mousePosition;
     private int levelNumSelected;
+    private float[] levelTimes;
     public float slideInCounter, slideOutCounter, screenWidth;
     public bool inView;
 
@@ -23,6 +24,7 @@ public class MainMenuController : MonoBehaviour
 
         screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
         Cursor.visible = false;
+
 
     }
 
@@ -65,6 +67,7 @@ public class MainMenuController : MonoBehaviour
             PreviewName.text = LevelNames[levelNumSelected-1];
             PreviewImage.sprite = LevelPreviewImage[levelNumSelected-1];
             PreviewText.text = LevelPreviewText[levelNumSelected-1];
+            PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
 
             slideInCounter = -1;
