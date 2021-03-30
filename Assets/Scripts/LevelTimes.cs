@@ -21,18 +21,26 @@ public class LevelTimes
             for(int i = 0; i < SceneManager.sceneCountInBuildSettings-1; i++)
             {
 
-                if(NewLT.Times[i] != 0)
+                if(NewLT.Times[i] < PreviousTimes.Times[i])
                 {
 
-                    Times[i] = NewLT.Times[i];
+                    if(NewLT.Times[i] > 0)
+                        Times[i] = NewLT.Times[i];
+                    else
+                        Times[i] = PreviousTimes.Times[i];
+
+                }
+                else if(PreviousTimes.Times[i] < NewLT.Times[i])
+                {
+
+                    if(PreviousTimes.Times[i] > 0)
+                        Times[i] = PreviousTimes.Times[i];
+                    else
+                        Times[i] = NewLT.Times[i];
 
                 }
                 else
-                {
-
-                    Times[i] = PreviousTimes.Times[i];
-
-                }
+                    Times[i] = 0;
 
             }
 
