@@ -27,11 +27,8 @@ public class MainMenuController : MonoBehaviour
         {
 
             CLT.CreateNewTimes();
-            levelTimes = SaveAndLoad.LoadTimes().Times;
 
         }
-
-        Debug.Log(SaveAndLoad.LoadTimes().Times);
 
         levelTimes = SaveAndLoad.LoadTimes().Times;
         screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
