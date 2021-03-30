@@ -20,6 +20,7 @@ public class CreateLevelTime : MonoBehaviour
 
         Times[SceneManager.GetActiveScene().buildIndex-1] = Time.timeSinceLevelLoad;
         SaveAndLoad.SaveTimes(this);
+        Debug.Log("Saving...");
 
     }
 
