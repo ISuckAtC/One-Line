@@ -15,16 +15,29 @@ public class MainMenuController : MonoBehaviour
     public Image PreviewImage;
     private Vector3 mousePosition;
     private int levelNumSelected;
-    private float[] levelTimes;
+    public float[] levelTimes;
     public float slideInCounter, slideOutCounter, screenWidth;
     public bool inView;
 
     void Start()
     {
 
+        levelTimes = SaveAndLoad.LoadTimes().Times;
         screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
         Cursor.visible = false;
+        if(levelTimes == null)
+        {
 
+            levelTimes = new float[SceneManager.sceneCountInBuildSettings-1];
+
+        }
+
+        for(int i = 0; i < levelTimes.Length-1; i++)
+        {
+
+            Debug.Log(levelTimes[i]);
+
+        }
 
     }
 
