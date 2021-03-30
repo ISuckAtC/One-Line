@@ -31,15 +31,15 @@ public class MainMenuController : MonoBehaviour
         }
 
         levelTimes = SaveAndLoad.LoadTimes().Times;
-        screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
-        Cursor.visible = false;
-
-        if(levelTimes == null)
+        if(levelTimes.Length < 2)
         {
 
             levelTimes = new float[SceneManager.sceneCountInBuildSettings-1];
 
         }
+
+        screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
+        Cursor.visible = false;
 
         for(int i = 0; i < levelTimes.Length-1; i++)
         {
