@@ -89483,7 +89483,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -89557,7 +89557,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -89687,12 +89687,12 @@ PrefabInstance:
         type: 3}
       propertyPath: CursorLinePanel
       value: 
-      objectReference: {fileID: 957306950}
+      objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: CursorLineText
       value: 
-      objectReference: {fileID: 678659395}
+      objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: GameCursor
@@ -89706,7 +89706,7 @@ PrefabInstance:
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: Ink.Array.data[3]
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
@@ -89820,7 +89820,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -89998,7 +89998,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -90072,7 +90072,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -90131,18 +90131,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0d9a4abfd7b15a49a336eb1dd943859, type: 3}
---- !u!114 &678659395 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 789085414, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 202596491}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &790104098 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5745138739628167517, guid: 2287ef4c559590641a2c162db3545ca0,
@@ -90319,7 +90307,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -90378,12 +90366,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0d9a4abfd7b15a49a336eb1dd943859, type: 3}
---- !u!1 &957306950 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 716935282, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 202596491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &993286618
 GameObject:
   m_ObjectHideFlags: 0
@@ -90443,7 +90425,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -90671,7 +90653,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -90745,7 +90727,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -90819,7 +90801,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -90973,7 +90955,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
@@ -91047,7 +91029,7 @@ PrefabInstance:
     - target: {fileID: 5488547210505344815, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
       propertyPath: CrushVelocity
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5488547210505344819, guid: c0d9a4abfd7b15a49a336eb1dd943859,
         type: 3}
