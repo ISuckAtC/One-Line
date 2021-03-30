@@ -97,8 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingDataAsset: {fileID: 112000000, guid: 82247564d90a7404491cfc1fbbcc1da0,
+    type: 2}
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -507,6 +508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas_24x18
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 034a31948c2fa5a478301cca2e4d64e1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034a31948c2fa5a478301cca2e4d64e1, type: 3}
@@ -5086,7 +5092,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967294
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &304325316
 MeshCollider:
@@ -8931,6 +8937,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Brush
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a82e4a0d973bbd64191cfe0c3d62a1a2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a82e4a0d973bbd64191cfe0c3d62a1a2, type: 3}
