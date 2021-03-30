@@ -18,13 +18,22 @@ public class MainMenuController : MonoBehaviour
     public float[] levelTimes;
     public float slideInCounter, slideOutCounter, screenWidth;
     public bool inView;
+    public CreateLevelTime CLT;
 
     void Start()
     {
 
+        if(SaveAndLoad.LoadTimes() == null)
+        {
+
+            CLT.CreateNewTimes();
+
+        }
+
         levelTimes = SaveAndLoad.LoadTimes().Times;
         screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
         Cursor.visible = false;
+        
         if(levelTimes == null)
         {
 

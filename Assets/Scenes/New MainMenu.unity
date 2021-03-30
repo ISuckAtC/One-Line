@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3428,6 +3428,7 @@ GameObject:
   - component: {fileID: 1093317820}
   - component: {fileID: 1093317819}
   - component: {fileID: 1093317818}
+  - component: {fileID: 1093317822}
   - component: {fileID: 1093317817}
   m_Layer: 5
   m_Name: MainMenuCanvas
@@ -3520,6 +3521,7 @@ MonoBehaviour:
   slideOutCounter: 0
   screenWidth: 0
   inView: 0
+  CLT: {fileID: 1093317822}
 --- !u!114 &1093317818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3605,6 +3607,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1093317822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093317816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764365f23bfc0ee4dbd5bbab474535a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Times: []
 --- !u!1 &1206690263
 GameObject:
   m_ObjectHideFlags: 0

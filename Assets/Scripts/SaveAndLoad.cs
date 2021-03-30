@@ -12,7 +12,7 @@ public class SaveAndLoad : MonoBehaviour
 
         LevelTimes previousTimes = LoadTimes();
         BinaryFormatter formatter = new BinaryFormatter();
-        string savePath = @"C:/PlayerData.kevo";
+        string savePath = Application.persistentDataPath + "/PlayerData.kevo";
         FileStream stream = new FileStream(savePath, FileMode.Create);
 
         LevelTimes data = new LevelTimes(CLT, previousTimes);
@@ -25,7 +25,7 @@ public class SaveAndLoad : MonoBehaviour
     public static LevelTimes LoadTimes()
     {
 
-        string loadPath = @"C:/PlayerData.kevo";
+        string loadPath = Application.persistentDataPath + "/PlayerData.kevo";
         if(File.Exists(loadPath))
         {
 

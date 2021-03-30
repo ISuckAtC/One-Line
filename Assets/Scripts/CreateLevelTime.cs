@@ -18,7 +18,13 @@ public class CreateLevelTime : MonoBehaviour
     public void CreateNewTimes()
     {
 
-        Times[SceneManager.GetActiveScene().buildIndex-1] = Time.timeSinceLevelLoad;
+        if(SceneManager.GetActiveScene().buildIndex != 0)
+        {
+
+            Times[SceneManager.GetActiveScene().buildIndex-1] = Time.timeSinceLevelLoad;
+
+        }
+
         SaveAndLoad.SaveTimes(this);
         Debug.Log("Saving...");
 
