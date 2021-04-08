@@ -8,15 +8,10 @@ public class CreateLevelTime : MonoBehaviour
 
     public float[] Times;
 
-    void Start()
+    public void CreateNewTimes(bool loadPrevTimes)
     {
 
         Times = new float[SceneManager.sceneCountInBuildSettings-1];
-
-    }
-
-    public void CreateNewTimes()
-    {
 
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -25,7 +20,14 @@ public class CreateLevelTime : MonoBehaviour
 
         }
 
-        SaveAndLoad.SaveTimes(this);
+        for(int i = 0; i < Times.Length - 1; i++)
+        {
+
+            Debug.Log("CLT: " + Times[i]);
+
+        }
+
+        SaveAndLoad.SaveTimes(Times, loadPrevTimes);
         Debug.Log("Saving...");
 
     }
