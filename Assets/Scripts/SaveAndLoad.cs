@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 public class SaveAndLoad : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class SaveAndLoad : MonoBehaviour
 
         }
         BinaryFormatter formatter = new BinaryFormatter();
-        string savePath = "/PlayerData.kevo";
+        string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GameData.kevo");
         FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         
         LevelTimes data = new LevelTimes(times, previousLevelTimes);
@@ -31,7 +32,7 @@ public class SaveAndLoad : MonoBehaviour
     public static LevelTimes LoadTimes()
     {
 
-        string loadPath = "/PlayerData.kevo";
+        string loadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GameData.kevo");
         if(File.Exists(loadPath))
         {
 
