@@ -19,7 +19,7 @@ public class SaveAndLoad : MonoBehaviour
 
         }
         BinaryFormatter formatter = new BinaryFormatter();
-        string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GameData.kevo");
+        string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
         FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         
         LevelTimes data = new LevelTimes(times, previousLevelTimes);
@@ -32,7 +32,7 @@ public class SaveAndLoad : MonoBehaviour
     public static LevelTimes LoadTimes()
     {
 
-        string loadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GameData.kevo");
+        string loadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
         if(File.Exists(loadPath))
         {
 
