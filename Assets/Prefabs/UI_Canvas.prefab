@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &111070805
 RectTransform:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a94bdd35fda2874d90d658f6705d5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ratio: 9.2
+  Ratios: {x: 0, y: 0}
   Map: {fileID: 111070807}
   PlayerDot: {fileID: 1225986578}
   Offset: {x: 0, y: 0}

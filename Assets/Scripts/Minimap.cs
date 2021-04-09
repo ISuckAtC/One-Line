@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Minimap : MonoBehaviour
 {
-    public float Ratio;
+    public Vector2 Ratios;
     public Image Map;
     public GameObject PlayerDot;
     public Vector2 Offset;
@@ -19,6 +19,7 @@ public class Minimap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerDot.transform.localPosition = ((Vector2)GameControl.main.Player.transform.position - Offset) * Ratio;
+        Vector2 pos = ((Vector2)GameControl.main.Player.transform.position - Offset) * Ratios;
+        PlayerDot.transform.localPosition = pos;
     }
 }
