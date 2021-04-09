@@ -19,7 +19,7 @@ public class ActivatorAreaEnemy : MonoBehaviour
             Enemies = Enemies.Where(x => x != null).ToArray();
             if (Enemies.Length == 0) 
             {
-                foreach(GameObject activatable in Activatables) activatable.GetComponent<SpriteRenderer>().color = Color.green;
+                foreach(GameObject activatable in Activatables) activatable.GetComponent<IActivatable>().Activate();
                 once = true;
             }
         }
