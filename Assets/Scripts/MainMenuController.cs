@@ -18,35 +18,29 @@ public class MainMenuController : MonoBehaviour
     public float[] levelTimes;
     public float slideInCounter, slideOutCounter, screenWidth;
     public bool inView;
-    //public CreateLevelTime CLT;
+    public CreateLevelTime CLT;
 
     void Start()
     {
 
-        /*if(SaveAndLoad.LoadTimes() == null)
+        if(SaveAndLoad.LoadTimes() == null)
         {
 
-            CLT.CreateNewTimes();
+            CLT.CreateNewTimes(false);
 
         }
 
         levelTimes = SaveAndLoad.LoadTimes().Times;
-        if(levelTimes.Length < 2)
-        {
-
-            levelTimes = new float[SceneManager.sceneCountInBuildSettings-1];
-
-        }*/
 
         screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
         Cursor.visible = false;
 
-        /*for(int i = 0; i < levelTimes.Length-1; i++)
+        for(int i = 0; i < levelTimes.Length-1; i++)
         {
 
             Debug.Log(levelTimes[i]);
 
-        }*/
+        }
 
     }
 
@@ -89,7 +83,7 @@ public class MainMenuController : MonoBehaviour
             PreviewName.text = LevelNames[levelNumSelected-1];
             PreviewImage.sprite = LevelPreviewImage[levelNumSelected-1];
             PreviewText.text = LevelPreviewText[levelNumSelected-1];
-            //PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
+            PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
 
             slideInCounter = -1;

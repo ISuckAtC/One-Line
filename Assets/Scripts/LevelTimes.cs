@@ -11,44 +11,44 @@ public class LevelTimes
 
     //Used the values from both the previously saved Times array and the one currently being saved
     //Checks if the new times are better or worse and selects the best, if the time spent is 0, it will not save anything
-    public LevelTimes(CreateLevelTime NewLT, LevelTimes PreviousTimes)
+    public LevelTimes(float[] NewLT, LevelTimes previousLevelTimes)
     {
 
         Times = new float[SceneManager.sceneCountInBuildSettings-1];
+        float[] newTime = NewLT;
 
-        if(PreviousTimes != null)
+        for (int i = 0; i < newTime.Length - 1; i++)
         {
-            for(int i = 0; i < SceneManager.sceneCountInBuildSettings-1; i++)
+
+            if(previousLevelTimes != null && i < previousLevelTimes.Times.Length - 1)
             {
 
-                if(NewLT.Times[i] < PreviousTimes.Times[i])
+                if(newTime[i] < previousLevelTimes.Times[i] && newTime[i] != 0)
                 {
 
-                    if(NewLT.Times[i] > 0)
-                        Times[i] = NewLT.Times[i];
-                    else
-                        Times[i] = PreviousTimes.Times[i];
+                    Times[i] = newTime[i];
 
                 }
-                else if(PreviousTimes.Times[i] < NewLT.Times[i])
+                else if(previousLevelTimes.Times[i] != 0)
                 {
 
-                    if(PreviousTimes.Times[i] > 0)
-                        Times[i] = PreviousTimes.Times[i];
-                    else
-                        Times[i] = NewLT.Times[i];
+                    Times[i] = previousLevelTimes.Times[i];
 
                 }
                 else
-                    Times[i] = 0;
+                {
+
+                    Times[i] = newTime[i];
+
+                }
 
             }
+            else
+            {
 
-        }
-        else
-        {
+                Times[i] = newTime[i];
 
-            Times = NewLT.Times;
+            }
 
         }
 

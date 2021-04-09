@@ -8,15 +8,10 @@ public class CreateLevelTime : MonoBehaviour
 
     public float[] Times;
 
-    void Start()
+    public void CreateNewTimes(bool loadPrevTimes)
     {
 
         Times = new float[SceneManager.sceneCountInBuildSettings-1];
-
-    }
-
-    public void CreateNewTimes()
-    {
 
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -25,8 +20,7 @@ public class CreateLevelTime : MonoBehaviour
 
         }
 
-        SaveAndLoad.SaveTimes(this);
-        Debug.Log("Saving...");
+        SaveAndLoad.SaveTimes(Times, loadPrevTimes);
 
     }
 

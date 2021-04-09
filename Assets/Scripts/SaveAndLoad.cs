@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 public class SaveAndLoad : MonoBehaviour
 {
 
-    public static void SaveTimes(CreateLevelTime CLT)
+    public static void SaveTimes(float[] times, bool loadPrevTimes)
     {
 
-        LevelTimes previousTimes = LoadTimes();
-        BinaryFormatter formatter = new BinaryFormatter();
-        string savePath = Application.persistentDataPath + "/PlayerData.kevo";
-        FileStream stream = new FileStream(savePath, FileMode.Create);
+        LevelTimes previousLevelTimes = null;
+        if(loadPrevTimes)
+        {
 
-        LevelTimes data = new LevelTimes(CLT, previousTimes);
+            previousLevelTimes = LoadTimes();
+
+        }
+        BinaryFormatter formatter = new BinaryFormatter();
+        string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
+        FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        
+        LevelTimes data = new LevelTimes(times, previousLevelTimes);
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -25,12 +32,12 @@ public class SaveAndLoad : MonoBehaviour
     public static LevelTimes LoadTimes()
     {
 
-        string loadPath = Application.persistentDataPath + "/PlayerData.kevo";
+        string loadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
         if(File.Exists(loadPath))
         {
 
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(loadPath, FileMode.Open);
+            FileStream stream = new FileStream(loadPath, FileMode.Open, FileAccess.Read);
 
             LevelTimes data = formatter.Deserialize(stream) as LevelTimes;
             stream.Close();
