@@ -20,15 +20,7 @@ public class CreateLevelTime : MonoBehaviour
 
         }
 
-        for(int i = 0; i < Times.Length - 1; i++)
-        {
-
-            Debug.Log("CLT: " + Times[i]);
-
-        }
-
         SaveAndLoad.SaveTimes(Times, loadPrevTimes);
-        Debug.Log("Saving...");
 
     }
 
