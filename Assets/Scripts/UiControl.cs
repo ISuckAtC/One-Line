@@ -30,18 +30,13 @@ public class UiControl : MonoBehaviour
 
         gc = GameControl.main;
         Scene scene = SceneManager.GetActiveScene();
-        if(SceneManager.GetActiveScene().buildIndex != 0)
-        {
-
-            levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
-            levelSceneNumber.text = "level " + scene.buildIndex.ToString() + " - " + scene.name;
-            coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
-            PauseGameUiOnOff = false;
-            PauseGameUi = GameObject.Find("PauseGameUi");
-            InGameUi = GameObject.Find("InGameUi");
-            PauseGameUi.SetActive(false);
-
-        }
+        levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
+        levelSceneNumber.text = "level " + scene.buildIndex.ToString() + " - " + scene.name;
+        coinsText = GameObject.Find("CoinsText").GetComponent<Text>();
+        PauseGameUiOnOff = false;
+        PauseGameUi = GameObject.Find("PauseGameUi");
+        InGameUi = GameObject.Find("InGameUi");
+        PauseGameUi.SetActive(false);
 
     }
 
@@ -57,8 +52,6 @@ public class UiControl : MonoBehaviour
     {
 
         if(Input.GetKeyDown(KeyCode.Escape)) SwitchUi();
-
-        UpdateInkCircle();
 
         mousePosition = Input.mousePosition;
         GameCursor.transform.position = mousePosition;
@@ -130,7 +123,7 @@ public class UiControl : MonoBehaviour
 
         }
 
-        //UpdateInkCircle();
+        UpdateInkCircle();
 
         for(int i = 0; i <= Inkwells.Length - 1; i++) 
         {
