@@ -15,8 +15,9 @@ public class MainMenuController : MonoBehaviour
     public Image PreviewImage;
     private Vector3 mousePosition;
     private int levelNumSelected;
+    private float slideInCounter, slideOutCounter;
     public float[] levelTimes;
-    public float slideInCounter, slideOutCounter, screenWidth;
+    public float PreviewPanelSpeed, screenWidth;
     public bool inView;
     public CreateLevelTime CLT;
 
@@ -86,17 +87,17 @@ public class MainMenuController : MonoBehaviour
             PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
 
-            slideInCounter = -1;
+            slideInCounter = 1;
             inView = false;
 
         }
 
-        if(slideInCounter < 1)
+        if(slideInCounter > 0)
         {
 
-            slideInCounter += Time.deltaTime * 6;
-            slideInCounter = Mathf.Clamp(slideInCounter, -1, 1);
-            PreviewPanel.transform.position = new Vector2(screenWidth + (-250 * slideInCounter), PreviewPanel.transform.position.y);
+            slideInCounter -= Time.deltaTime * PreviewPanelSpeed;
+            slideInCounter = Mathf.Clamp(slideInCounter, 0, 1);
+            PreviewPanel.transform.position = new Vector2(screenWidth + (500 * slideInCounter), PreviewPanel.transform.position.y);
             yield return new WaitForEndOfFrame();
             StartCoroutine(SlideIn(false));
 
@@ -115,14 +116,14 @@ public class MainMenuController : MonoBehaviour
 
         }
 
-        if(reset) slideOutCounter = 1;
+        if(reset) slideOutCounter = 0;
 
-        if(slideOutCounter > -1)
+        if(slideOutCounter < 1)
         {
 
-            slideOutCounter -= Time.deltaTime * 6;
-            slideOutCounter = Mathf.Clamp(slideOutCounter, -1, 1);
-            PreviewPanel.transform.position = new Vector2(screenWidth + (-250 * slideOutCounter), PreviewPanel.transform.position.y);
+            slideOutCounter += Time.deltaTime * PreviewPanelSpeed;
+            slideOutCounter = Mathf.Clamp(slideOutCounter, 0, 1);
+            PreviewPanel.transform.position = new Vector2(screenWidth + (500 * slideOutCounter), PreviewPanel.transform.position.y);
             yield return new WaitForEndOfFrame();
             StartCoroutine(SlideOut(outToIn, false));
 
