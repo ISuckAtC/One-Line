@@ -31,7 +31,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 350
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -4870,6 +4870,13 @@ ScriptedImporter:
   characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
+  - name: Arm_Right
+    spriteName: Arm_Right
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ac50ae11ac386564c8addff81e6eb480
+    layerID: 13
+    mosaicPosition: {x: 497, y: 589}
   - name: Hat
     spriteName: Hat
     isGroup: 0
@@ -4884,13 +4891,6 @@ ScriptedImporter:
     spriteID: 9af8a94f1f09b1b428c9b5b73e386bcc
     layerID: 19
     mosaicPosition: {x: 301, y: 4}
-  - name: Arm_Right
-    spriteName: Arm_Right
-    isGroup: 0
-    parentIndex: -1
-    spriteID: ac50ae11ac386564c8addff81e6eb480
-    layerID: 13
-    mosaicPosition: {x: 497, y: 589}
   - name: Body
     spriteName: Body
     isGroup: 0
