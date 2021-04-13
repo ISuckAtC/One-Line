@@ -6,6 +6,7 @@ public class Gate : MonoBehaviour, IActivatable
 {
     public float MoveLength, Speed;
     public bool Open;
+    public bool Horizontal;
     private Vector2 origin;
 
     void Start()
@@ -17,22 +18,17 @@ public class Gate : MonoBehaviour, IActivatable
     {
         if (Open)
         {
-            if (transform.position.y != origin.y + MoveLength)
+            if (Vector2.Distance(origin, transform.position) < MoveLength)
             {
-                if (transform.position.y + Speed > origin.y + MoveLength)
-                {
-                    transform.position = new Vector3(transform.position.x, origin.y + MoveLength);
-                }
-                else transform.Translate(new Vector3(0, Speed, 0));
+                transform.position = Vector2.MoveTowards(transform.position, origin + new Vector2(Horizontal ? MoveLength : 0, Horizontal ? 0 : MoveLength), Speed);
             }
         }
-        else if (transform.position.y != origin.y)
+        else if ((Vector2)transform.position != origin)
         {
-            if (transform.position.y - Speed < origin.y)
+            if (Vector2.Distance(origin, transform.position) < MoveLength)
             {
-                transform.position = new Vector3(transform.position.x, origin.y);
+                transform.position = Vector2.MoveTowards(origin + new Vector2(Horizontal ? MoveLength : 0, Horizontal ? 0 : MoveLength), transform.position, Speed);
             }
-            else transform.Translate(new Vector3(0, -Speed, 0));
         }
     }
 

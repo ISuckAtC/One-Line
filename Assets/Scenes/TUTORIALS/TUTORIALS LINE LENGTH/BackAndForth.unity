@@ -273,6 +273,11 @@ PrefabInstance:
       propertyPath: Speed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
+        type: 3}
+      propertyPath: Horizontal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086086, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: m_Name
@@ -390,6 +395,11 @@ PrefabInstance:
       propertyPath: Speed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
+        type: 3}
+      propertyPath: Horizontal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086086, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: m_Name
@@ -473,6 +483,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Speed
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
+        type: 3}
+      propertyPath: Horizontal
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086086, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
@@ -1236,6 +1251,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Toggle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234685456444539790, guid: 8b3b18a5b3db400478153aa5baf49a5e,
+        type: 3}
+      propertyPath: SingleUse
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6234685456444539790, guid: 8b3b18a5b3db400478153aa5baf49a5e,
         type: 3}
