@@ -8,28 +8,28 @@ using System;
 public class SaveAndLoad : MonoBehaviour
 {
 
-    public static void SaveTimes(float[] times, bool loadPrevTimes)
+    public static void SaveData(int ScreenWidth, int ScreenHeight, bool FullscreenToggle, bool OverWrite, float[] times, bool loadPrevTimes)
     {
 
-        LevelTimes previousLevelTimes = null;
+        GameData previousLevelTimes = null;
         if(loadPrevTimes)
         {
 
-            previousLevelTimes = LoadTimes();
+            previousLevelTimes = LoadData();
 
         }
         BinaryFormatter formatter = new BinaryFormatter();
         string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
         FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         
-        LevelTimes data = new LevelTimes(times, previousLevelTimes);
+        GameData data = new GameData(ScreenWidth , ScreenHeight, FullscreenToggle, OverWrite, times, previousLevelTimes);
 
         formatter.Serialize(stream, data);
         stream.Close();
 
     }
 
-    public static LevelTimes LoadTimes()
+    public static GameData LoadData()
     {
 
         string loadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
@@ -39,7 +39,7 @@ public class SaveAndLoad : MonoBehaviour
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(loadPath, FileMode.Open, FileAccess.Read);
 
-            LevelTimes data = formatter.Deserialize(stream) as LevelTimes;
+            GameData data = formatter.Deserialize(stream) as GameData;
             stream.Close();
 
             return data;

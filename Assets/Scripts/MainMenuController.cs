@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
     public string[] LevelNames;
     public Sprite[] LevelPreviewImage;
     public string[] LevelPreviewText;
-    public GameObject MainMenuCursor, PreviewPanel;
+    public GameObject MainMenuCursor, PreviewPanel, ToggleButton;
     public Text PreviewName, PreviewText, GoToLevelButtonText, PreviewBestTimeText;
     public Image PreviewImage;
     private Vector3 mousePosition;
@@ -20,28 +20,28 @@ public class MainMenuController : MonoBehaviour
     public float PreviewPanelSpeed, screenWidth;
     public bool inView;
     public CreateLevelTime CLT;
+    private int ScreenWidth, ScreenHeight;
+    public bool FullscreenToggle;
 
     void Start()
     {
 
-        if(SaveAndLoad.LoadTimes() == null)
+        if(SaveAndLoad.LoadData() == null)
         {
 
             CLT.CreateNewTimes(false);
 
         }
 
-        levelTimes = SaveAndLoad.LoadTimes().Times;
+        levelTimes = SaveAndLoad.LoadData().Times;
 
-        screenWidth = gameObject.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
+        screenWidth = Screen.width;
         Cursor.visible = false;
 
-        for(int i = 0; i < levelTimes.Length-1; i++)
-        {
-
-            Debug.Log(levelTimes[i]);
-
-        }
+        ScreenWidth = SaveAndLoad.LoadData().ScreenWidth;
+        ScreenHeight = SaveAndLoad.LoadData().ScreenHeight;
+        FullscreenToggle = SaveAndLoad.LoadData().FullScreenMode;
+        Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
 
     }
 
@@ -65,6 +65,27 @@ public class MainMenuController : MonoBehaviour
             else StartCoroutine(SlideOut(true, true));
 
         }
+
+    }
+
+    public void FullscreenToggleButton()
+    {
+
+        ToggleButton.GetComponent<Toggle>().isOn = FullscreenToggle;
+
+    }
+
+    public void SetWidth(int Width) => ScreenWidth = Width;
+
+    public void SetHeight(int Height) => ScreenHeight = Height;
+
+    public void FullscreenSwitch() => FullscreenToggle = ToggleButton.GetComponent<Toggle>().isOn;
+
+    public void ApplySettings()
+    {
+
+        Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
+        SaveAndLoad.SaveData(ScreenWidth, ScreenHeight, FullscreenToggle, true, new float[SceneManager.sceneCountInBuildSettings-1], false);
 
     }
 
