@@ -206,7 +206,7 @@ PrefabInstance:
     - target: {fileID: 4495680886006086080, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086080, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
@@ -266,7 +266,7 @@ PrefabInstance:
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: MoveLength
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
@@ -312,7 +312,7 @@ Rigidbody2D:
   m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -388,7 +388,7 @@ PrefabInstance:
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: MoveLength
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
@@ -417,7 +417,7 @@ PrefabInstance:
     - target: {fileID: 4495680886006086080, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086080, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
@@ -477,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: MoveLength
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
@@ -767,6 +767,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &610298170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4025969348513027211, guid: 142e6efde83167042973109de4c9cf34,
+    type: 3}
+  m_PrefabInstance: {fileID: 690869359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &610298173
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610298170}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -4.9946837}
+  serializedVersion: 2
+  m_Radius: 8.994683
 --- !u!1001 &678218045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -919,7 +941,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4025969348513027213, guid: 142e6efde83167042973109de4c9cf34, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 142e6efde83167042973109de4c9cf34, type: 3}
 --- !u!1001 &702357485
 PrefabInstance:
@@ -1066,7 +1089,7 @@ PrefabInstance:
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
       propertyPath: MoveLength
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4495680886006086083, guid: c04b4cee640bffe469d961f1f5a26a8f,
         type: 3}
@@ -1251,11 +1274,6 @@ PrefabInstance:
         type: 3}
       propertyPath: Toggle
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234685456444539790, guid: 8b3b18a5b3db400478153aa5baf49a5e,
-        type: 3}
-      propertyPath: SingleUse
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6234685456444539790, guid: 8b3b18a5b3db400478153aa5baf49a5e,
         type: 3}
@@ -71132,7 +71150,7 @@ PrefabInstance:
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: Ink.Array.data[0]
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
