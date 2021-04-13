@@ -11,12 +11,12 @@ public class CreateLevelTime : MonoBehaviour
     public void CreateNewTimes(bool loadPrevTimes)
     {
 
-        Times = new float[SceneManager.sceneCountInBuildSettings-1];
+        Times = new float[SceneManager.sceneCountInBuildSettings];
 
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
 
-            Times[SceneManager.GetActiveScene().buildIndex-1] = Time.timeSinceLevelLoad;
+            Times[SceneManager.GetActiveScene().buildIndex] = Time.timeSinceLevelLoad;
 
         }
 
