@@ -16,7 +16,7 @@ public class CreateLevelTime : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
 
-            Times[SceneManager.GetActiveScene().buildIndex] = Time.timeSinceLevelLoad;
+            Times[SceneManager.GetActiveScene().buildIndex - 1] = Time.timeSinceLevelLoad;
 
         }
 
