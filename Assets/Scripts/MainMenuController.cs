@@ -35,7 +35,7 @@ public class MainMenuController : MonoBehaviour
 
         levelTimes = SaveAndLoad.LoadData().Times;
 
-        if(levelTimes.Length < SceneManager.sceneCountInBuildSettings - 1)
+        if(levelTimes.Length < SceneManager.sceneCountInBuildSettings)
         {
 
             CLT.CreateNewTimes(false);
