@@ -51,8 +51,20 @@ public class GameData
         else
         {
 
-            ScreenWidth = 1920;
-            ScreenHeight = 1080;
+            if(Width != 0 && Height != 0)
+            {
+
+                ScreenWidth = Width;
+                ScreenHeight = Height;
+
+            }
+            else
+            {
+
+                ScreenWidth = 1920;
+                ScreenHeight = 1080;
+
+            }
 
         }
 
