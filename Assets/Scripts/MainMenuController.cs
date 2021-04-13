@@ -86,6 +86,7 @@ public class MainMenuController : MonoBehaviour
 
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
         SaveAndLoad.SaveData(ScreenWidth, ScreenHeight, FullscreenToggle, true, new float[SceneManager.sceneCountInBuildSettings-1], false);
+        screenWidth = ScreenWidth;
 
     }
 

@@ -21,6 +21,15 @@ public class GameData
 
         if(OverWriteFullscreen)
             FullScreenMode = FullScreenToggle;
+        else
+        {
+
+            if(PreviousData != null)
+                FullScreenMode = PreviousData.FullScreenMode;
+            else
+                FullScreenMode = false;
+
+        }
 
         if(PreviousData != null)
         {
