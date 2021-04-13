@@ -16,7 +16,7 @@ public class GameData
     public GameData(int Width, int Height ,bool FullScreenToggle, bool OverWriteFullscreen,float[] NewLT, GameData PreviousData)
     {
 
-        Times = new float[SceneManager.sceneCountInBuildSettings];
+        Times = new float[SceneManager.sceneCountInBuildSettings - 1];
         float[] newTime = NewLT;
 
         if(OverWriteFullscreen)
