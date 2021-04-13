@@ -35,6 +35,15 @@ public class MainMenuController : MonoBehaviour
 
         levelTimes = SaveAndLoad.LoadData().Times;
 
+        if(levelTimes.Length < SceneManager.sceneCountInBuildSettings - 1)
+        {
+
+            CLT.CreateNewTimes(false);
+            Debug.Log("Updating saved data...");
+            levelTimes = SaveAndLoad.LoadData().Times;
+
+        }
+
         screenWidth = Screen.width;
         Cursor.visible = false;
 
