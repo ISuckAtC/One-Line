@@ -19,6 +19,7 @@ public class ActivatorButton : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D col)
     {
         if (active) return;
+        if (SingleUse) active = true;
         if (Toggle) active = true;
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground")) return;
         if (!PlayerInteractable && col.gameObject.layer == LayerMask.NameToLayer("Player")) return;
