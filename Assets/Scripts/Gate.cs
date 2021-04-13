@@ -25,9 +25,9 @@ public class Gate : MonoBehaviour, IActivatable
         }
         else if ((Vector2)transform.position != origin)
         {
-            if (Vector2.Distance(origin, transform.position) < MoveLength)
+            if (Vector2.Distance(origin, transform.position) > 0)
             {
-                transform.position = Vector2.MoveTowards(origin + new Vector2(Horizontal ? MoveLength : 0, Horizontal ? 0 : MoveLength), transform.position, Speed);
+                transform.position = Vector2.MoveTowards(transform.position, origin, Speed);
             }
         }
     }
