@@ -9,6 +9,7 @@ public class ActivatorButton : MonoBehaviour
     private bool active;
     private Collider2D collider2Df;
     public bool Toggle = true;
+    public bool SingleUse;
     public bool PlayerInteractable;
     public void Start()
     {
@@ -28,6 +29,7 @@ public class ActivatorButton : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D col)
     {
+        if (SingleUse) return;
         Debug.Log(collider2Df.GetContacts(new ContactPoint2D[0]));
         List<ContactPoint2D> contactPoints = new List<ContactPoint2D>();
         collider2Df.GetContacts(contactPoints);
