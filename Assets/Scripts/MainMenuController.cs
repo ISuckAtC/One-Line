@@ -14,7 +14,6 @@ public class MainMenuController : MonoBehaviour
     public Text PreviewName, PreviewText, GoToLevelButtonText, PreviewBestTimeText;
     public Image PreviewImage;
     private Vector3 mousePosition;
-    
     private int levelNumSelected;
     private float slideInCounter, slideOutCounter;
     public float[] levelTimes;
@@ -94,7 +93,6 @@ public class MainMenuController : MonoBehaviour
     public void ApplySettings()
     {
 
-        PreviewPanel.GetComponent<RectTransform>().sizeDelta.Set(PreviewPanel.GetComponent<RectTransform>().rect.width, ScreenHeight);
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
         SaveAndLoad.SaveData(ScreenWidth, ScreenHeight, FullscreenToggle, true, new float[SceneManager.sceneCountInBuildSettings-1], false);
         screenWidth = ScreenWidth;
