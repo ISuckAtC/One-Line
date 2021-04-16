@@ -93,7 +93,6 @@ public class MainMenuController : MonoBehaviour
     public void ApplySettings()
     {
 
-        PreviewPanel.GetComponent<RectTransform>().sizeDelta.Set(PreviewPanel.GetComponent<RectTransform>().rect.width, ScreenHeight);
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
         SaveAndLoad.SaveData(ScreenWidth, ScreenHeight, FullscreenToggle, true, new float[SceneManager.sceneCountInBuildSettings-1], false);
         screenWidth = ScreenWidth;
