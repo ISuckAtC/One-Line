@@ -150,6 +150,15 @@ public class Line : MonoBehaviour
         pieces = new List<LinePiece>();
         stuckPieces = new List<LinePiece>();
         LineType = lineType;
+
+
+        GameObject inkcircle = UiControl.main.CursorInkCircleRealtime.gameObject;
+        UiControl.main.CursorInkCircleRealtime.enabled = true;
+        float angle = (((float)GameControl.main.Ink[GameControl.main.InkTypeSelected]) / 100f) * 360f;
+        Debug.Log("ANGLE: " + angle);
+        inkcircle.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
+
+
         switch (lineType)
         {
             case LineType.Normal:
@@ -253,7 +262,8 @@ public class Line : MonoBehaviour
         Length += Vector2.Distance(End, position);
         if (GameControl.main.InkByLength)
         {
-            //GameControl.main.ModInkDisplayOnly(LineType, -(int)(Length + 1));
+            float fillAmount = Length / 100f;
+            UiControl.main.UpdateInkCircleTemporary(Mathf.Clamp(fillAmount, 0f, 1f));
         }
 
 
@@ -348,6 +358,7 @@ public class Line : MonoBehaviour
 
 
         if (!GameControl.main.InCutScene) Time.timeScale = 1;
+        UiControl.main.CursorInkCircleRealtime.enabled = false;
         //if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {

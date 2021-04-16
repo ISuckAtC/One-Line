@@ -163,6 +163,11 @@ public class UiControl : MonoBehaviour
 
     }
 
+    public void UpdateInkCircleTemporary(float value)
+    {
+        CursorInkCircleRealtime.fillAmount = value;
+    }
+
     public void UpdateUi() 
     {
 
