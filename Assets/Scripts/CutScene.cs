@@ -43,7 +43,7 @@ public class CutScene : MonoBehaviour, IActivatable
                 //StopCoroutine(Play());
                 EnemyDialogueAnim.SetTrigger("MoveOut");
                 EnemyDialogueAnim.ResetTrigger("MoveIn");
-                HeroDialogueAnim.ResetTrigger("MoveOut");
+                HeroDialogueAnim.SetTrigger("MoveOut");
                 HeroDialogueAnim.ResetTrigger("MoveIn");
                 Time.timeScale = 1;
                 GameControl.main.InCutScene = false;
