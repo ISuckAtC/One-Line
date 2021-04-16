@@ -151,6 +151,7 @@ public class GameControl : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && !InCutScene)
         {
+            UiControl.main.CursorInkCircleRealtime.enabled = false;
             if (lastLine != null)
             {
                 Destroy(lastLine);
