@@ -14,6 +14,7 @@ public class MainMenuController : MonoBehaviour
     public Text PreviewName, PreviewText, GoToLevelButtonText, PreviewBestTimeText;
     public Image PreviewImage;
     private Vector3 mousePosition;
+    
     private int levelNumSelected;
     private float slideInCounter, slideOutCounter;
     public float[] levelTimes;
