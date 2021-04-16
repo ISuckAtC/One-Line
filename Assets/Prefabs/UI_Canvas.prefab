@@ -486,7 +486,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -1244,6 +1244,7 @@ MonoBehaviour:
   MinimizedSize: {x: 0.5, y: 0.5, z: 0.5}
   EnlargedSize: {x: 1.5, y: 1.5, z: 1.5}
   PauseGameUiOnOff: 0
+  UpdateSkipBar: 0
   Inkwells:
   - {fileID: 6422371993902134781}
   - {fileID: 1664989225808796508}
@@ -1265,6 +1266,7 @@ MonoBehaviour:
   RestartText: {fileID: 489261287832892944}
   GameCursor: {fileID: 739607708361941608}
   CursorInkCircle: {fileID: 4825262320340170119}
+  SkipBarCircle: {fileID: 0}
   NormalCursor: {fileID: 21300000, guid: a959e806d96c7b64080a394e70d3dd2c, type: 3}
   IceCursor: {fileID: 21300000, guid: 5e784571904825f4399f2b6b8b67e8df, type: 3}
   RubberCursor: {fileID: 21300000, guid: 7bc2e61b3ccc6b0469b1894f8d05cc22, type: 3}
@@ -1281,6 +1283,7 @@ MonoBehaviour:
   Gravity:
     serializedVersion: 2
     rgba: 4278206898
+  SkipBarValue: 0
 --- !u!1 &3060476779795402192
 GameObject:
   m_ObjectHideFlags: 0
