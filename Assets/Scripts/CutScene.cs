@@ -38,18 +38,17 @@ public class CutScene : MonoBehaviour, IActivatable
             if (Input.GetMouseButton(1)) skip += Time.unscaledDeltaTime;
             else if (skip < SecondsHoldToSkip) skip = 0;
 
-            /*if (skip > SecondsHoldToSkip)
+            if (skip > SecondsHoldToSkip)
             {
-                StopCoroutine(Play());
-                EnemyDialogueAnim.ResetTrigger("MoveOut");
-                EnemyDialogueAnim.ResetTrigger("MoveIn");
+                //StopCoroutine(Play());
                 EnemyDialogueAnim.SetTrigger("MoveOut");
+                EnemyDialogueAnim.ResetTrigger("MoveIn");
                 HeroDialogueAnim.ResetTrigger("MoveOut");
                 HeroDialogueAnim.ResetTrigger("MoveIn");
-                HeroDialogueAnim.SetTrigger("MoveOut");
                 Time.timeScale = 1;
                 GameControl.main.InCutScene = false;
-            }*/
+                Destroy(this);
+            }
         }
     }
     IEnumerator Play()
