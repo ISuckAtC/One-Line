@@ -12,17 +12,18 @@ public class UiControl : MonoBehaviour
     private Vector3 mousePosition;
     private GameObject PauseGameUi;
     private GameObject InGameUi;
-    public bool PauseGameUiOnOff;
+    public bool PauseGameUiOnOff, UpdateSkipBar;
     private GameControl gc;
     public GameObject[] Inkwells, InkwellPositions;
     private Text coinsText;
     private Text levelSceneNumber;
     public BarController[] BarControllers;
     public GameObject DialogueBoxHero, DialogueBoxEnemy, RestartText, GameCursor;
-    public Image CursorInkCircle;
+    public Image CursorInkCircle, SkipBarCircle;
     public Sprite NormalCursor, IceCursor, RubberCursor, GravityCursor;
     public Color32 Normal, Ice, Rubber, Gravity;
     private LineType lineTypeSelected;
+    public float SkipBarValue;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,8 @@ public class UiControl : MonoBehaviour
 
     }
 
+    //activare coroutine once and it repeats until it gets passed a false or the value reaches 1
+
     void Awake() 
     {
 
@@ -55,6 +58,53 @@ public class UiControl : MonoBehaviour
 
         mousePosition = Input.mousePosition;
         GameCursor.transform.position = mousePosition;
+
+    }
+
+    public IEnumerator SkipBar()
+    {
+
+        SkipBarCircle.fillAmount = SkipBarValue;
+
+        if(UpdateSkipBar && SkipBarValue < 1)
+        {
+
+            yield return new WaitForFixedUpdate();
+
+            StartCoroutine(SkipBar());
+
+        }
+        else if(SkipBarValue > 1)
+        {
+
+            UpdateSkipBar = false;
+
+            yield return new WaitForSecondsRealtime(1);
+            
+            SkipBarCircle.fillAmount = 0;
+
+        }
+        else
+        {
+
+            UpdateSkipBar = false;
+            SkipBarCircle.fillAmount = 0;
+
+        }
+
+    }
+
+    public void SkipBarOnOff(bool OnOff)
+    {
+
+        UpdateSkipBar = OnOff;
+
+        if(OnOff)
+        {
+
+            StartCoroutine(SkipBar());
+
+        }
 
     }
 
