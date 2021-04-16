@@ -12,9 +12,9 @@ public class LevelBGLoader : MonoBehaviour
     void Start()
     {
         if(BossLevel)
-            sprites = Resources.LoadAll("BossBackGrounds", typeof (Sprite)).Cast<Sprite>().ToArray();
+            sprites = Resources.LoadAll("BossLevelBackgrounds", typeof (Sprite)).Cast<Sprite>().ToArray();
         else
-            sprites = Resources.LoadAll("BackGrounds", typeof (Sprite)).Cast<Sprite>().ToArray();
+            sprites = Resources.LoadAll("LevelBackgrounds", typeof (Sprite)).Cast<Sprite>().ToArray();
         Debug.Log(sprites.Length);
         gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
     }
