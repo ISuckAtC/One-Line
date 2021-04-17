@@ -2454,6 +2454,7 @@ RectTransform:
   - {fileID: 953801728}
   - {fileID: 1496407774}
   - {fileID: 453012819}
+  - {fileID: 1030376099}
   m_Father: {fileID: 767534109}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4517,6 +4518,150 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!1 &1030376098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1030376099}
+  - component: {fileID: 1030376103}
+  - component: {fileID: 1030376102}
+  - component: {fileID: 1030376101}
+  - component: {fileID: 1030376100}
+  m_Layer: 5
+  m_Name: Level 25
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1030376099
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030376098}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1919634943}
+  m_Father: {fileID: 681601679}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1030376100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030376098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccb8bf97b80b69489aee8365bbf2941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelPreviewNumber: 25
+--- !u!114 &1030376101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030376098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 0.5137255, a: 1}
+    m_PressedColor: {r: 0.14528894, g: 1, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 0.5137255, a: 1}
+    m_DisabledColor: {r: 1, g: 0, b: 0, a: 0.6431373}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1030376102}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1030376100}
+        m_MethodName: OpenPreview
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1030376102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030376098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1254902, g: 0.7019608, b: 0.59607846, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1af41fa829a0e9a40ab535bd1edf34e1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1030376103
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030376098}
+  m_CullTransparentMesh: 0
 --- !u!1 &1032775571
 GameObject:
   m_ObjectHideFlags: 0
@@ -5046,84 +5191,84 @@ MonoBehaviour:
   LevelNames:
   - Regular Line
   - Bridge Building
-  - Rubber Line
-  - Return to Sender
-  - Moving Target
-  - Imp 1
-  - Jump Jump Jump
-  - Ice Line
-  - Slalom
-  - Gravity Line
-  - Tumble
-  - Imp 2
-  - Plummet
   - Button
-  - Slime
-  - Getting Over It
-  - Kill Switch
-  - Precise Movement
-  - Leap of Faith
-  - Gravity Jumps
-  - Up And Down
+  - Rubber Line
+  - Imp Battle
+  - Return To Sender
+  - Killswitch
+  - Ice Line
+  - Slimes
   - Back And Forth
+  - Imp Battle 2
+  - Up And Down
+  - Gravity Line
+  - Moving Target
+  - Jump Jump Jump!
+  - Plummet
+  - Slalom
+  - Tumble
+  - Precise Movement
+  - Gravity Jumps
+  - Getting Over It
+  - Leap of Faith
   - Magnet Scale
   - Needs A Name
-  - 3D_Test
+  - Slides
   - Boss_Test
   LevelPreviewImage:
   - {fileID: 21300000, guid: b5cb9881548ef204eb7cb7a5bea9f90c, type: 3}
   - {fileID: 21300000, guid: ca93b4d3c4f13354d81adbb8c29c549f, type: 3}
-  - {fileID: 21300000, guid: 250fa449795f53a4690ff4c4148c19e3, type: 3}
-  - {fileID: 21300000, guid: 764bf671887357e4bafdec0216bbefea, type: 3}
-  - {fileID: 21300000, guid: 9e39b7a5be13f0145a724312c82a6740, type: 3}
-  - {fileID: 21300000, guid: 2e068b8199fe9374f92abdda9b4e31ae, type: 3}
-  - {fileID: 21300000, guid: 0a56ed76b921d594ca2d79c45ce05bc7, type: 3}
-  - {fileID: 21300000, guid: 646c1fea489431c4b8ea8e34328bc779, type: 3}
-  - {fileID: 21300000, guid: b7eb694e76ee6724a80b0e3ddd255f5c, type: 3}
-  - {fileID: 21300000, guid: e61d31251fa1ae446b04d8bfa9fca17f, type: 3}
-  - {fileID: 21300000, guid: f730a1c00f3b82a44903f4657edf2c79, type: 3}
-  - {fileID: 21300000, guid: 2e068b8199fe9374f92abdda9b4e31ae, type: 3}
-  - {fileID: 21300000, guid: 57ac51ade437d6f428901e23017dc682, type: 3}
   - {fileID: 21300000, guid: fd6117dd393d14e4f919d571189503d7, type: 3}
-  - {fileID: 21300000, guid: 88d63cf6b1a6d884d9b2243d41eac9eb, type: 3}
-  - {fileID: 21300000, guid: 79d772306d082ab48a143d66aae13877, type: 3}
+  - {fileID: 21300000, guid: 250fa449795f53a4690ff4c4148c19e3, type: 3}
+  - {fileID: 21300000, guid: 2e068b8199fe9374f92abdda9b4e31ae, type: 3}
+  - {fileID: 21300000, guid: 764bf671887357e4bafdec0216bbefea, type: 3}
   - {fileID: 21300000, guid: 7acd3e44bad902d42a7b453445068574, type: 3}
+  - {fileID: 21300000, guid: 646c1fea489431c4b8ea8e34328bc779, type: 3}
+  - {fileID: 21300000, guid: 88d63cf6b1a6d884d9b2243d41eac9eb, type: 3}
+  - {fileID: 21300000, guid: a2a539091db1ed84d848cfa2b578a914, type: 3}
+  - {fileID: 21300000, guid: 2e068b8199fe9374f92abdda9b4e31ae, type: 3}
+  - {fileID: 21300000, guid: b7c256a8d9e24ab4897f9697fec8e1bb, type: 3}
+  - {fileID: 21300000, guid: e61d31251fa1ae446b04d8bfa9fca17f, type: 3}
+  - {fileID: 21300000, guid: 9e39b7a5be13f0145a724312c82a6740, type: 3}
+  - {fileID: 21300000, guid: 0a56ed76b921d594ca2d79c45ce05bc7, type: 3}
+  - {fileID: 21300000, guid: 57ac51ade437d6f428901e23017dc682, type: 3}
+  - {fileID: 21300000, guid: b7eb694e76ee6724a80b0e3ddd255f5c, type: 3}
+  - {fileID: 21300000, guid: f730a1c00f3b82a44903f4657edf2c79, type: 3}
   - {fileID: 21300000, guid: 7a0d9e3ca5ad8b546a9ecff64c3fbafb, type: 3}
-  - {fileID: 21300000, guid: c71288aef0231704ab1bfe4d1b838bbd, type: 3}
   - {fileID: 21300000, guid: f9b7aca0de531e0448e5fc66abb21d5c, type: 3}
-  - {fileID: 21300000, guid: 0f4188a4f46faa542a16c286d94dfc12, type: 3}
-  - {fileID: 21300000, guid: 0f4188a4f46faa542a16c286d94dfc12, type: 3}
-  - {fileID: 21300000, guid: 0f4188a4f46faa542a16c286d94dfc12, type: 3}
-  - {fileID: 21300000, guid: 0f4188a4f46faa542a16c286d94dfc12, type: 3}
-  - {fileID: 21300000, guid: d28f36d6b82437c4ea688f68f3a1b6af, type: 3}
+  - {fileID: 21300000, guid: 79d772306d082ab48a143d66aae13877, type: 3}
+  - {fileID: 21300000, guid: c71288aef0231704ab1bfe4d1b838bbd, type: 3}
+  - {fileID: 21300000, guid: a44a8f4676c2adb489c6f732606fd888, type: 3}
+  - {fileID: 21300000, guid: 33929f2e40a55ce43afdfd9f8acfa747, type: 3}
+  - {fileID: 21300000, guid: adbb2325f9d62694fbd973395697e77d, type: 3}
   - {fileID: 21300000, guid: f3ddb6f3e64000b4086005999e7cee16, type: 3}
   LevelPreviewText:
   - 1st level 1st try?
-  - Hmmmm Yes
-  - What goes down, must come up... or something like that
-  - Looking great :D
-  - Hello from the Devs :3
-  - Kill the flying demons :O
   - The floor is lava, mostly
+  - Push it to the limit
+  - '*boing*'
+  - Kill the flying demons :O
+  - Right back at ya'
+  - What's the elvish word for "friend"?
   - Things do be kinda cold, but thats how we like it :)
-  - Do you like sport, no? Too bad I guess
-  - Gravity is a thing, don't ever forget that
-  - Ballin'
+  - What is that, snot?
+  - There and back again
   - The demons are back!
+  - '*boing* *boing* *splat*'
   - Fall damage??? :3
-  - New mechanics
-  - Top notch AI
-  - Up up and away :D
-  - IT IS NOT A BUTTON!
-  - But how small is the margin?
-  - Still no fall damage .-. ?
-  - Jumping, but with gravity... yes I might be running out of lines. Heheh --> lines
-  - Never give you up, never gonna let you down...
-  - Shake it
-  - '"the button is kinda fucked still, jittery and annoying." - One of the Devs'
-  - Don't ask me, I'm out of ideas .-.
-  - Testing, but in 3D
-  - Another test, but this one is a boss :3
+  - Top-notch AI
+  - Mid-air control
+  - Way down we go
+  - When they zig, you must zoink
+  - We can do this the easy way, or the hard way
+  - Those look soft
+  - It's a game of balance
+  - 'Realistic Physics '
+  - Didn't I play this one already?
+  - '*thud* *thud* *thud* *tsss*'
+  - 'This is going way too fast! '
+  - The actual boss level
+  - '"the button is kinda fu**ed still, jittery and annoying." - One of the Devs'
   MainMenuCursor: {fileID: 1018562116}
   PreviewPanel: {fileID: 1206690263}
   ToggleButton: {fileID: 1286994114}
@@ -6490,7 +6635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ccb8bf97b80b69489aee8365bbf2941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelPreviewNumber: 25
+  LevelPreviewNumber: 26
 --- !u!114 &1417761123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8861,6 +9006,86 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882034892}
+  m_CullTransparentMesh: 0
+--- !u!1 &1919634942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919634943}
+  - component: {fileID: 1919634945}
+  - component: {fileID: 1919634944}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1919634943
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919634942}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1030376099}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1919634944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919634942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3abafcfb25f09f04d978e338ddf36d28, type: 3}
+    m_FontSize: 71
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '25
+
+'
+--- !u!222 &1919634945
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919634942}
   m_CullTransparentMesh: 0
 --- !u!1 &1946118882
 GameObject:
