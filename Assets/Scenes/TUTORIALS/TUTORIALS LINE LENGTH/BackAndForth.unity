@@ -71235,7 +71235,7 @@ PrefabInstance:
     - target: {fileID: 2997787420949036415, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc0eceb0d95e8841b9f9febb34002e9, type: 3}
@@ -71621,6 +71621,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 610298173, guid: e300781d997dbc041af809e97a820cdc, type: 3}
+      propertyPath: m_Offset.y
+      value: -4.9601994
+      objectReference: {fileID: 0}
+    - target: {fileID: 610298173, guid: e300781d997dbc041af809e97a820cdc, type: 3}
+      propertyPath: m_Radius
+      value: 8.940097
+      objectReference: {fileID: 0}
+    - target: {fileID: 610298173, guid: e300781d997dbc041af809e97a820cdc, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.02009511
+      objectReference: {fileID: 0}
     - target: {fileID: 2746330422936487195, guid: e300781d997dbc041af809e97a820cdc,
         type: 3}
       propertyPath: m_LocalPosition.x
