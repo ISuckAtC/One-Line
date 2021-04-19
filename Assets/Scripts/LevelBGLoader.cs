@@ -29,10 +29,10 @@ public class LevelBGLoader : MonoBehaviour
         InkBackgrounds[2].sprite = Resources.Load<Sprite>("InkBackgrounds/Rubber");
         InkBackgrounds[3].sprite = Resources.Load<Sprite>("InkBackgrounds/Gravity");
 
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < InkBackgrounds.Length; i++)
         {
 
-
+            InkBackgrounds[i].size = new Vector2(width, height);
 
         }
 
