@@ -89,7 +89,7 @@ public class SlimeBehaviour : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
 
-        if (collision.collider.name == "Player 1")
+        if (collision.collider.name == "Player")
         {
 
             PlayerControl.Kill(gore:true);
