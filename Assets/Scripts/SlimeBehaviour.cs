@@ -89,16 +89,18 @@ public class SlimeBehaviour : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
 
-        if (collision.collider.name == "Player")
-        {
-
-            PlayerControl.Kill(gore:true);
-
-        }
-
         Rigidbody2D OtherRB2D;
         if (collision.gameObject.TryGetComponent<Rigidbody2D>(out OtherRB2D))
         {
+
+            PlayerController pc;
+
+            if (collision.gameObject.TryGetComponent<PlayerController>(out pc))
+            {
+
+                pc.Kill(gore:true);
+
+            }
 
             if(collision.gameObject.tag == "Line")
             {
