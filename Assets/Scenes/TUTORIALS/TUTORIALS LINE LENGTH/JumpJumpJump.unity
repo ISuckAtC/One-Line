@@ -180,9 +180,9 @@ SpriteMask:
   m_Sprite: {fileID: 21300000, guid: 497846f80ca533b4a9171dd5c97faf00, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 1953148399
-  m_BackSortingLayerID: 0
+  m_BackSortingLayerID: 1953148399
   m_FrontSortingLayer: 6
-  m_BackSortingLayer: 0
+  m_BackSortingLayer: 6
   m_FrontSortingOrder: 2
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
@@ -435,7 +435,7 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
 --- !u!1839735485 &363375852
 Tilemap:
   m_ObjectHideFlags: 0
@@ -18742,7 +18742,7 @@ Transform:
   - {fileID: 1752358293}
   - {fileID: 452848059}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &913172943
 PrefabInstance:
