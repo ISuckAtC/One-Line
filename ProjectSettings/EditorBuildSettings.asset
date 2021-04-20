@@ -8,25 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/New MainMenu.unity
     guid: 3de0d2c8daf518d48a80923ff2772eb4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/3D_Test/TUT regular 1 3D_New.unity
     guid: 7a5d76de9e5dda34cb9dbadb9dcacf7a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/RegularLine.unity
     guid: b3c205653058cbe41ae0a9d41065adb3
   - enabled: 1
     path: Assets/Scenes/3D_Test/BridgeBuilding 2D3D.unity
     guid: 72cf96b70ac231243a2ed455464dca54
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Buttons/TUT Button.unity
     guid: baec3774306ace549bb7aa599e4308de
   - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/RubberLine.unity
     guid: 82a125010c7a3dd4794183bdb1cd8988
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/TUT IMP.unity
     guid: d9e0739396ef8d04ca92f8695f351849
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/ReturnToSender.unity
     guid: dda108023e661294ba42ea86f3d2cba8
   - enabled: 1
@@ -35,13 +35,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/IceLine.unity
     guid: d6470e50b1d6a4146b9a880451e5638a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/TUT Slime.unity
     guid: 689702b0afe40e34dabf8b2e6d17a5cd
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/BackAndForth.unity
     guid: 20f29f105f13b2545a02cf30de5bd050
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/TUT IMP 2.unity
     guid: e644014a38fcae14080f93dff4fde273
   - enabled: 1
@@ -71,19 +71,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/GravityJumps.unity
     guid: e16e7b6932591924b8d0ef05e4ab6f31
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/GettingOverIt.unity
     guid: 0ed3837a2f71c854f9beb99a27db98ac
   - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/LeapOfFaith.unity
     guid: e96a54c63d9fe5d469286d9ae1429bc8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/MagnetScale.unity
     guid: 67bd56e413e599244a275f4e1e07eb43
   - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/NeedsAName.unity
     guid: d077c2db0b6554b4794afb075ded064c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Slides.unity
     guid: 30e9d8c6cd949404da1d0209af7a5086
   - enabled: 0
@@ -99,11 +99,20 @@ EditorBuildSettings:
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Less-ink series/RubberLineHARD.unity
     guid: 327032ff8ee649e45a9f63b49234e70d
   - enabled: 0
+    path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Other-ink series/ReturnToSender_Regular.unity
+    guid: 8e6fb8c5d12cb7d4f8b6fba3ce66bf6a
+  - enabled: 0
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Less-ink series/KillswitchHARD.unity
     guid: cba3b7dd2d97197419ad7412b3c86318
   - enabled: 0
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Less-ink series/IceLineHARD.unity
     guid: 004e62427209c9743bfc0383905db2c5
+  - enabled: 0
+    path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Other-ink series/Slime_Rubber.unity
+    guid: ea00ffd7c976aaa47b3b89eab8209ba0
+  - enabled: 0
+    path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Less-ink series/BackAndForthHARD.unity
+    guid: 378af91635a514c46b46414c6129d551
   - enabled: 0
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Other-ink series/UpAndDown_Gravity.unity
     guid: f3b10df941401ff4682990ebe14afc06
@@ -141,9 +150,18 @@ EditorBuildSettings:
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Less-ink series/GravityJumpsHARD.unity
     guid: 25cd651b226d12244a9e6e5ecdec52d7
   - enabled: 0
+    path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Other-ink series/GettingOverIt_Gravity.unity
+    guid: cfdfcf9d22674364a8c05dadcc3a7704
+  - enabled: 0
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Less-ink series/LeapOfFaithHARD.unity
     guid: fb4224f23d6986e469bd562a5caa1fbc
   - enabled: 0
+    path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Other-ink series/MagnetScale_Rubber.unity
+    guid: 5fcc0fee0cc19344c846ad3d8284f0e6
+  - enabled: 0
     path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Other-ink series/NeedsANam_Rubber.unity
     guid: 646d5b164f60634469da77e6aaadca4b
+  - enabled: 0
+    path: Assets/Scenes/TUTORIALS/TUTORIALS LINE LENGTH/Less-ink series/SlidesHARD.unity
+    guid: 911e305ae6ab56c4db99f9fbbcab2384
   m_configObjects: {}
