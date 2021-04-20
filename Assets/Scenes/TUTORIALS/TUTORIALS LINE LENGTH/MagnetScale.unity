@@ -1223,12 +1223,12 @@ SpriteMask:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 96a5d4af423a8ff45ab7f72f5ae7c1ef, type: 3}
   m_MaskAlphaCutoff: 0.2
-  m_FrontSortingLayerID: 0
-  m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
-  m_BackSortingLayer: 0
+  m_FrontSortingLayerID: 1953148399
+  m_BackSortingLayerID: 1953148399
+  m_FrontSortingLayer: 6
+  m_BackSortingLayer: 6
   m_FrontSortingOrder: 2
-  m_BackSortingOrder: 1
+  m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!4 &1127325770
@@ -1816,23 +1816,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10e3a5ed2b0791d46b4ca946f399a12c, type: 3}
---- !u!1 &1602573732 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5191021703003710589, guid: 10e3a5ed2b0791d46b4ca946f399a12c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1602573731}
-  m_PrefabAsset: {fileID: 0}
---- !u!210 &1602573733
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602573732}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
 --- !u!1 &1641138646
 GameObject:
   m_ObjectHideFlags: 0
