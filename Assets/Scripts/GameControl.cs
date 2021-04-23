@@ -149,7 +149,7 @@ public class GameControl : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (LevelOverViewAnchor)
             {
@@ -157,7 +157,7 @@ public class GameControl : MonoBehaviour
                 LevelOverViewAnchor.Activate();
             }
         }
-        if (Input.GetKeyUp(KeyCode.H))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             if (LevelOverViewAnchor)
             {
