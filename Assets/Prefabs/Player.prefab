@@ -313,9 +313,9 @@ MonoBehaviour:
   MovementEnabled: 1
   NukeMovement: 0
   PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
-  movementVector: {x: 0, y: 0}
   BumpForce: 0
   jumpForce: 5
+  PlayerSpriteParent: {fileID: 195586816300987918}
 --- !u!50 &5745138739628167505
 Rigidbody2D:
   serializedVersion: 4
@@ -5715,6 +5715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.41823143
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859335336632372743, guid: 1d6feebcf781af04fb1e4b5090601f0c,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -3909926271087234847, guid: 1d6feebcf781af04fb1e4b5090601f0c,

@@ -127,9 +127,12 @@ MonoBehaviour:
   BarColor: {r: 1, g: 0.07060623, b: 0, a: 1}
   Confines: {fileID: 1419892665365037300}
   Bar: {fileID: 8008674412043446109}
+  TextObject: {fileID: 0}
   Max: 100
   ProsentOfTotal: 0
   CurrentAmount: 0
+  inkDisplayValue: 0
+  inkFade: 0
   InkType: 0
   gc: {fileID: 0}
   BarSprite: {fileID: 21300000, guid: 0f4188a4f46faa542a16c286d94dfc12, type: 3}

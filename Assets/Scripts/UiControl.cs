@@ -14,7 +14,7 @@ public class UiControl : MonoBehaviour
     private GameObject InGameUi;
     public bool PauseGameUiOnOff, UpdateSkipBar;
     private GameControl gc;
-    public GameObject[] Inkwells, InkwellPositions;
+    public GameObject[] Inkwells, InkwellPositions, InkValues;
     private Text coinsText;
     private Text levelSceneNumber;
     public BarController[] BarControllers;
@@ -41,8 +41,6 @@ public class UiControl : MonoBehaviour
 
     }
 
-    //activare coroutine once and it repeats until it gets passed a false or the value reaches 1
-
     void Awake() 
     {
 
@@ -55,6 +53,18 @@ public class UiControl : MonoBehaviour
     {
 
         if(Input.GetKeyDown(KeyCode.Escape)) SwitchUi();
+        if(Input.GetKey(KeyCode.F))
+        {
+
+            BarControllers[gc.InkTypeSelected].UpdateInkValue();
+
+        }
+        else if(Input.GetKeyUp(KeyCode.F))
+        {
+
+            BarControllers[gc.InkTypeSelected].StartFade();
+
+        }
 
         mousePosition = Input.mousePosition;
         GameCursor.transform.position = mousePosition;
@@ -165,7 +175,16 @@ public class UiControl : MonoBehaviour
 
     public void UpdateInkCircleTemporary(float value)
     {
+
         CursorInkCircleRealtime.fillAmount = value;
+        
+        foreach(BarController bc in BarControllers)
+        {
+
+            bc.TempBarUpdate(value);
+
+        }
+
     }
 
     public void UpdateUi() 
