@@ -302,8 +302,12 @@ public class Line : MonoBehaviour
         Add(pos, true, player);
         while (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(1)) break;
-            
+            if (Input.GetMouseButton(1)) 
+            {
+                Length = 0;
+                break;
+            }
+
             if (GameControl.main.InCutScene) break;
             //if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
             yield return new WaitForSecondsRealtime(drawRate);
@@ -349,7 +353,11 @@ public class Line : MonoBehaviour
         Add(pos, true, player, LineType == LineType.Joint);
         while (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(1)) break;
+            if (Input.GetMouseButton(1)) 
+            {
+                Length = 0;
+                break;
+            }
             if (GameControl.main.InCutScene) break;
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
