@@ -58,6 +58,9 @@ public class GameControl : MonoBehaviour
     public bool InCutScene;
     [HideInInspector] public GlobalData Global;
     private string LogDump;
+    [HideInInspector] public CameraAnchor currentAnchor = null;
+
+    public CameraAnchor LevelOverViewAnchor;
 
     public void ResetLineLimits()
     {
@@ -144,6 +147,23 @@ public class GameControl : MonoBehaviour
             if (!LevelCompleted) Global.ResetCount++;
             Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (LevelOverViewAnchor)
+            {
+                if (currentAnchor) currentAnchor.Pan = false;
+                LevelOverViewAnchor.Activate();
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.H))
+        {
+            if (LevelOverViewAnchor)
+            {
+                LevelOverViewAnchor.Activate();
+                if (currentAnchor) currentAnchor.Pan = true;
+            }
         }
 
         Vector3 mousePos = Input.mousePosition;
