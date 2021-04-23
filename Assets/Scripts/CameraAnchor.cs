@@ -22,7 +22,7 @@ public class CameraAnchor : MonoBehaviour, IActivatable
         {
             Vector3 newPos = Vector2.MoveTowards(Camera.main.transform.localPosition, Vector2.zero, PanSpeed * Time.deltaTime);
             Camera.main.GetComponent<UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera>().assetsPPU = (int)Mathf.Lerp(
-                CamSizePixelPerfect, startCamSize, 
+                CamSizePixelPerfect, GameControl.main.currentAnchor ? (GameControl.main.currentAnchor != this ? GameControl.main.currentAnchor.CamSizePixelPerfect : startCamSize) : startCamSize, 
                 (1f / Vector2.Distance(transform.position, GameControl.main.Player.transform.position)) * Vector2.Distance(transform.position, (Vector2)Camera.main.transform.position));
             newPos.z = -10;
             Camera.main.transform.localPosition = newPos;
