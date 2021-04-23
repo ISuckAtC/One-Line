@@ -186,7 +186,7 @@ PrefabInstance:
     - target: {fileID: 2677138447192562899, guid: 01f596644c3964d4ba93ff25d60b3b08,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.20000002
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2677138447192562899, guid: 01f596644c3964d4ba93ff25d60b3b08,
         type: 3}
@@ -112464,7 +112464,7 @@ PrefabInstance:
     - target: {fileID: 2677138447192562899, guid: 01f596644c3964d4ba93ff25d60b3b08,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.20000002
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2677138447192562899, guid: 01f596644c3964d4ba93ff25d60b3b08,
         type: 3}
@@ -113145,7 +113145,7 @@ PrefabInstance:
     - target: {fileID: 2677138447192562899, guid: 01f596644c3964d4ba93ff25d60b3b08,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.20000002
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2677138447192562899, guid: 01f596644c3964d4ba93ff25d60b3b08,
         type: 3}
@@ -113823,6 +113823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: PanSpeed
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 685115266405502612, guid: 39cf08e4e9792a54c82057a5c638cd96,
+        type: 3}
+      propertyPath: CamSizePixelPerfect
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 685115266405502613, guid: 39cf08e4e9792a54c82057a5c638cd96,
         type: 3}
