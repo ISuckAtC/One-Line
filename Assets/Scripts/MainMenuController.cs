@@ -7,8 +7,11 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
 
+    public bool ExcludeLevelNames;
     public string[] LevelNames;
+    public bool ExcludeLevelImages;
     public Sprite[] LevelPreviewImage;
+    public bool ExcludeLevelTexts;
     public string[] LevelPreviewText;
     public GameObject MainMenuCursor, PreviewPanel, ToggleButton;
     public Text PreviewName, PreviewText, GoToLevelButtonText, PreviewBestTimeText;
@@ -16,6 +19,7 @@ public class MainMenuController : MonoBehaviour
     private Vector3 mousePosition;
     private int levelNumSelected;
     private float slideInCounter, slideOutCounter;
+    public bool ExcludeLevelTimes;
     public float[] levelTimes;
     public float PreviewPanelSpeed, screenWidth;
     public bool inView;
@@ -51,6 +55,15 @@ public class MainMenuController : MonoBehaviour
         ScreenHeight = SaveAndLoad.LoadData().ScreenHeight;
         FullscreenToggle = SaveAndLoad.LoadData().FullScreenMode;
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
+        
+        if(ExcludeLevelNames)
+            LevelNames = new string[SceneManager.sceneCountInBuildSettings];
+
+        if(ExcludeLevelImages)
+            LevelPreviewImage = new Sprite[SceneManager.sceneCountInBuildSettings];
+
+        if(ExcludeLevelTexts)
+            LevelPreviewText = new string[SceneManager.sceneCountInBuildSettings];
 
     }
 
