@@ -4,40 +4,44 @@ using UnityEngine;
 
 public class CameraAnchor : MonoBehaviour, IActivatable
 {
-    public float CamSize;
+    [Tooltip("Smaller value = more view area")] public int CamSizePixelPerfect;
     public float PanSpeed;
-    private float startCamSize;
+    public bool Overview;
+    private int startCamSize;
     private bool active;
-    private bool pan;
+    [HideInInspector] public bool Pan;
 
     void Start()
     {
-        startCamSize = Camera.main.orthographicSize;
+        startCamSize = Camera.main.GetComponent<UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera>().assetsPPU;
     }
 
     public void Update()
     {
-        if (pan && Vector2.Distance(Camera.main.transform.localPosition, Vector2.zero) > 0)
+        if (Pan && Vector2.Distance(Camera.main.transform.localPosition, Vector2.zero) > 0)
         {
             Vector3 newPos = Vector2.MoveTowards(Camera.main.transform.localPosition, Vector2.zero, PanSpeed * Time.deltaTime);
+            Camera.main.GetComponent<UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera>().assetsPPU = (int)Mathf.Lerp(
+                CamSizePixelPerfect, startCamSize, 
+                (1f / Vector2.Distance(transform.position, GameControl.main.Player.transform.position)) * Vector2.Distance(transform.position, (Vector2)Camera.main.transform.position));
             newPos.z = -10;
             Camera.main.transform.localPosition = newPos;
-            if (Vector2.Distance(Camera.main.transform.localPosition, Vector2.zero) == 0 && !active) pan = false;
+            if (Vector2.Distance(Camera.main.transform.localPosition, Vector2.zero) == 0 && !active) Pan = false;
         }
     }
 
     public void Activate()
     {
-        pan = true;
+        Pan = true;
         if (active)
         {
+            if (!Overview) GameControl.main.currentAnchor = null;
             Camera.main.transform.parent = GameControl.main.Player.transform;
-            Camera.main.orthographicSize = startCamSize;
         }
         else
         {
+            if (!Overview) GameControl.main.currentAnchor = this;
             Camera.main.transform.parent = transform;
-            Camera.main.orthographicSize = CamSize;
         }
         active = !active;
     }
