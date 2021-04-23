@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("should be the Player physicsMaterial 2D")]
     public PhysicsMaterial2D PM2D;
     private float yVel, jumpPower, damping;
-    [SerializeField]
     private Vector2 movementVector;
     //Jumping
     public float BumpForce, jumpForce;
@@ -31,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private CapsuleCollider2D capsuleCollider;
     private Rigidbody2D rb2D;
     private GameControl gc;
+    public GameObject PlayerSpriteParent;
 
     public void PopInFinal()
     {
@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         yGroundCheckOffset = (-0.4f + ((1 - capsuleCollider.size.x) * -0.4f)) * transform.localScale.y;
         groundCheckDist = 0.5f * transform.localScale.y;
         jumpPower = 1f;
+
     }
 
     void FixedUpdate()
@@ -133,6 +134,11 @@ public class PlayerMovement : MonoBehaviour
         if (rb2D.velocity.x <= (-moveSpeed * speedMultiplier) && Input.GetAxis("Horizontal") < 0) xMoveDir = 0;
         else xMoveDir = Input.GetAxis("Horizontal");
 
+        if(Input.GetAxisRaw("Horizontal") == -1)
+            PlayerSpriteParent.transform.rotation = Quaternion.Euler(0, 180, PlayerSpriteParent.transform.rotation.x);
+        else if(Input.GetAxisRaw("Horizontal") == 1)
+            PlayerSpriteParent.transform.rotation = Quaternion.Euler(0, 0, PlayerSpriteParent.transform.rotation.x);
+
         yVel = rb2D.velocity.y - jumpForce;
 
         movementVector = new Vector2(rb2D.velocity.x + (speedMultiplier * xMoveDir * playerControlPower), rb2D.velocity.y + (-yVel * jumpOnOff * jumpPower));
@@ -166,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
         else
             rb2D.simulated = MovementEnabled;
 
-        rb2D.velocity = movementVector;        
+        rb2D.velocity = movementVector;
 
     }
 
