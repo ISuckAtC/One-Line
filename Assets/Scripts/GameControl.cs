@@ -31,7 +31,7 @@ public class GameControl : MonoBehaviour
     public bool InkByLength;
     [Tooltip("If empty, creates empty inkwell. If values are specified make sure the size is equal to the amount of line types")]
     public int[] Ink;
-    GameObject lastLine;
+    [HideInInspector] public GameObject LastLine;
     public int InkTypeSelected;
 
     bool AssistedDraw;
@@ -169,13 +169,12 @@ public class GameControl : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
 
 
-        if (Input.GetMouseButtonDown(1) && !InCutScene)
+        if (Input.GetMouseButtonDown(1) && !InCutScene && !UiControl.main.CursorInkCircleRealtime.enabled)
         {
-            UiControl.main.CursorInkCircleRealtime.enabled = false;
-            if (lastLine != null)
+            if (LastLine != null)
             {
-                Destroy(lastLine);
-                lastLine = null;
+                Destroy(LastLine);
+                LastLine = null;
             }
         }
 
@@ -253,8 +252,6 @@ public class GameControl : MonoBehaviour
                     lineStartPos = newPosition;
                 }
                 GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
-                if (lastLine != null) Destroy(lastLine, LifeTimeAfterNewLine);
-                lastLine = line;
                 if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, false, Player, DrawRateSeconds, StraightPieceLength);
                 else line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, true, Player, DrawRateSeconds, StraightPieceLength);
             }
