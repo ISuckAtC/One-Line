@@ -302,6 +302,12 @@ public class Line : MonoBehaviour
         Add(pos, true, player);
         while (Input.GetMouseButton(0))
         {
+            if (Input.GetMouseButton(1)) 
+            {
+                Length = 0;
+                break;
+            }
+
             if (GameControl.main.InCutScene) break;
             //if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
             yield return new WaitForSecondsRealtime(drawRate);
@@ -331,7 +337,12 @@ public class Line : MonoBehaviour
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
         }
-        else GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
+        else 
+        {
+            if (GameControl.main.LastLine != null) Destroy(GameControl.main.LastLine, GameControl.main.LifeTimeAfterNewLine);
+            GameControl.main.LastLine = gameObject;
+            GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
+        }
     }
 
     public IEnumerator Drawing(float drawRate, float pieceLength, GameObject player = null)
@@ -342,6 +353,11 @@ public class Line : MonoBehaviour
         Add(pos, true, player, LineType == LineType.Joint);
         while (Input.GetMouseButton(0))
         {
+            if (Input.GetMouseButton(1)) 
+            {
+                Length = 0;
+                break;
+            }
             if (GameControl.main.InCutScene) break;
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
@@ -365,7 +381,12 @@ public class Line : MonoBehaviour
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
         }
-        else GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
+        else 
+        {
+            if (GameControl.main.LastLine != null) Destroy(GameControl.main.LastLine, GameControl.main.LifeTimeAfterNewLine);
+            GameControl.main.LastLine = gameObject;
+            GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
+        }
     }
     public void Update()
     {
