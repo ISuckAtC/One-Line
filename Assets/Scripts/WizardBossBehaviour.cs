@@ -251,7 +251,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
         if(Collided)
         {
-
+            StartCoroutine(Hurt());
             int RandomNum = Random.Range(0, FireballAttackPos.Length);
             Destination = FireballAttackPos[RandomNum].position;
             StartCoroutine(Move(1));
