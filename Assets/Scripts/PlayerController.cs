@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float defaultGravity, defaultDrag;
     private Vector2 lastSpeed;
+    private bool lastGrounded;
     private UiControl uiController;
     private Animator animator;
     private PlayerMovement movementController;
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
         List<Collider2D> colliders = new List<Collider2D>();
         if (capsule.GetContacts(colliders) > 0)
         {
-            if ((rb.velocity.y == 0 && lastSpeed.y != 0) && movementController.isGrounded)
+            if (!lastGrounded && movementController.isGrounded)
             {
                 Debug.Log("Landing");
                 animator.SetBool("Falling", false);
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour
         }
 
         lastSpeed = rb.velocity;
+        lastGrounded = movementController.isGrounded;
     }
     public void Kill(Vector2? deathPosition = null, bool gore = true)
     {
