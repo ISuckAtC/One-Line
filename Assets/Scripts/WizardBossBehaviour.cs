@@ -121,12 +121,12 @@ public class WizardBossBehaviour : MonoBehaviour
             RandomAttack();
             break;
 
-            case attackType.Pause:
-            StartCoroutine(pauseFor(AttackPause * 2));
-            break;
+            //case attackType.Pause:
+            //StartCoroutine(pauseFor(AttackPause * 2));
+            //break;
 
         } 
-
+        StartCoroutine(pauseFor(AttackPause * 2));
     }
 
     void RandomAttack()

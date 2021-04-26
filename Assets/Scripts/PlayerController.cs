@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private float defaultGravity, defaultDrag;
     private Vector2 lastSpeed;
     private UiControl uiController;
+    private bool apex;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +19,25 @@ public class PlayerController : MonoBehaviour
         defaultGravity = rb.gravityScale;
         defaultDrag = rb.drag;
         uiController = GameObject.FindObjectOfType<Canvas>().GetComponent<UiControl>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        if (rb.velocity.y < 0) rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - FallSpeed);
+        if (rb.velocity.y < 0) 
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - FallSpeed);
+        }
         CapsuleCollider2D capsule = GetComponent<CapsuleCollider2D>();
         List<Collider2D> colliders = new List<Collider2D>();
         if (capsule.GetContacts(colliders) > 0)
         {
+            if (colliders.Exists(x => x.gameObject.layer == LayerMask.NameToLayer("Ground") || x.transform.parent != null && x.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line")))
+            {
+                apex = true;
+                animator.ResetTrigger("Landing");
+                animator.SetTrigger("Landing");
+            }
             Line line = null;
             if (colliders.Exists(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out line)))
             {
@@ -54,6 +66,18 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (rb.velocity.y > 0)
+            {
+                apex = true;
+                animator.ResetTrigger("MainCharacter_Jump");
+                animator.SetTrigger("MainCharacter_Jump");
+            }
+            if (rb.velocity.y < 0 && apex)
+            {
+                apex = false;
+                animator.ResetTrigger("MainCharacter_Jump_Down");
+                animator.SetTrigger("MainCharacter_Jump_Down");
+            }
             rb.drag = defaultDrag;
         }
         lastSpeed = rb.velocity;
