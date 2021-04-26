@@ -67,21 +67,21 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.drag = defaultDrag;
+
+            if (rb.velocity.y > 0)
+            {
+                Debug.Log("Jumping");
+                animator.SetBool("Falling", false);
+                animator.SetBool("Jumping", true);
+            }
+            if (rb.velocity.y < 0)
+            {
+                Debug.Log("Falling");
+                animator.SetBool("Jumping", false);
+                animator.SetBool("Falling", true);
+            }
         }
-        if (rb.velocity.y > 0 && lastSpeed.y <= 0)
-        {
-            Debug.Log("Jumping");
-            //animator.ResetTrigger("Jumping");
-            animator.SetBool("Falling", false);
-            animator.SetBool("Jumping", true);
-        }
-        if (rb.velocity.y < 0 && lastSpeed.y >= 0)
-        {
-            Debug.Log("Falling");
-            //animator.ResetTrigger("Falling");
-            animator.SetBool("Jumping", false);
-            animator.SetBool("Falling", true);
-        }
+
         lastSpeed = rb.velocity;
     }
     public void Kill(Vector2? deathPosition = null, bool gore = true)
