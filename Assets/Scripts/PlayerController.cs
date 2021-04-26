@@ -35,6 +35,10 @@ public class PlayerController : MonoBehaviour
             if ((rb.velocity.y == 0 && lastSpeed.y != 0) && colliders.Exists(x => x.gameObject.layer == LayerMask.NameToLayer("Ground") || x.transform.parent != null && x.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line")))
             {
                 Debug.Log("Landing");
+                animator.SetBool("Falling", false);
+                animatorAlt.SetBool("Falling", false);
+                animator.SetBool("Jumping", false);
+                animatorAlt.SetBool("Jumping", false);
                 animator.SetTrigger("Landing");
                 animatorAlt.SetTrigger("Landing");
             }
@@ -72,15 +76,19 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Jumping");
             //animator.ResetTrigger("Jumping");
-            animator.SetTrigger("Jumping");
-            animatorAlt.SetTrigger("Jumping");
+            animator.SetBool("Falling", false);
+            animatorAlt.SetBool("Falling", false);
+            animator.SetBool("Jumping", true);
+            animatorAlt.SetBool("Jumping", true);
         }
         if (rb.velocity.y < 0 && lastSpeed.y >= 0)
         {
             Debug.Log("Falling");
             //animator.ResetTrigger("Falling");
-            animator.SetTrigger("Falling");
-            animatorAlt.SetTrigger("Falling");
+            animator.SetBool("Jumping", false);
+            animatorAlt.SetBool("Jumping", false);
+            animator.SetBool("Falling", true);
+            animatorAlt.SetBool("Falling", true);
         }
         lastSpeed = rb.velocity;
     }
