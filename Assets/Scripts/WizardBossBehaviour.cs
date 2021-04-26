@@ -110,7 +110,7 @@ public class WizardBossBehaviour : MonoBehaviour
             int RandomNum = Random.Range(0, FireballAttackPos.Length);
             transform.position = FireballAttackPos[RandomNum].position;
             Destination = FireballAttackPos[RandomNum].position;
-            SlimeStorm();
+            StartCoroutine(SlimeStorm());
             break;
 
             case attackType.FireballRain:
@@ -121,12 +121,11 @@ public class WizardBossBehaviour : MonoBehaviour
             RandomAttack();
             break;
 
-            //case attackType.Pause:
-            //StartCoroutine(pauseFor(AttackPause * 2));
-            //break;
+            case attackType.Pause:
+            StartCoroutine(pauseFor(AttackPause * 2));
+            break;
 
         } 
-        StartCoroutine(pauseFor(AttackPause * 2));
     }
 
     void RandomAttack()
@@ -280,7 +279,7 @@ public class WizardBossBehaviour : MonoBehaviour
         }
     }
 
-    void SlimeStorm()
+    IEnumerator SlimeStorm()
     {            
 
         Debug.Log("Slime");
@@ -305,6 +304,10 @@ public class WizardBossBehaviour : MonoBehaviour
             Cannon.gameObject.SetActive(true);
 
         }
+
+        yield return new WaitForSeconds(3);
+
+        StartCoroutine(RestartSequence());
 
     }
 
