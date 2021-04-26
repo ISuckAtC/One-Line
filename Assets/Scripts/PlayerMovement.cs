@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool JumpInput;
     //GroundCheck
     private float yGroundCheckOffset, groundCheckDist;
-    private bool isGrounded;
+    [HideInInspector] public bool isGrounded;
     private LayerMask maskPlayer;
     //References
     private CapsuleCollider2D capsuleCollider;

@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastSpeed;
     private UiControl uiController;
     private Animator animator;
+    private PlayerMovement movementController;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        movementController = GetComponent<PlayerMovement>();
         defaultGravity = rb.gravityScale;
         defaultDrag = rb.drag;
         uiController = GameObject.FindObjectOfType<Canvas>().GetComponent<UiControl>();
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
         List<Collider2D> colliders = new List<Collider2D>();
         if (capsule.GetContacts(colliders) > 0)
         {
-            if ((rb.velocity.y == 0 && lastSpeed.y != 0) && colliders.Exists(x => x.gameObject.layer == LayerMask.NameToLayer("Ground") || x.transform.parent != null && x.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line")))
+            if ((rb.velocity.y == 0 && lastSpeed.y != 0) && movementController.isGrounded)
             {
                 Debug.Log("Landing");
                 animator.SetBool("Falling", false);
@@ -67,7 +69,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.drag = defaultDrag;
+        }
 
+        if (!movementController.isGrounded)
+        {
             if (rb.velocity.y > 0)
             {
                 Debug.Log("Jumping");
