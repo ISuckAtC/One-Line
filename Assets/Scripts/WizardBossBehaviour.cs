@@ -60,7 +60,7 @@ public class WizardBossBehaviour : MonoBehaviour
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
         Col2D = gameObject.GetComponent<EdgeCollider2D>();
-        Col2D.isTrigger = true;
+        //Col2D.isTrigger = true;
         if(Cannon == null && GameObject.FindGameObjectWithTag("Cannon") != null)
         {
 
@@ -246,7 +246,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
         Debug.Log("Dash");
 
-        Col2D.isTrigger = false;
+        //Col2D.isTrigger = false;
         DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, PlayerTransfom.position.y - transform.position.y).normalized;
 
         if(Collided)
@@ -256,7 +256,7 @@ public class WizardBossBehaviour : MonoBehaviour
             Destination = FireballAttackPos[RandomNum].position;
             StartCoroutine(Move(1));
             Collided = false;
-            Col2D.isTrigger = true;
+            //Col2D.isTrigger = true;
 
             if(InSequence)
             {
@@ -284,7 +284,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
         Debug.Log("Slime");
         slimeStage = true;
-        Col2D.isTrigger = false;
+        //Col2D.isTrigger = false;
         sequencePart++;
 
         foreach (Transform T in SlimeSpawnPos)
@@ -319,7 +319,7 @@ public class WizardBossBehaviour : MonoBehaviour
         slimeStage = false;
         yield return new WaitForSeconds(1);
         Cannon.SetActive(false);
-        Col2D.isTrigger = true;
+        //Col2D.isTrigger = true;
         Attack();
 
     }
