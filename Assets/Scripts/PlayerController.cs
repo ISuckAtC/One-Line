@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private float defaultGravity, defaultDrag;
     private Vector2 lastSpeed;
     private UiControl uiController;
-    private Animator animator, animatorAlt;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
         defaultGravity = rb.gravityScale;
         defaultDrag = rb.drag;
         uiController = GameObject.FindObjectOfType<Canvas>().GetComponent<UiControl>();
-        animator = transform.GetChild(0).GetComponent<Animator>();
-        animatorAlt = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -36,11 +35,8 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Landing");
                 animator.SetBool("Falling", false);
-                animatorAlt.SetBool("Falling", false);
                 animator.SetBool("Jumping", false);
-                animatorAlt.SetBool("Jumping", false);
                 animator.SetTrigger("Landing");
-                animatorAlt.SetTrigger("Landing");
             }
             Line line = null;
             if (colliders.Exists(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out line)))
@@ -77,18 +73,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Jumping");
             //animator.ResetTrigger("Jumping");
             animator.SetBool("Falling", false);
-            animatorAlt.SetBool("Falling", false);
             animator.SetBool("Jumping", true);
-            animatorAlt.SetBool("Jumping", true);
         }
         if (rb.velocity.y < 0 && lastSpeed.y >= 0)
         {
             Debug.Log("Falling");
             //animator.ResetTrigger("Falling");
             animator.SetBool("Jumping", false);
-            animatorAlt.SetBool("Jumping", false);
             animator.SetBool("Falling", true);
-            animatorAlt.SetBool("Falling", true);
         }
         lastSpeed = rb.velocity;
     }
