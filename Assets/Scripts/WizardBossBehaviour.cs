@@ -7,9 +7,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     /*LineWizard
     Abilites: Shoot fireballs - Dash - Spawn slimes - Fireball Rain
-    How to fight: Cannon using Grav Lines - Bounce back fireballs
-
-    "Rythm": Fireballs - Dash - SlimeStorm while laughing Manically - Use cannon during SlimeStorm.*/
+    How to fight: Cannon using Grav Lines - Bounce back fireballs*/
 
     public enum attackType
     {
@@ -52,7 +50,6 @@ public class WizardBossBehaviour : MonoBehaviour
 
     }
 
-
     void Start()
     {
         
@@ -60,7 +57,6 @@ public class WizardBossBehaviour : MonoBehaviour
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
         Col2D = gameObject.GetComponent<EdgeCollider2D>();
-        //Col2D.isTrigger = true;
         if(Cannon == null && GameObject.FindGameObjectWithTag("Cannon") != null)
         {
 
@@ -342,6 +338,8 @@ public class WizardBossBehaviour : MonoBehaviour
                 StartCoroutine(Move(1));
 
             }
+
+            Destroy(collision.gameObject);
 
         }
         else
