@@ -18,7 +18,9 @@ public class WizardBossBehaviour : MonoBehaviour
         SlimeStorm,
         FireballRain,
         RandomAttack,
-        Pause
+        Pause,
+        StopAttacking,
+        CompleteStop
 
     }
 
@@ -41,6 +43,7 @@ public class WizardBossBehaviour : MonoBehaviour
     public string HowToUseTheAttackPattern;
     public attackType[] AttackPattern;
     private attackType attack;
+    public List<GameObject> Slimes;
 
     void Update()
     {
@@ -50,9 +53,30 @@ public class WizardBossBehaviour : MonoBehaviour
 
     }
 
+    IEnumerator slimesCheck()
+    {
+
+        for(int i = 0; i < Slimes.Count - 1; i++)
+        {
+
+            if(Slimes[i] == null)
+            {
+
+                Slimes.Remove(Slimes[i]);
+
+            }
+
+        }
+
+        yield return new WaitForSecondsRealtime(0.25f);
+
+    }
+
     void Start()
     {
         
+        Slimes = new List<GameObject>();
+
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line") + LayerMask.NameToLayer("Ground");
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
@@ -121,6 +145,10 @@ public class WizardBossBehaviour : MonoBehaviour
             StartCoroutine(pauseFor(AttackPause * 2));
             break;
 
+            case attackType.StopAttacking:
+            stopAttacking();
+            break;
+
         } 
     }
 
@@ -147,6 +175,9 @@ public class WizardBossBehaviour : MonoBehaviour
         }
 
     }
+
+    void stopAttacking()
+    {}
 
     IEnumerator pauseFor(float pauseTime)
     {
@@ -287,6 +318,8 @@ public class WizardBossBehaviour : MonoBehaviour
             {
 
                 GameObject spawnedSlime = Instantiate(SlimePrefab, new Vector2(T.position.x + (i - (slimeAmount / 2)), T.position.y), Quaternion.identity);
+                
+                Slimes.Add(spawnedSlime);
 
             }
         }
@@ -311,8 +344,8 @@ public class WizardBossBehaviour : MonoBehaviour
         sequencePart = 0;
         slimeStage = false;
         yield return new WaitForSeconds(1);
-        Cannon.SetActive(false);
-        Col2D.isTrigger = false;
+        if(Cannon != null)
+            Cannon.SetActive(false);
         Attack();
 
     }
