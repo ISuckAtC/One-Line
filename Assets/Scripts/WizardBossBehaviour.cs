@@ -56,19 +56,41 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator slimesCheck()
     {
 
-        for(int i = 0; i < Slimes.Count - 1; i++)
+        if(Slimes.Count > 0)
         {
 
-            if(Slimes[i] == null)
+            for(int i = 0; i < Slimes.Count - 1; i++)
             {
 
-                Slimes.Remove(Slimes[i]);
+                if(Slimes[i] == null)
+                {
+
+                    Slimes.Remove(Slimes[i]);
+
+                }
+
+            }
+
+            if(Slimes[0] == null)
+            {
+
+                Slimes.Remove(Slimes[0]);
+
+            }
+
+            if(Slimes.Count <= 0)
+            {
+
+                Death();
 
             }
 
         }
 
+        Debug.Log("slimes: " + Slimes.Count);
+
         yield return new WaitForSecondsRealtime(0.25f);
+        StartCoroutine(slimesCheck());
 
     }
 
@@ -100,6 +122,8 @@ public class WizardBossBehaviour : MonoBehaviour
             Attack();
 
         bossActive = true;
+
+        StartCoroutine(slimesCheck());
 
     }
 
