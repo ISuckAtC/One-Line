@@ -24,6 +24,8 @@ public class UiControl : MonoBehaviour
     public Color32 Normal, Ice, Rubber, Gravity;
     private LineType lineTypeSelected;
     public float SkipBarValue;
+    public Image tabContainer, shiftContainer;
+    public Sprite tabInactive, tabActive, shiftInactive, shiftActive;
 
     // Start is called before the first frame update
     void Start()

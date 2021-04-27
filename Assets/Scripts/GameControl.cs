@@ -153,6 +153,7 @@ public class GameControl : MonoBehaviour
         {
             if (LevelOverViewAnchor)
             {
+                UiControl.main.shiftContainer.sprite = UiControl.main.shiftActive;
                 if (currentAnchor) currentAnchor.Pan = false;
                 LevelOverViewAnchor.Activate();
             }
@@ -161,6 +162,7 @@ public class GameControl : MonoBehaviour
         {
             if (LevelOverViewAnchor)
             {
+                UiControl.main.shiftContainer.sprite = UiControl.main.shiftInactive;
                 LevelOverViewAnchor.Activate();
                 if (currentAnchor) currentAnchor.Pan = true;
             }
@@ -261,6 +263,8 @@ public class GameControl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 AssistedDraw = !AssistedDraw;
+                if (AssistedDraw) UiControl.main.tabContainer.sprite = UiControl.main.tabActive;
+                else UiControl.main.tabContainer.sprite = UiControl.main.tabInactive;
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
