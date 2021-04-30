@@ -8,28 +8,28 @@ using System;
 public class SaveAndLoad : MonoBehaviour
 {
 
-    public static void SaveData(int ScreenWidth, int ScreenHeight, bool FullscreenToggle, bool OverWrite, float[] times, bool loadPrevTimes)
+    public static void SaveGameData(float[] times, bool loadPrevTimes)
     {
 
         GameData previousLevelTimes = null;
         if(loadPrevTimes)
         {
 
-            previousLevelTimes = LoadData();
+            previousLevelTimes = LoadGameData();
 
         }
         BinaryFormatter formatter = new BinaryFormatter();
         string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
         FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         
-        GameData data = new GameData(ScreenWidth , ScreenHeight, FullscreenToggle, OverWrite, times, previousLevelTimes);
+        GameData data = new GameData( times, previousLevelTimes);
 
         formatter.Serialize(stream, data);
         stream.Close();
 
     }
 
-    public static GameData LoadData()
+    public static GameData LoadGameData()
     {
 
         string loadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
@@ -49,6 +49,39 @@ public class SaveAndLoad : MonoBehaviour
         {
 
             Debug.LogError("No file found");
+            return null;
+
+        }
+
+    }
+
+    public static void SaveSettingsData(int width, int height, bool fullscreen, bool fullscreenOverWrite)
+    {
+
+
+
+    }
+
+    public static SettingsData LoadSettingsData()
+    {
+
+        string loadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineSettingsData.boron");
+        if(File.Exists(loadPath))
+        {
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(loadPath, FileMode.Open, FileAccess.Read);
+
+            SettingsData data = formatter.Deserialize(stream) as SettingsData;
+            stream.Close();
+
+            return data;
+
+        }
+        else
+        {
+
+            Debug.LogError("No settingsData found");
             return null;
 
         }
