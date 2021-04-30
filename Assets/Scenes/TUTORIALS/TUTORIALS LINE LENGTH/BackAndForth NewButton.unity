@@ -2166,7 +2166,7 @@ GameObject:
   - component: {fileID: 1520342626}
   - component: {fileID: 1520342628}
   - component: {fileID: 1520342627}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16969,7 +16969,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -17457,6 +17457,11 @@ PrefabInstance:
       propertyPath: MaxDrawDistance
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 5817488484349952844, guid: 451f17cb00cfc464383b0a1741a5c169,
+        type: 3}
+      propertyPath: Tilemap
+      value: 
+      objectReference: {fileID: 1520342622}
     - target: {fileID: 6212601822244465691, guid: 451f17cb00cfc464383b0a1741a5c169,
         type: 3}
       propertyPath: m_Name
