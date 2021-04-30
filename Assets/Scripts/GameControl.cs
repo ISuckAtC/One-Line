@@ -60,6 +60,8 @@ public class GameControl : MonoBehaviour
     [HideInInspector] public GlobalData Global;
     private string LogDump;
     [HideInInspector] public CameraAnchor currentAnchor = null;
+    public GameObject Tilemap;
+    [HideInInspector] public CompositeCollider2D TilemapCollider;
 
     public CameraAnchor LevelOverViewAnchor;
 
@@ -94,6 +96,10 @@ public class GameControl : MonoBehaviour
             else lineType = DefaultLineType;
         }
         lastType = null;
+
+        if (!Tilemap) Tilemap = GameObject.Find("Tilemap");
+        TilemapCollider = Tilemap.GetComponent<CompositeCollider2D>();
+
         StartCoroutine(StartTravel());
     }
 

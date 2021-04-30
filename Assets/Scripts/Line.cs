@@ -28,6 +28,7 @@ public class Line : MonoBehaviour
 
     public GameObject LastPiece;
     public bool Refund;
+    private float wallRefund;
 
     public void SetTriggerActive(bool active)
     {
@@ -226,7 +227,8 @@ public class Line : MonoBehaviour
                     position = Vector2.Lerp(End, position, 0.5f);
                     position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
                 }
-                else */position = newPosition;
+                else */
+                position = newPosition;
             }
         }
 
@@ -259,15 +261,24 @@ public class Line : MonoBehaviour
             return true;
         }
 
+        LinePiece piece = new LinePiece(End, position, Thickness, Circle, Box, transform, this, material, color, joint);
         Length += Vector2.Distance(End, position);
-        if (GameControl.main.InkByLength)
+        if (!piece.WallCheck())
         {
-            float fillAmount = Length / 100f;
-            UiControl.main.UpdateInkCircleTemporary(Mathf.Clamp(fillAmount, 0f, 1f));
+            if (GameControl.main.InkByLength)
+            {
+                float fillAmount = Length / 100f;
+                UiControl.main.UpdateInkCircleTemporary(Mathf.Clamp(fillAmount, 0f, 1f));
+            }
+            pieces.Add(piece);
+        }
+        else
+        {
+            wallRefund += Vector2.Distance(End, position);
         }
 
 
-        pieces.Add(new LinePiece(End, position, Thickness, Circle, Box, transform, this, material, color, joint));
+
         End = position;
 
         if (Length == lengthLimit)
@@ -302,7 +313,7 @@ public class Line : MonoBehaviour
         Add(pos, true, player);
         while (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(1)) 
+            if (Input.GetMouseButton(1))
             {
                 Length = 0;
                 break;
@@ -337,10 +348,11 @@ public class Line : MonoBehaviour
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
         }
-        else 
+        else
         {
             if (GameControl.main.LastLine != null) Destroy(GameControl.main.LastLine, GameControl.main.LifeTimeAfterNewLine);
             GameControl.main.LastLine = gameObject;
+            Length -= wallRefund;
             GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         }
     }
@@ -353,7 +365,7 @@ public class Line : MonoBehaviour
         Add(pos, true, player, LineType == LineType.Joint);
         while (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(1)) 
+            if (Input.GetMouseButton(1))
             {
                 Length = 0;
                 break;
@@ -381,10 +393,11 @@ public class Line : MonoBehaviour
             GameControl.main.ModInk(LineType, 0);
             Destroy(gameObject);
         }
-        else 
+        else
         {
             if (GameControl.main.LastLine != null) Destroy(GameControl.main.LastLine, GameControl.main.LifeTimeAfterNewLine);
             GameControl.main.LastLine = gameObject;
+            Length -= wallRefund;
             GameControl.main.ModInk(LineType, GameControl.main.InkByLength ? -(int)(Length + 1) : -1);
         }
     }
@@ -407,11 +420,42 @@ public class LinePiece
     GameObject MiddleBox;
     GameObject EndCircle;
 
+    public float Length;
+
     public void SetTriggerActive(bool active)
     {
         if (StartCircle) StartCircle.GetComponent<Collider2D>().isTrigger = active;
         if (MiddleBox) MiddleBox.GetComponent<Collider2D>().isTrigger = active;
         if (EndCircle) EndCircle.GetComponent<Collider2D>().isTrigger = active;
+    }
+
+    public bool WallCheck()
+    {
+        bool check = false;
+        if (StartCircle)
+        {
+            if (GameControl.main.TilemapCollider.OverlapPoint(StartCircle.transform.position))
+            {
+                GameObject.Destroy(StartCircle);
+            }
+        }
+        if (EndCircle)
+        {
+            if (GameControl.main.TilemapCollider.OverlapPoint(EndCircle.transform.position))
+            {
+                GameObject.Destroy(EndCircle);
+            }
+        }
+        if (MiddleBox)
+        {
+            
+            if (GameControl.main.TilemapCollider.OverlapPoint(MiddleBox.transform.position))
+            {
+                GameObject.Destroy(MiddleBox);
+                check = true;
+            }
+        }
+        return check;
     }
 
     public LinePiece(Vector2 start, Vector2 end, float thickness, Sprite c, Sprite b, Transform parent, Line line, PhysicsMaterial2D mat, Color color, bool joint)
@@ -497,8 +541,8 @@ public class LinePiece
         EndCircle.transform.position = end;
         EndCircle.transform.localScale = new Vector3(thickness, thickness, 1);
 
-        float length = Vector2.Distance(start, end);
-        MiddleBox.transform.localScale = new Vector3(thickness, length, 1);
+        Length = Vector2.Distance(start, end);
+        MiddleBox.transform.localScale = new Vector3(thickness, Length, 1);
         MiddleBox.transform.position = new Vector2((start.x + end.x) / 2, (start.y + end.y) / 2);
         MiddleBox.transform.up = end - start;
 
