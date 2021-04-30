@@ -58,7 +58,18 @@ public class SaveAndLoad : MonoBehaviour
     public static void SaveSettingsData(int width, int height, bool fullscreen, bool fullscreenOverWrite)
     {
 
+        SettingsData previousData = null;
+        string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineSettingsData.boron");
+        if(File.Exists(savePath))
+            previousData = LoadSettingsData();
 
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
+        SettingsData data = new SettingsData(width, height, fullscreen, fullscreenOverWrite, previousData);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
 
     }
 
