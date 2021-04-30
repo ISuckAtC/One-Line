@@ -8,74 +8,14 @@ public class GameData
 {
 
     public float[] Times;
-    public int ScreenWidth, ScreenHeight;
-    public bool FullScreenMode;
 
-    //Used the values from both the previously saved Times array and the one currently being saved
+    //Uses the values from both the previously saved Times array and the one currently being saved
     //Checks if the new times are better or worse and selects the best, if the time spent is 0, it will not save anything
-    public GameData(int Width, int Height ,bool FullScreenToggle, bool OverWriteFullscreen,float[] NewLT, GameData PreviousData)
+    public GameData(float[] NewLT, GameData PreviousData)
     {
 
         Times = new float[SceneManager.sceneCountInBuildSettings - 1];
         float[] newTime = NewLT;
-
-        if(OverWriteFullscreen)
-            FullScreenMode = FullScreenToggle;
-        else
-        {
-
-            if(PreviousData != null)
-                FullScreenMode = PreviousData.FullScreenMode;
-            else
-                FullScreenMode = false;
-
-        }
-
-        if(PreviousData != null)
-        {
-
-            if(Width != 0 && Height != 0)
-            {
-
-                ScreenWidth = Width;
-                ScreenHeight = Height;
-
-            }
-            else if(PreviousData.ScreenWidth <= 0 || PreviousData.ScreenHeight <= 0)
-            {
-
-                ScreenWidth = 1920;
-                ScreenHeight = 1080;
-
-            }
-            else
-            {
-
-                ScreenWidth = PreviousData.ScreenWidth;
-                ScreenHeight = PreviousData.ScreenHeight;
-
-            }
-
-        }
-        else
-        {
-
-            if(Width != 0 && Height != 0)
-            {
-
-                ScreenWidth = Width;
-                ScreenHeight = Height;
-
-            }
-            else
-            {
-
-                ScreenWidth = 1920;
-                ScreenHeight = 1080;
-
-            }
-
-        }
 
         for (int i = 0; i < newTime.Length - 1; i++)
         {

@@ -20,7 +20,7 @@ public class CreateLevelTime : MonoBehaviour
 
         }
 
-        SaveAndLoad.SaveData(0 ,0 , false, false, Times, loadPrevTimes);
+        SaveAndLoad.SaveGameData(Times, loadPrevTimes);
 
     }
 
