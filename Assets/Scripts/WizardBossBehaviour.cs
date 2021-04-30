@@ -230,6 +230,8 @@ public class WizardBossBehaviour : MonoBehaviour
 
         }
 
+        transform.rotation = Quaternion.identity;
+
         yield return new WaitForSeconds(3);
 
         StartCoroutine(RestartSequence());

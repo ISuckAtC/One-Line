@@ -26,34 +26,36 @@ public class MainMenuController : MonoBehaviour
     public CreateLevelTime CLT;
     private int ScreenWidth, ScreenHeight;
     public bool FullscreenToggle;
+    private SettingsData settingsData;
 
     void Start()
     {
 
-        if(SaveAndLoad.LoadData() == null)
-        {
-
+        if(SaveAndLoad.LoadGameData() == null)
             CLT.CreateNewTimes(false);
 
-        }
+        if(SaveAndLoad.LoadSettingsData() == null)
+            SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, FullscreenToggle, false);
 
-        levelTimes = SaveAndLoad.LoadData().Times;
+        levelTimes = SaveAndLoad.LoadGameData().Times;
+
+        settingsData = SaveAndLoad.LoadSettingsData();
 
         if(levelTimes.Length < SceneManager.sceneCountInBuildSettings - 1)
         {
 
             CLT.CreateNewTimes(false);
             Debug.Log("Updating saved data...");
-            levelTimes = SaveAndLoad.LoadData().Times;
+            levelTimes = SaveAndLoad.LoadGameData().Times;
 
         }
 
         screenWidth = Screen.width;
         Cursor.visible = false;
 
-        ScreenWidth = SaveAndLoad.LoadData().ScreenWidth;
-        ScreenHeight = SaveAndLoad.LoadData().ScreenHeight;
-        FullscreenToggle = SaveAndLoad.LoadData().FullScreenMode;
+        ScreenWidth = settingsData.ScreenWidth;
+        ScreenHeight = settingsData.ScreenHeight;
+        FullscreenToggle = settingsData.FullScreenMode;
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
         
         if(ExcludeLevelNames)
@@ -107,7 +109,7 @@ public class MainMenuController : MonoBehaviour
     {
 
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
-        SaveAndLoad.SaveData(ScreenWidth, ScreenHeight, FullscreenToggle, true, new float[SceneManager.sceneCountInBuildSettings-1], false);
+        SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, FullscreenToggle, true);
         screenWidth = ScreenWidth;
 
     }

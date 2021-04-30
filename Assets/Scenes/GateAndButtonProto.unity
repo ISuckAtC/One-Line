@@ -32711,10 +32711,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4496638675496133265, guid: 5d2366fb6a6449048b4d39bc32204ebd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4496638675496133268, guid: 5d2366fb6a6449048b4d39bc32204ebd,
         type: 3}
       propertyPath: m_Name
       value: Slime_boing
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496638675860637382, guid: 5d2366fb6a6449048b4d39bc32204ebd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496638676049994314, guid: 5d2366fb6a6449048b4d39bc32204ebd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496638676298225147, guid: 5d2366fb6a6449048b4d39bc32204ebd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496638676362496230, guid: 5d2366fb6a6449048b4d39bc32204ebd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496638676375662615, guid: 5d2366fb6a6449048b4d39bc32204ebd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496638677044070979, guid: 5d2366fb6a6449048b4d39bc32204ebd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4496638677224005569, guid: 5d2366fb6a6449048b4d39bc32204ebd,
         type: 3}
