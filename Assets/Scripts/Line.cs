@@ -528,9 +528,9 @@ public class LinePiece
             {
                 foreach (LinePiece p in line.stuckPieces)
                 {
-                    p.StartCircle.transform.up = start - end;
-                    p.MiddleBox.transform.up = end - start;
-                    p.EndCircle.transform.up = end - start;
+                    if (p.StartCircle) p.StartCircle.transform.up = start - end;
+                    if (p.MiddleBox) p.MiddleBox.transform.up = end - start;
+                    if (p.EndCircle) p.EndCircle.transform.up = end - start;
                 }
                 line.stuckPieces.Clear();
             }
