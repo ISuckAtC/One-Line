@@ -14,10 +14,11 @@ public class MainMenuController : MonoBehaviour
     public bool ExcludeLevelTexts;
     public string[] LevelPreviewText;
     public GameObject MainMenuCursor, PreviewPanel, ToggleButton;
-    public Text PreviewName, PreviewText, GoToLevelButtonText, PreviewBestTimeText;
+    public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText,PreviewBestTimeText;
+    public Button HardmodeLevelButton;
     public Image PreviewImage;
     private Vector3 mousePosition;
-    private int levelNumSelected;
+    private int levelNumSelected, hardmodeLevelsUnlocked;
     private float slideInCounter, slideOutCounter;
     public bool ExcludeLevelTimes;
     public float[] levelTimes;
@@ -27,6 +28,7 @@ public class MainMenuController : MonoBehaviour
     private int ScreenWidth, ScreenHeight;
     public bool FullscreenToggle;
     private SettingsData settingsData;
+    private GameData gameData;
 
     void Start()
     {
@@ -37,7 +39,7 @@ public class MainMenuController : MonoBehaviour
         if(SaveAndLoad.LoadSettingsData() == null)
             SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, FullscreenToggle, false);
 
-        levelTimes = SaveAndLoad.LoadGameData().Times;
+        gameData = SaveAndLoad.LoadGameData();
 
         settingsData = SaveAndLoad.LoadSettingsData();
 
@@ -66,6 +68,10 @@ public class MainMenuController : MonoBehaviour
 
         if(ExcludeLevelTexts)
             LevelPreviewText = new string[SceneManager.sceneCountInBuildSettings];
+
+        levelTimes = gameData.Times;
+        
+        hardmodeLevelsUnlocked = gameData.LevelsUnlocked - LevelNames.Length - 2;
 
     }
 
@@ -133,6 +139,19 @@ public class MainMenuController : MonoBehaviour
             PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
 
+            if(hardmodeLevelsUnlocked >= levelNumSelected)
+            {
+
+                HardmodeLevelButton.interactable = true;
+
+            }
+            else
+            {
+
+                HardmodeLevelButton.interactable = false;
+
+            }
+
             slideInCounter = 1;
             inView = false;
 
@@ -181,6 +200,23 @@ public class MainMenuController : MonoBehaviour
             StartCoroutine(SlideIn(true));
 
         }
+
+    }
+
+    public void UnlockAllLevels()
+    {
+
+        hardmodeLevelsUnlocked = 100;
+
+        StartCoroutine(SlideIn(true));
+
+    }
+
+    public void EraseGameData()
+    {
+
+        CLT.CreateNewTimes(false);
+        hardmodeLevelsUnlocked = gameData.LevelsUnlocked - LevelNames.Length - 2;
 
     }
 

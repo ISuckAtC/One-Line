@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BarController : MonoBehaviour
 {
     public Color BarColor;
-    public GameObject Confines, Bar, TextObject;
+    public GameObject Bar, TextObject;
     private RectTransform CRect, BRect;
     private Text text;
     public float Max;
@@ -21,8 +21,6 @@ public class BarController : MonoBehaviour
     {
 
         gc = GameControl.main;
-        CRect = Confines.GetComponent<RectTransform>();
-        BRect = Bar.GetComponent<RectTransform>();
         Bar.GetComponent<Image>().sprite = BarSprite;
         CurrentAmount = gc.Ink[(int)InkType];
         Bar.GetComponent<Image>().color = BarColor;
@@ -37,8 +35,7 @@ public class BarController : MonoBehaviour
         CurrentAmount = gc.Ink[(int)InkType];
         ProsentOfTotal = CurrentAmount / Max - inkAmount;
         ProsentOfTotal = Mathf.Clamp(ProsentOfTotal, 0, 1);
-        BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height * 0.99f);
-
+        Bar.GetComponent<Image>().fillAmount = ProsentOfTotal;
         inkDisplayValue = ProsentOfTotal * Max;
 
     }
@@ -52,8 +49,7 @@ public class BarController : MonoBehaviour
             CurrentAmount = gc.Ink[(int)InkType];
             ProsentOfTotal = CurrentAmount / Max;
             ProsentOfTotal = Mathf.Clamp(ProsentOfTotal, 0, 1);
-            BRect.sizeDelta = new Vector2(CRect.rect.width * ProsentOfTotal, CRect.rect.height * 0.99f);
-
+            Bar.GetComponent<Image>().fillAmount = ProsentOfTotal;
             inkDisplayValue = ProsentOfTotal * Max;
 
         }
