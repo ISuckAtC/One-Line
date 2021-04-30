@@ -20,6 +20,7 @@ public class GameControl : MonoBehaviour
     static public float MinDrawDistanceAroundPlayer;
     public Vector2 SetMinDrawDistanceOval;
     static public Vector2 MinDrawDistanceOval;
+    public float MaxDrawDistance = -1f;
     public Sprite CursorNormal, CursorIce, CursorRubber, CursorWeight, CursorJoint, InkNormal, InkIce, InkRubber, InkWeight, InkJoint;
     public GameObject LinePrefab;
     public float LifeTimeAfterNewLine;
@@ -192,70 +193,77 @@ public class GameControl : MonoBehaviour
             if (rayhit.collider != null) StartCoroutine(Dragging(rayhit.collider.gameObject));
             else
             {
-                if (LimitLinesInAir)
+                if (MaxDrawDistance < 0 || Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), Player.transform.position) < MaxDrawDistance)
                 {
-                    if (lineType == LineType.Normal)
+                    if (LimitLinesInAir)
                     {
-                        if (normalLeft <= 0) return;
-                        else normalLeft--;
+                        if (lineType == LineType.Normal)
+                        {
+                            if (normalLeft <= 0) return;
+                            else normalLeft--;
+                        }
+                        if (lineType == LineType.Ice)
+                        {
+                            if (iceLeft <= 0) return;
+                            else iceLeft--;
+                        }
+                        if (lineType == LineType.Rubber)
+                        {
+                            if (rubberLeft <= 0) return;
+                            else rubberLeft--;
+                        }
+                        if (lineType == LineType.Weight)
+                        {
+                            if (weightLeft <= 0) return;
+                            else weightLeft--;
+                        }
+                        if (lineType == LineType.Joint)
+                        {
+                            if (jointLeft <= 0) return;
+                            else jointLeft--;
+                        }
                     }
-                    if (lineType == LineType.Ice)
+                    if (UseInk)
                     {
-                        if (iceLeft <= 0) return;
-                        else iceLeft--;
+                        if (Ink[(int)lineType] <= 0) return;
                     }
-                    if (lineType == LineType.Rubber)
-                    {
-                        if (rubberLeft <= 0) return;
-                        else rubberLeft--;
-                    }
-                    if (lineType == LineType.Weight)
-                    {
-                        if (weightLeft <= 0) return;
-                        else weightLeft--;
-                    }
-                    if (lineType == LineType.Joint)
-                    {
-                        if (jointLeft <= 0) return;
-                        else jointLeft--;
-                    }
-                }
-                if (UseInk)
-                {
-                    if (Ink[(int)lineType] <= 0) return;
-                }
-                Vector2 lineStartPos = Camera.main.ScreenToWorldPoint(mousePos, Camera.MonoOrStereoscopicEye.Mono);
-                Vector2 playerPos = Player.transform.position;
-                //if (Vector2.Distance(playerPos, lineStartPos) < MinDrawDistanceAroundPlayer)
-                //{
-                //    lineStartPos = ((lineStartPos - playerPos).normalized * MinDrawDistanceAroundPlayer) + playerPos;
-                //}
-                float xDistance = Mathf.Abs(playerPos.x - lineStartPos.x);
-                float yDistance = Mathf.Abs(playerPos.y - lineStartPos.y);
-                Debug.Log(xDistance + " | " + yDistance);
-                bool ellipseTest =
-                (Mathf.Pow(lineStartPos.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(lineStartPos.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) <= 1;
+                    Vector2 lineStartPos = Camera.main.ScreenToWorldPoint(mousePos, Camera.MonoOrStereoscopicEye.Mono);
+                    Vector2 playerPos = Player.transform.position;
+                    //if (Vector2.Distance(playerPos, lineStartPos) < MinDrawDistanceAroundPlayer)
+                    //{
+                    //    lineStartPos = ((lineStartPos - playerPos).normalized * MinDrawDistanceAroundPlayer) + playerPos;
+                    //}
+                    float xDistance = Mathf.Abs(playerPos.x - lineStartPos.x);
+                    float yDistance = Mathf.Abs(playerPos.y - lineStartPos.y);
+                    Debug.Log(xDistance + " | " + yDistance);
+                    bool ellipseTest =
+                    (Mathf.Pow(lineStartPos.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(lineStartPos.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) <= 1;
 
-                if (ellipseTest)
-                {
-                    Vector2 oval = MinDrawDistanceOval;
-                    Vector2 dir = (lineStartPos - playerPos).normalized;
-                    float angle = Mathf.Atan2(dir.y, dir.x);
-
-                    float pointRadius = (oval.x * oval.y) / Mathf.Sqrt((Mathf.Pow(oval.x, 2) * Mathf.Pow(Mathf.Sin(angle), 2)) + Mathf.Pow(oval.y, 2) * Mathf.Pow(Mathf.Cos(angle), 2));
-                    Vector2 newPosition = playerPos + (dir * pointRadius);
-                    //Debug.Log("Around player" + ((Mathf.Pow(newPosition.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(newPosition.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) < 1).ToString());
-                    /*if (Vector2.Distance(End, newPosition) > Vector2.Distance(End, position))
+                    if (ellipseTest)
                     {
-                        position = Vector2.Lerp(End, position, 0.5f);
-                        position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
+                        Vector2 oval = MinDrawDistanceOval;
+                        Vector2 dir = (lineStartPos - playerPos).normalized;
+                        float angle = Mathf.Atan2(dir.y, dir.x);
+
+                        float pointRadius = (oval.x * oval.y) / Mathf.Sqrt((Mathf.Pow(oval.x, 2) * Mathf.Pow(Mathf.Sin(angle), 2)) + Mathf.Pow(oval.y, 2) * Mathf.Pow(Mathf.Cos(angle), 2));
+                        Vector2 newPosition = playerPos + (dir * pointRadius);
+                        //Debug.Log("Around player" + ((Mathf.Pow(newPosition.x - playerPos.x, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.x, 2)) + (Mathf.Pow(newPosition.y - playerPos.y, 2) / Mathf.Pow(GameControl.MinDrawDistanceOval.y, 2)) < 1).ToString());
+                        /*if (Vector2.Distance(End, newPosition) > Vector2.Distance(End, position))
+                        {
+                            position = Vector2.Lerp(End, position, 0.5f);
+                            position = ((position - playerPos).normalized * GameControl.MinDrawDistanceAroundPlayer) + playerPos;
+                        }
+                        else */
+                        lineStartPos = newPosition;
                     }
-                    else */
-                    lineStartPos = newPosition;
+                    GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
+                    if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, false, Player, DrawRateSeconds, StraightPieceLength);
+                    else line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, true, Player, DrawRateSeconds, StraightPieceLength);
                 }
-                GameObject line = Instantiate(LinePrefab, lineStartPos, Quaternion.identity);
-                if (AssistedDraw) line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, false, Player, DrawRateSeconds, StraightPieceLength);
-                else line.GetComponent<Line>().ConstructFromCursor(lineType, DrawingTimeScale, true, Player, DrawRateSeconds, StraightPieceLength);
+                else
+                {
+                    // SHOW STUFF IF PLAYER IS TRYING TO DRAW OUTSIDE BOUNDS
+                }
             }
         }
         else
