@@ -35,7 +35,7 @@ public class MainMenuController : MonoBehaviour
             CLT.CreateNewTimes(false);
 
         if(SaveAndLoad.LoadSettingsData() == null)
-            SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, FullscreenToggle, true);
+            SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, FullscreenToggle, false);
 
         levelTimes = SaveAndLoad.LoadGameData().Times;
 
