@@ -8,7 +8,7 @@ using System;
 public class SaveAndLoad : MonoBehaviour
 {
 
-    public static void SaveGameData(float[] times, bool loadPrevTimes)
+    public static void SaveGameData(float[] times, int lvlUnlockData, bool loadPrevTimes)
     {
 
         GameData previousLevelTimes = null;
@@ -22,7 +22,7 @@ public class SaveAndLoad : MonoBehaviour
         string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OneLineGameData.boron");
         FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         
-        GameData data = new GameData( times, previousLevelTimes);
+        GameData data = new GameData(times, lvlUnlockData, previousLevelTimes);
 
         formatter.Serialize(stream, data);
         stream.Close();
