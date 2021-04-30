@@ -49,7 +49,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638675496133268}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638675496133268}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b096853d8daf96749b13dff0a536c49f, type: 3}
   m_Name: 
@@ -181,10 +181,10 @@ GameObject:
   - component: {fileID: 4496638675860637382}
   - component: {fileID: 4496638675860637383}
   - component: {fileID: 4496638675860637380}
-  - component: {fileID: 4496638675860637381}
   - component: {fileID: 4496638675860637386}
   - component: {fileID: 4496638675860637387}
   - component: {fileID: 4496638675860637384}
+  - component: {fileID: 409715215}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -213,7 +213,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638675860637390}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -292,26 +292,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!232 &4496638675860637381
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496638675860637390}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4496638676049994316}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 1.9906014
-  m_MaxDistanceOnly: 1
+  m_Radius: 1
 --- !u!231 &4496638675860637386
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -329,7 +310,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 2.032142
+  m_Distance: 2.0321417
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638675860637387
@@ -349,7 +330,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9906014
+  m_Distance: 1.9906034
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638675860637384
@@ -369,9 +350,28 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9126933
+  m_Distance: 1.9126942
   m_DampingRatio: 1
   m_Frequency: 3
+--- !u!232 &409715215
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496638675860637390}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 4496638675496133270}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 2.0321417
+  m_MaxDistanceOnly: 0
 --- !u!1 &4496638676049994317
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,10 +384,10 @@ GameObject:
   - component: {fileID: 4496638676049994314}
   - component: {fileID: 4496638676049994316}
   - component: {fileID: 4496638676049994315}
-  - component: {fileID: 4496638676049994312}
   - component: {fileID: 4496638676049994313}
   - component: {fileID: 4496638676049994318}
   - component: {fileID: 4496638676049994319}
+  - component: {fileID: 614792766}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -416,7 +416,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638676049994317}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -495,26 +495,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!232 &4496638676049994312
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496638676049994317}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4496638676375662617}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 1.9699997
-  m_MaxDistanceOnly: 1
+  m_Radius: 1
 --- !u!231 &4496638676049994313
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -532,7 +513,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9710134
+  m_Distance: 1.9710153
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638676049994318
@@ -552,7 +533,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9699997
+  m_Distance: 1.97
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638676049994319
@@ -572,9 +553,28 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9906014
+  m_Distance: 1.9906034
   m_DampingRatio: 1
   m_Frequency: 3
+--- !u!232 &614792766
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496638676049994317}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 4496638675496133270}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 1.9710153
+  m_MaxDistanceOnly: 0
 --- !u!1 &4496638676298225122
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,10 +587,10 @@ GameObject:
   - component: {fileID: 4496638676298225147}
   - component: {fileID: 4496638676298225149}
   - component: {fileID: 4496638676298225144}
-  - component: {fileID: 4496638676298225145}
   - component: {fileID: 4496638676298225150}
   - component: {fileID: 4496638676298225151}
   - component: {fileID: 4496638676298225148}
+  - component: {fileID: 425960093}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -619,7 +619,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638676298225122}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -698,26 +698,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!232 &4496638676298225145
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496638676298225122}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4496638676362496232}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 1.8939121
-  m_MaxDistanceOnly: 1
+  m_Radius: 1
 --- !u!231 &4496638676298225150
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -735,7 +716,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.8119891
+  m_Distance: 1.8119881
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638676298225151
@@ -755,7 +736,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.8939121
+  m_Distance: 1.8939114
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638676298225148
@@ -775,9 +756,28 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9305187
+  m_Distance: 1.9305182
   m_DampingRatio: 1
   m_Frequency: 3
+--- !u!232 &425960093
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496638676298225122}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 4496638675496133270}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 1.8119881
+  m_MaxDistanceOnly: 0
 --- !u!1 &4496638676362496233
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,10 +790,10 @@ GameObject:
   - component: {fileID: 4496638676362496230}
   - component: {fileID: 4496638676362496232}
   - component: {fileID: 4496638676362496231}
-  - component: {fileID: 4496638676362496228}
   - component: {fileID: 4496638676362496229}
   - component: {fileID: 4496638676362496234}
   - component: {fileID: 4496638676362496235}
+  - component: {fileID: 556396499}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -822,7 +822,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638676362496233}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -901,26 +901,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!232 &4496638676362496228
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496638676362496233}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4496638675860637383}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 1.9126933
-  m_MaxDistanceOnly: 1
+  m_Radius: 1
 --- !u!231 &4496638676362496229
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -938,7 +919,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9252001
+  m_Distance: 1.9252013
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638676362496234
@@ -958,7 +939,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.8939121
+  m_Distance: 1.8939114
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638676362496235
@@ -978,9 +959,28 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9126933
+  m_Distance: 1.9126942
   m_DampingRatio: 1
   m_Frequency: 3
+--- !u!232 &556396499
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496638676362496233}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 4496638675496133270}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 1.9252013
+  m_MaxDistanceOnly: 0
 --- !u!1 &4496638676375662622
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,10 +993,10 @@ GameObject:
   - component: {fileID: 4496638676375662615}
   - component: {fileID: 4496638676375662617}
   - component: {fileID: 4496638676375662612}
-  - component: {fileID: 4496638676375662613}
   - component: {fileID: 4496638676375662618}
   - component: {fileID: 4496638676375662619}
   - component: {fileID: 4496638676375662616}
+  - component: {fileID: 79430852}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -1025,7 +1025,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638676375662622}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1104,26 +1104,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!232 &4496638676375662613
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496638676375662622}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4496638677044070981}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 2.0175726
-  m_MaxDistanceOnly: 1
+  m_Radius: 1
 --- !u!231 &4496638676375662618
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -1181,9 +1162,28 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9699997
+  m_Distance: 1.97
   m_DampingRatio: 1
   m_Frequency: 3
+--- !u!232 &79430852
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496638676375662622}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 4496638675496133270}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 2.019356
+  m_MaxDistanceOnly: 0
 --- !u!1 &4496638677044070986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,10 +1196,10 @@ GameObject:
   - component: {fileID: 4496638677044070979}
   - component: {fileID: 4496638677044070981}
   - component: {fileID: 4496638677044070976}
-  - component: {fileID: 4496638677044070977}
   - component: {fileID: 4496638677044070982}
   - component: {fileID: 4496638677044070983}
   - component: {fileID: 4496638677044070980}
+  - component: {fileID: 758859149}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -1228,7 +1228,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496638677044070986}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1307,26 +1307,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!232 &4496638677044070977
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496638677044070986}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4496638676298225149}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 1.9305187
-  m_MaxDistanceOnly: 1
+  m_Radius: 1
 --- !u!231 &4496638677044070982
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -1344,7 +1325,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9498719
+  m_Distance: 1.9498718
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638677044070983
@@ -1364,7 +1345,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9305187
+  m_Distance: 1.9305182
   m_DampingRatio: 1
   m_Frequency: 3
 --- !u!231 &4496638677044070980
@@ -1387,6 +1368,25 @@ SpringJoint2D:
   m_Distance: 2.0175726
   m_DampingRatio: 1
   m_Frequency: 3
+--- !u!232 &758859149
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496638677044070986}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 4496638675496133270}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 1.9498718
+  m_MaxDistanceOnly: 0
 --- !u!1 &4496638677224005572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,7 +1429,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1551,8 +1551,8 @@ MonoBehaviour:
   m_SplineDetail: 16
   m_AdaptiveUV: 1
   m_StretchUV: 1
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
+  m_WorldSpaceUV: 1
+  m_CornerAngleThreshold: 50
   m_ColliderDetail: 16
   m_ColliderOffset: 0
   m_UpdateCollider: 1
