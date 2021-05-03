@@ -179,13 +179,8 @@ public class UiControl : MonoBehaviour
     {
 
         CursorInkCircleRealtime.fillAmount = value;
-        
-        foreach(BarController bc in BarControllers)
-        {
 
-            bc.TempBarUpdate(value);
-
-        }
+        BarControllers[gc.InkTypeSelected].TempBarUpdate(value);
 
     }
 
