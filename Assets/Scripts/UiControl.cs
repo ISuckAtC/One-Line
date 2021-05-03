@@ -207,14 +207,13 @@ public class UiControl : MonoBehaviour
 
         UpdateInkCircle();
 
-        for(int i = 0; i <= Inkwells.Length - 1; i++) 
+        /*for(int i = 0; i <= Inkwells.Length - 1; i++) 
         {
 
             if(gc.InkTypeSelected == i)
             {
                 
                 Inkwells[i].transform.localScale = EnlargedSize;
-                //Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[4].GetComponent<RectTransform>().position;
                 Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[i].GetComponent<RectTransform>().position;
                 
             }
@@ -226,7 +225,7 @@ public class UiControl : MonoBehaviour
                 
             }
 
-        }
+        }*/
 
     }
 
