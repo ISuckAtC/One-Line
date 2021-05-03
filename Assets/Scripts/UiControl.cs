@@ -14,7 +14,7 @@ public class UiControl : MonoBehaviour
     private GameObject InGameUi;
     public bool PauseGameUiOnOff, UpdateSkipBar;
     private GameControl gc;
-    public GameObject[] Inkwells, InkwellPositions, InkValues;
+    public GameObject[] Inkwells, InkwellPositions, InkValues, InkGlow;
     private Text coinsText;
     private Text levelSceneNumber;
     public BarController[] BarControllers;
@@ -147,27 +147,38 @@ public class UiControl : MonoBehaviour
         float ProsentOfTotal = CurrentAmount / 100;
         ProsentOfTotal = Mathf.Clamp(ProsentOfTotal, 0, 1);
 
+        foreach (GameObject GO in InkGlow)
+        {
+
+            GO.SetActive(false);
+            
+        }
+
         switch (lineTypeSelected)
         {
             
             case LineType.Normal:
             CursorInkCircle.color = Normal;
             GameCursor.GetComponent<Image>().sprite = NormalCursor;
+            InkGlow[0].SetActive(true);
             break;
 
             case LineType.Ice:
             CursorInkCircle.color = Ice;
             GameCursor.GetComponent<Image>().sprite = IceCursor;
+            InkGlow[1].SetActive(true);
             break;
 
             case LineType.Rubber:
             CursorInkCircle.color = Rubber;
             GameCursor.GetComponent<Image>().sprite = RubberCursor;
+            InkGlow[2].SetActive(true);
             break;
 
             case LineType.Weight:
             CursorInkCircle.color = Gravity;
             GameCursor.GetComponent<Image>().sprite = GravityCursor;
+            InkGlow[3].SetActive(true);
             break;
 
         }
@@ -203,7 +214,8 @@ public class UiControl : MonoBehaviour
             {
                 
                 Inkwells[i].transform.localScale = EnlargedSize;
-                Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[4].GetComponent<RectTransform>().position;;
+                //Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[4].GetComponent<RectTransform>().position;
+                Inkwells[i].GetComponent<RectTransform>().position = InkwellPositions[i].GetComponent<RectTransform>().position;
                 
             }
             else 
