@@ -15984,7 +15984,7 @@ PrefabInstance:
     - target: {fileID: 2997787420949036411, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2997787420949036411, guid: 4bc0eceb0d95e8841b9f9febb34002e9,
         type: 3}
@@ -16391,7 +16391,7 @@ SpriteMask:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c7c02acede5941b4fa76179796fcf272, type: 3}
-  m_MaskAlphaCutoff: 0.2
+  m_MaskAlphaCutoff: 0.1
   m_FrontSortingLayerID: 1953148399
   m_BackSortingLayerID: 1953148399
   m_FrontSortingLayer: 6
@@ -16412,7 +16412,7 @@ Transform:
   m_LocalScale: {x: 2.9652555, y: 2.9652555, z: 2.9652555}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &112078217
 PrefabInstance:
@@ -18446,7 +18446,7 @@ Transform:
   - {fileID: 282627316}
   - {fileID: 1488254496}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -135}
 --- !u!4 &577551371 stripped
 Transform:
@@ -20661,7 +20661,7 @@ Transform:
   - {fileID: 1740134335}
   - {fileID: 821662596}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &1224675684
 PrefabInstance:
@@ -20966,7 +20966,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1283661545
 PrefabInstance:
