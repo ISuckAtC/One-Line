@@ -16,6 +16,7 @@ public class MainMenuController : MonoBehaviour
     public GameObject MainMenuCursor, PreviewPanel, ToggleButton;
     public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText, PreviewBestTimeText, PreviewBestHardTimeText, RecentRunText, BestRunText;
     public Button HardmodeLevelButton;
+    public InputField FramerateInputField;
     public Image PreviewImage;
     private Vector3 mousePosition;
     private int levelNumSelected, hardmodeLevelsUnlocked;
@@ -119,7 +120,25 @@ public class MainMenuController : MonoBehaviour
 
     }
 
-    public void SetFramerate(int fps) => Framerate = fps;
+    public void SetFramerate()
+    {
+
+        int framerate;
+        if(int.TryParse(FramerateInputField.text, out framerate))
+        {
+
+            Framerate = framerate;
+            FramerateInputField.text = "";
+
+        }
+        else
+        {
+            
+            FramerateInputField.text = "Needs to be a number";
+
+        }
+
+    }
 
     public void SetWidth(int Width) => ScreenWidth = Width;
 
