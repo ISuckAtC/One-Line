@@ -142,7 +142,20 @@ public class MainMenuController : MonoBehaviour
             if(hardmodeLevelsUnlocked >= levelNumSelected)
             {
 
-                HardmodeLevelButton.interactable = true;
+                if(SceneManager.sceneCount < levelNumSelected)
+                {
+
+                    HardmodeLevelButton.interactable = false;
+                    HardmodeLevelButtonText.text = "No more levels";
+
+                }
+                else
+                {
+
+                    HardmodeLevelButton.interactable = true;
+                    HardmodeLevelButtonText.text = "Play Level" + levelNumSelected + LevelNames.Length;
+
+                }
 
             }
             else
