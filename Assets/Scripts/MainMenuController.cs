@@ -19,7 +19,7 @@ public class MainMenuController : MonoBehaviour
     public Image PreviewImage;
     private Vector3 mousePosition;
     private int levelNumSelected, hardmodeLevelsUnlocked;
-    private float slideInCounter, slideOutCounter;
+    private float slideInCounter, slideOutCounter, speedrunTime;
     public bool ExcludeLevelTimes;
     public float[] levelTimes;
     public float PreviewPanelSpeed, screenWidth;
@@ -32,6 +32,14 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
+
+        if(GameObject.FindGameObjectWithTag("Timer"))
+        {
+
+            speedrunTime = GameObject.FindGameObjectWithTag("Timer").GetComponent<SpeedrunTimer>().runTime;
+            Destroy(GameObject.FindGameObjectWithTag("Timer"));
+
+        }
 
         if(SaveAndLoad.LoadGameData() == null)
             CLT.CreateNewTimes(false);
