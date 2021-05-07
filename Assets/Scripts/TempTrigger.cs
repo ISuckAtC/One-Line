@@ -12,7 +12,7 @@ public class TempTrigger : MonoBehaviour
 
         if(col.gameObject.tag == "Player")
         {
-            for (int i =0; i<= Imp.Length; i++)
+            for (int i = 0; i <= Imp.Length; i++)
             {
                 Imp[i].GetComponent<WizardBossBehaviour>().WizardBossActivate();
             }
