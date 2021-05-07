@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("should be the Player physicsMaterial 2D")]
     public PhysicsMaterial2D PM2D;
     private float yVel, jumpPower, damping;
+    [SerializeField]
     private Vector2 movementVector;
     //Jumping
     public float BumpForce, jumpForce;
