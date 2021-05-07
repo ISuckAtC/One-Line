@@ -127,6 +127,13 @@ public class MainMenuController : MonoBehaviour
 
     }
 
+    public void GoToHardLevel()
+    {
+
+        SceneManager.LoadScene(levelNumSelected + LevelNames.Length);
+
+    }
+
     private IEnumerator SlideIn(bool reset)
     {
 
@@ -142,7 +149,7 @@ public class MainMenuController : MonoBehaviour
             if(hardmodeLevelsUnlocked >= levelNumSelected)
             {
 
-                if(SceneManager.sceneCount < levelNumSelected)
+                if(SceneManager.sceneCountInBuildSettings < levelNumSelected)
                 {
 
                     HardmodeLevelButton.interactable = false;
@@ -153,7 +160,7 @@ public class MainMenuController : MonoBehaviour
                 {
 
                     HardmodeLevelButton.interactable = true;
-                    HardmodeLevelButtonText.text = "Play Level" + levelNumSelected + LevelNames.Length;
+                    HardmodeLevelButtonText.text = "Play Level" + (levelNumSelected + LevelNames.Length);
 
                 }
 
