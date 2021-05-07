@@ -354,7 +354,7 @@ public class GameControl : MonoBehaviour
     }
     IEnumerator StartTravel()
     {
-        Player.transform.Find("Body").gameObject.SetActive(false);
+        Player.transform.GetChild(0).Find("Body").gameObject.SetActive(false);
         Player.GetComponent<PlayerMovement>().MovementEnabled = false;
         Camera.main.transform.parent = null;
         Camera.main.transform.Translate(new Vector3(-LevelTransCamOffset, 0, 0));
@@ -367,12 +367,17 @@ public class GameControl : MonoBehaviour
             if ((Vector2)Camera.main.transform.position == (Vector2)Player.transform.position) break;
             yield return new WaitForFixedUpdate();
         }
-        Player.transform.Find("Body").gameObject.SetActive(true);
+        Player.transform.GetChild(0).Find("Body").gameObject.SetActive(true);
         Camera.main.transform.parent = Player.transform;
         Player.GetComponent<Animator>().SetTrigger("PopIn");
+        Animator animator = Player.GetComponent<Animator>();
+        animator.SetBool("Falling", false);
+        animator.SetBool("Jumping", false);
+        animator.SetTrigger("Landing");
     }
     public IEnumerator EndTravel(int nextScene)
     {
+        Player.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         Camera.main.transform.parent = null;
         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
         Player.GetComponent<PlayerMovement>().NukeMovement = true;
