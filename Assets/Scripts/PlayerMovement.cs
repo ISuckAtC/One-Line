@@ -36,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
     public void PopInFinal()
     {
         Debug.Log("popin final");
+        Animator animator = GetComponent<Animator>();
+        animator.SetBool("Falling", false);
+        animator.SetBool("Jumping", false);
+        animator.SetTrigger("Landing");
+        
     }
 
     void Start()

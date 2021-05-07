@@ -370,6 +370,10 @@ public class GameControl : MonoBehaviour
         Player.transform.GetChild(0).Find("Body").gameObject.SetActive(true);
         Camera.main.transform.parent = Player.transform;
         Player.GetComponent<Animator>().SetTrigger("PopIn");
+        Animator animator = Player.GetComponent<Animator>();
+        animator.SetBool("Falling", false);
+        animator.SetBool("Jumping", false);
+        animator.SetTrigger("Landing");
     }
     public IEnumerator EndTravel(int nextScene)
     {
