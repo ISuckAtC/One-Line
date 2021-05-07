@@ -9,10 +9,11 @@ public class GameData
 
     public float[] Times;
     public int LevelsUnlocked;
+    public float BestRun, RecentRun;
 
     //Uses the values from both the previously saved Times array and the one currently being saved
     //Checks if the new times are better or worse and selects the best, if the time spent is 0, it will not save anything
-    public GameData(float[] NewLT, int levelUnlockValue, GameData PreviousData)
+    public GameData(float[] NewLT, float RunTime, int levelUnlockValue, GameData PreviousData)
     {
 
         Times = new float[SceneManager.sceneCountInBuildSettings - 1];
@@ -20,6 +21,11 @@ public class GameData
         
         if(PreviousData != null)
         {
+
+            if(RunTime != 0)
+                RecentRun = RunTime;
+            else
+                RecentRun = PreviousData.RecentRun;
 
             if(levelUnlockValue >= PreviousData.LevelsUnlocked)
             {
@@ -34,11 +40,33 @@ public class GameData
 
             }
 
+            if(RunTime != 0)
+            {
+
+                if(RunTime <= PreviousData.BestRun)
+                {
+
+                    BestRun = PreviousData.BestRun;
+
+                }
+                else
+                {
+
+                    BestRun = RunTime;
+
+                }
+
+            }
+            else
+                BestRun = PreviousData.BestRun;
+
         }
         else
         {
 
             LevelsUnlocked = levelUnlockValue;
+            BestRun = RunTime;
+            RecentRun = RunTime;
 
         }
 
