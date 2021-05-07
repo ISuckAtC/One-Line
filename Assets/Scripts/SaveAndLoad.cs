@@ -8,7 +8,7 @@ using System;
 public class SaveAndLoad : MonoBehaviour
 {
 
-    public static void SaveGameData(float[] times, int runTime, int lvlUnlockData, bool loadPrevTimes)
+    public static void SaveGameData(float[] times, float runTime, int lvlUnlockData, bool loadPrevTimes)
     {
 
         GameData previousLevelTimes = null;

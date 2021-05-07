@@ -46,13 +46,13 @@ public class GameData
                 if(RunTime <= PreviousData.BestRun)
                 {
 
-                    BestRun = PreviousData.BestRun;
+                    BestRun = RunTime;
 
                 }
                 else
                 {
 
-                    BestRun = RunTime;
+                    BestRun = PreviousData.BestRun;
 
                 }
 

@@ -7,6 +7,13 @@ public class SpeedrunTimer : MonoBehaviour
 
     public float runTime;
 
+    void Start()
+    {
+
+        DontDestroyOnLoad(this);
+
+    }
+
     void Update()
     {
 
