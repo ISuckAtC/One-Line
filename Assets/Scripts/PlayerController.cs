@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
 
         lastSpeed = rb.velocity;
         lastGrounded = movementController.isGrounded;
