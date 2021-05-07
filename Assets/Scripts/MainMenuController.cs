@@ -71,7 +71,8 @@ public class MainMenuController : MonoBehaviour
 
         levelTimes = gameData.Times;
         
-        hardmodeLevelsUnlocked = gameData.LevelsUnlocked - LevelNames.Length - 2;
+        hardmodeLevelsUnlocked = gameData.LevelsUnlocked - (LevelNames.Length - 2);
+        Debug.Log(hardmodeLevelsUnlocked);
 
     }
 
