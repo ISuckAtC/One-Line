@@ -14,7 +14,7 @@ public class MainMenuController : MonoBehaviour
     public bool ExcludeLevelTexts;
     public string[] LevelPreviewText;
     public GameObject MainMenuCursor, PreviewPanel, ToggleButton;
-    public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText,PreviewBestTimeText;
+    public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText, PreviewBestTimeText, PreviewBestHardTimeText, RecentRunText, BestRunText;
     public Button HardmodeLevelButton;
     public Image PreviewImage;
     private Vector3 mousePosition;
@@ -83,6 +83,9 @@ public class MainMenuController : MonoBehaviour
         
         hardmodeLevelsUnlocked = gameData.LevelsUnlocked - (LevelNames.Length - 1);
         Debug.Log(hardmodeLevelsUnlocked);
+
+        RecentRunText.text = "Last Run: " + gameData.RecentRun;
+        BestRunText.text = "Best Run: " + gameData.BestRun;
 
     }
 
@@ -158,6 +161,7 @@ public class MainMenuController : MonoBehaviour
             PreviewImage.sprite = LevelPreviewImage[levelNumSelected-1];
             PreviewText.text = LevelPreviewText[levelNumSelected-1];
             PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
+            PreviewBestHardTimeText.text = "Best Hardmode Time: " + levelTimes[levelNumSelected-1 + LevelNames.Length];
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
 
             if(hardmodeLevelsUnlocked >= levelNumSelected)
