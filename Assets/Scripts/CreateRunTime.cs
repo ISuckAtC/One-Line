@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CreateRunTime : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class CreateRunTime : MonoBehaviour
             if(GameObject.FindGameObjectWithTag("Timer"))
             {
 
-                SaveAndLoad.SaveGameData(new float[0], GameObject.FindGameObjectWithTag("Timer").GetComponent<SpeedrunTimer>().runTime, 0, true);
+                SaveAndLoad.SaveGameData(new float[SceneManager.sceneCountInBuildSettings - 1], GameObject.FindGameObjectWithTag("Timer").GetComponent<SpeedrunTimer>().runTime, 0, true);
 
             }
 
