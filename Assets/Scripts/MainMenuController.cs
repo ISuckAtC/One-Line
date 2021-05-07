@@ -127,7 +127,7 @@ public class MainMenuController : MonoBehaviour
         if(int.TryParse(FramerateInputField.text, out framerate))
         {
 
-            Framerate = framerate;
+            Framerate = int.Parse(FramerateInputField.text);
             FramerateInputField.text = "";
 
         }
