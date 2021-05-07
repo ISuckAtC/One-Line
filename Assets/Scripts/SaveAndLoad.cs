@@ -55,7 +55,7 @@ public class SaveAndLoad : MonoBehaviour
 
     }
 
-    public static void SaveSettingsData(int width, int height, bool fullscreen, bool fullscreenOverWrite)
+    public static void SaveSettingsData(int width, int height, int fps, bool fullscreen, bool fullscreenOverWrite)
     {
 
         SettingsData previousData = null;
@@ -66,7 +66,7 @@ public class SaveAndLoad : MonoBehaviour
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
-        SettingsData data = new SettingsData(width, height, fullscreen, fullscreenOverWrite, previousData);
+        SettingsData data = new SettingsData(width, height, fps, fullscreen, fullscreenOverWrite, previousData);
 
         formatter.Serialize(stream, data);
         stream.Close();

@@ -25,7 +25,7 @@ public class MainMenuController : MonoBehaviour
     public float PreviewPanelSpeed, screenWidth;
     public bool inView;
     public CreateLevelTime CLT;
-    private int ScreenWidth, ScreenHeight;
+    private int ScreenWidth, ScreenHeight, Framerate;
     public bool FullscreenToggle;
     private SettingsData settingsData;
     private GameData gameData;
@@ -37,7 +37,7 @@ public class MainMenuController : MonoBehaviour
             CLT.CreateNewTimes(false);
 
         if(SaveAndLoad.LoadSettingsData() == null)
-            SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, FullscreenToggle, false);
+            SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, Framerate, FullscreenToggle, false);
 
         gameData = SaveAndLoad.LoadGameData();
 
@@ -59,6 +59,8 @@ public class MainMenuController : MonoBehaviour
         ScreenHeight = settingsData.ScreenHeight;
         FullscreenToggle = settingsData.FullScreenMode;
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
+        Framerate = settingsData.Framerate;
+        Application.targetFrameRate = Framerate;
         
         if(ExcludeLevelNames)
             LevelNames = new string[SceneManager.sceneCountInBuildSettings];
@@ -71,7 +73,7 @@ public class MainMenuController : MonoBehaviour
 
         levelTimes = gameData.Times;
         
-        hardmodeLevelsUnlocked = gameData.LevelsUnlocked - (LevelNames.Length - 2);
+        hardmodeLevelsUnlocked = gameData.LevelsUnlocked - (LevelNames.Length - 1);
         Debug.Log(hardmodeLevelsUnlocked);
 
     }
@@ -106,6 +108,8 @@ public class MainMenuController : MonoBehaviour
 
     }
 
+    public void SetFramerate(int fps) => Framerate = fps;
+
     public void SetWidth(int Width) => ScreenWidth = Width;
 
     public void SetHeight(int Height) => ScreenHeight = Height;
@@ -116,8 +120,9 @@ public class MainMenuController : MonoBehaviour
     {
 
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
-        SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, FullscreenToggle, true);
+        SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, Framerate, FullscreenToggle, true);
         screenWidth = ScreenWidth;
+        Application.targetFrameRate = Framerate;
 
     }
 
@@ -170,6 +175,7 @@ public class MainMenuController : MonoBehaviour
             {
 
                 HardmodeLevelButton.interactable = false;
+                HardmodeLevelButtonText.text = "Level Not Unlocked";
 
             }
 
@@ -221,6 +227,15 @@ public class MainMenuController : MonoBehaviour
             StartCoroutine(SlideIn(true));
 
         }
+
+    }
+
+    public void UnlockFirstLevel()
+    {
+
+        hardmodeLevelsUnlocked = 1;
+
+        StartCoroutine(SlideIn(true));
 
     }
 

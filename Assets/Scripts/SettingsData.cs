@@ -6,10 +6,10 @@ using UnityEngine;
 public class SettingsData
 {
 
-    public int ScreenWidth, ScreenHeight;
+    public int ScreenWidth, ScreenHeight, Framerate;
     public bool FullScreenMode;
 
-    public SettingsData(int Width, int Height ,bool FullScreenToggle, bool OverWriteFullscreen, SettingsData PreviousData)
+    public SettingsData(int Width, int Height, int FramerateInput, bool FullScreenToggle, bool OverWriteFullscreen, SettingsData PreviousData)
     {
 
         if(OverWriteFullscreen)
@@ -49,6 +49,19 @@ public class SettingsData
 
             }
 
+            if(FramerateInput == 0)
+            {
+
+                Framerate = PreviousData.Framerate;
+
+            }
+            else
+            {
+
+                Framerate = FramerateInput;
+
+            }
+
         }
         else
         {
@@ -65,6 +78,19 @@ public class SettingsData
 
                 ScreenWidth = 1920;
                 ScreenHeight = 1080;
+
+            }
+
+            if(FramerateInput != 0)
+            {
+
+                Framerate = FramerateInput;
+
+            }
+            else
+            {
+
+                Framerate = 60;
 
             }
 
