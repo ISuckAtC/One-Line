@@ -390,7 +390,7 @@ public class GameControl : MonoBehaviour
         {
             Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, nPos, CamFollowSpeed);
             if (Camera.main.transform.position == nPos) break;
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate(); 
         }
         lastType = lineType;
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
