@@ -4915,7 +4915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5218c352c68201940a4e8c906db36b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeatInterval: 1
+  HeatInterval: 0.05
+  HeatAmount: 1
 --- !u!61 &2904078854076027772
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -51,6 +51,7 @@ public class GameControl : MonoBehaviour
     public bool ForceDefault;
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
+    public int IceMeltingPoint;
     public Dialogue DialoguePrimitive;
     public Text DeathCountText;
     public char CustomWaitDefCharacter;
