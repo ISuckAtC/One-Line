@@ -16,10 +16,8 @@ public class Line : MonoBehaviour
     public Sprite Circle;
     public Sprite Box;
     public float Thickness;
-    public LinePiece[] Pieces { get { return pieces.ToArray(); } }
-    public List<LinePiece> pieces;
+    public List<LinePiece> Pieces;
     public List<LinePiece> stuckPieces;
-    public int Size { get { return Pieces.Length; } }
 
     public float Length;
     public float MinLengthForNewPiece;
@@ -32,7 +30,7 @@ public class Line : MonoBehaviour
 
     public void SetTriggerActive(bool active)
     {
-        foreach (LinePiece piece in pieces) piece.SetTriggerActive(active);
+        foreach (LinePiece piece in Pieces) piece.SetTriggerActive(active);
     }
 
     public void ConstructFromPoints(Vector2 a, Vector2 b, Vector2 c, LineType lineType, float pieceLength, int iterationLimit)
@@ -148,7 +146,7 @@ public class Line : MonoBehaviour
     void Setup(LineType lineType)
     {
         End = transform.position;
-        pieces = new List<LinePiece>();
+        Pieces = new List<LinePiece>();
         stuckPieces = new List<LinePiece>();
         LineType = lineType;
 
@@ -270,7 +268,10 @@ public class Line : MonoBehaviour
                 float fillAmount = Length / 100f;
                 UiControl.main.UpdateInkCircleTemporary(Mathf.Clamp(fillAmount, 0f, 1f));
             }
-            pieces.Add(piece);
+
+            piece.SetIndexTags(Pieces.Count);
+
+            Pieces.Add(piece);
         }
         else
         {
@@ -420,13 +421,50 @@ public class LinePiece
     GameObject MiddleBox;
     GameObject EndCircle;
 
+    private int heat;
     public float Length;
+
+    public void HeatUp(int amount)
+    {
+        heat += amount;
+        if (StartCircle) 
+        {
+            Color c = StartCircle.GetComponent<SpriteRenderer>().color;
+            c.a = (GameControl.main.IceMeltingPoint - heat) / GameControl.main.IceMeltingPoint;
+            StartCircle.GetComponent<SpriteRenderer>().color = c;
+        }
+        if (MiddleBox)
+        {
+            Color c = MiddleBox.GetComponent<SpriteRenderer>().color;
+            c.a = (GameControl.main.IceMeltingPoint - heat) / GameControl.main.IceMeltingPoint;
+            MiddleBox.GetComponent<SpriteRenderer>().color = c;
+        }
+        if (EndCircle)
+        {
+            Color c = EndCircle.GetComponent<SpriteRenderer>().color;
+            c.a = (GameControl.main.IceMeltingPoint - heat) / GameControl.main.IceMeltingPoint;
+            EndCircle.GetComponent<SpriteRenderer>().color = c;
+        }
+        if (heat >= GameControl.main.IceMeltingPoint)
+        {
+            if (StartCircle) GameObject.Destroy(StartCircle);
+            if (MiddleBox) GameObject.Destroy(MiddleBox);
+            if (EndCircle) GameObject.Destroy(EndCircle);
+        }
+    }
 
     public void SetTriggerActive(bool active)
     {
         if (StartCircle) StartCircle.GetComponent<Collider2D>().isTrigger = active;
         if (MiddleBox) MiddleBox.GetComponent<Collider2D>().isTrigger = active;
         if (EndCircle) EndCircle.GetComponent<Collider2D>().isTrigger = active;
+    }
+
+    public void SetIndexTags(int index)
+    {
+        if (StartCircle) StartCircle.name = "LP" + index;
+        if (MiddleBox) MiddleBox.name = "LP" + index;
+        if (EndCircle) EndCircle.name = "LP" + index;
     }
 
     public bool WallCheck()

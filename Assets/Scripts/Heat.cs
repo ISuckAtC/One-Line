@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Heat : MonoBehaviour
 {
     public float HeatInterval;
+    public int HeatAmount;
     private BoxCollider2D heatArea;
     // Start is called before the first frame update
     void Start()
@@ -17,8 +19,15 @@ public class Heat : MonoBehaviour
     {
         List<Collider2D> touching = new List<Collider2D>();
         heatArea.OverlapCollider((new ContactFilter2D()).NoFilter(), touching);
-        Line buf;
-        Collider2D[] ice = touching.FindAll(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out buf) && buf.LineType == LineType.Ice).ToArray();
-        foreach (Collider2D icePiece in ice) Destroy(icePiece.gameObject);
+        Line buf = null;
+        GameObject[] icePieces = System.Array.ConvertAll(touching.FindAll(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out buf) && buf.LineType == LineType.Ice).ToArray(), x => x.gameObject);
+        if (icePieces.Length > 0) 
+        {
+            foreach (GameObject piece in icePieces)
+            {
+                int index = int.Parse(piece.name.Substring(2));
+                piece.transform.parent.GetComponent<Line>().Pieces[index].HeatUp(HeatAmount);
+            }
+        }
     }
 }
