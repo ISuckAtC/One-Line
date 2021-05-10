@@ -377,7 +377,7 @@ public class GameControl : MonoBehaviour
     }
     public IEnumerator EndTravel(int nextScene)
     {
-        Player.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        Player.transform.GetChild(0).Find("Body").GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         Camera.main.transform.parent = null;
         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
         Player.GetComponent<PlayerMovement>().NukeMovement = true;
