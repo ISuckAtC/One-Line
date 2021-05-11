@@ -51,6 +51,7 @@ public class GameControl : MonoBehaviour
     public bool ForceDefault;
     public bool SwitchOnInkEmpty;
     static private LineType? lastType;
+    public int IceMeltingPoint;
     public Dialogue DialoguePrimitive;
     public Text DeathCountText;
     public char CustomWaitDefCharacter;
@@ -390,7 +391,7 @@ public class GameControl : MonoBehaviour
         {
             Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, nPos, CamFollowSpeed);
             if (Camera.main.transform.position == nPos) break;
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate(); 
         }
         lastType = lineType;
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
