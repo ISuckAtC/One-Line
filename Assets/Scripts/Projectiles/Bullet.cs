@@ -6,7 +6,7 @@ using System.Linq;
 public class Bullet : MonoBehaviour
 {
     public bool bouncy = false;
-    public bool friendlyFire;
+    public bool friendlyFire, DestroyGravLines;
     public float LineDestroyRadius;
     public float LifeTime = 30;
     private Rigidbody2D rb;
@@ -47,6 +47,15 @@ public class Bullet : MonoBehaviour
                 foreach(Collider2D hit in hits) Destroy(hit.gameObject);
                 Destroy(gameObject);
             } else friendlyFire = true;
+        }
+        else if(DestroyGravLines && collision.gameObject.layer == LayerMask.NameToLayer("Line") && collision.gameObject.GetComponent<Rigidbody2D>())
+        {
+
+            List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, LineDestroyRadius, 1 << LayerMask.NameToLayer("Line")).ToList();
+            foreach (Collider2D hit in hits)Destroy(hit.gameObject);
+            
+            Destroy(gameObject);
+
         }
 
         if (collision.gameObject.tag == "Player")
