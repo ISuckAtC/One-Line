@@ -427,22 +427,23 @@ public class LinePiece
     public void HeatUp(int amount)
     {
         heat += amount;
+        Debug.Log(heat);
         if (StartCircle) 
         {
             Color c = StartCircle.GetComponent<SpriteRenderer>().color;
-            c.a = (GameControl.main.IceMeltingPoint - heat) / GameControl.main.IceMeltingPoint;
+            c.a = (float)heat / GameControl.main.IceMeltingPoint;
             StartCircle.GetComponent<SpriteRenderer>().color = c;
         }
         if (MiddleBox)
         {
             Color c = MiddleBox.GetComponent<SpriteRenderer>().color;
-            c.a = (GameControl.main.IceMeltingPoint - heat) / GameControl.main.IceMeltingPoint;
+            c.a = (float)heat / GameControl.main.IceMeltingPoint;
             MiddleBox.GetComponent<SpriteRenderer>().color = c;
         }
         if (EndCircle)
         {
             Color c = EndCircle.GetComponent<SpriteRenderer>().color;
-            c.a = (GameControl.main.IceMeltingPoint - heat) / GameControl.main.IceMeltingPoint;
+            c.a = (float)heat / GameControl.main.IceMeltingPoint;
             EndCircle.GetComponent<SpriteRenderer>().color = c;
         }
         if (heat >= GameControl.main.IceMeltingPoint)
@@ -501,6 +502,8 @@ public class LinePiece
         MiddleBox = new GameObject();
         SpriteRenderer mbr = MiddleBox.AddComponent<SpriteRenderer>();
         mbr.sprite = b;
+        mbr.sortingLayerName = "BackGround";
+        mbr.color = new Color(1f, 1f, 1f, 0f);
 
         SpriteMask middleMask = MiddleBox.AddComponent<SpriteMask>();
         middleMask.sprite = b;
@@ -515,6 +518,8 @@ public class LinePiece
         EndCircle = new GameObject();
         SpriteRenderer ecr = EndCircle.AddComponent<SpriteRenderer>();
         ecr.sprite = c;
+        ecr.sortingLayerName = "BackGround";
+        ecr.color = new Color(1f, 1f, 1f, 0f);
 
         SpriteMask endMask = EndCircle.AddComponent<SpriteMask>();
         endMask.sprite = c;
@@ -531,6 +536,8 @@ public class LinePiece
             StartCircle = new GameObject("Start");
             SpriteRenderer scr = StartCircle.AddComponent<SpriteRenderer>();
             scr.sprite = c;
+            scr.sortingLayerName = "BackGround";
+            scr.color = new Color(1f, 1f, 1f, 0f);
 
             SpriteMask startMask = StartCircle.AddComponent<SpriteMask>();
             startMask.sprite = c;
@@ -548,7 +555,6 @@ public class LinePiece
             StartCircle.transform.parent = parent;
             EndCircle.transform.up = -StartCircle.transform.up;
 
-            scr.enabled = false;
 
             StartCircle.layer = LayerMask.NameToLayer("Line");
 
@@ -592,9 +598,6 @@ public class LinePiece
 
         MiddleBox.transform.parent = parent;
         EndCircle.transform.parent = parent;
-
-        mbr.enabled = false;
-        ecr.enabled = false;
 
         if (joint)
         {
