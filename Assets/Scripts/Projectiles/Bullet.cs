@@ -46,14 +46,23 @@ public class Bullet : MonoBehaviour
                 hits = hits.Where(x => x.transform.parent == p).ToList();
                 foreach(Collider2D hit in hits) Destroy(hit.gameObject);
                 Destroy(gameObject);
-            } else friendlyFire = true;
+            }
+            else
+            {
+
+                friendlyFire = true;
+                List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, LineDestroyRadius).ToList();
+                hits = hits.Where(x => x.transform.parent == p).ToList();
+                foreach(Collider2D hit in hits) Destroy(hit.gameObject);
+
+            }
         }
         else if(DestroyGravLines && collision.gameObject.layer == LayerMask.NameToLayer("Line") && collision.gameObject.GetComponent<Rigidbody2D>())
         {
 
             List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, LineDestroyRadius, 1 << LayerMask.NameToLayer("Line")).ToList();
             foreach (Collider2D hit in hits)Destroy(hit.gameObject);
-            
+
             Destroy(gameObject);
 
         }
