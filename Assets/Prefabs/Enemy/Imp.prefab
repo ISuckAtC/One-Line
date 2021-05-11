@@ -209,6 +209,7 @@ MonoBehaviour:
   dashSpeed: 2
   AttackPause: 1
   FireballAttackSpeed: 2
+  LineDestroyRadius: 4
   slimeAmount: 2
   fireballs: 4
   FireballAttackPos:
@@ -231,6 +232,7 @@ MonoBehaviour:
 
 '
   AttackPattern: 0100000004000000
+  Slimes: []
 --- !u!60 &8012965350628418980
 PolygonCollider2D:
   m_ObjectHideFlags: 0

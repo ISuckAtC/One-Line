@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WizardBossBehaviour : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     public int Health;
     public GameObject[] Activatables;
-    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed;
+    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed, LineDestroyRadius;
     public int slimeAmount, fireballs;
     LayerMask pathBlockingElements;
     private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive, invincibility;
@@ -44,14 +45,6 @@ public class WizardBossBehaviour : MonoBehaviour
     public attackType[] AttackPattern;
     private attackType attack;
     public List<GameObject> Slimes;
-
-    void Update()
-    {
-
-        if(Input.GetKeyDown(KeyCode.P))
-            WizardBossActivate();
-
-    }
 
     IEnumerator slimesCheck()
     {
@@ -86,8 +79,6 @@ public class WizardBossBehaviour : MonoBehaviour
             }
 
         }
-
-        Debug.Log("slimes: " + Slimes.Count);
 
         yield return new WaitForSecondsRealtime(0.25f);
         StartCoroutine(slimesCheck());
@@ -265,7 +256,6 @@ public class WizardBossBehaviour : MonoBehaviour
         {
 
             fireballShots = 0;
-            Debug.Log("Fireball");
 
             if(InSequence)
             {
@@ -296,8 +286,6 @@ public class WizardBossBehaviour : MonoBehaviour
 
     IEnumerator DashAttackExecution(bool InSequence)
     {
-
-        Debug.Log("Dash");
 
         DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, PlayerTransfom.position.y - transform.position.y).normalized;
 
@@ -331,9 +319,8 @@ public class WizardBossBehaviour : MonoBehaviour
     }
 
     IEnumerator SlimeStorm()
-    {            
+    {
 
-        Debug.Log("Slime");
         slimeStage = true;
         sequencePart++;
 
@@ -383,7 +370,6 @@ public class WizardBossBehaviour : MonoBehaviour
         {
 
             StartCoroutine(Hurt());
-            Debug.Log("BigOuch!");
 
             if(slimeStage)
                 StartCoroutine(RestartSequence());
@@ -414,6 +400,19 @@ public class WizardBossBehaviour : MonoBehaviour
         }
 
         Collided = true;
+
+        if(collision.transform.parent != null && collision.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line") || collision.gameObject.layer == LayerMask.NameToLayer("Line") && collision.gameObject.GetComponent<Rigidbody2D>())
+        {
+            
+            List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, LineDestroyRadius, 1 << LayerMask.NameToLayer("Line")).ToList();
+            foreach (Collider2D hit in hits)
+            {
+
+                Destroy(hit.gameObject);
+                
+            }
+
+        }
 
     }
 

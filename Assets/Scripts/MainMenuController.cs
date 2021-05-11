@@ -14,13 +14,13 @@ public class MainMenuController : MonoBehaviour
     public bool ExcludeLevelTexts;
     public string[] LevelPreviewText;
     public GameObject MainMenuCursor, PreviewPanel, ToggleButton;
-    public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText, PreviewBestTimeText, PreviewBestHardTimeText, RecentRunText, BestRunText;
+    public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText, PreviewBestTimeText, PreviewBestHardTimeText, RecentRunText, BestRunText, BestCollectiveTimeText;
     public Button HardmodeLevelButton;
     public InputField FramerateInputField;
     public Image PreviewImage;
     private Vector3 mousePosition;
     private int levelNumSelected, hardmodeLevelsUnlocked;
-    private float slideInCounter, slideOutCounter, speedrunTime;
+    private float slideInCounter, slideOutCounter, speedrunTime, collectiveBestTime;
     public bool ExcludeLevelTimes;
     public float[] levelTimes;
     public float PreviewPanelSpeed, screenWidth;
@@ -83,10 +83,19 @@ public class MainMenuController : MonoBehaviour
         levelTimes = gameData.Times;
         
         hardmodeLevelsUnlocked = gameData.LevelsUnlocked - (LevelNames.Length - 1);
-        Debug.Log(hardmodeLevelsUnlocked);
+        Debug.Log("Hardmode levels unlocked: " + hardmodeLevelsUnlocked);
+
+        if(gameData.LevelsUnlocked >= 27)
+        for(int i = 0; i < LevelNames.Length; i++)
+        {
+
+            collectiveBestTime += levelTimes[i];
+
+        }
 
         RecentRunText.text = "Last Run: " + gameData.RecentRun;
         BestRunText.text = "Best Run: " + gameData.BestRun;
+        BestCollectiveTimeText.text = "Best Collective time: " + collectiveBestTime;
 
     }
 
