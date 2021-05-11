@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476838951456481149}
-  - component: {fileID: 1476838951456481147}
+  - component: {fileID: 1656935233}
   m_Layer: 0
   m_Name: CutScene
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1476838951456481147
+--- !u!114 &1656935233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,11 +40,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1476838951456481144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd08b3bf973695942ab89cb3ff1616e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 78964a3728eb71f47b2b1c046a724512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogues:
-  - text: Hello.
+  - text: Hallodfgdfgdfgdfgdfgsdfgdfgasg dg dsfg sdger ger ger greg g rde g edgdg
+      g sfgserdg serdgsdr g
     UseOwnSettings: 0
     pitchShift: 0
     NormalWait: 0
@@ -54,17 +55,8 @@ MonoBehaviour:
     WaitSpeedUp: 0
     waitMult: 0
     Enemy: 0
-  - text: Hi there.
-    UseOwnSettings: 0
-    pitchShift: 0
-    NormalWait: 0
-    SpaceWait: 0
-    CommaWait: 0
-    PeriodWait: 0
-    WaitSpeedUp: 0
-    waitMult: 0
-    Enemy: 1
-  - text: Die Beast!
+    OnTheFlyAttach: {fileID: 0}
+  - text: Erro der
     UseOwnSettings: 0
     pitchShift: 0
     NormalWait: 0
@@ -74,7 +66,9 @@ MonoBehaviour:
     WaitSpeedUp: 0
     waitMult: 0
     Enemy: 0
+    OnTheFlyAttach: {fileID: 0}
   DialogueTranscisionSpeed: 1
   DialoguePopupSpeed: 1
-  SecondsHoldToSkip: 3
-  skip: 0
+  DialogueBox: {fileID: 0}
+  DialogueText: {fileID: 0}
+  DialogueOffset: {x: 0, y: 100}
