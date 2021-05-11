@@ -83,6 +83,7 @@ public class MainMenuController : MonoBehaviour
         levelTimes = gameData.Times;
         
         hardmodeLevelsUnlocked = gameData.LevelsUnlocked - (LevelNames.Length - 1);
+        hardmodeLevelsUnlocked = Mathf.Clamp(hardmodeLevelsUnlocked, 0, 60);
         Debug.Log("Hardmode levels unlocked: " + hardmodeLevelsUnlocked);
 
         if(gameData.LevelsUnlocked >= 27)
