@@ -5,10 +5,11 @@ public class AnimationController : MonoBehaviour
 {
 
     public Animator playerAnim;
+    public float MinSpeedForWalkAnim;
 
     void Update()
     {
-        if (GetComponent<Rigidbody2D>().velocity.x != 0 || (!GetComponent<PlayerMovement>().NukeMovement && Input.GetAxisRaw("Horizontal") != 0))
+        if ((GetComponent<Rigidbody2D>().velocity.x > MinSpeedForWalkAnim || -MinSpeedForWalkAnim > GetComponent<Rigidbody2D>().velocity.x) || (!GetComponent<PlayerMovement>().NukeMovement && Input.GetAxisRaw("Horizontal") != 0))
         {
             playerAnim.SetBool("isWalking", true);
             //Debug.Log("true");
