@@ -5,7 +5,7 @@ using UnityEngine.U2D;
 public class SlimeBody : MonoBehaviour
 {
     #region Constants
-    private const float splineOffset = 2f;
+    private const float splineOffset = 0.5f;
     #endregion
 
     #region Fields
@@ -38,14 +38,14 @@ public class SlimeBody : MonoBehaviour
             try
             {
                 //try to set the vertex of the spriteshape at the approprate point
-                slimeShape.spline.SetPosition(i, _vert - _towardsCenter * _colliderRadius);
+                slimeShape.spline.SetPosition(i, (_vert - _towardsCenter * _colliderRadius));
             }
             catch
             {
 
                 //if they're too close 
                 Debug.Log("verts are too close, doing another calculation");
-                slimeShape.spline.SetPosition(i, _vert - _towardsCenter * (_colliderRadius + splineOffset));
+                slimeShape.spline.SetPosition(i, (_vert - _towardsCenter * (_colliderRadius + splineOffset)));
             }
 
             //get a reference rotation of each vert
