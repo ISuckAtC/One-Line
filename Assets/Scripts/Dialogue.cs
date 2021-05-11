@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public struct Dialogue
+public class Dialogue
 {
     const string vocals = "aeiouy";
     [TextArea] public string text;
@@ -13,6 +13,7 @@ public struct Dialogue
     public float pitchShift, NormalWait, SpaceWait, CommaWait, PeriodWait, WaitSpeedUp;
     [SerializeField] private float waitMult;
     public bool Enemy;
+    public GameObject OnTheFlyAttach;
     public void Load()
     {
         audios = Resources.LoadAll<AudioClip>("Sound/HeroDialogue");
@@ -46,7 +47,7 @@ public struct Dialogue
             }
         }
     }
-    public IEnumerator Speak(Text DisplayText, AudioSource source, CutScene cut, int d)
+    public IEnumerator Speak(Text DisplayText, AudioSource source)
     {
         bool prevVocal = false;
         
@@ -58,7 +59,7 @@ public struct Dialogue
                 if (int.TryParse(text.Substring(i + 1, GameControl.main.CustomWaitDefDigits), out customWait))
                 {
                     i += GameControl.main.CustomWaitDefDigits;
-                    yield return new WaitForSecondsRealtime(((float)customWait / 10f) * cut.Dialogues[d].waitMult);
+                    yield return new WaitForSecondsRealtime(((float)customWait / 10f) * waitMult);
                     continue;
                 } else throw new System.ArgumentException("Number of digits in wait definition was lower than num defined in GameControl. Num defined in GC: [" + GameControl.main.CustomWaitDefDigits + "]");
             }
@@ -76,22 +77,22 @@ public struct Dialogue
             switch(text[i])
             {
                 case '.':
-                    yield return new WaitForSecondsRealtime(PeriodWait * cut.Dialogues[d].waitMult);
+                    yield return new WaitForSecondsRealtime(PeriodWait * waitMult);
                     break;
                 case '!':
-                    yield return new WaitForSecondsRealtime(PeriodWait * cut.Dialogues[d].waitMult);
+                    yield return new WaitForSecondsRealtime(PeriodWait * waitMult);
                     break;
                 case '?':
-                    yield return new WaitForSecondsRealtime(PeriodWait * cut.Dialogues[d].waitMult);
+                    yield return new WaitForSecondsRealtime(PeriodWait * waitMult);
                     break;
                 case ',':
-                    yield return new WaitForSecondsRealtime(CommaWait * cut.Dialogues[d].waitMult);
+                    yield return new WaitForSecondsRealtime(CommaWait * waitMult);
                     break;
                 case ' ':
-                    yield return new WaitForSecondsRealtime(SpaceWait * cut.Dialogues[d].waitMult);
+                    yield return new WaitForSecondsRealtime(SpaceWait * waitMult);
                     break;
                 default:
-                    yield return new WaitForSecondsRealtime(NormalWait * cut.Dialogues[d].waitMult);
+                    yield return new WaitForSecondsRealtime(NormalWait * waitMult);
                     break;
             }
         }
