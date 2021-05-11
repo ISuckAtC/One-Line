@@ -34,13 +34,6 @@ public class PlayerController : MonoBehaviour
         List<Collider2D> colliders = new List<Collider2D>();
         if (capsule.GetContacts(colliders) > 0)
         {
-            if (!lastGrounded && movementController.isGrounded)
-            {
-                Debug.Log("Landing");
-                animator.SetBool("Falling", false);
-                animator.SetBool("Jumping", false);
-                animator.SetTrigger("Landing");
-            }
             Line line = null;
             if (colliders.Exists(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out line)))
             {
@@ -70,6 +63,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.drag = defaultDrag;
+        }
+
+        if (!lastGrounded && movementController.isGrounded)
+        {
+            Debug.Log("Landing");
+            animator.SetBool("Falling", false);
+            animator.SetBool("Jumping", false);
+            animator.SetTrigger("Landing");
         }
 
         if (!movementController.isGrounded)

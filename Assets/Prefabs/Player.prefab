@@ -292,6 +292,7 @@ MonoBehaviour:
   MovementEnabled: 1
   NukeMovement: 0
   PM2D: {fileID: 6200000, guid: 4e9fea2207893e4488417370960b3052, type: 2}
+  movementVector: {x: 0, y: 0}
   BumpForce: 0
   jumpForce: 5
   isGrounded: 0
@@ -365,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 5745138739628167519}
+  MinSpeedForWalkAnim: 0.1
 --- !u!114 &2059828135364442239
 MonoBehaviour:
   m_ObjectHideFlags: 0
