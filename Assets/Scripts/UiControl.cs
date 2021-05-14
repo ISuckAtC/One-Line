@@ -20,6 +20,7 @@ public class UiControl : MonoBehaviour
     public BarController[] BarControllers;
     public GameObject DialogueBoxHero, DialogueBoxEnemy, RestartText, GameCursor;
     public Image CursorInkCircle, CursorInkCircleRealtime, SkipBarCircle;
+    public GameObject CursorToolTip;
     public Sprite NormalCursor, IceCursor, RubberCursor, GravityCursor;
     public Color32 Normal, Ice, Rubber, Gravity;
     private LineType lineTypeSelected;
