@@ -444,7 +444,7 @@ public class WizardBossBehaviour : MonoBehaviour
         RB2D.velocity = Vector2.zero;
         yield return new WaitForSeconds(firstMoveWait);
 
-        if(transform.position != Destination)
+        if(Vector2.Distance(transform.position, Destination) > 1)
         {
 
             transform.position = Vector2.MoveTowards(transform.position, Destination, moveSpeed);
@@ -452,7 +452,7 @@ public class WizardBossBehaviour : MonoBehaviour
             StartCoroutine(Move(0));
 
         }
-        else if(defeated && TravelPoints.Length > travelI + 1)
+        else if(defeated && TravelPoints.Length > travelI)
         {
 
             travelI += 1;
@@ -501,13 +501,21 @@ public class WizardBossBehaviour : MonoBehaviour
     void GoNextStage()
     {
 
-        Destination = TravelPoints[travelI].transform.position;
+        if(travelI == TravelPoints.Length)
+            Destroy(gameObject, DeathDelay);
+        else
+            Destination = TravelPoints[travelI].transform.position;
         StartCoroutine(Move(0));
 
     }
 
     void Death()
     {
+
+        defeated = true;
+        gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
+
+        StopAllCoroutines();
 
         if(TravelPoints.Length > 0)
         {
