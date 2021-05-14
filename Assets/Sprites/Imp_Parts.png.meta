@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: c16d9b6957c1967499dea4557d289d7f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1437352122342693760
+    second: Imp_Parts_0
+  - first:
+      213: -1328628299408305187
+    second: Imp_Parts_1
+  - first:
+      213: -6297954014135780667
+    second: Imp_Parts_2
+  - first:
+      213: -1320669790388832407
+    second: Imp_Parts_3
+  - first:
+      213: -1725068570645485033
+    second: Imp_Parts_4
+  - first:
+      213: -2216889717839078709
+    second: Imp_Parts_5
+  - first:
+      213: 7276131452206564382
+    second: Imp_Parts_6
+  - first:
+      213: 4347725121682895093
+    second: Imp_Parts_7
+  - first:
+      213: 3190039004434956296
+    second: Imp_Parts_8
+  - first:
+      213: 843644565850759523
+    second: Imp_Parts_9
+  - first:
+      213: 2715577716320856812
+    second: Imp_Parts_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Imp_Parts_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 214
+        height: 363
+      alignment: 9
+      pivot: {x: 0.87554604, y: 0.65920633}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08bd36dc32082f310800000000000000
+      internalID: 1437352122342693760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_1
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 289
+        width: 124
+        height: 91
+      alignment: 9
+      pivot: {x: 0.7840079, y: 0.16261643}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd39c3fd993cf8de0800000000000000
+      internalID: -1328628299408305187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_2
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 27
+        width: 259
+        height: 353
+      alignment: 9
+      pivot: {x: 0.11997379, y: 0.63813573}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5caf0bf213c2998a0800000000000000
+      internalID: -6297954014135780667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_3
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 198
+        width: 95
+        height: 162
+      alignment: 9
+      pivot: {x: 0.56653666, y: 0.059649054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 967b846a2d90cade0800000000000000
+      internalID: -1320669790388832407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_4
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 287
+        width: 56
+        height: 93
+      alignment: 9
+      pivot: {x: 0.74538094, y: 0.8409775}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71a2c7956435f08e0800000000000000
+      internalID: -1725068570645485033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_5
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 268
+        width: 39
+        height: 112
+      alignment: 9
+      pivot: {x: 0.49096367, y: 0.8397595}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bca5cf51c860c31e0800000000000000
+      internalID: -2216889717839078709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_6
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 0
+        width: 149
+        height: 225
+      alignment: 9
+      pivot: {x: 0.32424864, y: 0.869226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14c1d351030af460800000000000000
+      internalID: 7276131452206564382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_7
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 180
+        width: 82
+        height: 67
+      alignment: 9
+      pivot: {x: 0.92942923, y: 0.91169673}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f073f286f8365c30800000000000000
+      internalID: 4347725121682895093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_8
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 124
+        width: 134
+        height: 113
+      alignment: 9
+      pivot: {x: 0.9101909, y: 0.90223277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8008cfea29b454c20800000000000000
+      internalID: 3190039004434956296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 30
+        width: 59
+        height: 93
+      alignment: 9
+      pivot: {x: 0.87623, y: 0.92053914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3612938434a35bb00800000000000000
+      internalID: 843644565850759523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Parts_10
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 7
+        width: 81
+        height: 89
+      alignment: 9
+      pivot: {x: 0.61744744, y: 0.9513165}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea65459b8bafa520800000000000000
+      internalID: 2715577716320856812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
