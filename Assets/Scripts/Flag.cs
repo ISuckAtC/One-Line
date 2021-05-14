@@ -19,6 +19,8 @@ public class Flag : MonoBehaviour
             confettiCanon.SetActive(true);
             GameControl.main.LevelCompleted = true;
             StartCoroutine(GameControl.main.EndTravel(GoToNext ? SceneManager.GetActiveScene().buildIndex + 1 : nextSceneIndex));
+            if(GameObject.FindGameObjectWithTag("Timer") != null)
+                GameObject.FindGameObjectWithTag("Timer").GetComponent<SpeedrunTimer>().SceneCheck();
         }
     }
 }

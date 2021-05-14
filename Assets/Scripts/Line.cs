@@ -321,6 +321,8 @@ public class Line : MonoBehaviour
             }
 
             if (GameControl.main.InCutScene) break;
+            float fillAmount = Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) / 100f;
+            UiControl.main.UpdateInkCircleTemporary(Mathf.Clamp(fillAmount, 0f, 1f));
             //if (GameControl.main.InkByLength) GameControl.main.ModInkDisplayOnly(LineType, (int)Vector2.Distance(transform.position, Input.mousePosition));
             yield return new WaitForSecondsRealtime(drawRate);
         }
@@ -343,6 +345,7 @@ public class Line : MonoBehaviour
             rb.mass = 10;
         }
         if (!GameControl.main.InCutScene) Time.timeScale = 1;
+        UiControl.main.CursorInkCircleRealtime.enabled = false;
         //if (GameControl.main.InkByLength) GameControl.main.CursorLinePanel.SetActive(false);
         if (Length < GameControl.main.MinLineLength && Refund)
         {
