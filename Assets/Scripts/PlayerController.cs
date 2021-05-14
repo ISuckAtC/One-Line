@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Falling", false);
             animator.SetBool("Jumping", false);
             animator.SetTrigger("Landing");
+            GameControl.main.Player.GetComponent<AudioController>().playLandingSound();
         }
 
         if (!movementController.isGrounded)
@@ -94,10 +95,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Kill(Vector2? deathPosition = null, bool gore = true)
     {
+        GameControl.main.Player.GetComponent<AudioController>().playDeathSound();
         Camera.main.transform.parent = null;
         if (gore) Destroy(Instantiate(BloodPrefab, deathPosition != null ? (Vector3)deathPosition : transform.position, Quaternion.identity), 60);
         //GameControl.main.DeathCountText.text = (++GameControl.main.Global.ResetCount).ToString();
-        Destroy(gameObject);
+        Destroy(gameObject, .2f);
         uiController.PauseGameUiOnOff = true;
         UiControl.main.RestartText.SetActive(true);
     }

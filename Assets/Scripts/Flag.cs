@@ -21,6 +21,7 @@ public class Flag : MonoBehaviour
             StartCoroutine(GameControl.main.EndTravel(GoToNext ? SceneManager.GetActiveScene().buildIndex + 1 : nextSceneIndex));
             if(GameObject.FindGameObjectWithTag("Timer") != null)
                 GameObject.FindGameObjectWithTag("Timer").GetComponent<SpeedrunTimer>().SceneCheck();
+            GameControl.main.Player.GetComponent<AudioController>().playLevelCompleted();
         }
     }
 }
