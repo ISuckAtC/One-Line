@@ -26,22 +26,23 @@ public class WizardBossBehaviour : MonoBehaviour
     }
 
     public int Health;
-    public GameObject[] Activatables;
-    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed, LineDestroyRadius;
+    public GameObject[] Activatables, TravelPoints;
+    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed, LineDestroyRadius, DeathDelay, DamageFlashTime;
     public int slimeAmount, fireballs;
     LayerMask pathBlockingElements;
-    private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive, invincibility;
-    private int executions, fireballShots, attackStage, sequencePart;
+    private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive, defeated;
+    private int executions, fireballShots, attackStage, sequencePart, travelI;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
-    public GameObject Fireball, SlimePrefab, Cannon;
+    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint, ImpHead;
     public Transform PlayerTransfom, FireballRainPos;
-    public SpriteRenderer WizardSpriteRenderer;
+    public SpriteRenderer[] WizardSpriteRenderers;
     private Rigidbody2D RB2D;
     private PolygonCollider2D Col2D;
     private Vector2 DashDir;
     [TextArea]
     public string HowToUseTheAttackPattern;
+    private Quaternion originRotation;
     public attackType[] AttackPattern;
     private attackType attack;
     public List<GameObject> Slimes;
@@ -87,9 +88,10 @@ public class WizardBossBehaviour : MonoBehaviour
 
     void Start()
     {
-        
-        Slimes = new List<GameObject>();
 
+        originRotation = transform.rotation;
+        defeated = false;        
+        Slimes = new List<GameObject>();
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line") + LayerMask.NameToLayer("Ground");
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
@@ -103,6 +105,31 @@ public class WizardBossBehaviour : MonoBehaviour
         }
         else if(Cannon != null)
             Cannon.SetActive(false);
+
+    }
+
+    void Update()
+    {
+
+        if(PlayerTransfom == null)
+            StopAllCoroutines();
+        else
+        if(PlayerTransfom.position.x < transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        }
+        else if(PlayerTransfom.position.x > transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(180, 0, -90);
+
+        }
+
+        /*Vector3 tempVect = (transform.position - PlayerTransfom.position).normalized;
+
+        ImpHead.transform.rotation = Quaternion.LookRotation(tempVect);*/
 
     }
 
@@ -207,8 +234,10 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator FireballRain()
     {
 
-        transform.position = FireballRainPos.position;
+        //transform.position = FireballRainPos.position;
         Destination = FireballRainPos.position;
+        StartCoroutine(Move(0));
+        yield return new WaitForSeconds(1.5f);
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 140);
         float degPerIteration = 90/fireballs;
 
@@ -220,8 +249,6 @@ public class WizardBossBehaviour : MonoBehaviour
             transform.Rotate(Vector3.forward, degPerIteration);
 
         }
-
-        transform.rotation = Quaternion.identity;
 
         yield return new WaitForSeconds(3);
 
@@ -243,12 +270,14 @@ public class WizardBossBehaviour : MonoBehaviour
 
         if(fireballShots <= FireballAttackPos.Length - 1)
         {
-
-            transform.position = FireballAttackPos[fireballShots].position;
+            
+            //transform.position = FireballAttackPos[fireballShots].position;
             Destination = FireballAttackPos[fireballShots].position;
+            StartCoroutine(Move(0));
+            yield return new WaitForSeconds(AttackDelay);
             ShootFireball();
             fireballShots++;
-            yield return new WaitForSeconds(AttackDelay);
+            //yield return new WaitForSeconds(AttackDelay);
             StartCoroutine(FireballAttack(AttackDelay, InSequence));
 
         }
@@ -418,27 +447,19 @@ public class WizardBossBehaviour : MonoBehaviour
 
     IEnumerator Hurt()
     {
-
-        if(!invincibility)
-        {
         
-            invincibility = true;
-            Color32 tempColor = WizardSpriteRenderer.color;
-            WizardSpriteRenderer.color = Color.red;
+        foreach(SpriteRenderer sR in WizardSpriteRenderers) sR.color = Color.red;
 
-            Health--;
+        Health--;
 
-            if(Health <= 0)
-                Death();
-            else
-            {
+        if(Health <= 0)
+            Death();
+        else
+        {
 
-                yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(DamageFlashTime);
 
-                invincibility = false;
-                WizardSpriteRenderer.color = Color.white;
-
-            }
+            foreach(SpriteRenderer sR in WizardSpriteRenderers) sR.color = Color.white;
 
         }
 
@@ -450,12 +471,19 @@ public class WizardBossBehaviour : MonoBehaviour
         RB2D.velocity = Vector2.zero;
         yield return new WaitForSeconds(firstMoveWait);
 
-        if(transform.position != Destination)
+        if(Vector2.Distance(transform.position, Destination) > 1)
         {
 
             transform.position = Vector2.MoveTowards(transform.position, Destination, moveSpeed);
             yield return new WaitForFixedUpdate();
             StartCoroutine(Move(0));
+
+        }
+        else if(defeated && TravelPoints.Length > travelI)
+        {
+
+            travelI += 1;
+            GoNextStage();
 
         }
 
@@ -497,8 +525,40 @@ public class WizardBossBehaviour : MonoBehaviour
         }
     }
 
+    void GoNextStage()
+    {
+
+        if(travelI == TravelPoints.Length)
+            Destroy(gameObject, DeathDelay);
+        else
+            Destination = TravelPoints[travelI].transform.position;
+        StartCoroutine(Move(0));
+
+    }
+
     void Death()
     {
+
+        defeated = true;
+        gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
+
+        StopAllCoroutines();
+
+        if(TravelPoints.Length > 0)
+        {
+
+            travelI = 0;
+
+            if(TravelPoints[0] != null)
+                GoNextStage();
+
+        }
+        else
+        {
+
+            Destroy(gameObject, DeathDelay);
+
+        }
 
         foreach (GameObject GO in Activatables)
         {
@@ -506,8 +566,6 @@ public class WizardBossBehaviour : MonoBehaviour
             GO.GetComponent<IActivatable>().Activate();
 
         }
-
-        Destroy(gameObject);
 
     }
 

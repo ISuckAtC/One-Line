@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetMinDrawDistanceAroundPlayer: 2
   SetMinDrawDistanceOval: {x: 1.1, y: 1.9}
+  MaxDrawDistance: -1
   CursorNormal: {fileID: 21300000, guid: a959e806d96c7b64080a394e70d3dd2c, type: 3}
   CursorIce: {fileID: 21300000, guid: 5e784571904825f4399f2b6b8b67e8df, type: 3}
   CursorRubber: {fileID: 21300000, guid: 7bc2e61b3ccc6b0469b1894f8d05cc22, type: 3}
@@ -60,11 +61,12 @@ MonoBehaviour:
   LifeTimeAfterNewLine: 1
   DrawRateSeconds: 0.01
   StraightPieceLength: 0.1
-  MinLineLength: 1
+  MinLineLength: 0.5
   Player: {fileID: 0}
   UseInk: 1
   InkByLength: 1
   Ink: 
+  LastLine: {fileID: 0}
   InkTypeSelected: 0
   LimitLinesInAir: 0
   NormalLimit: 1
@@ -80,6 +82,7 @@ MonoBehaviour:
   DefaultLineType: 0
   ForceDefault: 0
   SwitchOnInkEmpty: 0
+  IceMeltingPoint: 40
   DialoguePrimitive:
     text: 
     UseOwnSettings: 0
@@ -91,6 +94,7 @@ MonoBehaviour:
     WaitSpeedUp: 40
     waitMult: 0
     Enemy: 0
+    OnTheFlyAttach: {fileID: 0}
   DeathCountText: {fileID: 0}
   CustomWaitDefCharacter: 124
   CustomWaitDefDigits: 3
@@ -98,4 +102,6 @@ MonoBehaviour:
   InCutScene: 0
   Global: {fileID: 0}
   currentAnchor: {fileID: 0}
+  Tilemap: {fileID: 0}
+  TilemapCollider: {fileID: 0}
   LevelOverViewAnchor: {fileID: 0}
