@@ -7,6 +7,7 @@ public class SpeedrunTimer : MonoBehaviour
 {
 
     public float runTime;
+    public int CurrentScene;
 
     void Start()
     {
@@ -22,10 +23,10 @@ public class SpeedrunTimer : MonoBehaviour
 
     }
 
-    void Awake()
+    public void SceneCheck()
     {
 
-        Debug.Log("Current scene: " + SceneManager.GetActiveScene().buildIndex);
+        CurrentScene = SceneManager.GetActiveScene().buildIndex;
 
     }
 

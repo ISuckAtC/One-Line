@@ -13,9 +13,9 @@ public class MainMenuController : MonoBehaviour
     public Sprite[] LevelPreviewImage;
     public bool ExcludeLevelTexts;
     public string[] LevelPreviewText;
-    public GameObject MainMenuCursor, PreviewPanel, ToggleButton;
+    public GameObject MainMenuCursor, PreviewPanel, ToggleButton, HardModeButton, HardmodeLevelButton, GoToLevelButton;
+    private GameObject speedrunTimer;
     public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText, PreviewBestTimeText, PreviewBestHardTimeText, RecentRunText, BestRunText, BestCollectiveTimeText;
-    public Button HardmodeLevelButton;
     public InputField FramerateInputField;
     public Image PreviewImage;
     private Vector3 mousePosition;
@@ -24,7 +24,7 @@ public class MainMenuController : MonoBehaviour
     public bool ExcludeLevelTimes;
     public float[] levelTimes;
     public float PreviewPanelSpeed, screenWidth;
-    public bool inView;
+    private bool inView, hardMode, hardModeToggle;
     public CreateLevelTime CLT;
     private int ScreenWidth, ScreenHeight, Framerate;
     public bool FullscreenToggle;
@@ -37,9 +37,9 @@ public class MainMenuController : MonoBehaviour
         if(GameObject.FindGameObjectWithTag("Timer"))
         {
 
-            speedrunTime = GameObject.FindGameObjectWithTag("Timer").GetComponent<SpeedrunTimer>().runTime;
-            Destroy(GameObject.FindGameObjectWithTag("Timer"));
-
+            speedrunTimer = GameObject.FindGameObjectWithTag("Timer");
+            speedrunTime = speedrunTimer.GetComponent<SpeedrunTimer>().runTime;
+            
         }
 
         if(SaveAndLoad.LoadGameData() == null)
@@ -87,12 +87,20 @@ public class MainMenuController : MonoBehaviour
         Debug.Log("Hardmode levels unlocked: " + hardmodeLevelsUnlocked);
 
         if(gameData.LevelsUnlocked >= 27)
-        for(int i = 0; i < LevelNames.Length; i++)
         {
 
-            collectiveBestTime += levelTimes[i];
+            HardModeButton.GetComponent<Button>().interactable = true;
+
+            for(int i = 0; i < LevelNames.Length; i++)
+            {
+
+                collectiveBestTime += levelTimes[i];
+
+            }   
 
         }
+        else
+            HardModeButton.GetComponent<Button>().interactable = false;
 
         RecentRunText.text = "Last Run: " + gameData.RecentRun;
         BestRunText.text = "Best Run: " + gameData.BestRun;
@@ -130,6 +138,14 @@ public class MainMenuController : MonoBehaviour
 
     }
 
+    public void ToggleHardMode()
+    {
+
+        hardModeToggle = !hardModeToggle;
+        StartCoroutine(SlideIn(true));
+
+    }
+
     public void SetFramerate()
     {
 
@@ -144,7 +160,7 @@ public class MainMenuController : MonoBehaviour
         else
         {
             
-            FramerateInputField.text = "Needs to be a number";
+            FramerateInputField.text = "Only numbers";
 
         }
 
@@ -169,6 +185,10 @@ public class MainMenuController : MonoBehaviour
     public void GoToLevel()
     {
 
+        if(speedrunTimer != null)
+            if(speedrunTimer.GetComponent<SpeedrunTimer>().CurrentScene + 1 != levelNumSelected)
+                Destroy(speedrunTimer);
+
         SceneManager.LoadScene(levelNumSelected);
 
     }
@@ -192,33 +212,24 @@ public class MainMenuController : MonoBehaviour
             PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
             PreviewBestHardTimeText.text = "Best Hardmode Time: " + levelTimes[levelNumSelected-1 + LevelNames.Length];
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
-
+            
             if(hardmodeLevelsUnlocked >= levelNumSelected)
             {
 
-                if(SceneManager.sceneCountInBuildSettings < levelNumSelected)
-                {
-
-                    HardmodeLevelButton.interactable = false;
-                    HardmodeLevelButtonText.text = "No more levels";
-
-                }
-                else
-                {
-
-                    HardmodeLevelButton.interactable = true;
-                    HardmodeLevelButtonText.text = "Play Level" + (levelNumSelected + LevelNames.Length);
-
-                }
+                HardmodeLevelButtonText.text = "Play level; " + (levelNumSelected + LevelNames.Length);
+                HardmodeLevelButton.GetComponent<Button>().interactable = true;
 
             }
             else
             {
 
-                HardmodeLevelButton.interactable = false;
-                HardmodeLevelButtonText.text = "Level Not Unlocked";
+                HardmodeLevelButtonText.text = "Level not unlocked";
+                HardmodeLevelButton.GetComponent<Button>().interactable = false;
 
             }
+
+            HardmodeLevelButton.SetActive(hardModeToggle);
+            GoToLevelButton.SetActive(!hardModeToggle);
 
             slideInCounter = 1;
             inView = false;
@@ -276,6 +287,8 @@ public class MainMenuController : MonoBehaviour
 
         hardmodeLevelsUnlocked = 1;
 
+        HardModeButton.GetComponent<Button>().interactable = true;
+
         StartCoroutine(SlideIn(true));
 
     }
@@ -284,6 +297,8 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardmodeLevelsUnlocked = 100;
+
+        HardModeButton.GetComponent<Button>().interactable = true;
 
         StartCoroutine(SlideIn(true));
 
