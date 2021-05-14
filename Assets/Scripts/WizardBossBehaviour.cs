@@ -34,7 +34,7 @@ public class WizardBossBehaviour : MonoBehaviour
     private int executions, fireballShots, attackStage, sequencePart, travelI;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
-    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint;
+    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint, ImpHead;
     public Transform PlayerTransfom, FireballRainPos;
     public SpriteRenderer[] WizardSpriteRenderers;
     private Rigidbody2D RB2D;
@@ -42,6 +42,7 @@ public class WizardBossBehaviour : MonoBehaviour
     private Vector2 DashDir;
     [TextArea]
     public string HowToUseTheAttackPattern;
+    private Quaternion originRotation;
     public attackType[] AttackPattern;
     private attackType attack;
     public List<GameObject> Slimes;
@@ -88,10 +89,9 @@ public class WizardBossBehaviour : MonoBehaviour
     void Start()
     {
 
-        defeated = false;
-        
+        originRotation = transform.rotation;
+        defeated = false;        
         Slimes = new List<GameObject>();
-
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line") + LayerMask.NameToLayer("Ground");
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
@@ -105,6 +105,28 @@ public class WizardBossBehaviour : MonoBehaviour
         }
         else if(Cannon != null)
             Cannon.SetActive(false);
+
+    }
+
+    void Update()
+    {
+
+        if(PlayerTransfom.position.x < transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        }
+        else if(PlayerTransfom.position.x > transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(180, 0, -90);
+
+        }
+
+        /*Vector3 tempVect = (transform.position - PlayerTransfom.position).normalized;
+
+        ImpHead.transform.rotation = Quaternion.LookRotation(tempVect);*/
 
     }
 
