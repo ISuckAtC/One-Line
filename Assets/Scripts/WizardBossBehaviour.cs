@@ -34,7 +34,7 @@ public class WizardBossBehaviour : MonoBehaviour
     private int executions, fireballShots, attackStage, sequencePart, travelI;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
-    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint;
+    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint, ImpHead;
     public Transform PlayerTransfom, FireballRainPos;
     public SpriteRenderer[] WizardSpriteRenderers;
     private Rigidbody2D RB2D;
@@ -42,6 +42,7 @@ public class WizardBossBehaviour : MonoBehaviour
     private Vector2 DashDir;
     [TextArea]
     public string HowToUseTheAttackPattern;
+    private Quaternion originRotation;
     public attackType[] AttackPattern;
     private attackType attack;
     public List<GameObject> Slimes;
@@ -88,10 +89,9 @@ public class WizardBossBehaviour : MonoBehaviour
     void Start()
     {
 
-        defeated = false;
-        
+        originRotation = transform.rotation;
+        defeated = false;        
         Slimes = new List<GameObject>();
-
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line") + LayerMask.NameToLayer("Ground");
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
@@ -105,6 +105,31 @@ public class WizardBossBehaviour : MonoBehaviour
         }
         else if(Cannon != null)
             Cannon.SetActive(false);
+
+    }
+
+    void Update()
+    {
+
+        if(PlayerTransfom == null)
+            StopAllCoroutines();
+        else
+        if(PlayerTransfom.position.x < transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        }
+        else if(PlayerTransfom.position.x > transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(180, 0, -90);
+
+        }
+
+        /*Vector3 tempVect = (transform.position - PlayerTransfom.position).normalized;
+
+        ImpHead.transform.rotation = Quaternion.LookRotation(tempVect);*/
 
     }
 
@@ -209,8 +234,10 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator FireballRain()
     {
 
-        transform.position = FireballRainPos.position;
+        //transform.position = FireballRainPos.position;
         Destination = FireballRainPos.position;
+        StartCoroutine(Move(0));
+        yield return new WaitForSeconds(1.5f);
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 140);
         float degPerIteration = 90/fireballs;
 
@@ -222,8 +249,6 @@ public class WizardBossBehaviour : MonoBehaviour
             transform.Rotate(Vector3.forward, degPerIteration);
 
         }
-
-        transform.rotation = Quaternion.identity;
 
         yield return new WaitForSeconds(3);
 
@@ -245,12 +270,14 @@ public class WizardBossBehaviour : MonoBehaviour
 
         if(fireballShots <= FireballAttackPos.Length - 1)
         {
-
-            transform.position = FireballAttackPos[fireballShots].position;
+            
+            //transform.position = FireballAttackPos[fireballShots].position;
             Destination = FireballAttackPos[fireballShots].position;
+            StartCoroutine(Move(0));
+            yield return new WaitForSeconds(AttackDelay);
             ShootFireball();
             fireballShots++;
-            yield return new WaitForSeconds(AttackDelay);
+            //yield return new WaitForSeconds(AttackDelay);
             StartCoroutine(FireballAttack(AttackDelay, InSequence));
 
         }

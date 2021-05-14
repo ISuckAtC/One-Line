@@ -145,6 +145,7 @@ MonoBehaviour:
     type: 3}
   Cannon: {fileID: 0}
   NextStagePoint: {fileID: 0}
+  ImpHead: {fileID: 4650893391874940403}
   PlayerTransfom: {fileID: 0}
   FireballRainPos: {fileID: 0}
   WizardSpriteRenderers:
@@ -518,6 +519,12 @@ SpriteRenderer:
 --- !u!212 &4650893391352925854 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7117564245646040806, guid: 2f4e425c26697f54ebc69f71c32cbfc7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2471878186997993592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4650893391874940403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7117564246168669579, guid: 2f4e425c26697f54ebc69f71c32cbfc7,
     type: 3}
   m_PrefabInstance: {fileID: 2471878186997993592}
   m_PrefabAsset: {fileID: 0}
