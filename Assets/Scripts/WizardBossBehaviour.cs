@@ -34,7 +34,7 @@ public class WizardBossBehaviour : MonoBehaviour
     private int executions, fireballShots, attackStage, sequencePart, travelI;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
-    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint;
+    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint, ImpHead;
     public Transform PlayerTransfom, FireballRainPos;
     public SpriteRenderer[] WizardSpriteRenderers;
     private Rigidbody2D RB2D;
@@ -42,6 +42,7 @@ public class WizardBossBehaviour : MonoBehaviour
     private Vector2 DashDir;
     [TextArea]
     public string HowToUseTheAttackPattern;
+    private Quaternion originRotation;
     public attackType[] AttackPattern;
     private attackType attack;
     public List<GameObject> Slimes;
@@ -88,10 +89,9 @@ public class WizardBossBehaviour : MonoBehaviour
     void Start()
     {
 
-        defeated = false;
-        
+        originRotation = transform.rotation;
+        defeated = false;        
         Slimes = new List<GameObject>();
-
         pathBlockingElements = 1 << LayerMask.NameToLayer("Line") + LayerMask.NameToLayer("Ground");
         fireballShots = 0;
         RB2D = gameObject.GetComponent<Rigidbody2D>();
@@ -105,6 +105,28 @@ public class WizardBossBehaviour : MonoBehaviour
         }
         else if(Cannon != null)
             Cannon.SetActive(false);
+
+    }
+
+    void Update()
+    {
+
+        if(PlayerTransfom.position.x < transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        }
+        else if(PlayerTransfom.position.x > transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(180, 0, -90);
+
+        }
+
+        /*Vector3 tempVect = (transform.position - PlayerTransfom.position).normalized;
+
+        ImpHead.transform.rotation = Quaternion.LookRotation(tempVect);*/
 
     }
 
@@ -444,7 +466,7 @@ public class WizardBossBehaviour : MonoBehaviour
         RB2D.velocity = Vector2.zero;
         yield return new WaitForSeconds(firstMoveWait);
 
-        if(transform.position != Destination)
+        if(Vector2.Distance(transform.position, Destination) > 1)
         {
 
             transform.position = Vector2.MoveTowards(transform.position, Destination, moveSpeed);
@@ -452,7 +474,7 @@ public class WizardBossBehaviour : MonoBehaviour
             StartCoroutine(Move(0));
 
         }
-        else if(defeated && TravelPoints.Length > travelI + 1)
+        else if(defeated && TravelPoints.Length > travelI)
         {
 
             travelI += 1;
@@ -501,13 +523,21 @@ public class WizardBossBehaviour : MonoBehaviour
     void GoNextStage()
     {
 
-        Destination = TravelPoints[travelI].transform.position;
+        if(travelI == TravelPoints.Length)
+            Destroy(gameObject, DeathDelay);
+        else
+            Destination = TravelPoints[travelI].transform.position;
         StartCoroutine(Move(0));
 
     }
 
     void Death()
     {
+
+        defeated = true;
+        gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
+
+        StopAllCoroutines();
 
         if(TravelPoints.Length > 0)
         {
