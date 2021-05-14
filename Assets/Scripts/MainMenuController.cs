@@ -30,12 +30,10 @@ public class MainMenuController : MonoBehaviour
     public bool FullscreenToggle;
     private SettingsData settingsData;
     private GameData gameData;
-    private Color defColor;
+    public Color DefaultColor, HardModeColor;
 
     void Start()
     {
-
-        defColor = Background.color;
 
         if(GameObject.FindGameObjectWithTag("Timer"))
         {
@@ -147,9 +145,9 @@ public class MainMenuController : MonoBehaviour
         hardModeToggle = !hardModeToggle;
         
         if(hardModeToggle)
-            Background.color = Color.red;
+            Background.color = HardModeColor;
         else
-            Background.color = defColor;
+            Background.color = DefaultColor;
 
         StartCoroutine(SlideIn(true));
 

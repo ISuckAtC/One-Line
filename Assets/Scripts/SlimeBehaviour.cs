@@ -11,7 +11,7 @@ public class SlimeBehaviour : MonoBehaviour
     private float AggroTimer, JumpTimer, LastAttackTimer;
     public float AggroTime, TimeBetweenJumps, JumpDistance, Jumpheight;
     [Tooltip("Lower is easier to crush")]
-    public float CrushVelocity;
+    public float CrushVelocity, GroundCheckDist;
     private bool HasSeenPlayer;
     private Rigidbody2D RB2D;
     private PlayerController PlayerControl;
@@ -63,8 +63,13 @@ public class SlimeBehaviour : MonoBehaviour
             if (JumpTimer < 0)
             {
 
-                RB2D.velocity = new Vector2(SlimeMoveDir.x * JumpDistance, Jumpheight);
-                JumpTimer = TimeBetweenJumps;
+                if(Physics2D.Linecast(transform.position, transform.position - new Vector3(0, -GroundCheckDist, 0), 1 << LayerMask.NameToLayer("Enemy") + LayerMask.NameToLayer("Air")))
+                {
+
+                    RB2D.velocity = new Vector2(SlimeMoveDir.x * JumpDistance, Jumpheight);
+                    JumpTimer = TimeBetweenJumps;
+
+                }
 
             }
 

@@ -32576,9 +32576,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3514625284743224376, guid: 3e520de29e16c40429ac51f1b6c84a81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3514625284743224381, guid: 3e520de29e16c40429ac51f1b6c84a81,
         type: 3}
       propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514625284743224381, guid: 3e520de29e16c40429ac51f1b6c84a81,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3514625285162738024, guid: 3e520de29e16c40429ac51f1b6c84a81,
@@ -32639,6 +32649,11 @@ PrefabInstance:
     - target: {fileID: 3514625285162738028, guid: 3e520de29e16c40429ac51f1b6c84a81,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514625285162738029, guid: 3e520de29e16c40429ac51f1b6c84a81,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
