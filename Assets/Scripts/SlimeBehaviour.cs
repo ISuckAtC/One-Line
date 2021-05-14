@@ -63,7 +63,9 @@ public class SlimeBehaviour : MonoBehaviour
             if (JumpTimer < 0)
             {
 
-                if(Physics2D.Linecast(transform.position, transform.position - new Vector3(0, -GroundCheckDist, 0), 1 << LayerMask.NameToLayer("Enemy") + LayerMask.NameToLayer("Air")))
+                Debug.DrawLine(transform.position, transform.position - new Vector3(0, GroundCheckDist, 0), Color.green, 2);
+
+                if(Physics2D.Linecast(transform.position, transform.position - new Vector3(0, GroundCheckDist, 0), ~((1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Air")))))
                 {
 
                     RB2D.velocity = new Vector2(SlimeMoveDir.x * JumpDistance, Jumpheight);
@@ -103,7 +105,7 @@ public class SlimeBehaviour : MonoBehaviour
             if (collision.gameObject.TryGetComponent<PlayerController>(out pc))
             {
 
-                pc.Kill(gore:true);
+                pc.Kill(null, true);
 
             }
 
@@ -113,8 +115,7 @@ public class SlimeBehaviour : MonoBehaviour
                 if(OtherRB2D.velocity.magnitude > CrushVelocity)
                 {
 
-                    Instantiate(SlimeDeath, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
+                    SlimeDie();
 
                 }
 
@@ -124,6 +125,14 @@ public class SlimeBehaviour : MonoBehaviour
 
         if (JumpTimer > 0 && JumpTimer < TimeBetweenJumps - 0.5f)
             RB2D.velocity = new Vector2(0, RB2D.velocity.y);
+
+    }
+
+    public void SlimeDie()
+    {
+
+        Instantiate(SlimeDeath, transform.position, Quaternion.identity);
+        Destroy(gameObject);
 
     }
 

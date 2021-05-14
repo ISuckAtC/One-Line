@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3514625283817215491}
   - component: {fileID: 3514625283817215488}
   - component: {fileID: 1054176694696567137}
+  - component: {fileID: 7813790140383729803}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -203,6 +204,18 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 1.8119881
   m_MaxDistanceOnly: 1
+--- !u!114 &7813790140383729803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514625283817215518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e38373ad52bc24408c6eed97ec654ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3514625283864873749
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +232,7 @@ GameObject:
   - component: {fileID: 3514625283864873750}
   - component: {fileID: 3514625283864873751}
   - component: {fileID: 1054176694826970159}
+  - component: {fileID: 9090066700737337443}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -406,6 +420,18 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 1.9252013
   m_MaxDistanceOnly: 1
+--- !u!114 &9090066700737337443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514625283864873749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e38373ad52bc24408c6eed97ec654ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3514625283877942242
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +448,7 @@ GameObject:
   - component: {fileID: 3514625283877942247}
   - component: {fileID: 3514625283877942244}
   - component: {fileID: 1054176694333458232}
+  - component: {fileID: 6629195753549051998}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -609,6 +636,18 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 2.019356
   m_MaxDistanceOnly: 1
+--- !u!114 &6629195753549051998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514625283877942242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e38373ad52bc24408c6eed97ec654ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3514625284563225014
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +664,7 @@ GameObject:
   - component: {fileID: 3514625284563225019}
   - component: {fileID: 3514625284563225016}
   - component: {fileID: 1054176695029499505}
+  - component: {fileID: 1068194292686090741}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -812,6 +852,18 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 1.9498718
   m_MaxDistanceOnly: 1
+--- !u!114 &1068194292686090741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514625284563225014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e38373ad52bc24408c6eed97ec654ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3514625284743224376
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3514625284743224379
 Transform:
   m_ObjectHideFlags: 0
@@ -851,7 +903,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3514625284743224376}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1142,6 +1194,7 @@ MonoBehaviour:
   JumpDistance: 10
   Jumpheight: 10
   CrushVelocity: 0.7
+  GroundCheckDist: 1.5
   SlimeDeath: {fileID: 59939400877777916, guid: 1ce146e49595f4747a9ee6172cca3297,
     type: 3}
 --- !u!1 &3514625285510464818
@@ -1160,6 +1213,7 @@ GameObject:
   - component: {fileID: 3514625285510464823}
   - component: {fileID: 3514625285510464820}
   - component: {fileID: 1054176694680289779}
+  - component: {fileID: 440762694026902656}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -1347,6 +1401,18 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 2.0321417
   m_MaxDistanceOnly: 1
+--- !u!114 &440762694026902656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514625285510464818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e38373ad52bc24408c6eed97ec654ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3514625285716697521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1429,7 @@ GameObject:
   - component: {fileID: 3514625285716697522}
   - component: {fileID: 3514625285716697523}
   - component: {fileID: 1054176694868721090}
+  - component: {fileID: 3274707732465712599}
   m_Layer: 14
   m_Name: Point
   m_TagString: Enemy
@@ -1550,3 +1617,15 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 1.9710153
   m_MaxDistanceOnly: 1
+--- !u!114 &3274707732465712599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514625285716697521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e38373ad52bc24408c6eed97ec654ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
