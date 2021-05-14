@@ -17,7 +17,7 @@ public class MainMenuController : MonoBehaviour
     private GameObject speedrunTimer;
     public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText, PreviewBestTimeText, PreviewBestHardTimeText, RecentRunText, BestRunText, BestCollectiveTimeText;
     public InputField FramerateInputField;
-    public Image PreviewImage;
+    public Image PreviewImage, Background;
     private Vector3 mousePosition;
     private int levelNumSelected, hardmodeLevelsUnlocked;
     private float slideInCounter, slideOutCounter, speedrunTime, collectiveBestTime;
@@ -30,9 +30,12 @@ public class MainMenuController : MonoBehaviour
     public bool FullscreenToggle;
     private SettingsData settingsData;
     private GameData gameData;
+    private Color defColor;
 
     void Start()
     {
+
+        defColor = Background.color;
 
         if(GameObject.FindGameObjectWithTag("Timer"))
         {
@@ -142,6 +145,12 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardModeToggle = !hardModeToggle;
+        
+        if(hardModeToggle)
+            Background.color = Color.red;
+        else
+            Background.color = defColor;
+
         StartCoroutine(SlideIn(true));
 
     }
