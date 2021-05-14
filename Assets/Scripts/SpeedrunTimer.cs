@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpeedrunTimer : MonoBehaviour
 {
@@ -18,6 +19,13 @@ public class SpeedrunTimer : MonoBehaviour
     {
 
         runTime += Time.deltaTime;
+
+    }
+
+    void Awake()
+    {
+
+        Debug.Log("Current scene: " + SceneManager.GetActiveScene().buildIndex);
 
     }
 

@@ -52,12 +52,12 @@ public class MainMenuController : MonoBehaviour
 
         settingsData = SaveAndLoad.LoadSettingsData();
 
-        if(levelTimes.Length < SceneManager.sceneCountInBuildSettings - 1)
+        if(gameData.Times.Length < SceneManager.sceneCountInBuildSettings - 1)
         {
 
             CLT.CreateNewTimes(false);
             Debug.Log("Updating saved data...");
-            levelTimes = SaveAndLoad.LoadGameData().Times;
+            gameData = SaveAndLoad.LoadGameData();
 
         }
 

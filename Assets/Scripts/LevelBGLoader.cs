@@ -21,7 +21,6 @@ public class LevelBGLoader : MonoBehaviour
             Backgrounds = Resources.LoadAll("BossLevelBackgrounds", typeof (Sprite)).Cast<Sprite>().ToArray();
         else
             Backgrounds = Resources.LoadAll("LevelBackgrounds", typeof (Sprite)).Cast<Sprite>().ToArray();
-        Debug.Log(Backgrounds.Length);
         gameObject.GetComponent<SpriteRenderer>().sprite = Backgrounds[Random.Range(0, Backgrounds.Length)];
 
         InkBackgrounds[0].sprite = Resources.Load<Sprite>("InkBackgrounds/Regular");
