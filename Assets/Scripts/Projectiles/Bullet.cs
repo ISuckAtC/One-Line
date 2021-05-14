@@ -16,16 +16,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, LifeTime);
         rb = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
     }
 
     void FixedUpdate()
     {
         transform.up = rb.velocity;
-    }
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "Enemy") collider2d.isTrigger = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -51,6 +46,7 @@ public class Bullet : MonoBehaviour
             {
 
                 friendlyFire = true;
+                gameObject.layer = LayerMask.NameToLayer("ProjectileActive");
                 List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, LineDestroyRadius).ToList();
                 hits = hits.Where(x => x.transform.parent == p).ToList();
                 foreach(Collider2D hit in hits) Destroy(hit.gameObject);
