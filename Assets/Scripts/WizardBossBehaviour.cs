@@ -26,17 +26,17 @@ public class WizardBossBehaviour : MonoBehaviour
     }
 
     public int Health;
-    public GameObject[] Activatables;
-    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed, LineDestroyRadius;
+    public GameObject[] Activatables, TravelPoints;
+    public float maxMoveDist, moveSpeed, fireballSpeed, dashSpeed, AttackPause, FireballAttackSpeed, LineDestroyRadius, DeathDelay, DamageFlashTime;
     public int slimeAmount, fireballs;
     LayerMask pathBlockingElements;
-    private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive, invincibility;
-    private int executions, fireballShots, attackStage, sequencePart;
+    private bool Collided, pathBlocked, DestinationChange, slimeStage, bossActive, defeated;
+    private int executions, fireballShots, attackStage, sequencePart, travelI;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
-    public GameObject Fireball, SlimePrefab, Cannon;
+    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint;
     public Transform PlayerTransfom, FireballRainPos;
-    public SpriteRenderer WizardSpriteRenderer;
+    public SpriteRenderer[] WizardSpriteRenderers;
     private Rigidbody2D RB2D;
     private PolygonCollider2D Col2D;
     private Vector2 DashDir;
@@ -87,6 +87,8 @@ public class WizardBossBehaviour : MonoBehaviour
 
     void Start()
     {
+
+        defeated = false;
         
         Slimes = new List<GameObject>();
 
@@ -418,27 +420,19 @@ public class WizardBossBehaviour : MonoBehaviour
 
     IEnumerator Hurt()
     {
-
-        if(!invincibility)
-        {
         
-            invincibility = true;
-            Color32 tempColor = WizardSpriteRenderer.color;
-            WizardSpriteRenderer.color = Color.red;
+        foreach(SpriteRenderer sR in WizardSpriteRenderers) sR.color = Color.red;
 
-            Health--;
+        Health--;
 
-            if(Health <= 0)
-                Death();
-            else
-            {
+        if(Health <= 0)
+            Death();
+        else
+        {
 
-                yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(DamageFlashTime);
 
-                invincibility = false;
-                WizardSpriteRenderer.color = Color.white;
-
-            }
+            foreach(SpriteRenderer sR in WizardSpriteRenderers) sR.color = Color.white;
 
         }
 
@@ -456,6 +450,13 @@ public class WizardBossBehaviour : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, Destination, moveSpeed);
             yield return new WaitForFixedUpdate();
             StartCoroutine(Move(0));
+
+        }
+        else if(defeated && TravelPoints.Length > travelI + 1)
+        {
+
+            travelI += 1;
+            GoNextStage();
 
         }
 
@@ -497,8 +498,32 @@ public class WizardBossBehaviour : MonoBehaviour
         }
     }
 
+    void GoNextStage()
+    {
+
+        Destination = TravelPoints[travelI].transform.position;
+        StartCoroutine(Move(0));
+
+    }
+
     void Death()
     {
+
+        if(TravelPoints.Length > 0)
+        {
+
+            travelI = 0;
+
+            if(TravelPoints[0] != null)
+                GoNextStage();
+
+        }
+        else
+        {
+
+            Destroy(gameObject, DeathDelay);
+
+        }
 
         foreach (GameObject GO in Activatables)
         {
@@ -506,8 +531,6 @@ public class WizardBossBehaviour : MonoBehaviour
             GO.GetComponent<IActivatable>().Activate();
 
         }
-
-        Destroy(gameObject);
 
     }
 
