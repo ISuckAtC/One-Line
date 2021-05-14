@@ -421,7 +421,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
         if(!invincibility)
         {
-
+        
             invincibility = true;
             Color32 tempColor = WizardSpriteRenderer.color;
             WizardSpriteRenderer.color = Color.red;
@@ -433,7 +433,7 @@ public class WizardBossBehaviour : MonoBehaviour
             else
             {
 
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.01f);
 
                 invincibility = false;
                 WizardSpriteRenderer.color = Color.white;
