@@ -21,7 +21,7 @@ public class SlimeBehaviour : MonoBehaviour
     void Start()
     {
 
-        Player = GameObject.Find("Player 1");
+        Player = GameObject.FindGameObjectWithTag("Player");
         RB2D = gameObject.GetComponent<Rigidbody2D>();
         EnemyMask = ~((1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Air")) + (1 << LayerMask.NameToLayer("Slimes")));
         PlayerControl = Player.GetComponent<PlayerController>();
