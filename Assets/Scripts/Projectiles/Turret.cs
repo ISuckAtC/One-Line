@@ -20,6 +20,7 @@ public class Turret : Enemy, IActivatable
         GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
         newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
         newBullet.transform.rotation = transform.rotation;
+        GetComponent<Animator>().Play("Turret_fire");
     }
 
     public override void Death()

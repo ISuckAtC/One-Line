@@ -5,7 +5,7 @@ using UnityEngine.U2D;
 public class SlimeBody : MonoBehaviour
 {
     #region Constants
-    private const float splineOffset = 0.75f;
+    private const float splineOffset = 0.25f;
     #endregion
 
     #region Fields
