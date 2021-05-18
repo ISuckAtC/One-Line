@@ -37,7 +37,7 @@ public class SlimeBehaviour : MonoBehaviour
 
         hit2D = Physics2D.Linecast(transform.position, Player.transform.position, EnemyMask);
 
-        Debug.DrawLine(transform.position, Player.transform.position, Color.green, 5f);
+        //Debug.DrawLine(transform.position, Player.transform.position, Color.green, 5f);
 
         if (hit2D.collider.name == ("Player 1"))
         {
