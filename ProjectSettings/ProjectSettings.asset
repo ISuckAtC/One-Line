@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Team Boron
   productName: One Line
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -40,9 +40,9 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 7ea9d0412febc5740b9c54c7ef1f427e, type: 3}
+  - logo: {fileID: 21300000, guid: ee7515da3826aca4c8de5808a429c014, type: 3}
     duration: 4
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 7ea9d0412febc5740b9c54c7ef1f427e,
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: ee7515da3826aca4c8de5808a429c014,
     type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
@@ -127,7 +127,7 @@ PlayerSettings:
     16:10: 0
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 0.44
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -276,7 +276,7 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 7ea9d0412febc5740b9c54c7ef1f427e, type: 3}
+      m_Icon: {fileID: 2800000, guid: ee7515da3826aca4c8de5808a429c014, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
