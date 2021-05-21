@@ -31,6 +31,7 @@ public class MainMenuController : MonoBehaviour
     private SettingsData settingsData;
     private GameData gameData;
     public Color DefaultColor, HardModeColor;
+    public Text TotalTime;
 
     void Start()
     {
@@ -68,6 +69,8 @@ public class MainMenuController : MonoBehaviour
             gameData = SaveAndLoad.LoadGameData();
 
         }
+
+        TotalTime.text = System.TimeSpan.FromSeconds(gameData.TotalRunTime).ToString(@"mm\:ss\.ff");
 
         screenWidth = Screen.width;
         Cursor.visible = false;
