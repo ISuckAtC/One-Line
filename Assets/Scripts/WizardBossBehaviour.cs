@@ -46,6 +46,7 @@ public class WizardBossBehaviour : MonoBehaviour
     public attackType[] AttackPattern;
     private attackType attack;
     public List<GameObject> Slimes;
+    private ImpAnimationController impAnimController;
 
     IEnumerator slimesCheck()
     {
@@ -105,6 +106,8 @@ public class WizardBossBehaviour : MonoBehaviour
         }
         else if(Cannon != null)
             Cannon.SetActive(false);
+
+        impAnimController = gameObject.GetComponentInChildren<ImpAnimationController>();
 
     }
 
@@ -234,6 +237,8 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator FireballRain()
     {
 
+        impAnimController.Attacking();
+
         //transform.position = FireballRainPos.position;
         Destination = FireballRainPos.position;
         StartCoroutine(Move(0));
@@ -270,19 +275,23 @@ public class WizardBossBehaviour : MonoBehaviour
 
         if(fireballShots <= FireballAttackPos.Length - 1)
         {
-            
+
             //transform.position = FireballAttackPos[fireballShots].position;
             Destination = FireballAttackPos[fireballShots].position;
             StartCoroutine(Move(0));
-            yield return new WaitForSeconds(AttackDelay);
+            yield return new WaitForSeconds(AttackDelay / 2);
+            impAnimController.Attacking();
+            yield return new WaitForSeconds(AttackDelay / 2);
             ShootFireball();
             fireballShots++;
-            //yield return new WaitForSeconds(AttackDelay);
             StartCoroutine(FireballAttack(AttackDelay, InSequence));
+            impAnimController.Idle();
 
         }
         else if(fireballShots > FireballAttackPos.Length - 1)
         {
+
+            impAnimController.Idle();
 
             fireballShots = 0;
 
@@ -311,6 +320,8 @@ public class WizardBossBehaviour : MonoBehaviour
         Collided = false;
         StartCoroutine(DashAttackExecution(InSequence));
 
+        impAnimController.Dashing();
+
     }
 
     IEnumerator DashAttackExecution(bool InSequence)
@@ -325,6 +336,8 @@ public class WizardBossBehaviour : MonoBehaviour
             Destination = FireballAttackPos[RandomNum].position;
             StartCoroutine(Move(1));
             Collided = false;
+
+            impAnimController.Idle();
 
             if(InSequence)
             {
@@ -382,6 +395,7 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator RestartSequence()
     {
 
+        impAnimController.Idle();
         attackStage++;
         sequencePart = 0;
         slimeStage = false;
@@ -543,6 +557,8 @@ public class WizardBossBehaviour : MonoBehaviour
         gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
 
         StopAllCoroutines();
+
+        impAnimController.Dying();
 
         if(TravelPoints.Length > 0)
         {
