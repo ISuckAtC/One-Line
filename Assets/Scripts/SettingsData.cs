@@ -37,8 +37,8 @@ public class SettingsData
             else if(PreviousData.ScreenWidth <= 0 || PreviousData.ScreenHeight <= 0)
             {
 
-                ScreenWidth = 1920;
-                ScreenHeight = 1080;
+                ScreenWidth = Screen.currentResolution.width;
+                ScreenHeight = Screen.currentResolution.height;
 
             }
             else
