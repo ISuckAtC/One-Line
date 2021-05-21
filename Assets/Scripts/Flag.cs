@@ -14,6 +14,7 @@ public class Flag : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
             CLT.CreateNewTimes(true);
             fireworks.SetActive(true);
             confettiCanon.SetActive(true);
