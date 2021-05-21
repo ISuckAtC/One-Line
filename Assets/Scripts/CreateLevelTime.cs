@@ -23,6 +23,8 @@ public class CreateLevelTime : MonoBehaviour
 
         }
 
+        
+
         SaveAndLoad.SaveGameData(Times, 0, levelNum, loadPrevTimes, GameControl.main ? GameControl.main.Global.TotalRunTime : 0);
     }
 }

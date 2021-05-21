@@ -65,6 +65,7 @@ public class GameControl : MonoBehaviour
     [HideInInspector] public CompositeCollider2D TilemapCollider;
 
     public CameraAnchor LevelOverViewAnchor;
+    public GameObject speedrunTimerPrefab;
 
     public void ResetLineLimits()
     {
@@ -82,6 +83,10 @@ public class GameControl : MonoBehaviour
 
     void Awake()
     {
+        if(!GameObject.FindGameObjectWithTag("Timer"))
+        {
+            GameObject speedrunTimer = Instantiate(speedrunTimerPrefab, Vector3.zero, Quaternion.identity);
+        }
         if (GameObject.Find("Global Data") != null) Global = GameObject.Find("Global Data").GetComponent<GlobalData>();
         if (Global == null)
         {
@@ -152,6 +157,8 @@ public class GameControl : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
+            GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
+            SaveAndLoad.SaveGameData(new float[0], 0, 0, false, GameControl.main.Global.TotalRunTime);
             if (!LevelCompleted) Global.ResetCount++;
             Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
@@ -378,6 +385,7 @@ public class GameControl : MonoBehaviour
     }
     public IEnumerator EndTravel(int nextScene)
     {
+        UiControl.main.TimerRunning = false;
         SpriteRenderer[] srs = Player.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer sr in srs) sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         Camera.main.transform.parent = null;
