@@ -34,7 +34,6 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
-
         if(GameObject.FindGameObjectWithTag("Timer"))
         {
 
@@ -50,6 +49,14 @@ public class MainMenuController : MonoBehaviour
             SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, Framerate, FullscreenToggle, false);
 
         gameData = SaveAndLoad.LoadGameData();
+
+        if (!GameObject.Find("GameData")) 
+        {
+            GameObject global = new GameObject("Global Data");
+            DontDestroyOnLoad(global);
+            GlobalData g = global.AddComponent<GlobalData>();
+            g.TotalRunTime = gameData.TotalRunTime;
+        }
 
         settingsData = SaveAndLoad.LoadSettingsData();
 
