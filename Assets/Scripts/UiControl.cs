@@ -29,10 +29,12 @@ public class UiControl : MonoBehaviour
     public Sprite tabInactive, tabActive, shiftInactive, shiftActive;
     public Text TimerValue;
     public System.TimeSpan Timer;
+    public bool TimerRunning;
 
     // Start is called before the first frame update
     void Start()
     {
+        TimerRunning = true;
         GameData gd = SaveAndLoad.LoadGameData();
         if (gd == null)
         {
@@ -60,7 +62,7 @@ public class UiControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timer = Timer.Add(System.TimeSpan.FromSeconds(Time.deltaTime));
+        if (TimerRunning) Timer = Timer.Add(System.TimeSpan.FromSeconds(Time.deltaTime));
         TimerValue.text = Timer.ToString(@"mm\:ss\.ff");
 
 
@@ -239,11 +241,17 @@ public class UiControl : MonoBehaviour
 
     }
 
-    public void MainMenuButton() => SceneManager.LoadScene(0);
+    public void MainMenuButton()
+    {
+        GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
+        SaveAndLoad.SaveGameData(new float[0], 0, 0, false, GameControl.main.Global.TotalRunTime);
+        SceneManager.LoadScene(0);
+    }
 
     public void QuitButton() 
     {
-
+        GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
+        SaveAndLoad.SaveGameData(new float[0], 0, 0, false, GameControl.main.Global.TotalRunTime);
         if(gc.Global != null) gc.Global.ResetCount += 1;
         Application.Quit();
         Debug.Log("I do be working - (The Quit Button).");
@@ -262,7 +270,8 @@ public class UiControl : MonoBehaviour
 
     public void ReplayLevel() 
     {
-
+        GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
+        SaveAndLoad.SaveGameData(new float[0], 0, 0, false, GameControl.main.Global.TotalRunTime);
         gc.Global.ResetCount += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
