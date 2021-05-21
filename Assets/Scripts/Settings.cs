@@ -17,17 +17,23 @@ public class Settings : MonoBehaviour
 
         buttons = new List<GameObject>();
 
-        buttons.Add(ResolutionButton);
-
-        for(int i = 0; i < resolutions.Length - 2; i++)
+        for(int i = 0; i <= resolutions.Length - 1; i++)
         {
 
             GameObject resButton = Instantiate(ResolutionButton, transform);
             buttons.Add(resButton);
+            resButton.GetComponent<Button>().onClick.AddListener(delegate {ChangeResolution(resolutions[i].width, resolutions[i].height); });
+
+            resButton.GetComponentInChildren<Text>().text = resolutions[i].width + "/" + resolutions[i].height;
 
         }
 
-        
+    }
+
+    public void ChangeResolution(int width, int height)
+    {
+
+        Debug.Log(width + "/" + height);
 
     }
 
