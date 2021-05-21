@@ -3,7 +3,9 @@ guid: c16d9b6957c1967499dea4557d289d7f
 TextureImporter:
   internalIDToNameTable:
   - first:
-<<<<<<< Updated upstream
+      0: 0
+    second: 
+  - first:
       213: 1437352122342693760
     second: Imp_Parts_0
   - first:
@@ -36,43 +38,6 @@ TextureImporter:
   - first:
       213: 2715577716320856812
     second: Imp_Parts_10
-=======
-      213: 1704136824156536098
-    second: Imp_0
-  - first:
-      213: 333034170872559449
-    second: Imp_1
-  - first:
-      213: -7079933596511877768
-    second: Imp_2
-  - first:
-      213: -309463013466542154
-    second: Imp_3
-  - first:
-      213: -4926511950578704453
-    second: Imp_4
-  - first:
-      213: -8534575252534728286
-    second: Imp_5
-  - first:
-      213: 6707175994997661939
-    second: Imp_6
-  - first:
-      213: 676734411229988777
-    second: Imp_7
-  - first:
-      213: -7694609454140930810
-    second: Imp_8
-  - first:
-      213: -1994870826599168776
-    second: Imp_9
-  - first:
-      213: -637992005820583039
-    second: Imp_10
-  - first:
-      213: -295078944721383795
-    second: Imp_11
->>>>>>> Stashed changes
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -107,7 +72,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -128,14 +93,14 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,19 +112,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -171,7 +124,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -182,11 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_0
-=======
-      name: Imp_0
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 0
@@ -194,33 +143,20 @@ TextureImporter:
         width: 214
         height: 363
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.87554604, y: 0.65920633}
-=======
-      pivot: {x: 0.88873106, y: 0.6589733}
->>>>>>> Stashed changes
+      pivot: {x: 0.88535017, y: 0.65968174}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: 08bd36dc32082f310800000000000000
       internalID: 1437352122342693760
-=======
-      spriteID: 22d3384a96f46a710800000000000000
-      internalID: 1704136824156536098
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_1
-=======
-      name: Imp_1
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 218
@@ -228,33 +164,20 @@ TextureImporter:
         width: 124
         height: 91
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.7840079, y: 0.16261643}
-=======
-      pivot: {x: 0.80219567, y: 0.1458663}
->>>>>>> Stashed changes
+      pivot: {x: 0.7939665, y: 0.15196279}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: dd39c3fd993cf8de0800000000000000
       internalID: -1328628299408305187
-=======
-      spriteID: 957fcec50dc2f9400800000000000000
-      internalID: 333034170872559449
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_2
-=======
-      name: Imp_2
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 387
@@ -262,33 +185,20 @@ TextureImporter:
         width: 259
         height: 353
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.11997379, y: 0.63813573}
-=======
-      pivot: {x: 0.0633096, y: 0.6151454}
->>>>>>> Stashed changes
+      pivot: {x: 0.11699957, y: 0.6337342}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: 5caf0bf213c2998a0800000000000000
       internalID: -6297954014135780667
-=======
-      spriteID: 8754e82b7e50fbd90800000000000000
-      internalID: -7079933596511877768
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_3
-=======
-      name: Imp_3
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 647
@@ -296,67 +206,41 @@ TextureImporter:
         width: 95
         height: 162
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.56653666, y: 0.059649054}
-=======
-      pivot: {x: 0.5709999, y: 0.06513666}
->>>>>>> Stashed changes
+      pivot: {x: 0.53774095, y: 0.08317472}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: 967b846a2d90cade0800000000000000
       internalID: -1320669790388832407
-=======
-      spriteID: 6bf6433670194bbf0800000000000000
-      internalID: -309463013466542154
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_4
-=======
-      name: Imp_4
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 837
-        y: 287
+        y: 286
         width: 56
-        height: 93
+        height: 94
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.74538094, y: 0.8409775}
-=======
-      pivot: {x: 0.763625, y: 0.8485423}
->>>>>>> Stashed changes
+      pivot: {x: 0.74543, y: 0.84328574}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: 71a2c7956435f08e0800000000000000
       internalID: -1725068570645485033
-=======
-      spriteID: bbf1a049b7381abb0800000000000000
-      internalID: -4926511950578704453
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_5
-=======
-      name: Imp_5
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 984
@@ -364,33 +248,20 @@ TextureImporter:
         width: 39
         height: 112
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.49096367, y: 0.8397595}
-=======
-      pivot: {x: 0.5, y: 0.84099334}
->>>>>>> Stashed changes
+      pivot: {x: 0.49999842, y: 0.8307988}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: bca5cf51c860c31e0800000000000000
       internalID: -2216889717839078709
-=======
-      spriteID: 2a9e3d3a6091f8980800000000000000
-      internalID: -8534575252534728286
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_6
-=======
-      name: Imp_6
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 237
@@ -398,33 +269,20 @@ TextureImporter:
         width: 149
         height: 225
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.32424864, y: 0.869226}
-=======
-      pivot: {x: 0.33904517, y: 0.84641033}
->>>>>>> Stashed changes
+      pivot: {x: 0.26337653, y: 0.8957254}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: e14c1d351030af460800000000000000
       internalID: 7276131452206564382
-=======
-      spriteID: 3f0ecd3080da41d50800000000000000
-      internalID: 6707175994997661939
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_7
-=======
-      name: Imp_7
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 767
@@ -432,33 +290,20 @@ TextureImporter:
         width: 82
         height: 67
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.92942923, y: 0.91169673}
-=======
-      pivot: {x: 0.95400554, y: 0.93110657}
->>>>>>> Stashed changes
+      pivot: {x: 0.92995995, y: 0.9102731}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: 5f073f286f8365c30800000000000000
       internalID: 4347725121682895093
-=======
-      spriteID: 9a785ac8c5e346900800000000000000
-      internalID: 676734411229988777
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_8
-=======
-      name: Imp_8
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 890
@@ -466,33 +311,20 @@ TextureImporter:
         width: 134
         height: 113
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.9101909, y: 0.90223277}
-=======
-      pivot: {x: 0.91913116, y: 0.9146592}
->>>>>>> Stashed changes
+      pivot: {x: 0.88351625, y: 0.86488897}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: 8008cfea29b454c20800000000000000
       internalID: 3190039004434956296
-=======
-      spriteID: 60541902871473590800000000000000
-      internalID: -7694609454140930810
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_9
-=======
-      name: Imp_9
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 720
@@ -500,33 +332,20 @@ TextureImporter:
         width: 59
         height: 93
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.87623, y: 0.92053914}
-=======
-      pivot: {x: 0.86989063, y: 0.9141096}
->>>>>>> Stashed changes
+      pivot: {x: 0.89500505, y: 0.92408323}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: 3612938434a35bb00800000000000000
       internalID: 843644565850759523
-=======
-      spriteID: 8f444cf6d8bc054e0800000000000000
-      internalID: -1994870826599168776
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<< Updated upstream
       name: Imp_Parts_10
-=======
-      name: Imp_10
->>>>>>> Stashed changes
       rect:
         serializedVersion: 2
         x: 843
@@ -534,23 +353,14 @@ TextureImporter:
         width: 81
         height: 89
       alignment: 9
-<<<<<<< Updated upstream
-      pivot: {x: 0.61744744, y: 0.9513165}
-=======
-      pivot: {x: 0.61490285, y: 0.9435393}
->>>>>>> Stashed changes
+      pivot: {x: 0.59590584, y: 0.9095717}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< Updated upstream
       spriteID: cea65459b8bafa520800000000000000
       internalID: 2715577716320856812
-=======
-      spriteID: 1837683a6a56527f0800000000000000
-      internalID: -637992005820583039
->>>>>>> Stashed changes
       vertices: []
       indices: 
       edges: []

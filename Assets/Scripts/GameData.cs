@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class GameData
 {
-
+    public float TotalRunTime;
     public float[] Times;
     public int LevelsUnlocked;
     public float BestRun, RecentRun;
 
     //Uses the values from both the previously saved Times array and the one currently being saved
     //Checks if the new times are better or worse and selects the best, if the time spent is 0, it will not save anything
-    public GameData(float[] NewLT, float RunTime, int levelUnlockValue, GameData PreviousData)
+    public GameData(float[] NewLT, float RunTime, int levelUnlockValue, GameData PreviousData, float totalRunTime)
     {
-
+        TotalRunTime = totalRunTime;
         Times = new float[SceneManager.sceneCountInBuildSettings - 1];
         float[] newTime = NewLT;
         
