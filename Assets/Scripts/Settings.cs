@@ -28,6 +28,8 @@ public class Settings : MonoBehaviour
 
         }
 
+        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, buttons.Count * 100);
+
     }
 
     public void ChangeResolution(int width, int height)
