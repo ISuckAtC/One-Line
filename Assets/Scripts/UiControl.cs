@@ -28,12 +28,16 @@ public class UiControl : MonoBehaviour
     public Image tabContainer, shiftContainer;
     public Sprite tabInactive, tabActive, shiftInactive, shiftActive;
     public Text TimerValue;
-    private System.TimeSpan timer;
+    public System.TimeSpan Timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        timer = System.TimeSpan.Zero;
+        GameData gd = SaveAndLoad.LoadGameData();
+        if (gd == null)
+        {
+            Timer = new System.TimeSpan();
+        } else Timer = System.TimeSpan.FromSeconds(gd.TotalRunTime);
         gc = GameControl.main;
         Scene scene = SceneManager.GetActiveScene();
         levelSceneNumber = GameObject.Find("LevelNumber").GetComponent<Text>();
@@ -56,8 +60,8 @@ public class UiControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer = timer.Add(System.TimeSpan.FromSeconds(Time.deltaTime));
-        TimerValue.text = timer.ToString(@"mm\:ss\.ff");
+        Timer = Timer.Add(System.TimeSpan.FromSeconds(Time.deltaTime));
+        TimerValue.text = Timer.ToString(@"mm\:ss\.ff");
 
 
         if(Input.GetKeyDown(KeyCode.Escape)) SwitchUi();
