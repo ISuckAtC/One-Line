@@ -326,7 +326,8 @@ public class MainMenuController : MonoBehaviour
 
         CLT.CreateNewTimes(false);
         hardmodeLevelsUnlocked = gameData.LevelsUnlocked - LevelNames.Length - 2;
-
+        gameData = SaveAndLoad.LoadGameData();
+        TotalTime.text = System.TimeSpan.FromSeconds(gameData.TotalRunTime).ToString(@"mm\:ss\.ff");
     }
 
     public void QuitGame() => Application.Quit();
