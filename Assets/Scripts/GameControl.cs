@@ -392,6 +392,8 @@ public class GameControl : MonoBehaviour
         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
         Player.GetComponent<PlayerMovement>().NukeMovement = true;
         Player.SetActive(false);
+        GameObject endAnimTroll = GameObject.Find("Flag").transform.Find("Troll_OneLine").gameObject;
+        endAnimTroll.SetActive(true);
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
         yield return new WaitForSeconds(LevelEndCamDelay / 2);

@@ -555,6 +555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Troll_OneLine
       objectReference: {fileID: 0}
+    - target: {fileID: -7373274793612182865, guid: 1d6feebcf781af04fb1e4b5090601f0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5619523628971247077, guid: 1d6feebcf781af04fb1e4b5090601f0c,
         type: 3}
       propertyPath: m_LocalRotation.x
