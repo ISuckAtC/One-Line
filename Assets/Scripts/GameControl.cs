@@ -391,10 +391,12 @@ public class GameControl : MonoBehaviour
         Camera.main.transform.parent = null;
         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Player.GetComponent<Rigidbody2D>().velocity.y);
         Player.GetComponent<PlayerMovement>().NukeMovement = true;
+        Player.transform.GetChild(0).gameObject.SetActive(false);
+        GameObject.Find("Flag").GetComponent<Flag>().transitionTroll.SetActive(true);
         Vector3 nPos = Camera.main.transform.position;
         nPos.x = nPos.x + LevelTransCamOffset;
         yield return new WaitForSeconds(LevelEndCamDelay / 2);
-        Player.GetComponent<Animator>().SetTrigger("PopOut");
+        //Player.GetComponent<Animator>().SetTrigger("PopOut");
         yield return new WaitForSeconds(LevelEndCamDelay / 2);
         while (true)
         {
