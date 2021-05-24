@@ -63,3 +63,5 @@ public class SlimeBody : MonoBehaviour
     }
     #endregion
 }
+//Created with help of the YouTube-tutorial, "Unity SoftBody 2D tutorial using sprite shape", made by the channel LoneX
+//https://www.youtube.com/watch?v=F82BlnW5z6g
