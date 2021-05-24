@@ -7,7 +7,7 @@ public class Flag : MonoBehaviour
 {
     public int nextSceneIndex;
     public bool GoToNext = true;
-    public GameObject fireworks, confettiCanon;
+    public GameObject fireworks, confettiCanon, transitionTroll;
     public CreateLevelTime CLT;
 
     void OnTriggerEnter2D(Collider2D collider)
