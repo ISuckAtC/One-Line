@@ -15,13 +15,7 @@ public class IntroRegularLine : MonoBehaviour
         StartCoroutine(Disapear());
         StartCoroutine(BackToNormal());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     IEnumerator BridgeDelay()
     {
         yield return new WaitForSeconds(2);
