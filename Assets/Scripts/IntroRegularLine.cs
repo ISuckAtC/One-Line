@@ -6,9 +6,11 @@ public class IntroRegularLine : MonoBehaviour
 {
     public Animator playerNormal, playerIntro, bridgeIntro, impIntro, fireIntro;
     public GameObject bridge, fire;
+    public GameObject belly;
     // Start is called before the first frame update
     void Start()
     {
+        belly.SetActive(true);
         playerNormal.enabled = false;
         StartCoroutine(BridgeDelay());
         StartCoroutine(FireDelay());
