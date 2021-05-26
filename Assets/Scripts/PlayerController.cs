@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
         if (!lastGrounded && movementController.isGrounded)
         {
-            Debug.Log("Landing");
+            //Debug.Log("Landing");
             animator.SetBool("Falling", false);
             animator.SetBool("Jumping", false);
             animator.SetTrigger("Landing");
@@ -78,13 +78,13 @@ public class PlayerController : MonoBehaviour
         {
             if (rb.velocity.y > 0)
             {
-                Debug.Log("Jumping");
+                //Debug.Log("Jumping");
                 animator.SetBool("Falling", false);
                 animator.SetBool("Jumping", true);
             }
             if (rb.velocity.y < 0)
             {
-                Debug.Log("Falling");
+                //Debug.Log("Falling");
                 animator.SetBool("Jumping", false);
                 animator.SetBool("Falling", true);
             }
