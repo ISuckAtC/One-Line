@@ -1,0 +1,395 @@
+fileFormatVersion: 2
+guid: bda83ccca8d71a94f842766c7f114e08
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3983238847280932569
+    second: Imp_Mom_Parts_0
+  - first:
+      213: 8361713244909491707
+    second: Imp_Mom_Parts_1
+  - first:
+      213: -119883775659500674
+    second: Imp_Mom_Parts_2
+  - first:
+      213: -3619498651900124503
+    second: Imp_Mom_Parts_3
+  - first:
+      213: 1491108236596740685
+    second: Imp_Mom_Parts_4
+  - first:
+      213: -4655516288639902569
+    second: Imp_Mom_Parts_5
+  - first:
+      213: 8104488947330924769
+    second: Imp_Mom_Parts_6
+  - first:
+      213: 6286554613629434036
+    second: Imp_Mom_Parts_7
+  - first:
+      213: 7141681368921193622
+    second: Imp_Mom_Parts_8
+  - first:
+      213: 2215952756678454786
+    second: Imp_Mom_Parts_9
+  - first:
+      213: 1934884100305186539
+    second: Imp_Mom_Parts_10
+  - first:
+      213: 8503998394748708352
+    second: Imp_Mom_Parts_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 207
+        height: 371
+      alignment: 9
+      pivot: {x: 0.91878194, y: 0.6898488}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 729984c5f51b8b8c0800000000000000
+      internalID: -3983238847280932569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_1
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 169
+        width: 255
+        height: 355
+      alignment: 9
+      pivot: {x: 0.06797737, y: 0.627183}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5528cd4e5ca0470800000000000000
+      internalID: 8361713244909491707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_2
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 400
+        width: 106
+        height: 124
+      alignment: 9
+      pivot: {x: 0.61074543, y: 0.9514992}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7b9b795756165ef0800000000000000
+      internalID: -119883775659500674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_3
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 445
+        width: 128
+        height: 79
+      alignment: 9
+      pivot: {x: 0.9162259, y: 0.8772019}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2ec7c2725f4cdc0800000000000000
+      internalID: -3619498651900124503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_4
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 386
+        width: 50
+        height: 138
+      alignment: 9
+      pivot: {x: 0.5000012, y: 0.84026015}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d42020c7a0b71b410800000000000000
+      internalID: 1491108236596740685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_5
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 244
+        width: 69
+        height: 122
+      alignment: 9
+      pivot: {x: 0.7486519, y: 0.95149904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79cd299f998446fb0800000000000000
+      internalID: -4655516288639902569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_6
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 306
+        width: 108
+        height: 82
+      alignment: 9
+      pivot: {x: 0.8093606, y: 0.83036506}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e04db712cde87070800000000000000
+      internalID: 8104488947330924769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_7
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 261
+        width: 52
+        height: 106
+      alignment: 9
+      pivot: {x: 0.65628874, y: 0.81519735}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8b97e0d145e3750800000000000000
+      internalID: 6286554613629434036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_8
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 0
+        width: 120
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69cb295ed595c1360800000000000000
+      internalID: 7141681368921193622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_9
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 0
+        width: 190
+        height: 246
+      alignment: 9
+      pivot: {x: 0.29088488, y: 0.87441397}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20eedd4aa45a0ce10800000000000000
+      internalID: 2215952756678454786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Mom_Parts_10
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 84
+        width: 124
+        height: 141
+      alignment: 9
+      pivot: {x: 0.39076775, y: 0.058107093}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beeed3876d61ada10800000000000000
+      internalID: 1934884100305186539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

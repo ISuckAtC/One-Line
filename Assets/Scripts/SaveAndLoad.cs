@@ -8,10 +8,11 @@ using System;
 public class SaveAndLoad : MonoBehaviour
 {
 
-    public static void SaveGameData(float[] times, float runTime, int lvlUnlockData, bool loadPrevTimes, float totalRunTime)
+    public static void SaveGameData(float[] times, float runTime, int lvlUnlockData, bool KeepData, float totalRunTime)
     {
+
         GameData previousLevelTimes = null;
-        if(loadPrevTimes)
+        if(KeepData)
         {
 
             previousLevelTimes = LoadGameData();
@@ -25,6 +26,7 @@ public class SaveAndLoad : MonoBehaviour
 
         formatter.Serialize(stream, data);
         stream.Close();
+
     }
 
     public static GameData LoadGameData()

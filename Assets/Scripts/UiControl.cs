@@ -11,7 +11,7 @@ public class UiControl : MonoBehaviour
     public Vector3 MinimizedSize, EnlargedSize;
     private Vector3 mousePosition;
     private GameObject PauseGameUi;
-    private GameObject InGameUi;
+    public GameObject InGameUi;
     public bool PauseGameUiOnOff, UpdateSkipBar;
     private GameControl gc;
     public GameObject[] Inkwells, InkwellPositions, InkValues, InkGlow;
@@ -244,14 +244,14 @@ public class UiControl : MonoBehaviour
     public void MainMenuButton()
     {
         GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
-        SaveAndLoad.SaveGameData(new float[0], 0, 0, false, GameControl.main.Global.TotalRunTime);
+        SaveAndLoad.SaveGameData(new float[0], 0, 0, true, GameControl.main.Global.TotalRunTime);
         SceneManager.LoadScene(0);
     }
 
     public void QuitButton() 
     {
         GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
-        SaveAndLoad.SaveGameData(new float[0], 0, 0, false, GameControl.main.Global.TotalRunTime);
+        SaveAndLoad.SaveGameData(new float[0], 0, 0, true, GameControl.main.Global.TotalRunTime);
         if(gc.Global != null) gc.Global.ResetCount += 1;
         Application.Quit();
         Debug.Log("I do be working - (The Quit Button).");

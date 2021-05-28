@@ -382,6 +382,7 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardmodeLevelsUnlocked = 1;
+        gameData.LevelsUnlocked = 28;
         HardmodeToggleButton.GetComponent<Button>().interactable = true;
         StartCoroutine(SlideIn(true));
         UpdateButtons();
@@ -392,6 +393,7 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardmodeLevelsUnlocked = 100;
+        gameData.LevelsUnlocked = 100;
         HardmodeToggleButton.GetComponent<Button>().interactable = true;
         StartCoroutine(SlideIn(true));
         UpdateButtons();

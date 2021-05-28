@@ -21,7 +21,7 @@ public class GameData
         
         if(PreviousData != null)
         {
-
+            
             if(RunTime != 0)
                 RecentRun = RunTime;
             else
