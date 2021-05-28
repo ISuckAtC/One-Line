@@ -36,6 +36,7 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
+
         if(GameObject.FindGameObjectWithTag("Timer"))
         {
 
@@ -75,7 +76,6 @@ public class MainMenuController : MonoBehaviour
 
         screenWidth = Screen.width;
         Cursor.visible = false;
-
         ScreenWidth = settingsData.ScreenWidth;
         ScreenHeight = settingsData.ScreenHeight;
         FullscreenToggle = settingsData.FullScreenMode;
@@ -97,6 +97,7 @@ public class MainMenuController : MonoBehaviour
         hardmodeLevelsUnlocked = gameData.LevelsUnlocked - (LevelNames.Length - 1);
         hardmodeLevelsUnlocked = Mathf.Clamp(hardmodeLevelsUnlocked, 0, 60);
         Debug.Log("Hardmode levels unlocked: " + hardmodeLevelsUnlocked);
+        Debug.Log("Levels Unlocked: " + gameData.LevelsUnlocked);
 
         if(gameData.LevelsUnlocked >= 27)
         {
@@ -381,7 +382,6 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardmodeLevelsUnlocked = 1;
-        gameData.LevelsUnlocked = 28;
         HardmodeToggleButton.GetComponent<Button>().interactable = true;
         StartCoroutine(SlideIn(true));
         UpdateButtons();
@@ -392,7 +392,6 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardmodeLevelsUnlocked = 100;
-        gameData.LevelsUnlocked = 100;
         HardmodeToggleButton.GetComponent<Button>().interactable = true;
         StartCoroutine(SlideIn(true));
         UpdateButtons();
