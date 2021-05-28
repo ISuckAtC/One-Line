@@ -117,6 +117,7 @@ public class MainMenuController : MonoBehaviour
         RecentRunText.text = "Last Run: " + gameData.RecentRun;
         BestRunText.text = "Best Run: " + gameData.BestRun;
         BestCollectiveTimeText.text = "Best Collective time: " + collectiveBestTime;
+        Background.color = DefaultColor;
 
     }
 
