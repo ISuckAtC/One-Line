@@ -239,7 +239,6 @@ public class WizardBossBehaviour : MonoBehaviour
 
         impAnimController.Attacking();
 
-        //transform.position = FireballRainPos.position;
         Destination = FireballRainPos.position;
         StartCoroutine(Move(0));
         yield return new WaitForSeconds(1.5f);
@@ -276,7 +275,6 @@ public class WizardBossBehaviour : MonoBehaviour
         if(fireballShots <= FireballAttackPos.Length - 1)
         {
 
-            //transform.position = FireballAttackPos[fireballShots].position;
             Destination = FireballAttackPos[fireballShots].position;
             StartCoroutine(Move(0));
             yield return new WaitForSeconds(AttackDelay / 2);
@@ -331,6 +329,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
         if(Collided)
         {
+
             StartCoroutine(Hurt());
             int RandomNum = Random.Range(0, FireballAttackPos.Length);
             Destination = FireballAttackPos[RandomNum].position;
@@ -553,6 +552,13 @@ public class WizardBossBehaviour : MonoBehaviour
     void Death()
     {
 
+        foreach (GameObject GO in Activatables)
+        {
+            
+            GO.GetComponent<IActivatable>().Activate();
+
+        }
+
         defeated = true;
         gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
 
@@ -573,13 +579,6 @@ public class WizardBossBehaviour : MonoBehaviour
         {
 
             Destroy(gameObject, DeathDelay);
-
-        }
-
-        foreach (GameObject GO in Activatables)
-        {
-            
-            GO.GetComponent<IActivatable>().Activate();
 
         }
 

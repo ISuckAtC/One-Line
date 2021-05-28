@@ -19,7 +19,8 @@ public class SpeedrunTimer : MonoBehaviour
     void Update()
     {
 
-        runTime += Time.deltaTime;
+        if(SceneManager.GetActiveScene().buildIndex != 0)
+            runTime += Time.deltaTime;
 
     }
 
