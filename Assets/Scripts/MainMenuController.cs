@@ -244,7 +244,7 @@ public class MainMenuController : MonoBehaviour
     private IEnumerator SlideIn(bool reset)
     {
 
-        if(reset)
+        if(reset && levelNumSelected != 0)
         {
 
             PreviewName.text = LevelNames[levelNumSelected-1];
