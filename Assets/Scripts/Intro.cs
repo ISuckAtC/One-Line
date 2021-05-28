@@ -13,6 +13,7 @@ public class Intro : MonoBehaviour
     void Start()
     {
         UICanvas.SetActive(false);
+        GameControl.main.InCutScene = true;
         var videoPlayer = cam.AddComponent<UnityEngine.Video.VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;
@@ -43,7 +44,7 @@ public class Intro : MonoBehaviour
     }
     void EndReached(UnityEngine.Video.VideoPlayer vp)
     {
-
+        GameControl.main.InCutScene = false;
         cam.GetComponent<VideoPlayer>().Stop();
         UICanvas.SetActive(true);
         Destroy(gameObject);
@@ -53,6 +54,7 @@ public class Intro : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            GameControl.main.InCutScene = false;
             cam.GetComponent<VideoPlayer>().Stop();
             UICanvas.SetActive(true);
             Destroy(gameObject);
