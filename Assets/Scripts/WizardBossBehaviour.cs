@@ -325,38 +325,8 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator DashAttackExecution(bool InSequence)
     {
 
-        DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, PlayerTransfom.position.y - transform.position.y).normalized;
+        yield return new WaitForEndOfFrame();
 
-        if(Collided)
-        {
-
-            StartCoroutine(Hurt());
-            int RandomNum = Random.Range(0, FireballAttackPos.Length);
-            Destination = FireballAttackPos[RandomNum].position;
-            StartCoroutine(Move(1));
-            Collided = false;
-
-            impAnimController.Idle();
-
-            if(InSequence)
-            {
-
-                sequencePart++;
-                yield return new WaitForSeconds(2);
-                SlimeStorm();
-
-            }else
-                StartCoroutine(RestartSequence());
-
-        }
-        else
-        {
-
-            RB2D.velocity = DashDir * dashSpeed;
-            yield return new WaitForFixedUpdate();
-            StartCoroutine(DashAttackExecution(InSequence));
-
-        }
     }
 
     IEnumerator SlimeStorm()
