@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
 
+    public GameObject[] LevelButtons;
     public bool ExcludeLevelNames;
     public string[] LevelNames;
     public bool ExcludeLevelImages;
@@ -155,11 +156,33 @@ public class MainMenuController : MonoBehaviour
         hardModeToggle = !hardModeToggle;
         
         if(hardModeToggle)
+        {
+
             Background.color = HardModeColor;
+            for(int i = 0; i < LevelButtons.Length; i++)
+            {
+
+                LevelButtons[i].GetComponentInChildren<Text>().text = (i + LevelButtons.Length + 1).ToString();
+
+            }
+
+        }
         else
+        {
+
             Background.color = DefaultColor;
+            for(int i = 0; i < LevelButtons.Length; i++)
+            {
+
+                LevelButtons[i].GetComponentInChildren<Text>().text = (i + 1).ToString();
+
+            }
+
+        }
 
         StartCoroutine(SlideIn(true));
+
+
 
     }
 
@@ -177,7 +200,7 @@ public class MainMenuController : MonoBehaviour
         else
         {
             
-            FramerateInputField.text = "Only numbers";
+            FramerateInputField.text = "Use numbers";
 
         }
 
