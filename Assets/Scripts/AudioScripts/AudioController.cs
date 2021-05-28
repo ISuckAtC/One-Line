@@ -26,7 +26,7 @@ public class AudioController : MonoBehaviour
 
     private LayerMask playerMask;
 
-    private float landingTime, prevLandingTime, jumpingTime, prevJumpingTime;
+    private float landingTime, prevLandingTime, jumpingTime, prevJumpingTime, deathTime, prevDeathTime, hitHeadTime, prevHitHeadTime;
     
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class AudioController : MonoBehaviour
         normalFootstepClip = Resources.Load<AudioClip>("Sound/PlayerSounds/footstep_concrete_walk_01");
         footStepsClip = normalFootstepClip;
         metalFootstepClip = Resources.Load<AudioClip>("Sound/PlayerSounds/footstep_metal_high_run_05");
-        iceFootstepClip = Resources.Load<AudioClip>("Sound/PlayerSounds/footstep_ice_crunchy_land_05_Edited");
+        iceFootstepClip = Resources.Load<AudioClip>("Sound/PlayerSounds/footstep_ice_crunchy_slide_17");
         rubberFootstepClip = Resources.Load<AudioClip>("Sound/PlayerSounds/impact_deep_thud_bounce_01_Edited");
         
         jumpClip = Resources.Load<AudioClip>("Sound/PlayerSounds/voice_male_c_effort_short_jump_03");
@@ -71,7 +71,7 @@ public class AudioController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_pm.isGrounded && Input.GetKey(KeyCode.Space))
+        if (_pm.isGrounded && Input.GetKey(KeyCode.Space) || _pm.isGrounded && Input.GetAxisRaw("Vertical") != 0)
         {
             if (playerRB.velocity.y > 0)
             {
@@ -189,7 +189,7 @@ public class AudioController : MonoBehaviour
             }
         }
         
-        if(_player.GetComponent<Animator>().GetBool("isWalking") && _pm.isGrounded && playerRB.velocity.x > 1f || playerRB.velocity.x < -1f)
+        if(_player.GetComponent<Animator>().GetBool("isWalking") && _pm.isGrounded && (playerRB.velocity.x > 1f || playerRB.velocity.x < -1f))
             playerAS.PlayOneShot(footStepsClip);
     }
 
@@ -218,7 +218,11 @@ public class AudioController : MonoBehaviour
 
     public void playDeathSound()
     {
+        deathTime = Time.time;
+        if(deathTime < prevDeathTime + .3f)
+            return;
         playerAS.PlayOneShot(deathClip);
+        prevDeathTime = Time.time;
     }
 
     public void playLevelCompleted()
@@ -228,8 +232,13 @@ public class AudioController : MonoBehaviour
 
     public IEnumerator playHeadHit()
     {
+        hitHeadTime = Time.time;
+        if (hitHeadTime < prevHitHeadTime + .3f)
+            yield return null;
+
         playerAS.PlayOneShot(hitHeadClip);
         yield return new WaitForSeconds(hitHeadClip.length * 2f);
         playHeadHitOnce = false;
+        prevHitHeadTime = Time.time;
     }
 }

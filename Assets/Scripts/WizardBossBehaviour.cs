@@ -222,7 +222,9 @@ public class WizardBossBehaviour : MonoBehaviour
     }
 
     void stopAttacking()
-    {}
+    {
+        GetComponent<ImpAudioController>().playWindUpBeforeAttack();
+    }
 
     IEnumerator pauseFor(float pauseTime)
     {
@@ -262,7 +264,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     void ShootFireball()
     {
-
+        GetComponent<ImpAudioController>().playFireballSound();
         GameObject fireball = Instantiate(Fireball, transform.position, transform.rotation);
         fireball.transform.up = PlayerTransfom.position - transform.position;
         fireball.GetComponent<Rigidbody2D>().velocity = fireball.transform.up * fireballSpeed;
@@ -317,7 +319,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
         Collided = false;
         StartCoroutine(DashAttackExecution(InSequence));
-
+        GetComponent<ImpAudioController>().playDashSound();
         impAnimController.Dashing();
 
     }
@@ -361,7 +363,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     IEnumerator SlimeStorm()
     {
-
+        GetComponent<ImpAudioController>().playSlimeSpawnSound();
         slimeStage = true;
         sequencePart++;
 
@@ -460,7 +462,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     IEnumerator Hurt()
     {
-        
+        GetComponent<ImpAudioController>().playDamagesound();
         foreach(SpriteRenderer sR in WizardSpriteRenderers) sR.color = Color.red;
 
         Health--;
@@ -551,7 +553,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     void Death()
     {
-
+        GetComponent<ImpAudioController>().playDeathSound();
         foreach (GameObject GO in Activatables)
         {
             
