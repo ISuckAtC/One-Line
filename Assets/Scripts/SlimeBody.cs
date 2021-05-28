@@ -21,7 +21,7 @@ public class SlimeBody : MonoBehaviour
         UpdateVerts();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateVerts();
     }
@@ -42,9 +42,8 @@ public class SlimeBody : MonoBehaviour
             }
             catch
             {
-
+            
                 //if they're too close 
-                Debug.Log("verts are too close, doing another calculation");
                 slimeShape.spline.SetPosition(i, (_vert - _towardsCenter * (_colliderRadius + splineOffset)));
             }
 
