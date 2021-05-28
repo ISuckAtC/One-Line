@@ -14,7 +14,7 @@ public class MainMenuController : MonoBehaviour
     public Sprite[] LevelPreviewImage;
     public bool ExcludeLevelTexts;
     public string[] LevelPreviewText;
-    public GameObject MainMenuCursor, PreviewPanel, ToggleButton, HardModeButton, HardmodeLevelButton, GoToLevelButton;
+    public GameObject MainMenuCursor, PreviewPanel, ToggleButton, HardmodeLevelButton, HardmodeToggleButton, GoToLevelButton, NormalBG, HardmodeBG;
     private GameObject speedrunTimer;
     public Text PreviewName, PreviewText, GoToLevelButtonText, HardmodeLevelButtonText, PreviewBestTimeText, PreviewBestHardTimeText, RecentRunText, BestRunText, BestCollectiveTimeText;
     public InputField FramerateInputField;
@@ -101,8 +101,7 @@ public class MainMenuController : MonoBehaviour
         if(gameData.LevelsUnlocked >= 27)
         {
 
-            HardModeButton.GetComponent<Button>().interactable = true;
-
+            HardmodeToggleButton.GetComponent<Button>().interactable = true;
             for(int i = 0; i < LevelNames.Length; i++)
             {
 
@@ -112,12 +111,30 @@ public class MainMenuController : MonoBehaviour
 
         }
         else
-            HardModeButton.GetComponent<Button>().interactable = false;
+            HardmodeToggleButton.GetComponent<Button>().interactable = false;
 
         RecentRunText.text = "Last Run: " + gameData.RecentRun;
         BestRunText.text = "Best Run: " + gameData.BestRun;
         BestCollectiveTimeText.text = "Best Collective time: " + collectiveBestTime;
         Background.color = DefaultColor;
+
+        for(int i = 0; i < LevelButtons.Length; i++)
+        {
+
+            if(gameData.LevelsUnlocked >= i)
+            {
+
+                LevelButtons[i].GetComponent<Button>().interactable = true;
+
+            }
+            else
+            {
+
+                LevelButtons[i].GetComponent<Button>().interactable = false;
+                
+            }
+
+        }
 
     }
 
@@ -155,35 +172,83 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardModeToggle = !hardModeToggle;
+        levelNumSelected = 1;
         
         if(hardModeToggle)
         {
 
             Background.color = HardModeColor;
-            for(int i = 0; i < LevelButtons.Length; i++)
-            {
-
-                LevelButtons[i].GetComponentInChildren<Text>().text = (i + LevelButtons.Length + 1).ToString();
-
-            }
+            HardmodeLevelButton.SetActive(true);
+            NormalBG.SetActive(false);
+            HardmodeBG.SetActive(true);
 
         }
         else
         {
 
             Background.color = DefaultColor;
+            HardmodeLevelButton.SetActive(false);
+            NormalBG.SetActive(true);
+            HardmodeBG.SetActive(false);
+
+        }
+
+        StartCoroutine(SlideIn(true));
+        UpdateButtons();
+
+    }
+
+    public void UpdateButtons()
+    {
+
+        if(hardModeToggle)
+        {
+
+            for(int i = 0; i < LevelButtons.Length; i++)
+            {
+
+                LevelButtons[i].GetComponentInChildren<Text>().text = (i + LevelButtons.Length + 1).ToString();
+
+                if(hardmodeLevelsUnlocked > i)
+                {
+
+                    LevelButtons[i].GetComponent<Button>().interactable = true;
+
+                }
+                else
+                {
+
+                    LevelButtons[i].GetComponent<Button>().interactable = false;
+                
+                }
+
+            }
+        
+        }
+        else
+        {
+
             for(int i = 0; i < LevelButtons.Length; i++)
             {
 
                 LevelButtons[i].GetComponentInChildren<Text>().text = (i + 1).ToString();
 
+                if(gameData.LevelsUnlocked >= i)
+                {
+
+                    LevelButtons[i].GetComponent<Button>().interactable = true;
+
+                }
+                else
+                {
+
+                    LevelButtons[i].GetComponent<Button>().interactable = false;
+
+                }
+
             }
 
         }
-
-        StartCoroutine(SlideIn(true));
-
-
 
     }
 
@@ -253,21 +318,10 @@ public class MainMenuController : MonoBehaviour
             PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
             PreviewBestHardTimeText.text = "Best Hardmode Time: " + levelTimes[levelNumSelected-1 + LevelNames.Length];
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
-            
-            if(hardmodeLevelsUnlocked >= levelNumSelected)
-            {
+            HardmodeLevelButtonText.text = "Play Level: " + (levelNumSelected + LevelButtons.Length);
 
-                HardmodeLevelButtonText.text = "Play level; " + (levelNumSelected + LevelNames.Length);
-                HardmodeLevelButton.GetComponent<Button>().interactable = true;
-
-            }
-            else
-            {
-
-                HardmodeLevelButtonText.text = "Level not unlocked";
-                HardmodeLevelButton.GetComponent<Button>().interactable = false;
-
-            }
+            PreviewBestTimeText.gameObject.SetActive(!hardModeToggle);
+            PreviewBestHardTimeText.gameObject.SetActive(hardModeToggle);
 
             HardmodeLevelButton.SetActive(hardModeToggle);
             GoToLevelButton.SetActive(!hardModeToggle);
@@ -323,14 +377,14 @@ public class MainMenuController : MonoBehaviour
 
     }
 
-    public void UnlockFirstLevel()
+    public void UnlockNormalLevels()
     {
 
         hardmodeLevelsUnlocked = 1;
-
-        HardModeButton.GetComponent<Button>().interactable = true;
-
+        gameData.LevelsUnlocked = 28;
+        HardmodeToggleButton.GetComponent<Button>().interactable = true;
         StartCoroutine(SlideIn(true));
+        UpdateButtons();
 
     }
 
@@ -338,10 +392,10 @@ public class MainMenuController : MonoBehaviour
     {
 
         hardmodeLevelsUnlocked = 100;
-
-        HardModeButton.GetComponent<Button>().interactable = true;
-
+        gameData.LevelsUnlocked = 100;
+        HardmodeToggleButton.GetComponent<Button>().interactable = true;
         StartCoroutine(SlideIn(true));
+        UpdateButtons();
 
     }
 
@@ -352,6 +406,7 @@ public class MainMenuController : MonoBehaviour
         hardmodeLevelsUnlocked = gameData.LevelsUnlocked - LevelNames.Length - 2;
         gameData = SaveAndLoad.LoadGameData();
         TotalTime.text = System.TimeSpan.FromSeconds(gameData.TotalRunTime).ToString(@"mm\:ss\.ff");
+        UpdateButtons();
     }
 
     public void QuitGame() => Application.Quit();
