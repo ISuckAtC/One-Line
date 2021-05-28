@@ -132,7 +132,7 @@ public class UiControl : MonoBehaviour
 
     }
 
-    private void SwitchUi() 
+    public void SwitchUi() 
     {
 
         PauseGameUiOnOff = !PauseGameUiOnOff;
