@@ -10,8 +10,6 @@ public class IntroRegularLine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameControl.main.InCutScene = true;
-        UiControl.main.InGameUi.SetActive(false);
         belly.SetActive(true);
         playerNormal.enabled = false;
         StartCoroutine(BridgeDelay());
@@ -39,8 +37,6 @@ public class IntroRegularLine : MonoBehaviour
     IEnumerator BackToNormal()
     {
         yield return new WaitForSeconds(9);
-        GameControl.main.InCutScene = false;
-        UiControl.main.InGameUi.SetActive(true);
         playerIntro.enabled = false;
         playerNormal.enabled = true;
     }

@@ -11,7 +11,7 @@ public class UiControl : MonoBehaviour
     public Vector3 MinimizedSize, EnlargedSize;
     private Vector3 mousePosition;
     private GameObject PauseGameUi;
-    public GameObject InGameUi;
+    private GameObject InGameUi;
     public bool PauseGameUiOnOff, UpdateSkipBar;
     private GameControl gc;
     public GameObject[] Inkwells, InkwellPositions, InkValues, InkGlow;
