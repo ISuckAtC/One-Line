@@ -1534,6 +1534,7 @@ MonoBehaviour:
   shiftInactive: {fileID: 21300000, guid: dbb0384b0a9f7204a9b850152418d213, type: 3}
   shiftActive: {fileID: 21300000, guid: 53d5db41ea3ab9a4a9c689ad9226bdc3, type: 3}
   TimerValue: {fileID: 2125028037302094220}
+  TimerRunning: 0
 --- !u!1 &3060476779795402192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,7 +2679,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Main Menu
+  m_Text: Continue
 --- !u!114 &4263435642030694711
 MonoBehaviour:
   m_ObjectHideFlags: 0
