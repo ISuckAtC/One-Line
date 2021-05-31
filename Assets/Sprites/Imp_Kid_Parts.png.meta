@@ -1,0 +1,323 @@
+fileFormatVersion: 2
+guid: fddf351bf3b03f94a851ff9ff3854e62
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8269563709806333139
+    second: Imp_Kid_Parts_0
+  - first:
+      213: 313048300510825060
+    second: Imp_Kid_Parts_1
+  - first:
+      213: -3800306733195888222
+    second: Imp_Kid_Parts_2
+  - first:
+      213: -8908432610735188193
+    second: Imp_Kid_Parts_3
+  - first:
+      213: -6854439023873517358
+    second: Imp_Kid_Parts_4
+  - first:
+      213: -6002814533772137344
+    second: Imp_Kid_Parts_5
+  - first:
+      213: 4936714171800573414
+    second: Imp_Kid_Parts_6
+  - first:
+      213: -5197353735575990281
+    second: Imp_Kid_Parts_7
+  - first:
+      213: -8266132786562535328
+    second: Imp_Kid_Parts_8
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 77
+        width: 187
+        height: 195
+      alignment: 9
+      pivot: {x: 0.9146186, y: 0.2680617}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d233885be9b9c3d80800000000000000
+      internalID: -8269563709806333139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_1
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 77
+        width: 187
+        height: 195
+      alignment: 9
+      pivot: {x: 0.07962297, y: 0.2763452}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46acc7d45cb285400800000000000000
+      internalID: 313048300510825060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_2
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 170
+        width: 192
+        height: 88
+      alignment: 9
+      pivot: {x: 0.50560886, y: 0.08394189}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9755a3929924bc0800000000000000
+      internalID: -3800306733195888222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_3
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 199
+        width: 62
+        height: 51
+      alignment: 9
+      pivot: {x: 0.14394353, y: 0.5739019}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f179f9b4db3ee5480800000000000000
+      internalID: -8908432610735188193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_4
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 208
+        width: 36
+        height: 64
+      alignment: 9
+      pivot: {x: 0.7542589, y: 0.81969166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d8917f260420e0a0800000000000000
+      internalID: -6854439023873517358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_5
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 213
+        width: 37
+        height: 59
+      alignment: 9
+      pivot: {x: 0.23806186, y: 0.8376584}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ca5fd5cf7b1bca0800000000000000
+      internalID: -6002814533772137344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_6
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 0
+        width: 94
+        height: 126
+      alignment: 9
+      pivot: {x: 0.5229122, y: 0.6794761}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e55fc7226bb28440800000000000000
+      internalID: 4936714171800573414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Imp_Kid_Parts_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 108
+        width: 59
+        height: 51
+      alignment: 9
+      pivot: {x: 0.8650368, y: 0.6478038}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff81f2705a4fd7b0800000000000000
+      internalID: -5197353735575990281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
