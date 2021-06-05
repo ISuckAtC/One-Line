@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Outro : MonoBehaviour
 {
+    public Animator gravityLine;
     public GameObject belly; //why do you keep disapearing D:
+
     // Start is called before the first frame update
     void Start()
     {
         belly.SetActive(true);
+        StartCoroutine(GravityLineDelay());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator GravityLineDelay()
     {
-        
+        yield return new WaitForSeconds(2);
+        gravityLine.Play("OutroGravityLine");
     }
 }
