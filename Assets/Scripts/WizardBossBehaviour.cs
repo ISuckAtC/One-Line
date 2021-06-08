@@ -34,7 +34,7 @@ public class WizardBossBehaviour : MonoBehaviour
     private int executions, fireballShots, attackStage, sequencePart, travelI;
     private Vector3 Destination;
     public Transform[] FireballAttackPos, SlimeSpawnPos;
-    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint, ImpHead;
+    public GameObject Fireball, SlimePrefab, Cannon, NextStagePoint, FireEgg;
     public Transform PlayerTransfom, FireballRainPos;
     public SpriteRenderer[] WizardSpriteRenderers;
     private Rigidbody2D RB2D;
@@ -129,10 +129,6 @@ public class WizardBossBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Euler(180, 0, -90);
 
         }
-
-        /*Vector3 tempVect = (transform.position - PlayerTransfom.position).normalized;
-
-        ImpHead.transform.rotation = Quaternion.LookRotation(tempVect);*/
 
     }
 
@@ -264,6 +260,7 @@ public class WizardBossBehaviour : MonoBehaviour
 
     void ShootFireball()
     {
+
         GetComponent<ImpAudioController>().playFireballSound();
         GameObject fireball = Instantiate(Fireball, transform.position, transform.rotation);
         fireball.transform.up = PlayerTransfom.position - transform.position;
@@ -312,9 +309,10 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator DashAttack(bool InSequence)
     {
 
-        int RandomNum = Random.Range(0, FireballAttackPos.Length);
-        transform.position = FireballAttackPos[RandomNum].position;
-        Destination = FireballAttackPos[RandomNum].position;
+        transform.position = FireballAttackPos[3].position;
+        Destination = FireballAttackPos[3].position;
+        RB2D.gravityScale = 1;
+        DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, 0).normalized * dashSpeed;
         yield return new WaitForSeconds(AttackPause);
 
         Collided = false;
@@ -327,7 +325,36 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator DashAttackExecution(bool InSequence)
     {
 
-        yield return new WaitForEndOfFrame();
+        if(Collided)
+        {
+
+            StartCoroutine(Hurt());
+            Collided = false;
+
+            impAnimController.Idle();
+
+            if(InSequence)
+            {
+
+                sequencePart++;
+                yield return new WaitForSeconds(2);
+                SlimeStorm();
+
+            }
+            else
+                StartCoroutine(RestartSequence());
+
+        }
+        else
+        {
+
+            RB2D.velocity = DashDir + new Vector2(0, RB2D.velocity.y);
+            yield return new WaitForSecondsRealtime(0.2f);
+            GameObject tempFireball = Instantiate(Fireball, transform.position, Quaternion.identity);
+            tempFireball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -fireballSpeed);
+            StartCoroutine(DashAttackExecution(InSequence));
+        
+        }
 
     }
 
@@ -366,6 +393,7 @@ public class WizardBossBehaviour : MonoBehaviour
     IEnumerator RestartSequence()
     {
 
+        RB2D.gravityScale = 0;
         impAnimController.Idle();
         attackStage++;
         sequencePart = 0;
@@ -398,13 +426,6 @@ public class WizardBossBehaviour : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
-        else
-        {
-
-            RB2D.velocity = Vector2.zero;
-            StartCoroutine(Move(1));
-
-        }
 
         if(collision.gameObject.tag == "Player")
         {
@@ -413,7 +434,11 @@ public class WizardBossBehaviour : MonoBehaviour
 
         }
 
-        Collided = true;
+        if(collision.transform.parent != null)
+            if(collision.transform.parent.tag == "Line")
+                Collided = true;
+            else
+                DashDir = new Vector2(PlayerTransfom.position.x - transform.position.x, 0).normalized * dashSpeed;
 
         if(collision.transform.parent != null && collision.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line") || collision.gameObject.layer == LayerMask.NameToLayer("Line") && collision.gameObject.GetComponent<Rigidbody2D>())
         {
