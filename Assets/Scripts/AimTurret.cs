@@ -48,6 +48,7 @@ public class AimTurret : Enemy
     {
         if (target)
         {
+            GetComponent<TurretAudioController>().playShootClip();
             GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = transform.up * BulletSpeed;
         }
@@ -55,6 +56,8 @@ public class AimTurret : Enemy
 
     public override void Death()
     {
-        Destroy(gameObject);
+        TurretAudioController _tac = GetComponent<TurretAudioController>();
+        _tac.playDeathClip();
+        Destroy(gameObject, _tac.turretDeathClip.length);
     }
 }
