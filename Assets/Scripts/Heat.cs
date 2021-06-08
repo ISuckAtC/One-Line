@@ -23,6 +23,7 @@ public class Heat : MonoBehaviour
         GameObject[] icePieces = System.Array.ConvertAll(touching.FindAll(x => x.transform.parent != null && x.transform.parent.TryGetComponent<Line>(out buf) && buf.LineType == LineType.Ice).ToArray(), x => x.gameObject);
         if (icePieces.Length > 0) 
         {
+            icePieces[0].GetComponentInParent<LinesSoundController>().playMeltingIce();
             foreach (GameObject piece in icePieces)
             {
                 int index = int.Parse(piece.name.Substring(2));

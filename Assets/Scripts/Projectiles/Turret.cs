@@ -29,6 +29,7 @@ public class Turret : Enemy, IActivatable
         TurretAudioController _tac = GetComponent<TurretAudioController>();
         _tac.playDeathClip();
         CancelInvoke(nameof(TurretShoot));
+        GetComponent<Animator>().speed = 0f;
         Destroy(gameObject, _tac.turretDeathClip.length);
     }
 

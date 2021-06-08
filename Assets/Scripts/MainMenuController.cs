@@ -281,7 +281,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ApplySettings()
     {
-
+        GetComponent<MenuSounds>().playApplySettingsSound();
         Screen.SetResolution(ScreenWidth, ScreenHeight, FullscreenToggle);
         SaveAndLoad.SaveSettingsData(ScreenWidth, ScreenHeight, Framerate, FullscreenToggle, true);
         screenWidth = ScreenWidth;
@@ -309,10 +309,9 @@ public class MainMenuController : MonoBehaviour
 
     private IEnumerator SlideIn(bool reset)
     {
-
         if(reset && levelNumSelected != 0)
         {
-
+            GetComponent<MenuSounds>().playSlideSound();
             PreviewName.text = LevelNames[levelNumSelected-1];
             PreviewImage.sprite = LevelPreviewImage[levelNumSelected-1];
             PreviewText.text = LevelPreviewText[levelNumSelected-1];
@@ -348,7 +347,6 @@ public class MainMenuController : MonoBehaviour
 
     private IEnumerator SlideOut(bool outToIn, bool reset)
     {
-
         if(!inView)
         {
 
@@ -402,7 +400,7 @@ public class MainMenuController : MonoBehaviour
 
     public void EraseGameData()
     {
-
+        GetComponent<MenuSounds>().playClearSaveSound();
         CLT.CreateNewTimes(false);
         hardmodeLevelsUnlocked = gameData.LevelsUnlocked - LevelNames.Length - 2;
         gameData = SaveAndLoad.LoadGameData();

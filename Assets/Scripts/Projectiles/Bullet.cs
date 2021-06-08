@@ -27,7 +27,10 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            Destroy(gameObject);
+            BulletSoundController _bsc = GetComponent<BulletSoundController>();
+            _bsc.playDestroyClip();
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject, _bsc.destroyedClip.length);
         }
 
         if (collision.transform.parent != null && collision.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line"))
