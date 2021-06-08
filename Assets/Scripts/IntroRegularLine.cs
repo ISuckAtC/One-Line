@@ -5,7 +5,7 @@ using UnityEngine;
 public class IntroRegularLine : MonoBehaviour
 {
     public Animator playerNormal, playerIntro, bridgeIntro, impIntro, fireIntro;
-    public GameObject bridge, fire;
+    public GameObject bridge, fire, inGameCam, animCam;
     public GameObject belly;
     // Start is called before the first frame update
     void Start()
@@ -43,5 +43,7 @@ public class IntroRegularLine : MonoBehaviour
         UiControl.main.InGameUi.SetActive(true);
         playerIntro.enabled = false;
         playerNormal.enabled = true;
+        inGameCam.SetActive(true);
+        animCam.SetActive(false);
     }
 }
