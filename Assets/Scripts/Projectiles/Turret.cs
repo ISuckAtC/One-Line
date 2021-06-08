@@ -17,6 +17,7 @@ public class Turret : Enemy, IActivatable
     private void TurretShoot()
     {
         if (Inactive) return;
+        GetComponent<TurretAudioController>().playShootClip();
         GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
         newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
         newBullet.transform.rotation = transform.rotation;
@@ -25,7 +26,10 @@ public class Turret : Enemy, IActivatable
 
     public override void Death()
     {
-        Destroy(gameObject);
+        TurretAudioController _tac = GetComponent<TurretAudioController>();
+        _tac.playDeathClip();
+        CancelInvoke(nameof(TurretShoot));
+        Destroy(gameObject, _tac.turretDeathClip.length);
     }
 
     public void Activate()
