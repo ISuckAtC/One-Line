@@ -440,7 +440,7 @@ public class MainMenuController : MonoBehaviour
             for (int i = 0; i < nameCount; ++i)
             {
                 string name = System.Text.Encoding.UTF8.GetString(buffer, i * 36, 32);
-                nameEntry[i] = i.ToString();
+                nameEntry[i] = (i + 1).ToString();
                 nameEntry[i] += ": ";
                 nameEntry[i] += name.Remove(name.IndexOf('\0'));
                 nameEntry[i] += " - ";
