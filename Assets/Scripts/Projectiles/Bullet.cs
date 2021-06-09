@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             BulletSoundController _bsc = GetComponent<BulletSoundController>();
-            _bsc.playDestroyClip();
+            //_bsc.playDestroyClip();
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Destroy(gameObject, _bsc.destroyedClip.length);
         }
