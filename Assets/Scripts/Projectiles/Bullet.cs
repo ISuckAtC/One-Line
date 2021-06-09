@@ -30,7 +30,8 @@ public class Bullet : MonoBehaviour
             BulletSoundController _bsc = GetComponent<BulletSoundController>();
             //_bsc.playDestroyClip();
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            Destroy(gameObject, _bsc.destroyedClip.length);
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            Destroy(gameObject); //Removed the _bsc clip lenght thingy for now :3
         }
 
         if (collision.transform.parent != null && collision.transform.parent.gameObject.layer == LayerMask.NameToLayer("Line"))
