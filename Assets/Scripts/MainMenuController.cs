@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -136,6 +137,11 @@ public class MainMenuController : MonoBehaviour
             }
 
         }
+
+
+        string[] leaderboard = GetLeaderBoards(false);
+
+        foreach (string s in leaderboard) Debug.Log(s + " (" + s.Length + ")");
 
     }
 
@@ -409,5 +415,34 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void QuitGame() => Application.Quit();
+
+    
+    public string[] GetLeaderBoards(bool hardmode)
+    {
+        using (System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient())
+        {
+            Debug.Log("Attempting to connect");
+            client.Connect("18.117.229.1", 28000);
+            if (!client.Connected)
+            {
+                Debug.Log("Couldnt connect");
+                return null;
+            }
+            System.Net.Sockets.NetworkStream stream = client.GetStream();
+            stream.Write(new byte[] {(byte)(hardmode ? 1 : 0)}, 0, 1);
+            byte[] buffer = new byte[4096];
+            stream.Read(buffer, 0, 4096);
+            int nameCount = System.BitConverter.ToInt32(buffer, 0);
+            buffer = buffer.Skip(4).ToArray();
+            string[] nameEntry = new string[nameCount];
+            for (int i = 0; i < nameCount; ++i)
+            {
+                string name = System.Text.Encoding.UTF8.GetString(buffer, i * 36, 32);
+                nameEntry[i] = name.Remove(name.IndexOf('\0'));
+                nameEntry[i] += System.TimeSpan.FromSeconds(System.BitConverter.ToSingle(buffer, (i * 36) + 32)).ToString(@"mm\:ss\.ff");
+            }
+            return nameEntry;
+        }
+    }
 
 }
