@@ -56,6 +56,8 @@ public class GameControl : MonoBehaviour
     public Text DeathCountText;
     public char CustomWaitDefCharacter;
     public int CustomWaitDefDigits;
+    public char CustomShakeDefCharacter;
+    public char CustomForceSoundDefCharacter;
     public bool LevelCompleted;
     public bool InCutScene;
     [HideInInspector] public GlobalData Global;

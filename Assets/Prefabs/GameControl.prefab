@@ -85,6 +85,7 @@ MonoBehaviour:
   IceMeltingPoint: 40
   DialoguePrimitive:
     text: 
+    AudioLocation: HeroDialogue
     UseOwnSettings: 0
     pitchShift: 0.1
     NormalWait: 0.05
@@ -98,6 +99,8 @@ MonoBehaviour:
   DeathCountText: {fileID: 0}
   CustomWaitDefCharacter: 124
   CustomWaitDefDigits: 3
+  CustomShakeDefCharacter: 163
+  CustomForceSoundDefCharacter: 8364
   LevelCompleted: 0
   InCutScene: 0
   Global: {fileID: 0}

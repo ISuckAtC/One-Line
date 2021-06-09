@@ -21,7 +21,7 @@ public class CutSceneOnTheFly : MonoBehaviour, IActivatable
         audioSource = Camera.main.GetComponent<AudioSource>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (playing)
         {
@@ -45,11 +45,10 @@ public class CutSceneOnTheFly : MonoBehaviour, IActivatable
         for (; playIndex < Dialogues.Length; ++playIndex)
         {
             DialogueText.text = "";
-            yield return new WaitForSecondsRealtime(DialoguePopupSpeed);
 
-            yield return Dialogues[playIndex].Speak(DialogueText, audioSource);
+            yield return Dialogues[playIndex].Speak(DialogueText, DialogueBox.transform.GetChild(0) as RectTransform, audioSource);
 
-            yield return new WaitForSecondsRealtime(DialogueTranscisionSpeed);
+            yield return new WaitForSecondsRealtime(Dialogues[playIndex].PostPlayWait);
         }
         DialogueBox.SetActive(false);
         playing = false;
