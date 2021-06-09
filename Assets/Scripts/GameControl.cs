@@ -340,6 +340,27 @@ public class GameControl : MonoBehaviour
         UiControl.main.UpdateUi();
     }
 
+    public static void PostTime(string name, float time, bool hardmode)
+    {
+        using (System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient())
+        {
+            Debug.Log("Attempting to connect");
+            client.Connect("18.117.229.1", 28000);
+            if (!client.Connected)
+            {
+                Debug.Log("Couldnt connect");
+                return;
+            }
+            System.Net.Sockets.NetworkStream stream = client.GetStream();
+            byte[] buffer = new byte[37];
+            buffer[0] = (byte)(hardmode ? 3 : 2);
+            if (name.Length > 32) name = name.Substring(0, 32);
+            System.Text.Encoding.UTF8.GetBytes(name).CopyTo(buffer, 1);
+            System.BitConverter.GetBytes(time).CopyTo(buffer, 33);
+            stream.Write(buffer, 0, buffer.Length);
+        }
+    }
+
     public void ModInk(LineType type, int amount)
     {
         Ink[(int)type] += amount;

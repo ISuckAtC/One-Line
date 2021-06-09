@@ -444,5 +444,4 @@ public class MainMenuController : MonoBehaviour
             return nameEntry;
         }
     }
-
 }
