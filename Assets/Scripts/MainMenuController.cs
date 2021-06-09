@@ -433,6 +433,7 @@ public class MainMenuController : MonoBehaviour
             {
                 string name = System.Text.Encoding.UTF8.GetString(buffer, i * 36, 32);
                 nameEntry[i] = i.ToString();
+                nameEntry[i] += ": ";
                 nameEntry[i] += name.Remove(name.IndexOf('\0'));
                 nameEntry[i] += " - ";
                 nameEntry[i] += System.TimeSpan.FromSeconds(System.BitConverter.ToSingle(buffer, (i * 36) + 32)).ToString(@"mm\:ss\.ff");
