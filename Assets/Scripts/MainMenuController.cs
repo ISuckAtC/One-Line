@@ -137,12 +137,6 @@ public class MainMenuController : MonoBehaviour
             }
 
         }
-
-
-        string[] leaderboard = GetLeaderBoards(false);
-
-        foreach (string s in leaderboard) Debug.Log(s + " (" + s.Length + ")");
-
     }
 
     void Update()
@@ -438,7 +432,9 @@ public class MainMenuController : MonoBehaviour
             for (int i = 0; i < nameCount; ++i)
             {
                 string name = System.Text.Encoding.UTF8.GetString(buffer, i * 36, 32);
-                nameEntry[i] = name.Remove(name.IndexOf('\0'));
+                nameEntry[i] = i.ToString();
+                nameEntry[i] += name.Remove(name.IndexOf('\0'));
+                nameEntry[i] += " - ";
                 nameEntry[i] += System.TimeSpan.FromSeconds(System.BitConverter.ToSingle(buffer, (i * 36) + 32)).ToString(@"mm\:ss\.ff");
             }
             return nameEntry;
