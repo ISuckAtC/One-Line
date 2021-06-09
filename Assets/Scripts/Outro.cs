@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Outro : MonoBehaviour
 {
     public Animator gravityLine;
-    public GameObject belly; //why do you keep disapearing D:
+    public GameObject belly, InputField; //why do you keep disapearing D:
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,8 @@ public class Outro : MonoBehaviour
     IEnumerator LoadMenu()
     {
         yield return new WaitForSeconds(35);
-        SceneManager.LoadScene("New MainMenu");
+
+        InputField.SetActive(true);
+
     }
 }
