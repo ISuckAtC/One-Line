@@ -10,8 +10,16 @@ public class LeaderboardBuilder : MonoBehaviour
     public Font LeaderboardFont;
     public string[] strings;
     private bool empty;
+    private MainMenuController mmc;
 
-    void Awake()
+    void Start()
+    {
+
+        mmc = GameObject.Find("MainMenuCanvas").GetComponent<MainMenuController>();
+
+    }
+
+    void OnEnable()
     {
 
         LoadLeaderboard();
@@ -20,6 +28,8 @@ public class LeaderboardBuilder : MonoBehaviour
 
     public void LoadLeaderboard()
     {
+
+        //strings = mmc.GetLeaderBoards(false);
 
         int screenWidth = SaveAndLoad.LoadSettingsData().ScreenWidth;
 
