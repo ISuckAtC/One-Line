@@ -34,6 +34,7 @@ public class MainMenuController : MonoBehaviour
     private GameData gameData;
     public Color DefaultColor, HardModeColor;
     public Text TotalTime;
+    public Text MOTD;
 
     void Start()
     {
@@ -137,6 +138,8 @@ public class MainMenuController : MonoBehaviour
             }
 
         }
+
+        MOTD.text = GetMOTD();
     }
 
     void Update()
@@ -410,18 +413,55 @@ public class MainMenuController : MonoBehaviour
 
     public void QuitGame() => Application.Quit();
 
+
+    public string GetMOTD()
+    {
+        using (System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient())
+        {
+            Debug.Log("Attempting to connect");
+            System.Threading.Tasks.Task.Run(() => client.Connect("18.117.229.1", 28000));
+            int timeout = 0;
+            while(!client.Connected)
+            {
+                if (timeout++ > 20)
+                {
+                    Debug.Log("Couldnt connect");
+                    return null;
+                }
+                System.Threading.Thread.Sleep(50);
+            }
+
+            System.Net.Sockets.NetworkStream stream = client.GetStream();
+
+            stream.Write(new byte[] {(byte)4}, 0, 1);
+            byte[] buffer = new byte[256];
+            stream.Read(buffer, 0, buffer.Length);
+            int motdsize = (int)buffer[0];
+            Debug.Log(motdsize);
+            string motd = System.Text.Encoding.UTF8.GetString(buffer, 1, motdsize);
+            stream.Dispose();
+            return motd;
+        }
+    }
+
     
     public string[] GetLeaderBoards(bool hardmode)
     {
         using (System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient())
         {
             Debug.Log("Attempting to connect");
-            client.Connect("18.117.229.1", 28000);
-            if (!client.Connected)
+            System.Threading.Tasks.Task.Run(() => client.Connect("18.117.229.1", 28000));
+            int timeout = 0;
+            while(!client.Connected)
             {
-                Debug.Log("Couldnt connect");
-                return null;
+                if (timeout++ > 20)
+                {
+                    Debug.Log("Couldnt connect");
+                    return null;
+                }
+                System.Threading.Thread.Sleep(50);
             }
+
             System.Net.Sockets.NetworkStream stream = client.GetStream();
             stream.Write(new byte[] {(byte)(hardmode ? 1 : 0)}, 0, 1);
             byte[] buffer = new byte[4096];

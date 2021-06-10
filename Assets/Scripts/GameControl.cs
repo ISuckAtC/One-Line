@@ -346,10 +346,15 @@ public class GameControl : MonoBehaviour
         {
             Debug.Log("Attempting to connect");
             client.Connect("18.117.229.1", 28000);
-            if (!client.Connected)
+            int timeout = 0;
+            while(!client.Connected)
             {
-                Debug.Log("Couldnt connect");
-                return;
+                if (timeout++ > 20)
+                {
+                    Debug.Log("Couldnt connect");
+                    return;
+                }
+                System.Threading.Thread.Sleep(50);
             }
             System.Net.Sockets.NetworkStream stream = client.GetStream();
             byte[] buffer = new byte[37];
