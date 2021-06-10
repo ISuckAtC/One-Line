@@ -438,6 +438,7 @@ public class MainMenuController : MonoBehaviour
                 nameEntry[i] += " - ";
                 nameEntry[i] += System.TimeSpan.FromSeconds(System.BitConverter.ToSingle(buffer, (i * 36) + 32)).ToString(@"mm\:ss\.ff");
             }
+            Debug.Log("Successfully got leaderboards");
             stream.Dispose();
             return nameEntry;
         }
