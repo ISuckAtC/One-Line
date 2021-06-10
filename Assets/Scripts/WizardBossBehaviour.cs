@@ -548,13 +548,15 @@ public class WizardBossBehaviour : MonoBehaviour
 
     void Death()
     {
-        GetComponent<ImpAudioController>().playDeathSound();
+
         foreach (GameObject GO in Activatables)
         {
             
             GO.GetComponent<IActivatable>().Activate();
 
         }
+
+        GetComponent<ImpAudioController>().playDeathSound();
 
         defeated = true;
         gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;

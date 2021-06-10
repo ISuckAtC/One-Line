@@ -8,7 +8,6 @@ using System.Linq;
 public class MainMenuController : MonoBehaviour
 {
 
-    public InputField tempNameField;
     public GameObject[] LevelButtons;
     public bool ExcludeLevelNames;
     public string[] LevelNames;
@@ -145,13 +144,6 @@ public class MainMenuController : MonoBehaviour
 
         mousePosition = Input.mousePosition;
         MainMenuCursor.transform.position = mousePosition;
-
-    }
-
-    public void PublishTime()
-    {
-
-        GameControl.PostTime(tempNameField.text, gameData.TotalRunTime, false);
 
     }
 
@@ -446,6 +438,7 @@ public class MainMenuController : MonoBehaviour
                 nameEntry[i] += " - ";
                 nameEntry[i] += System.TimeSpan.FromSeconds(System.BitConverter.ToSingle(buffer, (i * 36) + 32)).ToString(@"mm\:ss\.ff");
             }
+            stream.Dispose();
             return nameEntry;
         }
     }

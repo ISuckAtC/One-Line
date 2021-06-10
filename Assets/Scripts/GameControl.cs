@@ -358,6 +358,7 @@ public class GameControl : MonoBehaviour
             System.Text.Encoding.UTF8.GetBytes(name).CopyTo(buffer, 1);
             System.BitConverter.GetBytes(time).CopyTo(buffer, 33);
             stream.Write(buffer, 0, buffer.Length);
+            stream.Dispose();
         }
     }
 
