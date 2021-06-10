@@ -8,7 +8,6 @@ public class Outro : MonoBehaviour
     public Animator gravityLine;
     public GameObject belly, InputField; //why do you keep disapearing D:
 
-    // Start is called before the first frame update
     void Start()
     {
         belly.SetActive(true);
