@@ -116,9 +116,9 @@ public class MainMenuController : MonoBehaviour
         else
             HardmodeToggleButton.GetComponent<Button>().interactable = false;
 
-        RecentRunText.text = "Last Run: " + gameData.RecentRun;
-        BestRunText.text = "Best Run: " + gameData.BestRun;
-        BestCollectiveTimeText.text = "Best Collective time: " + collectiveBestTime;
+        RecentRunText.text = "Last Run: " + gameData.RecentRun.ToString("00000.00");
+        BestRunText.text = "Best Run: " + gameData.BestRun.ToString("00000.00");
+        BestCollectiveTimeText.text = "Best Collective time: " + collectiveBestTime.ToString("00000.00");
         Background.color = DefaultColor;
 
         for(int i = 0; i < LevelButtons.Length; i++)

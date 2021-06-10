@@ -272,7 +272,7 @@ public class UiControl : MonoBehaviour
     public void ReplayLevel() 
     {
         GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
-        SaveAndLoad.SaveGameData(new float[0], 0, 0, false, GameControl.main.Global.TotalRunTime);
+        SaveAndLoad.SaveGameData(new float[0], 0, 0, true, GameControl.main.Global.TotalRunTime);
         gc.Global.ResetCount += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
