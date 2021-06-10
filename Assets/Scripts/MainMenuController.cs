@@ -318,8 +318,8 @@ public class MainMenuController : MonoBehaviour
             PreviewName.text = LevelNames[levelNumSelected-1];
             PreviewImage.sprite = LevelPreviewImage[levelNumSelected-1];
             PreviewText.text = LevelPreviewText[levelNumSelected-1];
-            PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1];
-            PreviewBestHardTimeText.text = "Best Hardmode Time: " + levelTimes[levelNumSelected-1 + LevelNames.Length];
+            PreviewBestTimeText.text = "Best Time: " + levelTimes[levelNumSelected-1].ToString("000.00");
+            PreviewBestHardTimeText.text = "Best Hardmode Time: " + levelTimes[levelNumSelected-1 + LevelNames.Length].ToString("000.00");
             GoToLevelButtonText.text = "Play Level: " + levelNumSelected;
             HardmodeLevelButtonText.text = "Play Level: " + (levelNumSelected + LevelButtons.Length);
 
