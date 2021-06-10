@@ -1275,7 +1275,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 100, y: -95.83}
-  m_SizeDelta: {x: 240, y: 80}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5361009337485710648
 CanvasRenderer:
@@ -1478,6 +1478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinimizedSize: {x: 0.5, y: 0.5, z: 0.5}
   EnlargedSize: {x: 1.2, y: 1.2, z: 1.2}
+  InGameUi: {fileID: 0}
   PauseGameUiOnOff: 0
   UpdateSkipBar: 0
   Inkwells:
