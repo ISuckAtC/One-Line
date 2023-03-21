@@ -135,6 +135,8 @@ MonoBehaviour:
   waitBeforeStart: 1
   bulletSpeed: 10
   Inactive: 0
+  explotionParticle: {fileID: 5287922387022479612, guid: b938d9fb844dcbb4cb4ddd718f6ba42c,
+    type: 3}
 --- !u!61 &6527931585524819542
 BoxCollider2D:
   m_ObjectHideFlags: 0

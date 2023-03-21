@@ -9,6 +9,7 @@ public class Turret : Enemy, IActivatable
     public float waitBeforeStart = 8;
     public float bulletSpeed = 6;
     public bool Inactive;
+    public GameObject explotionParticle;
     new public void Start()
     {
         base.Start();
@@ -30,6 +31,8 @@ public class Turret : Enemy, IActivatable
         _tac.playDeathClip();
         CancelInvoke(nameof(TurretShoot));
         GetComponent<Animator>().speed = 0f;
+        Instantiate(explotionParticle, transform.parent);
+        GetComponent<SpriteRenderer>().enabled = false;
         Destroy(gameObject, _tac.turretDeathClip.length);
     }
 
