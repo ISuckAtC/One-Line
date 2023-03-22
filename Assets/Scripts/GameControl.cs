@@ -160,7 +160,7 @@ public class GameControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             GameControl.main.Global.TotalRunTime = (float)UiControl.main.Timer.TotalSeconds;
-            SaveAndLoad.SaveGameData(new float[0], 0, 0, true, GameControl.main.Global.TotalRunTime);
+            SaveAndLoad.SaveGameData(new float[SceneManager.sceneCountInBuildSettings - 1], 0, 0, true, GameControl.main.Global.TotalRunTime);
             if (!LevelCompleted) Global.ResetCount++;
             Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
