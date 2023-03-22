@@ -419,7 +419,7 @@ public class MainMenuController : MonoBehaviour
         using (System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient())
         {
             Debug.Log("Attempting to connect");
-            System.Threading.Tasks.Task.Run(() => client.Connect("18.117.229.1", 28000));
+            System.Threading.Tasks.Task.Run(() => client.Connect("18.216.109.151", 28000));
             int timeout = 0;
             while(!client.Connected)
             {
@@ -450,7 +450,7 @@ public class MainMenuController : MonoBehaviour
         using (System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient())
         {
             Debug.Log("Attempting to connect");
-            System.Threading.Tasks.Task.Run(() => client.Connect("18.117.229.1", 28000));
+            System.Threading.Tasks.Task.Run(() => client.Connect("18.216.109.151", 28000));
             int timeout = 0;
             while(!client.Connected)
             {
